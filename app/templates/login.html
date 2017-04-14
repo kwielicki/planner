@@ -1,0 +1,26 @@
+<div class="login-panel" ng-hide="firebaseUser">
+    <div class="login-panel__header">
+        <h6 class="login-panel__title">Login</h6>
+    </div>
+    <div class="login-panel__forms">
+        <form class="login-panel__form">
+            <div class="form-group form-group--modern">
+                <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
+                <input type="email" class="form-control form-control--modern" placeholder="email" ng-model="email" />
+            </div>
+            <div class="form-group form-group--modern">
+                <i aria-hidden="true" class="fa fa-key form-group__icon"></i>
+                <input type="password" class="form-control form-control--modern" placeholder="password" ng-model="password" />
+            </div>
+            <div class="form-group form-group--modern form-group__helper">
+                <div class="text-xs-center text-danger">
+                    {{message.error}}
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group form-group--modern">
+                <button ng-click="auth.$signInWithEmailAndPassword(email, password)" class="btn btn--motive btn-block">Zaloguj się</button>
+            </div>
+        </form>
+    </div>
+</div>

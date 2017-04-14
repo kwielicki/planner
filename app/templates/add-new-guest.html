@@ -1,0 +1,101 @@
+<section class="section" ng-controller="pageHeader">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                 <div class="component-layout">
+                     <div class="page-header">
+                         <div class="page-header__inner">
+                             <h1 class="page-header__title">{{pageHeader.title.addNewGuest}}</h1>
+                             <h2 class="page-header__subtitle">{{pageHeader.subtitle.addNewGuest}}</h2>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" ng-controller="addNewGuest">
+    <div class="container">
+        <div class="row">
+            <!-- Dodanie nowego gościa do bazy danych -->
+            <form ng-submit="addNewPerson()" name="formAddNewGuest">
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <!-- Wypełnij pole :: IMIĘ -->
+                                    <div class="form-group form-group--modern form-group--label">
+                                        <label for="appFirstName" class="label">Podaj imię / imiona *</label>
+                                        <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
+                                        <input type="text" name="firstName" ng-model="firstName" id="appFirstName" placeholder="np. Jan" class="form-control form-control--modern form-control--username" ng-minlength="3" required/>
+                                        <div role="alert">
+                                            <span class="error" ng-show="formAddNewGuest.firstName.$error.minlength">
+                                                Niepoprawne dane. To pole musi zawieraĆ minimum 3 znaki.
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <!-- Wypełnij pole :: NAZWISKO -->
+                                    <div class="form-group form-group--modern form-group--label">
+                                        <label for="appSurName" class="label">Podaj nazwisko *</label>
+                                        <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
+                                        <input type="text" name="surName" ng-model="surName" id="appSurName" placeholder="np. Kowalski" class="form-control form-control--modern form-control--username" ng-minlength="3" required/>
+                                        <div role="alert">
+                                            <span class="error" ng-show="formAddNewGuest.surName.$error.minlength">
+                                                Niepoprawne dane. To pole musi zawierać minimum 3 znaki.
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6"></div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group form-group--modern form-group--label">
+                        <label for="appGuestCount" class="label">Podaj przewidywaną liczbę osób *</label>
+                        <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
+                        <input type="number" name="guestCount" ng-model="guestCount" id="appGuestCount" class="form-control form-control--modern form-control--username" ng-minlength="1" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Potwierdzony
+                            <input type="radio" ng-model="status.name" value="Potwierdzony">
+                        </label><br/>
+                        <label>Niepotwierdzony
+                            <input type="radio" ng-model="status.name" value="Niepotwierdzony">
+                        </label><br/>
+                        <label>Odmowa
+                            <input type="radio" ng-model="status.name" value="Odmowa">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+
+                    <div class="form-group">
+                        <label for="appMembership">Wybierz przynależność osoby<span class="error" ng-show="formAddNewGuest.membership.$error.required">*</span></label>
+                        <select name="appMembership" id="appMembership" ng-model="membership" class="form-control" required>
+                            <option value="Pan Młody">Pan Młody</option>
+                            <option value="Pani Młoda">Pani Młoda</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="appPhoneNumber">Wpisz numer telefonu</label>
+                        <input type="tel" name="appPhoneNumber" ng-model="phoneNumber" id="appPhoneNumber" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <textarea name="name" rows="8" class="form-control"></textarea>
+                </div>
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-primary"
+                            ng-disabled="formAddNewGuest.firstName.$invalid || formAddNewGuest.surName.$invalid">
+                    Dodaj gościa</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

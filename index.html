@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" ng-app="weddingPlanner" ng-controller="SampleCtrl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Wedding Planner - aplikacja do zarządzania listą z gośćmi weselnymi</title>
+    <script src="https://use.fontawesome.com/b4095e84c3.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/site-components.css" />
+  </head>
+  <body>
+   <header class="component header" ng-app="sampleApp" ng-controller="SampleCtrl" ng-show="firebaseUser">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="navbar">
+                        <div class="navbar__brand">
+                            <a href="/#/dashboard" class="logo h1">weddingPlanner</a>
+                            <span class="navbar__brand--helper">panel administratora</span>
+                        </div>
+                        <nav class="navbar__nav" ng-controller="MainNavCtrl">
+                            <ul class="list-unstyled nav">
+                                <li class="nav__element">
+                                    <a href="#" title="Otwórz menu" data-title-open="Otwórz menu" data-title-closed="Zamknij menu" class="nav__anchor nav__anchor--menu" ng-click="openMenu()">
+                                        <span>Otwórz menu</span>
+                                        <i class="fa fa-bars nav__icon" aria-hidden="true"></i>
+                                    </a>
+                                    <ul class="list-unstyled dropdown-menu dropdown-menu--global">
+                                        <li ng-class="{active: isActive('{{ menuItem.url }}')}" ng-repeat="menuItem in menuItems" class="dropdown-menu__element">
+                                            <a ng-href="#{{menuItem.url}}" title="{{menuItem.title}}" class="dropdown-menu__anchor">{{ menuItem.name }}</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav__element nav__element--logout">
+                                    <a href="#" class="nav__anchor nav__anchor--logout" ng-click="logoutMenu()">
+                                        <img src="assets/img/user-photo.png" alt="">
+                                    </a>
+                                    <ul class="list-unstyled dropdown-menu dropdown-menu--logout">
+                                        <img src="assets/img/user-photo.png" alt="">
+                                        <span>{{ firebaseUser.email }}</span>
+                                        <button ng-click="auth.$signOut(); match()">Wyloguj</button>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="layout main">
+        <div ng-view></div>
+    </main>
+    <footer class="layout footer">
+
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.min.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+
+    <script src="app/app.module.js"></script>
+    <script src="app/app.routes.js"></script>
+
+    <!-- Controllers -->
+    <script src="app/controllers/ctrl.add.new.guest.js"></script>
+    <script src="app/controllers/ctrl.login.js"></script>
+    <script src="app/components/comp-angucompleter.js"></script>
+
+    <!-- Components -->
+    <script src="app/controllers/ctrl-page-header.js" type="text/javascript">
+
+    </script>
+  </body>
+</html>

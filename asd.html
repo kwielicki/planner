@@ -1,0 +1,79 @@
+<section class="section" ng-controller="pageHeader">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                 <div class="component-layout">
+                     <div class="page-header">
+                         <div class="page-header__inner">
+                             <h1 class="page-header__title">{{pageHeader.title.addNewGuest}}</h1>
+                             <h2 class="page-header__subtitle">{{pageHeader.subtitle.addNewGuest}}</h2>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" ng-controller="addNewGuest">
+    <div class="container">
+        <div class="row">
+            <!-- Dodanie nowego goÅ›cia do bazy danych -->
+            <form ng-submit="addNewPerson()" name="formAddNewGuest">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="appFirstName">Podaj imiÄ™ / imiona *</label>
+                        <input type="text" name="firstName" ng-model="firstName" id="appFirstName" class="form-control" ng-minlength="3" required/>
+                        <div role="alert">
+                            <span class="error" ng-show="formAddNewGuest.firstName.$error.minlength">
+                                Niepoprawne dane. To pole musi zawieraÄ‡ minimum 3 znaki.
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="appGuestCount">Podaj przewidywanÄ… liczbÄ™ osÃ³b *</label>
+                        <input type="number" name="guestCount" ng-model="guestCount" id="appGuestCount" class="form-control" ng-minlength="1" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Potwierdzony
+                            <input type="radio" ng-model="status.name" value="Potwierdzony">
+                        </label><br/>
+                        <label>Niepotwierdzony
+                            <input type="radio" ng-model="status.name" value="Niepotwierdzony">
+                        </label><br/>
+                        <label>Odmowa
+                            <input type="radio" ng-model="status.name" value="Odmowa">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="appSurName">Podaj nazwisko *</label>
+                        <input type="text" name="surName" ng-model="surName" id="appSurName" class="form-control" ng-minlength="3" required/>
+                        <div role="alert">
+                            <span class="error" ng-show="formAddNewGuest.surName.$error.minlength">
+                                Niepoprawne dane. To pole musi zawieraÄ‡ minimum 3 znaki.
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="appMembership">Wybierz przynaleÅ¼noÅ›Ä‡ osoby<span class="error" ng-show="formAddNewGuest.membership.$error.required">*</span></label>
+                        <select name="appMembership" id="appMembership" ng-model="membership" class="form-control" required>
+                            <option value="Pan MÅ‚ody">Pan MÅ‚ody</option>
+                            <option value="Pani MÅ‚oda">Pani MÅ‚oda</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="appPhoneNumber">Wpisz numer telefonu</label>
+                        <input type="tel" name="appPhoneNumber" ng-model="phoneNumber" id="appPhoneNumber" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-primary"
+                            ng-disabled="formAddNewGuest.firstName.$invalid || formAddNewGuest.surName.$invalid">
+                    Dodaj goÅ›cia</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

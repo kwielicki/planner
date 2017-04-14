@@ -1,0 +1,118 @@
+.form-group {
+    margin-bottom: $padding-base;
+    &--spacer {
+        padding-top: $padding-base;
+    }
+    &__button {
+        @extend .btn;
+        @extend .btn--motive;
+        margin-top: $padding-base * 2.7;
+    }
+}
+
+.form-control {
+    @include border_radius(0);
+    @include transition_bezier();
+    &:focus {
+        outline: none;
+        box-shadow: none;
+        border-color: #fff;
+        background-color: #f8f8f8;
+    }
+    &.not-empty {
+        border-color: #fff;
+        background-color: #f8f8f8;
+    }
+    &--validate {
+        border-color: #e8a1a1;
+    }
+}
+
+
+//- Power select
+
+.ember-power-select-trigger {
+    @extend .form-control;
+    padding: 9px 21px;
+}
+
+//- Label
+.label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: 400;
+    color: #858585;
+
+}
+.label {
+    &--radio {
+        display: block;
+        text-align: left;
+        padding-bottom: 10px;
+    }
+}
+
+//- Mozilla support
+
+@-moz-document url-prefix() {
+    .form-control {
+        padding-top: 0;
+        padding-bottom: 0;
+        height: 44px;
+    }
+}
+
+//- Forms groups with modern variant
+.form-group {
+    &--modern {
+        position: relative;
+        margin: 0;
+        + .form-group {
+            margin-top: 15px;
+            margin-bottom: 0;
+        }
+    }
+    &__icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 47px;
+        height: 100%;
+        line-height: 47px;
+        text-align: center;
+        font-size: $font-size-base;
+        border-top-left-radius: $border-radius;
+        border-bottom-left-radius: $border-radius;
+        color: #fff;
+        background-color: $brand-primary;
+    }
+    &--spacer {
+        margin: 0;
+        &:last-of-type {
+            margin-bottom: 3rem;
+        }
+    }
+    &--label {
+        margin: 25px 0;
+        label {
+            position: absolute;
+            bottom: 100%;
+        }
+    }
+}
+.form-control {
+    &--modern {
+        background-color: #fff;
+        border: none;
+        border-radius: $border-radius;
+        height: 47px;
+        overflow: hidden;
+        box-shadow: none;
+        padding: 0 20px 0 70px;
+        border: 1px solid #ccc;
+        &:focus {
+            background-color: #fff;
+            border-color: $brand-primary;
+        }
+    }
+}

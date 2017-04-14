@@ -1,0 +1,56 @@
+.btn {
+    @include font_weight(400);
+    position: relative;
+    padding: 15px 35px;
+    font-size: 1.1em;
+    &:active {
+        top: 1px;
+        box-shadow: 0 1px 0 0 green; /* Kolor do zmiany */
+    }
+    &:focus:active, &:focus {
+        outline: none;
+    }
+    &--motive {
+        background-color: $brand-primary;
+        border: 1px solid $brand-primary;
+        color: #fff;
+        &:hover, &:focus, &:active {
+            color: #fff;
+            background-color: $brand-dark;
+            border: 1px solid $brand-dark;
+        }
+    }
+    &-danger {
+        background-color: $brand-danger;
+        color: $brand-dark;
+        border: 0;
+        &:hover, &:focus, &:active {
+            background-color: $brand-gray-light;
+            color: $brand-dark;
+        }
+    }
+    &-warning {
+        background-color: $brand-warning;
+        border-color: $brand-warning;
+        &:hover, &:focus, &:active {
+            background-color: darken($brand-warning, 15%);
+            color: #fff;
+            border-color: $brand-warning;
+        }
+    }
+    //- Small buttons
+    &-sm {
+        padding: 10px 25px;
+    }
+    &-xs {
+        padding: 5px 10px;
+    }
+    &--edit {
+        background-color: #fff;
+        border: 1px solid #aaa;
+    }
+    &--delete {
+        background-color: #fff;
+        border: 1px solid #aaa;
+    }
+}

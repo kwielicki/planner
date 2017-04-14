@@ -1,0 +1,7 @@
+//- Anchors
+a {
+    @include transition_bezier();
+    &:hover, &:focus, &:active {
+        text-decoration: none;
+    }
+}
