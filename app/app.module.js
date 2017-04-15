@@ -80,6 +80,100 @@ weddingPlanner.controller('mainController', function($scope) {
   $scope.sortType     = 'firstName'; // set the default sort type
   $scope.sortReverse  = false;  // set the default sort order
   $scope.searchPerson   = '';     // set the default search/filter term
+
+  $scope.printTable = function($scope) {
+      var myTableArray = [];
+      $('table tbody').find('tr').each(function() {
+          var arrayOfThisRow = [];
+          var tableData = $(this).find('td:eq(0), td:eq(1), td:eq(2), td:eq(3), td:eq(4), td:eq(5), td:eq(6) > span, td:eq(7)');
+          if (tableData.length > 0) {
+              tableData.each(function() { arrayOfThisRow.push($(this).text()); });
+              myTableArray.push(arrayOfThisRow);
+          }
+      });
+      var arrayJoin = myTableArray.join();
+      var lp = [],
+          firstName = [],
+          surName = [],
+          numberGust = [],
+          children = [],
+          membership = [],
+          status = [],
+          phoneNumber= [];
+
+      for (var p in myTableArray) {
+          lp.push(myTableArray[p][0]);
+          firstName.push(myTableArray[p][1]);
+          surName.push(myTableArray[p][2]);
+          numberGust.push(myTableArray[p][3]);
+          children.push(myTableArray[p][4]);
+          membership.push(myTableArray[p][5]);
+          status.push(myTableArray[p][6]);
+          phoneNumber.push(myTableArray[p][7]);
+      }
+      var docDefinition = {
+        pageOrientation: 'landscape',
+        pageSize: 'A4',
+        info: {
+            title: "Wedding Planner - lista gości",
+            author: "Administrator"
+        },
+        footer: function(currentPage, pageCount) {
+            return {
+                text: "Strona " + currentPage.toString() + ' z ' + pageCount,
+                alignment: "center"
+            }
+        },
+        content: [
+          {
+              stack: [
+                  {text: "Tabela generyczna - Twoja lista gości", style: "tableHeader"},
+                  {text: "- przedstawione wyniki uzależnione są od aktualnego ustawienia filtrowania", style: "tableSubheader"}
+              ]
+          },
+          {
+            table: {
+              widths: ["auto","auto","auto","auto","auto","auto", "auto", "auto"],
+              body: [
+                [
+                  [{text: "L.P", style: "tHead"}, lp],
+                  [{text: "Imię", style: "tHead"}, firstName],
+                  [{text: "Nazwisko", style: "tHead"}, surName],
+                  [{text: "Liczba gości", style: "tHead"}, numberGust],
+                  [{text: "Dzieci", style: "tHead"}, children],
+                  [{text: "Przynależność", style: "tHead"}, membership],
+                  [{text: "Status", style: "tHead"}, status],
+                  [{text: "Nr. telefonu", style: "tHead"}, phoneNumber]
+                ]
+              ]
+            }
+          }
+      ],
+      styles: {
+          tableHeader: {
+              bold: true,
+              fontSize: 18,
+              lineHeight: 1,
+              margin: [0,0,0,5]
+          },
+          tableSubheader: {
+              margin: [0,0,0,50],
+              lineHeight: 1
+          },
+          tHead: {
+              bold: true
+          }
+      },
+      defaultStyle: {
+          lineHeight: 2
+      }
+      };
+
+      pdfMake.createPdf(docDefinition).open();
+
+  }
+
+
 });
 
 weddingPlanner.directive('a', function() {

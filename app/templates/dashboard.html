@@ -2,11 +2,78 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                 <div class="page-header">
-                     <div class="page-header__inner">
-                         <h1 class="page-header__title">{{pageHeader.dashboard}}</h1>
+                 <div class="component-layout">
+                     <div class="page-header">
+                         <div class="page-header__inner">
+                             <h1 class="page-header__title">{{pageHeader.title.dashboard}}</h1>
+                             <h2 class="page-header__subtitle">{{pageHeader.subtitle.dashboard}}</h2>
+                         </div>
                      </div>
                  </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <a ng-href="#/manage-guests" class="component image-box">
+                    <div class="image-box__inner">
+                        <div class="image-box__image">
+                            <img ng-src="assets/img/image-box-1.jpg" alt="">
+                        </div>
+                        <div class="image-box__content">
+                            <h3 class="image-box__title">Administruj listą gości</h3>
+                            <p class="image-box__description">Zarządzaj filtrami oraz operacjami modyfikacji rekordów</p>
+                            <span ng-href="#/manage-guests" class="btn btn-primary">Przejdź</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a ng-href="#/add-new-guest" class="component image-box">
+                    <div class="image-box__inner">
+                        <div class="image-box__image">
+                            <img ng-src="assets/img/image-box-2.jpg" alt="">
+                        </div>
+                        <div class="image-box__content">
+                            <h3 class="image-box__title">Dodaj gościa</h3>
+                            <p class="image-box__description">Zarządzaj filtrami oraz operacjami modyfikacji rekordów</p>
+                            <span ng-href="#/manage-guests" class="btn btn-primary">Przejdź</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a ng-href="" class="component image-box">
+                    <div class="image-box__inner">
+                        <div class="image-box__image">
+                            <img ng-src="assets/img/image-box-3.jpg" alt="">
+                        </div>
+                        <div class="image-box__content">
+                            <h3 class="image-box__title">Statystyki <span class="error">(aktualnie niedostępne)</span></h3>
+                            <p class="image-box__description">Zapoznaj się ze statystykami</p>
+                            <span ng-href="" class="btn btn-primary">Przejdź</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <a ng-href="" class="component image-box">
+                    <div class="image-box__inner">
+                        <div class="image-box__image">
+                            <img ng-src="assets/img/image-box-4.jpg" alt="">
+                        </div>
+                        <div class="image-box__content">
+                            <h3 class="image-box__title">Dokumentacja <span class="error">(aktualnie niedostępne)</span></h3>
+                            <p class="image-box__description">Zapoznaj się ze dokumentacją</p>
+                            <span ng-href="" class="btn btn-primary">Przejdź</span>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>

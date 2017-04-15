@@ -4921,6 +4921,9 @@ a {
 .modal p, .modal label {
   color: #27343e !important; }
 
+.error {
+  color: #d9534f; }
+
 .form-group {
   margin-bottom: 35px; }
   .form-group--spacer {
@@ -5286,17 +5289,21 @@ textarea.ng-valid {
     .table-management thead td {
       padding: 15px 20px;
       font-weight: 600; }
+      .table-management thead td:first-child {
+        padding-right: 0; }
   .table-management tbody td {
     vertical-align: middle;
     border: 0;
-    border-bottom: 1px solid #e2e2e4;
+    border: 1px solid #eeeeee !important;
     color: #5b5b60;
     border-top: none;
-    padding: 5px 15px;
-    background: #f3f0f1;
-    background: -webkit-linear-gradient(top, #f3f0f1 0, #eee 100%);
-    background: linear-gradient(to bottom, #f3f0f1 0, #eee 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3f0f1', endColorstr='#eeeeee', GradientType=0 ); }
+    padding: 5px 20px; }
+    .table-management tbody td:first-child {
+      padding-right: 0; }
+    .table-management tbody td.membershipWomen {
+      background-color: pink; }
+    .table-management tbody td.membershipMan {
+      background-color: #a8e6fb; }
   .table-management tbody tr:hover > td {
     background: #5b5b60;
     color: #fff; }
@@ -5354,6 +5361,29 @@ ul.list li {
     position: absolute;
     top: 5px;
     left: 0; }
+
+.image-box {
+  display: block;
+  background-color: #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.2);
+  margin-bottom: 35px; }
+  .image-box__image {
+    overflow: hidden;
+    max-height: 200px; }
+    .image-box__image img {
+      max-width: 100%;
+      transition: all .3s; }
+  .image-box__content {
+    padding: 35px; }
+  .image-box__title {
+    font-weight: 600;
+    margin-bottom: 5px; }
+  .image-box__description {
+    color: #27343e; }
+  .image-box .btn {
+    margin-top: 35px; }
+  .image-box:hover img {
+    transform: scale(1.3) rotate(10deg); }
 
 .active > a {
   color: green; }

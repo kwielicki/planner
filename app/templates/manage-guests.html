@@ -24,13 +24,20 @@
                         <strong>Filtruj</strong><span> - wyszukaj po frazie</span>
                 </h2>
                 <form>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                            <input type="text" class="form-control" placeholder="Podaj imię" ng-model="searchPerson">
+                    <div class="form-group form-group--modern">
+                        <div class="form-group__input">
+                            <i aria-hidden="true" class="fa fa-search form-group__icon"></i>
+                            <input type="text" class="form-control form-control--modern" placeholder="Wpisz frazę..." ng-model="searchPerson">
                         </div>
+                        <p>&nbsp;</p>
                     </div>
                 </form>
+            </div>
+            <div class="col-sm-3">
+                <h2 class="section-title">
+                        <strong>Wydrukuj</strong><span> - tabele (np. przefiltrowaną)</span>
+                </h2>
+                 <a href="#" ng-click="printTable()" class="btn btn-primary btn-sm btn-block">Wydrukuj tabelę</a>
             </div>
         </div>
     </div>
@@ -43,7 +50,7 @@
                 <table class="table table-bordered table-striped component table-management">
                     <thead>
                         <tr>
-                            <td>L.p.</td>
+                            <td>#</td>
                             <td>
                                 <a href="#" ng-click="sortType = 'firstName'; sortReverse = !sortReverse">
                                     Imię
@@ -96,7 +103,7 @@
                         <td>{{ person.surName }}</td>
                         <td>{{ person.guestCount }}</td>
                         <td>{{ person.children }}</td>
-                        <td>{{ person.membership }}</td>
+                        <td ng-class="{membershipWomen: person.membership === 'Pani Młoda', membershipMan: person.membership === 'Pan Młody'}">{{ person.membership }}</td>
                         <td ng-class="{refusal: person.status === 'Odmowa', unconfirmed: person.status === 'Niepotwierdzony'}" class="table-management__status">
                             <span>{{ person.status }}</span>
                         </td>

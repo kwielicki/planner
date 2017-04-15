@@ -21,20 +21,29 @@
         td {
             padding: 15px 20px;
             font-weight: 600;
+            &:first-child {
+                padding-right: 0;
+            }
         }
     }
     tbody {
         td {
             vertical-align: middle;
             border: 0;
-            border-bottom: 1px solid #e2e2e4;
+            border: 1px solid #eeeeee !important;
             color: #5b5b60;
             border-top: none;
-            padding: 5px 15px;
-            background: #f3f0f1;
-            background: -webkit-linear-gradient(top,#f3f0f1 0,#eee 100%);
-            background: linear-gradient(to bottom,#f3f0f1 0,#eee 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3f0f1', endColorstr='#eeeeee', GradientType=0 );
+            padding: 5px 20px;
+            &:first-child {
+                padding-right: 0;
+            }
+            &.membershipWomen {
+                background-color: pink;
+            }
+            &.membershipMan {
+                background-color: #a8e6fb;
+            }
+
         }
         tr:hover>td {
             background: #5b5b60;
