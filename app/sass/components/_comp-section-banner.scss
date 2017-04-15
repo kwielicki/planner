@@ -1,0 +1,28 @@
+.banner-visual {
+    display: table;
+    width: 100%;
+    padding: 100px 0;
+    background-image: url("#{$assets_path}/banner-image.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    &__inner {
+        padding-left: 100px;
+        max-width: 750px;
+    }
+    &__title {
+        position: relative;
+        margin-bottom: $spacer;
+        &:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -15px;
+            height: 2px;
+            width: 50px;
+            background-color: $brand-primary;
+        }
+    }
+    .list-unstyled {
+        padding-bottom: $padding-base;
+    }
+}

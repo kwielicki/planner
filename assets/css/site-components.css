@@ -431,7 +431,7 @@ h1, .h1 {
   font-size: 3.5rem; }
 
 h2, .h2 {
-  font-size: 1.8rem; }
+  font-size: 2rem; }
 
 h3, .h3 {
   font-size: 1.75rem; }
@@ -5093,6 +5093,12 @@ textarea.ng-valid {
       background-color: #df8a13;
       color: #fff;
       border-color: #f0ad4e; }
+  .btn-default {
+    background-color: #fff;
+    color: #27343e; }
+    .btn-default:hover {
+      background-color: #2cc5f7;
+      color: #fff; }
   .btn-sm, .btn-group-sm > .btn {
     padding: 10px 25px; }
   .btn-xs {
@@ -5307,6 +5313,47 @@ textarea.ng-valid {
 .modal-dialog {
   max-height: 600px;
   overflow-y: scroll; }
+
+.banner-visual {
+  display: table;
+  width: 100%;
+  padding: 100px 0;
+  background-image: url("../../assets/img/banner-image.jpg");
+  background-size: cover;
+  background-attachment: fixed; }
+  .banner-visual__inner {
+    padding-left: 100px;
+    max-width: 750px; }
+  .banner-visual__title {
+    position: relative;
+    margin-bottom: 5rem; }
+    .banner-visual__title:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -15px;
+      height: 2px;
+      width: 50px;
+      background-color: #2cc5f7; }
+  .banner-visual .list-unstyled {
+    padding-bottom: 35px; }
+
+ul.list li {
+  position: relative;
+  padding: 5px 35px; }
+  ul.list li:before {
+    content: "\f058";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    /*--adjust as necessary--*/
+    color: #fff;
+    font-size: 18px;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 5px;
+    left: 0; }
 
 .active > a {
   color: green; }

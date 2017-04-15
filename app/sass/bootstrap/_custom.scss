@@ -5,7 +5,7 @@ $font-family-base: 'Open Sans Condensed', sans-serif;
 $headings-font-weight: 500;
 $font-size-base: 1.6rem;
 $font-size-h1: 3.5rem;
-$font-size-h2: 1.8rem;
+$font-size-h2: 2.0rem;
 
 //- Colors
 $brand-primary:     #2cc5f7;
@@ -27,3 +27,6 @@ $input-color-placeholder: $brand-primary;
 
 //- Dropdowns
 $dropdown-min-width: 20rem;
+
+//- Files path
+$assets_path: "../../assets/img";

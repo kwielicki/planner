@@ -1,0 +1,22 @@
+ul {
+    &.list {
+        li {
+            position: relative;
+            padding: 5px $padding-base;
+            &:before {
+                content: "\f058";
+                font-family: FontAwesome;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: inherit;
+            /*--adjust as necessary--*/
+                color: #fff;
+                font-size: 18px;
+                padding-right: 0.5em;
+                position: absolute;
+                top: 5px;
+                left: 0;
+            }
+        }
+    }
+}

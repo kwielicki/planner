@@ -5,12 +5,16 @@
     <div class="login-panel__forms">
         <form class="login-panel__form">
             <div class="form-group form-group--modern">
-                <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
-                <input type="email" class="form-control form-control--modern" placeholder="email" ng-model="email" />
+                <div class="form-group__input">
+                    <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
+                    <input type="email" class="form-control form-control--modern" placeholder="email" ng-model="email" />
+                </div>
             </div>
             <div class="form-group form-group--modern">
-                <i aria-hidden="true" class="fa fa-key form-group__icon"></i>
-                <input type="password" class="form-control form-control--modern" placeholder="password" ng-model="password" />
+                <div class="form-group__input">
+                    <i aria-hidden="true" class="fa fa-key form-group__icon"></i>
+                    <input type="password" class="form-control form-control--modern" placeholder="password" ng-model="password" />
+                </div>
             </div>
             <div class="form-group form-group--modern form-group__helper">
                 <div class="text-xs-center text-danger">
@@ -23,4 +27,32 @@
             </div>
         </form>
     </div>
+</div>
+<div ng-show="firebaseUser">
+    <section class="section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="component banner-visual">
+                        <div class="banner-visual__inner">
+                            <h1 class="banner-visual__title">Zaplanuj swoje wesele z aplikacją "weddingPlanner"</h1>
+                            <h2 class="banner-visual__subtitle">Umożliwia Ci ona m.in.</h2>
+                            <ul class="list-unstyled list">
+                                <li>import Twoich gości z plików xls, csv oraz json</li>
+                                <li>zarządzanie listą gości</li>
+                                <li>modyfikowanie poszczególnego rekordu (gościa)</li>
+                                <li>dodawanie rekordu (gościa)</li>
+                                <li>usunięcie rekordu</li>
+                                <li>dostęp do statystyk</li>
+                                <li>liczne filtry ułatwiające sortowanie / filtrowanie</li>
+                                <li>możliwość wydruku przygotowanej (posortowanej/przefiltrowanej) tabeli w formacie pdf</li>
+                                <li>możliwość rozbudowany podstawowej tabeli zwierającej takie kolumny jak: LP, Imię, Nazwisko, Liczba gości, Liczba dzieci, Przynależność, Status, Telefon, Informacje Dodatkowe, Operacje (usunięcie, edycja)</li>
+                            </ul>
+                            <a ng-href="#/manage-guests" title="Zarządzaj listą gości" class="btn btn-default">Przejdź do panelu głównego</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>

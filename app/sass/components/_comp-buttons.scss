@@ -38,6 +38,14 @@
             border-color: $brand-warning;
         }
     }
+    &-default {
+        background-color: #fff;
+        color: $brand-dark;
+        &:hover {
+            background-color: $brand-primary;
+            color: #fff;
+        }
+    }
     //- Small buttons
     &-sm {
         padding: 10px 25px;
