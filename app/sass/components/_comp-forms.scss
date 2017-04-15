@@ -4,9 +4,11 @@
         padding-top: $padding-base;
     }
     &__button {
-        @extend .btn;
-        @extend .btn--motive;
-        margin-top: $padding-base * 2.7;
+        margin-top: $padding-base;
+        text-align: center;
+    }
+    + .form-group {
+        margin: $padding-base 0;
     }
 }
 
@@ -65,12 +67,10 @@
 //- Forms groups with modern variant
 .form-group {
     &--modern {
-        position: relative;
         margin: 0;
-        + .form-group {
-            margin-top: 15px;
-            margin-bottom: 0;
-        }
+    }
+    &__input {
+        position: relative;
     }
     &__icon {
         position: absolute;
@@ -92,12 +92,11 @@
             margin-bottom: 3rem;
         }
     }
-    &--label {
-        margin: 25px 0;
-        label {
-            position: absolute;
-            bottom: 100%;
-        }
+    .alerts {
+        position: absolute;
+    }
+    .error {
+        color: $brand-danger;
     }
 }
 .form-control {
@@ -115,4 +114,14 @@
             border-color: $brand-primary;
         }
     }
+    &--textarea {
+        height: 150px;
+    }
+}
+
+textarea.ng-invalid {
+    background-color: #f211111a;
+}
+textarea.ng-valid {
+    background-color: lightgreen;
 }

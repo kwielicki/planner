@@ -28,72 +28,96 @@
                                     <!-- Wypełnij pole :: IMIĘ -->
                                     <div class="form-group form-group--modern form-group--label">
                                         <label for="appFirstName" class="label">Podaj imię / imiona *</label>
-                                        <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
-                                        <input type="text" name="firstName" ng-model="firstName" id="appFirstName" placeholder="np. Jan" class="form-control form-control--modern form-control--username" ng-minlength="3" required/>
-                                        <div role="alert">
+                                        <div class="form-group__input">
+                                            <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
+                                            <input type="text" name="firstName" ng-model="firstName" id="appFirstName" placeholder="np. Jan" class="form-control form-control--modern form-control--username" ng-minlength="3" required/>
+                                        </div>
+                                        <div role="alert" class="alerts">
                                             <span class="error" ng-show="formAddNewGuest.firstName.$error.minlength">
-                                                Niepoprawne dane. To pole musi zawieraĆ minimum 3 znaki.
+                                                To pole musi zawierać minimum 3 znaki.
                                             </span>
                                         </div>
+                                    </div>
+                                    <!-- Wypełnij pole :: PRZEWIDYWANA LICZBA GOŚCI -->
+                                    <div class="form-group form-group--modern form-group--label">
+                                        <label for="appGuestCount" class="label">Podaj przewidywaną liczbę osób *</label>
+                                        <div class="form-group__input">
+                                            <i aria-hidden="true" class="fa fa-sort-numeric-asc form-group__icon"></i>
+                                            <input type="number" name="guestCount" ng-model="guestCount" id="appGuestCount" class="form-control form-control--modern form-control--username" ng-minlength="1" required/>
+                                        </div>
+                                    </div>
+                                    <!-- Wypełnij pole :: STATUS -->
+                                    <p>Wprowadź status:</p>
+                                    <div class="form-group">
+                                        <label>Potwierdzony
+                                            <input type="radio" ng-model="status" value="Potwierdzony">
+                                        </label><br/>
+                                        <label>Niepotwierdzony
+                                            <input type="radio" ng-model="status" value="Niepotwierdzony">
+                                        </label><br/>
+                                        <label>Odmowa
+                                            <input type="radio" ng-model="status" value="Odmowa">
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <!-- Wypełnij pole :: NAZWISKO -->
                                     <div class="form-group form-group--modern form-group--label">
                                         <label for="appSurName" class="label">Podaj nazwisko *</label>
-                                        <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
-                                        <input type="text" name="surName" ng-model="surName" id="appSurName" placeholder="np. Kowalski" class="form-control form-control--modern form-control--username" ng-minlength="3" required/>
-                                        <div role="alert">
+                                        <div class="form-group__input">
+                                            <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
+                                            <input type="text" name="surName" ng-model="surName" id="appSurName" placeholder="np. Kowalski" class="form-control form-control--modern form-control--username" ng-minlength="3" required/>
+                                        </div>
+                                        <div role="alert" class="alerts">
                                             <span class="error" ng-show="formAddNewGuest.surName.$error.minlength">
-                                                Niepoprawne dane. To pole musi zawierać minimum 3 znaki.
+                                                To pole musi zawierać minimum 3 znaki.
                                             </span>
+                                        </div>
+                                    </div>
+                                    <!-- Wypełnij pole :: WYBIERZ PRZYNALEŻNOŚĆ -->
+                                    <div class="form-group form-group--modern form-group--label">
+                                        <label for="appMembership" class="label">Wybierz przynależność osoby<span class="error" ng-show="formAddNewGuest.membership.$error.required">*</span></label>
+                                        <select name="appMembership" id="appMembership" required ng-model="membership" class="form-control form-control--modern form-control--username" required>
+                                            <option value="Pan Młody">Pan Młody</option>
+                                            <option value="Pani Młoda">Pani Młoda</option>
+                                        </select>
+                                    </div>
+                                    <!-- Wypełnij pole :: Numer telefonu -->
+                                    <div class="form-group form-group--modern form-group--label">
+                                        <label for="appPhoneNumber" class="label">Wpisz numer telefonu<span class="error" ng-show="formAddNewGuest.membership.$error.required">*</span></label>
+                                        <div class="form-group__input">
+                                            <i aria-hidden="true" class="fa fa-mobile form-group__icon"></i>
+                                            <input type="text" name="appPhoneNumber" required ng-model="phoneNumber" id="appPhoneNumber" class="form-control form-control--modern form-control--username">
+                                        </div>
+                                    </div>
+                                    <!-- Wypełnij pole :: Dzieci -->
+                                    <div class="form-group form-group--modern form-group--label">
+                                        <label for="appChildren" class="label">Liczba dzieci</label>
+                                        <div class="form-group__input">
+                                            <i aria-hidden="true" class="fa fa-child form-group__icon"></i>
+                                            <input type="tel" name="appPhoneNumber" required ng-model="children" id="appChildren" class="form-control form-control--modern form-control--username">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6"></div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-group form-group--modern form-group--label">
-                        <label for="appGuestCount" class="label">Podaj przewidywaną liczbę osób *</label>
-                        <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
-                        <input type="number" name="guestCount" ng-model="guestCount" id="appGuestCount" class="form-control form-control--modern form-control--username" ng-minlength="1" required/>
-                    </div>
-                    <div class="form-group">
-                        <label>Potwierdzony
-                            <input type="radio" ng-model="status.name" value="Potwierdzony">
-                        </label><br/>
-                        <label>Niepotwierdzony
-                            <input type="radio" ng-model="status.name" value="Niepotwierdzony">
-                        </label><br/>
-                        <label>Odmowa
-                            <input type="radio" ng-model="status.name" value="Odmowa">
-                        </label>
-                    </div>
-                </div>
-                <div class="col-sm-3">
 
-                    <div class="form-group">
-                        <label for="appMembership">Wybierz przynależność osoby<span class="error" ng-show="formAddNewGuest.membership.$error.required">*</span></label>
-                        <select name="appMembership" id="appMembership" ng-model="membership" class="form-control" required>
-                            <option value="Pan Młody">Pan Młody</option>
-                            <option value="Pani Młoda">Pani Młoda</option>
-                        </select>
+
+                        <div class="col-sm-6">
+                            <!-- Wypełnij pole :: Informacje dodatkowe -->
+                            <div class="form-group form-group--modern form-group--label">
+                                <label for="appExtraInformation" class="label">Informacje dodatkowe</label>
+                                <textarea name="name" ng-model="extraInformation" class="form-control form-control--modern form-control--username form-control--textarea" ng-minlength="3" required></textarea>
+                            </div>
+                            <div class="form-group__button">
+                                <button type="submit" class="btn btn-primary"
+                                        ng-disabled="formAddNewGuest.firstName.$invalid ||
+                                        formAddNewGuest.surName.$invalid ||
+                                        formAddNewGuest.extraInformation.$invalid">
+                                Dodaj gościa</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="appPhoneNumber">Wpisz numer telefonu</label>
-                        <input type="tel" name="appPhoneNumber" ng-model="phoneNumber" id="appPhoneNumber" class="form-control">
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <textarea name="name" rows="8" class="form-control"></textarea>
-                </div>
-                <div class="col-xs-12">
-                    <button type="submit" class="btn btn-primary"
-                            ng-disabled="formAddNewGuest.firstName.$invalid || formAddNewGuest.surName.$invalid">
-                    Dodaj gościa</button>
                 </div>
             </form>
         </div>

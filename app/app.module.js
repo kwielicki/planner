@@ -1,5 +1,5 @@
 // Define the `phonecatApp` module
-var weddingPlanner = angular.module('weddingPlanner', ["ngRoute", "firebase", "angucomplete"]);
+var weddingPlanner = angular.module('weddingPlanner', ["ngRoute", "firebase"]);
 
 
 // Navbar Controller
@@ -97,6 +97,7 @@ weddingPlanner.directive('a', function() {
 
 
 //============================================= FIREBASE ==============================================//
+
 var config = {
     apiKey: "AIzaSyAJ8OiSlR_JD4cROJCGPV6ImPqTOYGlq9A",
     authDomain: "fir-m-wedding-planner.firebaseapp.com",
@@ -104,14 +105,14 @@ var config = {
     projectId: "fir-m-wedding-planner",
     storageBucket: "fir-m-wedding-planner.appspot.com",
     messagingSenderId: "968890916439"
-  };
-  firebase.initializeApp(config);
+};
+
+firebase.initializeApp(config);
 
 weddingPlanner.controller('SampleCtrl', function($scope, $firebaseObject) {
     var ref = firebase.database().ref();
     $scope.person = $firebaseObject(ref);
 });
-
 
 weddingPlanner.controller("SampleCtrl", ["$scope", "Auth",
   function($scope, Auth) {

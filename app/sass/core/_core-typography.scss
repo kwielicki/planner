@@ -5,3 +5,10 @@ a {
         text-decoration: none;
     }
 }
+
+//- Kolor paragrafu w modalu (konieczność nadpisania globalnych styli z TD)
+.modal {
+    p, label {
+        color: $headings-color !important;
+    }
+}

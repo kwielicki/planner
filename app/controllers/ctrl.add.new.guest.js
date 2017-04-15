@@ -40,16 +40,17 @@ weddingPlanner.controller("addNewGuest", function($scope, $firebaseArray) {
 
   $scope.addNewPerson = function() {
     $scope.persons.$add({
-      fullName: {
-        firstName: $scope.firstName,
-        surName: $scope.surName
-      },
+      firstName: $scope.firstName,
+      surName: $scope.surName,
       guestCount: $scope.guestCount,
+      children: $scope.children,
       dataAdded: d.getDate() + '-' + d.getMonth() + '-' + d.getUTCFullYear() + ',' + dateFormat(),
       membership: $scope.membership,
       status: $scope.status,
-      phoneNumber: $scope.phoneNumber
+      phoneNumber: $scope.phoneNumber,
+      extraInformation: $scope.extraInformation
     });
+    $('input').val('');
 
   };
 
