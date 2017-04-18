@@ -27,7 +27,7 @@ weddingPlanner.controller('MainNavCtrl', [ '$scope', '$location', function ( $sc
         },
         {
             name:  'Dokumentacja',
-            url:   '/statistics',
+            url:   '/documentation',
             title: 'Dokumentacja aplikacji Wedding Planner'
         }
     ];

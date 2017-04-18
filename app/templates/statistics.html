@@ -1,9 +1,133 @@
-<section class="section">
-    <div class="container">
+<section class="section" ng-controller="pageHeader">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
-                <h1>Statystyki</h1>
+                 <div class="component-layout">
+                     <div class="page-header">
+                         <div class="page-header__inner">
+                             <h1 class="page-header__title">{{pageHeader.title.statistics}}</h1>
+                             <h2 class="page-header__subtitle">{{pageHeader.subtitle.statistics}}</h2>
+                         </div>
+                     </div>
+                 </div>
             </div>
+        </div>
+    </div>
+</section>
+<section class="section" ng-controller="addNewGuest">
+    <div class="container">
+        <div class="row">
+        	<div class="col-sm-4">
+        		<div class="component statistics-box">
+        			<h3 class="statistics-box__header">Statystyki ogólne</h3>
+        			<ul class="list-group">
+					  <li class="list-group-item justify-content-between">
+					    Liczba wszystkich gości
+					    <span class="badge badge-default badge-pill statistics__global__numberOfGuest">liczę...</span>
+					  </li>
+					  <li class="list-group-item justify-content-between">
+					    Liczba gości oczekujących
+					    <span class="badge badge-warning badge-pill statistics__global__numberOfGuestUnconfirmed">liczę...</span>
+					  </li>
+					  <li class="list-group-item justify-content-between">
+					    Liczba gości potwierdzonych
+					    <span class="badge badge-success badge-pill statistics__global__numberOfGuestConfirmed">liczę...</span>
+					  </li>
+					  <li class="list-group-item justify-content-between">
+					    Liczba gości z odmową
+					    <span class="badge badge-danger badge-pill statistics__global__numberOfGuestDeclined">liczę...</span>
+					  </li>
+					  <li class="list-group-item justify-content-between">
+					    Liczba wszystkich dzieci
+					    <span class="badge badge-default badge-pill statistics__global__numberOfChildren">liczę...</span>
+					  </li>
+					</ul>
+					<ul class="list-group">
+					  <li class="list-group-item justify-content-between">
+					    Liczba wszystkich rekordów
+					    <span class="badge badge-default badge-pill">{{persons.length}}</span>
+					  </li>
+					  <li class="list-group-item justify-content-between">
+					    Liczba wszystkich rekordów Pani Młodej
+					    <span class="badge badge-default badge-pill">
+					    	{{(persons|filter:{membership: 'Pani Młoda'}).length}}
+				    	</span>
+					  </li>
+					  <li class="list-group-item justify-content-between">
+					    Liczba wszystkich rekordów Pana Młodego
+					    <span class="badge badge-default badge-pill">
+					    	{{(persons|filter:{membership: 'Pan Młody'}).length}}
+					    </span>
+					  </li>
+					  <li class="list-group-item justify-content-between">
+					   	Liczba rekordów z odmową Pani Młodej
+					    <span class="badge badge-default badge-pill">
+					    	{{(persons|filter:{status: 'Odmowa'}|filter:{membership: "Pani Młoda"}).length}}
+					    </span>
+					  </li>
+					  <li class="list-group-item justify-content-between">
+					   	Liczba rekordów z odmową Pana Młodego
+					    <span class="badge badge-default badge-pill">
+					    	{{(persons|filter:{status: 'Odmowa'}|filter:{membership: "Pan Młody"}).length}}
+					    </span>
+					  </li>
+					</ul>
+        		</div>
+        	</div>
+        	<div class="col-sm-4">
+        		<div class="component statistics-box">
+        			<h3 class="statistics-box__header">Statystyki Pani Młodej</h3>
+        			<ul class="list-group">
+					  <li class="list-group-item justify-content-between">
+					    Liczba wszystkich gości
+					    <span class="badge badge-default badge-pill statistics__global__numberOfGuestWomen">liczę...</span>
+					  </li>
+					  <li class="list-group-item justify-content-between">
+					    Liczba gości oczekujących
+					    <span class="badge badge-warning badge-pill statistics__global__numberOfGuestUnconfirmedWomen">liczę...</span>
+					  </li>
+					  <li class="list-group-item justify-content-between">
+					    Liczba gości potwierdzonych
+					    <span class="badge badge-success badge-pill statistics__global__numberOfGuestConfirmedWomen">liczę...</span>
+					  </li>
+					  <li class="list-group-item justify-content-between">
+					    Liczba gości z odmową
+					    <span class="badge badge-danger badge-pill statistics__global__numberOfGuestDeclinedWomen">liczę...</span>
+					  </li>
+					  <li class="list-group-item justify-content-between">
+					    Liczba wszystkich dzieci
+					    <span class="badge badge-default badge-pill statistics__global__numberOfChildrenWomen">liczę...</span>
+					  </li>
+					</ul>
+        		</div>
+    		</div>
+    		<div class="col-sm-4">
+        		<div class="component statistics-box">
+        			<h3 class="statistics-box__header">Statystyki Pana Młodego</h3>
+        			<ul class="list-group">
+					  <li class="list-group-item justify-content-between">
+					    Liczba wszystkich gości
+					    <span class="badge badge-default badge-pill statistics__global__numberOfGuestMan">liczę...</span>
+					  </li>
+					  <li class="list-group-item justify-content-between">
+					    Liczba gości oczekujących
+					    <span class="badge badge-warning badge-pill statistics__global__numberOfGuestUnconfirmedMan">liczę...</span>
+					  </li>
+					  <li class="list-group-item justify-content-between">
+					    Liczba gości potwierdzonych
+					    <span class="badge badge-success badge-pill statistics__global__numberOfGuestConfirmedMan">0</span>
+					  </li>
+					  <li class="list-group-item justify-content-between">
+					    Liczba gości z odmową
+					    <span class="badge badge-danger badge-pill statistics__global__numberOfGuestDeclinedMan">0</span>
+					  </li>
+					  <li class="list-group-item justify-content-between">
+					    Liczba wszystkich dzieci
+					    <span class="badge badge-default badge-pill statistics__global__numberOfChildrenMan">liczę...</span>
+					  </li>
+					</ul>
+        		</div>
+    		</div>
         </div>
     </div>
 </section>

@@ -70,13 +70,16 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="#" ng-click"sortType = 'children'; sortReverse = !sortReverse">
+                                <a href="#" ng-click= "sortType = 'children'; sortReverse = !sortReverse">
                                     Dzieci
                                     <span ng-show="sortType == 'children'" class="fa" ng-class="sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></span>
                                 </a>
                             </td>
                            <td>
-                                Przynależność
+                                <a href="#" ng-click= "sortType = 'membership'; sortReverse = !sortReverse">
+                                    Przynależność
+                                    <span ng-show="sortType == 'membership'" class="fa" ng-class="sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></span>
+                                </a>
                             </td>
                             <td>
                                 <a href="#" ng-click="sortType = 'status'; sortReverse = !sortReverse">
@@ -98,13 +101,13 @@
 
                     <tbody>
                     <tr ng-repeat="person in persons | orderBy:sortType:sortReverse | filter:searchPerson">
-                        <td>{{ $index}}</td>
+                        <td>{{ $index + 1 }}</td>
                         <td>{{ person.firstName }}</td>
                         <td>{{ person.surName }}</td>
                         <td>{{ person.guestCount }}</td>
                         <td>{{ person.children }}</td>
                         <td ng-class="{membershipWomen: person.membership === 'Pani Młoda', membershipMan: person.membership === 'Pan Młody'}">{{ person.membership }}</td>
-                        <td ng-class="{refusal: person.status === 'Odmowa', unconfirmed: person.status === 'Niepotwierdzony'}" class="table-management__status">
+                        <td ng-class="{refusal: person.status === 'Odmowa', unconfirmed: person.status === 'Oczekujący'}" class="table-management__status">
                             <span>{{ person.status }}</span>
                         </td>
                         <td>{{ person.phoneNumber }}</td>
@@ -173,8 +176,8 @@
                                             <label>Potwierdzony
                                                 <input type="radio" ng-model="person.status" value="Potwierdzony">
                                             </label><br/>
-                                            <label>Niepotwierdzony
-                                                <input type="radio" ng-model="person.status" value="Niepotwierdzony">
+                                            <label>Oczekujący
+                                                <input type="radio" ng-model="person.status" value="Oczekujący">
                                             </label><br/>
                                             <label>Odmowa
                                                 <input type="radio" ng-model="person.status" value="Odmowa">

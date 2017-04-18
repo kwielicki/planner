@@ -114,8 +114,19 @@
 		}
 		&--logout {
 			min-width: 240px;
-			button {
-				display: block;
+			padding: $padding-base/2;
+			figure {
+				display: table;
+			}
+			img, figcaption {
+				display: table-cell;
+				vertical-align: top;
+			}
+			figcaption {
+				padding-left: 15px;
+			}
+			.btn {
+				margin-top: 10px;
 			}
 		}
 	}

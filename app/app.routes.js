@@ -12,6 +12,8 @@ weddingPlanner.config(function($routeProvider) {
             templateUrl: 'app/templates/statistics.html'
         }).when('/login', {
             templateUrl: 'app/templates/login.html'
+        }).when('/documentation', {
+            templateUrl: 'app/templates/documentation.html'
         })
         .otherwise({
             redirectTo: '/404',
@@ -75,6 +77,19 @@ weddingPlanner.config(["$routeProvider", function($routeProvider) {
     // the rest is the same for ui-router and ngRoute...
     controller: "AccountCtrl",
     templateUrl: "app/templates/404.html",
+    resolve: {
+      // controller will not be loaded until $requireSignIn resolves
+      // Auth refers to our $firebaseAuth wrapper in the factory below
+      "currentAuth": ["Auth", function(Auth) {
+        // $requireSignIn returns a promise so the resolve waits for it to complete
+        // If the promise is rejected, it will throw a $routeChangeError (see above)
+        return Auth.$requireSignIn();
+      }]
+    }
+  }).when("/documentation", {
+    // the rest is the same for ui-router and ngRoute...
+    controller: "AccountCtrl",
+    templateUrl: "app/templates/documentation.html",
     resolve: {
       // controller will not be loaded until $requireSignIn resolves
       // Auth refers to our $firebaseAuth wrapper in the factory below
