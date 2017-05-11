@@ -1,8 +1,6 @@
 .page-header {
-    &__title {
-
-    }
-    &__subtitle {
-        
+    &--error {
+        text-align: center;
+        padding: 100px;
     }
 }

@@ -25,9 +25,39 @@
                                         <i class="fa fa-bars nav__icon" aria-hidden="true"></i>
                                     </a>
                                     <ul class="list-unstyled dropdown-menu dropdown-menu--global">
-                                        <li ng-class="{active: isActive('{{ menuItem.url }}')}" ng-repeat="menuItem in menuItems" class="dropdown-menu__element">
-                                            <a ng-href="#{{menuItem.url}}" title="{{menuItem.title}}" class="dropdown-menu__anchor">{{ menuItem.name }}</a>
+
+                                        <li class="dropdown-menu__element dropdown-menu__element--global">
+                                            <ul class="list-unstyled">
+                                                <li ng-repeat="menuItem in menuItems[0]" ng-class="{active: isActive('{{ menuItem.url }}')}">
+                                                    <a ng-href="#{{menuItem.url}}" title="{{menuItem.title}}" class="dropdown-menu__anchor">{{ menuItem.name }}</a>
+                                                </li>
+                                            </ul>
                                         </li>
+
+                                        <li class="dropdown-menu__element dropdown-menu__element--manage">
+                                            <ul class="list-unstyled">
+                                                <li ng-repeat="menuItem in menuItems[1].manage" ng-class="{active: isActive('{{ menuItem.url }}')}">
+                                                    <a ng-href="#{{menuItem.url}}" title="{{menuItem.title}}" class="dropdown-menu__anchor">{{ menuItem.name }}</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown-menu__element dropdown-menu__element--analyst">
+                                            <ul class="list-unstyled">
+                                                <li ng-repeat="menuItem in menuItems[2]" ng-class="{active: isActive('{{ menuItem.url }}')}">
+                                                    <a ng-href="#{{menuItem.url}}" title="{{menuItem.title}}" class="dropdown-menu__anchor">{{ menuItem.name }}</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown-menu__element dropdown-menu__element--documentation">
+                                            <ul class="list-unstyled">
+                                                <li ng-repeat="menuItem in menuItems[3]" ng-class="{active: isActive('{{ menuItem.url }}')}">
+                                                    <a ng-href="#{{menuItem.url}}" title="{{menuItem.title}}" class="dropdown-menu__anchor">{{ menuItem.name }}</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
                                     </ul>
                                 </li>
                                 <li class="nav__element nav__element--logout">
@@ -35,13 +65,17 @@
                                         <img src="assets/img/user-photo.png" alt="">
                                     </a>
                                     <ul class="list-unstyled dropdown-menu dropdown-menu--logout">
-                                        <figure>
-                                            <img src="assets/img/user-photo.png" alt="">
-                                            <figcaption>
-                                                <span>Zalogowany jako: </span><strong>{{ firebaseUser.email }}</strong>
-                                                <button ng-click="auth.$signOut(); match()" class="btn btn-second btn-xs btn-block">Wyloguj</button>
-                                            </figcaption>
-                                        </figure>
+                                        <li class="avatar">
+                                            <figure>
+                                                <img src="assets/img/user-photo.png" alt="">
+                                                <figcaption>
+                                                    <span>Zalogowany jako: </span><strong>{{ firebaseUser.email }}</strong>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+                                        <li class="footer">
+                                            <button ng-click="auth.$signOut(); match()" class="btn btn-transparent btn-xs">Wyloguj</button>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>

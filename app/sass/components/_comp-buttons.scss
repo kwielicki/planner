@@ -5,7 +5,7 @@
     font-size: 1.1em;
     &:active {
         top: 1px;
-        box-shadow: 0 1px 0 0 green; /* Kolor do zmiany */
+        box-shadow: none;
     }
     &:focus:active, &:focus {
         outline: none;
@@ -45,6 +45,12 @@
             background-color: $brand-primary;
             color: #fff;
         }
+    }
+    &-transparent {
+        background-color: $brand-gray-light;
+        border: 1px solid $border-color;
+        color: $brand-dark;
+        cursor: default;
     }
     //- Small buttons
     &-sm {

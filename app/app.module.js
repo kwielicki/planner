@@ -1,37 +1,58 @@
-// Define the `phonecatApp` module
+// Define the `weddingPlanner` main module
 var weddingPlanner = angular.module('weddingPlanner', ["ngRoute", "firebase"]);
 
 
 // Navbar Controller
 weddingPlanner.controller('MainNavCtrl', [ '$scope', '$location', function ( $scope, $location) {
+
+    /* Występuje tutaj podział elementów w menu nawigacyjnym
+     * 1 - globalNavigation {Panel głowny}
+     * 2 - manage {Zarządzaj listą gości, Dodaj nowego gościa}
+     * 3 - dataAnalyst {Statystyki}
+     * 4 - documentation {dokumentacja}
+     ***
+     * Każda zmiana wiąże się z przebudową poniższego obiektu
+     */
     $scope.menuItems = [
         {
-            name: 'Panel główny',
-            url:  '/dashboard',
-            title: 'Welcome to our Website'
+            globalNavigation: {
+                name: 'Panel główny',
+                url: '/dashboard',
+                title: 'Przejdź do panelu głównego'
+            }
         },
         {
-            name: 'Zarządzaj listą gości',
-            url:  '/manage-guests',
-            title: 'Zarządzaj listą gości'
+            manage: [
+                {
+                    name: 'Zarządzaj listą gości',
+                    url:  '/manage-guests',
+                    title: 'Zarządzaj listą gości'
+                }, {
+                    name:   'Dodaj nowego gościa',
+                    url:    '/add-new-guest',
+                    title:  'Dodaj nowego gościa'
+                }
+            ]
         },
         {
-            name:   'Dodaj nowego gościa',
-            url:    '/add-new-guest',
-            title:  'Dodaj nowego gościa'
+            dataAnalyst: {
+                name:   'Statystyki',
+                url:    '/statistics',
+                title:  'Zapoznaj się ze statystykami'
+            }
         },
         {
-            name:   'Statystyki',
-            url:    '/statistics',
-            title:  'Zapoznaj się ze statystykami'
-        },
-        {
-            name:  'Dokumentacja',
-            url:   '/documentation',
-            title: 'Dokumentacja aplikacji Wedding Planner'
+            documentation: {
+                name:  'Dokumentacja',
+                url:   '/documentation',
+                title: 'Dokumentacja aplikacji Wedding Planner'
+            }
         }
     ];
 
+    /* Funkcja odpowiedzialna za dodanie klasy 'active' do anchora
+     * w zależności od aktualnego routa
+     */
     $scope.isActive = function (viewLocation) {
         return viewLocation === $location.path();
     };
@@ -50,11 +71,23 @@ weddingPlanner.controller('MainNavCtrl', [ '$scope', '$location', function ( $sc
             anchorMenu.attr('title', dataTitleClosed);
             anchorMenu.find('span').text(dataTitleClosed);
 
-
         } else {
             anchorMenu.attr('title', dataTitle);
             anchorMenu.find('span').text(dataTitle);
         }
+
+        $(window).click(function() {
+            if (anchorMenu.hasClass('is-active')) {
+                anchorMenu.removeClass('is-active');
+                $('.dropdown-menu--global').removeClass('is-open').fadeOut();
+                anchorMenu.attr('title', dataTitle);
+                anchorMenu.find('span').text(dataTitle)
+            }
+        });
+
+        $('.nav__element').click(function(event){
+            event.stopPropagation();
+        });
 
     }
 
@@ -65,6 +98,19 @@ weddingPlanner.controller('MainNavCtrl', [ '$scope', '$location', function ( $sc
 
         logoutMenu.toggleClass('is-active');
         $('.dropdown-menu--logout').toggleClass('is-open').fadeToggle();
+
+        $(window).click(function() {
+            if (logoutMenu.hasClass('is-active')) {
+                logoutMenu.removeClass('is-active');
+                $('.dropdown-menu--logout').removeClass('is-open').fadeOut();
+            }
+        });
+
+        $('.nav__element, .dropdown-menu__element').click(function(event){
+            event.stopPropagation();
+        });
+
+
     }
 
     $scope.match = function() {

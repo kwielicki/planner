@@ -2,12 +2,15 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                 <div class="page-header">
+                 <div class="page-header page-header--error">
                      <div class="page-header__inner">
-                         <h1 class="page-header__title">{{pageHeader.errorPage}}</h1>
+                         <h1 class="page-header__title">{{pageHeader.title.error}}</h1>
+                         <h2 class="page-header__subtitle">{{pageHeader.subtitle.error}}</h2>
+                         <p class="page-header__subtitle">{{pageHeader.description.error}}</p>
+                         <a href="/#/dashboard" class="btn btn-primary btn-xs">Zabierz mnie w bezpieczne miejsce</a>
                      </div>
                  </div>
-            </div>
+            </div>    
         </div>
     </div>
 </section>
