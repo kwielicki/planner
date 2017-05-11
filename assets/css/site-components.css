@@ -5503,5 +5503,10 @@ ul.list li {
   text-align: center;
   padding: 100px; }
 
+.changelog {
+  padding: 5rem; }
+  .changelog--active {
+    background-color: rgba(92, 184, 92, 0.1); }
+
 .active > a {
   color: green; }
