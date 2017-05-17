@@ -3,21 +3,21 @@ weddingPlanner.config(function($routeProvider) {
     $routeProvider
         .when('/dashboard', {
             redirectTo: '/dashboard',
-            templateUrl: 'app/templates/dashboard.html'
+            templateUrl: 'templates/dashboard.html'
         }).when('/manage-guests', {
-            templateUrl: 'app/templates/manage-guests.html'
+            templateUrl: 'templates/manage-guests.html'
         }).when('/add-new-guest', {
-            templateUrl: 'app/templates/add-new-guest.html'
+            templateUrl: 'templates/add-new-guest.html'
         }).when('/statistics', {
-            templateUrl: 'app/templates/statistics.html'
+            templateUrl: 'templates/statistics.html'
         }).when('/login', {
-            templateUrl: 'app/templates/login.html'
+            templateUrl: 'templates/login.html'
         }).when('/documentation', {
-            templateUrl: 'app/templates/documentation.html'
+            templateUrl: 'templates/documentation.html'
         })
         .otherwise({
             redirectTo: '/404',
-            templateUrl: 'app/templates/404.html'
+            templateUrl: 'templates/404.html'
         })
 });
 
@@ -37,7 +37,7 @@ weddingPlanner.config(["$routeProvider", function($routeProvider) {
   $routeProvider.when("/dashboard", {
     // the rest is the same for ui-router and ngRoute...
     controller: "AccountCtrl",
-    templateUrl: "app/templates/dashboard.html",
+    templateUrl: "templates/dashboard.html",
     resolve: {
       // controller will not be loaded until $requireSignIn resolves
       // Auth refers to our $firebaseAuth wrapper in the factory below
@@ -50,7 +50,7 @@ weddingPlanner.config(["$routeProvider", function($routeProvider) {
   }).when("/manage-guests", {
     // the rest is the same for ui-router and ngRoute...
     controller: "AccountCtrl",
-    templateUrl: "app/templates/manage-guests.html",
+    templateUrl: "templates/manage-guests.html",
     resolve: {
       // controller will not be loaded until $requireSignIn resolves
       // Auth refers to our $firebaseAuth wrapper in the factory below
@@ -63,7 +63,7 @@ weddingPlanner.config(["$routeProvider", function($routeProvider) {
   }).when("/add-new-guest", {
     // the rest is the same for ui-router and ngRoute...
     controller: "AccountCtrl",
-    templateUrl: "app/templates/add-new-guest.html",
+    templateUrl: "templates/add-new-guest.html",
     resolve: {
       // controller will not be loaded until $requireSignIn resolves
       // Auth refers to our $firebaseAuth wrapper in the factory below
@@ -76,7 +76,7 @@ weddingPlanner.config(["$routeProvider", function($routeProvider) {
 }).when("/404", {
     // the rest is the same for ui-router and ngRoute...
     controller: "AccountCtrl",
-    templateUrl: "app/templates/404.html",
+    templateUrl: "templates/404.html",
     resolve: {
       // controller will not be loaded until $requireSignIn resolves
       // Auth refers to our $firebaseAuth wrapper in the factory below
@@ -89,7 +89,7 @@ weddingPlanner.config(["$routeProvider", function($routeProvider) {
   }).when("/documentation", {
     // the rest is the same for ui-router and ngRoute...
     controller: "AccountCtrl",
-    templateUrl: "app/templates/documentation.html",
+    templateUrl: "templates/documentation.html",
     resolve: {
       // controller will not be loaded until $requireSignIn resolves
       // Auth refers to our $firebaseAuth wrapper in the factory below
@@ -102,7 +102,7 @@ weddingPlanner.config(["$routeProvider", function($routeProvider) {
   }).when("/statistics", {
     // the rest is the same for ui-router and ngRoute...
     controller: "AccountCtrl",
-    templateUrl: "app/templates/statistics.html",
+    templateUrl: "templates/statistics.html",
     resolve: {
       // controller will not be loaded until $requireSignIn resolves
       // Auth refers to our $firebaseAuth wrapper in the factory below

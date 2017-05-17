@@ -42,12 +42,12 @@ weddingPlanner.controller("addNewGuest", function($scope, $firebaseArray) {
     $scope.persons.$add({
       firstName: $scope.firstName,
       surName: $scope.surName,
-      guestCount: $scope.guestCount,
-      children: $scope.children,
+      guestCount: parseInt($scope.guestCount, 10),
+      children: parseInt($scope.children, 10),
       dataAdded: d.getDate() + '-' + d.getMonth() + '-' + d.getUTCFullYear() + ',' + dateFormat(),
       membership: $scope.membership,
       status: $scope.status,
-      phoneNumber: $scope.phoneNumber,
+      phoneNumber: parseInt($scope.phoneNumber, 10),
       extraInformation: $scope.extraInformation
     });
     $('input').val('');
@@ -97,7 +97,7 @@ ref.once('value', function(snapshot) {
        * 4 - z odmową
        */
 
-        var fullGuestNumbers = childData.guestCount;
+        var fullGuestNumbers = parseInt(childData.guestCount, 10);
 
         //- 1 Liczba wszystkich gości
           arrayFullGuestNumber.push(fullGuestNumbers);
@@ -126,7 +126,7 @@ ref.once('value', function(snapshot) {
        * 3 - ze strony Pana Młodego
        */
 
-        var fullChildrenNumbers = childData.children;
+        var fullChildrenNumbers = parseInt(childData.children, 10);
         
         //- 2,3 Liczba dzici (od strony pani Młodej, pana Młodego)
           switch (childData.membership) {

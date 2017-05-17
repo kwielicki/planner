@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en" ng-app="weddingPlanner" ng-controller="SampleCtrl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Wedding Planner - aplikacja do zarządzania listą z gośćmi weselnymi</title>
+    <script src="https://use.fontawesome.com/b4095e84c3.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/site-components.css" />
+  </head>
+  <body>
+   <header class="component header" ng-app="sampleApp" ng-controller="SampleCtrl" ng-show="firebaseUser">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="navbar">
+                        <div class="navbar__brand">
+                            <a href="/#/dashboard" class="logo h1">weddingPlanner</a>
+                            <span class="navbar__brand--helper">panel administratora</span>
+                        </div>
+                        <nav class="navbar__nav" ng-controller="MainNavCtrl">
+                            <ul class="list-unstyled nav">
+                                <li class="nav__element">
+                                    <a href="#" title="Otwórz menu" data-title-open="Otwórz menu" data-title-closed="Zamknij menu" class="nav__anchor nav__anchor--menu" ng-click="openMenu()">
+                                        <span>Otwórz menu</span>
+                                        <i class="fa fa-bars nav__icon" aria-hidden="true"></i>
+                                    </a>
+                                    <ul class="list-unstyled dropdown-menu dropdown-menu--global">
+
+                                        <li class="dropdown-menu__element dropdown-menu__element--global">
+                                            <ul class="list-unstyled">
+                                                <li ng-repeat="menuItem in menuItems[0]" ng-class="{active: isActive('{{ menuItem.url }}')}">
+                                                    <a ng-href="#{{menuItem.url}}" title="{{menuItem.title}}" class="dropdown-menu__anchor">{{ menuItem.name }}</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown-menu__element dropdown-menu__element--manage">
+                                            <ul class="list-unstyled">
+                                                <li ng-repeat="menuItem in menuItems[1].manage" ng-class="{active: isActive('{{ menuItem.url }}')}">
+                                                    <a ng-href="#{{menuItem.url}}" title="{{menuItem.title}}" class="dropdown-menu__anchor">{{ menuItem.name }}</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown-menu__element dropdown-menu__element--analyst">
+                                            <ul class="list-unstyled">
+                                                <li ng-repeat="menuItem in menuItems[2]" ng-class="{active: isActive('{{ menuItem.url }}')}">
+                                                    <a ng-href="#{{menuItem.url}}" title="{{menuItem.title}}" class="dropdown-menu__anchor">{{ menuItem.name }}</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown-menu__element dropdown-menu__element--documentation">
+                                            <ul class="list-unstyled">
+                                                <li ng-repeat="menuItem in menuItems[3]" ng-class="{active: isActive('{{ menuItem.url }}')}">
+                                                    <a ng-href="#{{menuItem.url}}" title="{{menuItem.title}}" class="dropdown-menu__anchor">{{ menuItem.name }}</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <li class="nav__element nav__element--logout">
+                                    <a href="#" class="nav__anchor nav__anchor--logout" ng-click="logoutMenu()">
+                                        <img src="assets/images/user-photo.png" alt="">
+                                    </a>
+                                    <ul class="list-unstyled dropdown-menu dropdown-menu--logout">
+                                        <li class="avatar">
+                                            <figure>
+                                                <img src="assets/images/user-photo.png" alt="">
+                                                <figcaption>
+                                                    <span>Zalogowany jako: </span><strong>{{ firebaseUser.email }}</strong>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+                                        <li class="footer">
+                                            <button ng-click="auth.$signOut(); match()" class="btn btn-transparent btn-xs">Wyloguj</button>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="layout main">
+        <div ng-view></div>
+    </main>
+    <footer class="layout footer">
+
+    </footer>
+
+    <script src="assets/javascript/bundle.js"></script>
+
+    </script>
+  </body>
+</html>
