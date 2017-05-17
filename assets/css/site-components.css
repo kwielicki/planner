@@ -1431,7 +1431,7 @@ pre {
     display: block !important;
     border: 1px solid #eceeef; }
 
-.form-control, .ember-power-select-trigger {
+.form-control, select {
   display: block;
   width: 100%;
   padding: 0.5rem 0.75rem;
@@ -1443,27 +1443,27 @@ pre {
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 5px; }
-  .form-control::-ms-expand, .ember-power-select-trigger::-ms-expand {
+  .form-control::-ms-expand, select::-ms-expand {
     background-color: transparent;
     border: 0; }
-  .form-control:focus, .ember-power-select-trigger:focus {
+  .form-control:focus, select:focus {
     color: #55595c;
     background-color: #fff;
     border-color: #66afe9;
     outline: none; }
-  .form-control::placeholder, .ember-power-select-trigger::placeholder {
+  .form-control::placeholder, select::placeholder {
     color: #2cc5f7;
     opacity: 1; }
-  .form-control:disabled, .ember-power-select-trigger:disabled, .form-control[readonly], [readonly].ember-power-select-trigger {
+  .form-control:disabled, select:disabled, .form-control[readonly], select[readonly] {
     background-color: #eceeef;
     opacity: 1; }
-  .form-control:disabled, .ember-power-select-trigger:disabled {
+  .form-control:disabled, select:disabled {
     cursor: not-allowed; }
 
-select.form-control:not([size]):not([multiple]), select.ember-power-select-trigger:not([size]):not([multiple]) {
+select.form-control:not([size]):not([multiple]), select:not([size]):not([multiple]) {
   height: calc(3.4rem - 2px); }
 
-select.form-control:focus::-ms-value, select.ember-power-select-trigger:focus::-ms-value {
+select.form-control:focus::-ms-value, select:focus::-ms-value {
   color: #55595c;
   background-color: #fff; }
 
@@ -1498,35 +1498,33 @@ select.form-control:focus::-ms-value, select.ember-power-select-trigger:focus::-
   line-height: 1.25;
   border: solid transparent;
   border-width: 1px 0; }
-  .form-control-static.form-control-sm, .input-group-sm > .form-control-static.form-control, .input-group-sm > .form-control-static.ember-power-select-trigger,
+  .form-control-static.form-control-sm, .input-group-sm > .form-control-static.form-control, .input-group-sm > select.form-control-static,
   .input-group-sm > .form-control-static.input-group-addon,
-  .input-group-sm > .input-group-btn > .form-control-static.btn, .form-control-static.form-control-lg, .input-group-lg > .form-control-static.form-control, .input-group-lg > .form-control-static.ember-power-select-trigger,
+  .input-group-sm > .input-group-btn > .form-control-static.btn, .form-control-static.form-control-lg, .input-group-lg > .form-control-static.form-control, .input-group-lg > select.form-control-static,
   .input-group-lg > .form-control-static.input-group-addon,
   .input-group-lg > .input-group-btn > .form-control-static.btn {
     padding-right: 0;
     padding-left: 0; }
 
-.form-control-sm, .input-group-sm > .form-control, .input-group-sm > .ember-power-select-trigger,
+.form-control-sm, .input-group-sm > .form-control, .input-group-sm > select,
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-group-btn > .btn {
   padding: 0.25rem 0.5rem;
   font-size: 1.6rem;
   border-radius: 0.2rem; }
 
-select.form-control-sm:not([size]):not([multiple]), .input-group-sm > select.form-control:not([size]):not([multiple]), .input-group-sm > select.ember-power-select-trigger:not([size]):not([multiple]),
-.input-group-sm > select.input-group-addon:not([size]):not([multiple]),
+select.form-control-sm:not([size]):not([multiple]), .input-group-sm > select:not([size]):not([multiple]),
 .input-group-sm > .input-group-btn > select.btn:not([size]):not([multiple]) {
   height: 2.9rem; }
 
-.form-control-lg, .input-group-lg > .form-control, .input-group-lg > .ember-power-select-trigger,
+.form-control-lg, .input-group-lg > .form-control, .input-group-lg > select,
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .btn {
   padding: 0.75rem 1.5rem;
   font-size: 1.4rem;
   border-radius: 0.3rem; }
 
-select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.form-control:not([size]):not([multiple]), .input-group-lg > select.ember-power-select-trigger:not([size]):not([multiple]),
-.input-group-lg > select.input-group-addon:not([size]):not([multiple]),
+select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select:not([size]):not([multiple]),
 .input-group-lg > .input-group-btn > select.btn:not([size]):not([multiple]) {
   height: 3.36667rem; }
 
@@ -1590,9 +1588,9 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
 .has-success .custom-control {
   color: #5cb85c; }
 
-.has-success .form-control, .has-success .ember-power-select-trigger {
+.has-success .form-control, .has-success select {
   border-color: #5cb85c; }
-  .has-success .form-control:focus, .has-success .ember-power-select-trigger:focus {
+  .has-success .form-control:focus, .has-success select:focus {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #a3d7a3; }
 
 .has-success .input-group-addon {
@@ -1610,9 +1608,9 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
 .has-warning .custom-control {
   color: #f0ad4e; }
 
-.has-warning .form-control, .has-warning .ember-power-select-trigger {
+.has-warning .form-control, .has-warning select {
   border-color: #f0ad4e; }
-  .has-warning .form-control:focus, .has-warning .ember-power-select-trigger:focus {
+  .has-warning .form-control:focus, .has-warning select:focus {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f8d9ac; }
 
 .has-warning .input-group-addon {
@@ -1630,9 +1628,9 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
 .has-danger .custom-control {
   color: #d9534f; }
 
-.has-danger .form-control, .has-danger .ember-power-select-trigger {
+.has-danger .form-control, .has-danger select {
   border-color: #d9534f; }
-  .has-danger .form-control:focus, .has-danger .ember-power-select-trigger:focus {
+  .has-danger .form-control:focus, .has-danger select:focus {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #eba5a3; }
 
 .has-danger .input-group-addon {
@@ -1648,7 +1646,7 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
     display: inline-block;
     margin-bottom: 0;
     vertical-align: middle; }
-  .form-inline .form-control, .form-inline .ember-power-select-trigger {
+  .form-inline .form-control, .form-inline select {
     display: inline-block;
     width: auto;
     vertical-align: middle; }
@@ -1661,9 +1659,9 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
     .form-inline .input-group .input-group-addon,
     .form-inline .input-group .input-group-btn,
     .form-inline .input-group .form-control,
-    .form-inline .input-group .ember-power-select-trigger {
+    .form-inline .input-group select {
       width: auto; }
-  .form-inline .input-group > .form-control, .form-inline .input-group > .ember-power-select-trigger {
+  .form-inline .input-group > .form-control, .form-inline .input-group > select {
     width: 100%; }
   .form-inline .form-control-label {
     margin-bottom: 0;
@@ -2422,24 +2420,24 @@ tbody.collapse.in {
   width: 100%;
   display: table;
   border-collapse: separate; }
-  .input-group .form-control, .input-group .ember-power-select-trigger {
+  .input-group .form-control, .input-group select {
     position: relative;
     z-index: 2;
     float: left;
     width: 100%;
     margin-bottom: 0; }
-    .input-group .form-control:focus, .input-group .ember-power-select-trigger:focus, .input-group .form-control:active, .input-group .ember-power-select-trigger:active, .input-group .form-control:hover, .input-group .ember-power-select-trigger:hover {
+    .input-group .form-control:focus, .input-group select:focus, .input-group .form-control:active, .input-group select:active, .input-group .form-control:hover, .input-group select:hover {
       z-index: 3; }
 
 .input-group-addon,
 .input-group-btn,
 .input-group .form-control,
-.input-group .ember-power-select-trigger {
+.input-group select {
   display: table-cell; }
   .input-group-addon:not(:first-child):not(:last-child),
   .input-group-btn:not(:first-child):not(:last-child),
   .input-group .form-control:not(:first-child):not(:last-child),
-  .input-group .ember-power-select-trigger:not(:first-child):not(:last-child) {
+  .input-group select:not(:first-child):not(:last-child) {
     border-radius: 0; }
 
 .input-group-addon,
@@ -2475,7 +2473,7 @@ tbody.collapse.in {
   .input-group-addon input[type="checkbox"] {
     margin-top: 0; }
 
-.input-group .form-control:not(:last-child), .input-group .ember-power-select-trigger:not(:last-child),
+.input-group .form-control:not(:last-child), .input-group select:not(:last-child),
 .input-group-addon:not(:last-child),
 .input-group-btn:not(:last-child) > .btn,
 .input-group-btn:not(:last-child) > .btn-group > .btn,
@@ -2488,7 +2486,7 @@ tbody.collapse.in {
 .input-group-addon:not(:last-child) {
   border-right: 0; }
 
-.input-group .form-control:not(:first-child), .input-group .ember-power-select-trigger:not(:first-child),
+.input-group .form-control:not(:first-child), .input-group select:not(:first-child),
 .input-group-addon:not(:first-child),
 .input-group-btn:not(:first-child) > .btn,
 .input-group-btn:not(:first-child) > .btn-group > .btn,
@@ -2498,7 +2496,7 @@ tbody.collapse.in {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0; }
 
-.form-control + .input-group-addon:not(:first-child), .ember-power-select-trigger + .input-group-addon:not(:first-child) {
+.form-control + .input-group-addon:not(:first-child), select + .input-group-addon:not(:first-child) {
   border-left: 0; }
 
 .input-group-btn {
@@ -4937,22 +4935,24 @@ a {
   .form-group + .form-group {
     margin: 35px 0; }
 
-.form-control, .ember-power-select-trigger {
+.form-control, select {
   border-radius: 0;
   transition: all, 250ms, cubic-bezier(0.55, 0, 0.1, 1); }
-  .form-control:focus, .ember-power-select-trigger:focus {
+  .form-control:focus, select:focus {
     outline: none;
     box-shadow: none;
     border-color: #fff;
     background-color: #f8f8f8; }
-  .form-control.not-empty, .not-empty.ember-power-select-trigger {
+  .form-control.not-empty, select.not-empty {
     border-color: #fff;
     background-color: #f8f8f8; }
   .form-control--validate {
     border-color: #e8a1a1; }
 
-.ember-power-select-trigger {
-  padding: 9px 21px; }
+select {
+  padding: 9px 21px;
+  height: 47px !important;
+  padding-left: 5px !important; }
 
 .label {
   display: inline-block;
@@ -4966,7 +4966,7 @@ a {
   padding-bottom: 10px; }
 
 @-moz-document url-prefix() {
-  .form-control, .ember-power-select-trigger {
+  .form-control, select {
     padding-top: 0;
     padding-bottom: 0;
     height: 44px; } }

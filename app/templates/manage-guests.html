@@ -158,6 +158,13 @@
                                             </div>
                                         </div>
                                         <div class="form-group form-group--modern form-group--label">
+                                            <label for="appMembership" class="label">Wybierz przynależność<span class="error" ng-show="formAddNewGuest.surName.$error.required">*</span></label>
+                                            <select name="appMembership" id="appMembership" required ng-model="person.membership" class="form-control form-control--modern form-control--username" required>
+                                                <option value="Pan Młody">Pan Młody</option>
+                                                <option value="Pani Młoda">Pani Młoda</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group form-group--modern form-group--label">
                                             <label for="appGuestCount" class="label">Podaj przewidywaną liczbę osób *</label>
                                             <div class="form-group__input">
                                                 <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
