@@ -1,5 +1,5 @@
 // Define the `weddingPlanner` main module
-var weddingPlanner = angular.module('weddingPlanner', ["ngRoute", "firebase"]);
+var weddingPlanner = angular.module('weddingPlanner', ["ngRoute", "firebase", "cgNotify"]);
 
 
 // Navbar Controller

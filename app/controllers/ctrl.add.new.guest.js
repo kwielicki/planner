@@ -1,4 +1,4 @@
-weddingPlanner.controller("addNewGuest", function($scope, $firebaseArray) {
+weddingPlanner.controller("addNewGuest", function($scope, $firebaseArray, notify) {
 
 
   var ref = firebase.database().ref().child("list_of_guest"),
@@ -49,8 +49,35 @@ weddingPlanner.controller("addNewGuest", function($scope, $firebaseArray) {
       status: $scope.status,
       phoneNumber: parseInt($scope.phoneNumber, 10),
       extraInformation: $scope.extraInformation
-    });
-    $('input').val('');
+    }).then(function(ref) {
+                notify({
+                    messageTemplate: `
+                      <div class="notification-header">
+                        <h3>Gość - ${$scope.firstName} ${$scope.surName}</h3>
+                        <h4>został dodany do baz danych.</h4>
+                        <p>Aby wyedytować wprowadzony rekord nawiguj do "Zarządzania listą gości"</p>
+                      </div>
+                    `,
+                    position: 'right',
+                    classes: 'notification-success',
+                    duration: 0
+                  });
+                $('input').val('');
+            }, function(error) {
+                notify({
+                    messageTemplate: `
+                      <div class="notification-header">
+                        <h3>Oops - ${$scope.firstName} ${$scope.surName}</h3>
+                        <h4>Nie został dodany do bazy danych.</h4>
+                        <p>Zweryfikuj poprawność wprowadzonych danych. Jeśli to nie pomoże
+                          skontakuj się z administratorem.</p>
+                      </div>
+                    `,
+                    position: 'right',
+                    classes: 'notification-warning',
+                    dration: 0
+                  });
+            });;
 
   };
 
