@@ -5,7 +5,7 @@ angular.
             '<footer class="component site-footer">' + 
                 '<ul class="list-unstyled">' + 
                     '<li>' +
-                        'Copyright by wielicki-it.' +
+                        'Copyright by e-inet.pl' +
                     '</li>' +
                 '</ul>' +
             "</footer>",

@@ -53,9 +53,13 @@ weddingPlanner.controller("addNewGuest", function($scope, $firebaseArray, notify
                 notify({
                     messageTemplate: `
                       <div class="notification-header">
-                        <h3>Gość - ${$scope.firstName} ${$scope.surName}</h3>
-                        <h4>został dodany do baz danych.</h4>
-                        <p>Aby wyedytować wprowadzony rekord nawiguj do "Zarządzania listą gości"</p>
+                        <h4 class="notification-header__icon"><i class="fa fa-check-circle nav__icon" aria-hidden="true"></i></h4>
+                      </div>
+                      <div class="notification-body">
+                        <h2 class="notification-body__title"><span>Powodzenie!</span></h2>
+                        <p class="notification-body__description"> 
+                           <strong>${$scope.firstName} ${$scope.surName}</strong>
+                           Rekord został dodany do systemu. Dane zostały wprowadzone w sposób prawidłowy.</p>
                       </div>
                     `,
                     position: 'right',
@@ -67,10 +71,13 @@ weddingPlanner.controller("addNewGuest", function($scope, $firebaseArray, notify
                 notify({
                     messageTemplate: `
                       <div class="notification-header">
-                        <h3>Oops - ${$scope.firstName} ${$scope.surName}</h3>
-                        <h4>Nie został dodany do bazy danych.</h4>
-                        <p>Zweryfikuj poprawność wprowadzonych danych. Jeśli to nie pomoże
-                          skontakuj się z administratorem.</p>
+                        <h4 class="notification-header__icon"><i class="fa fa-exclamation-circle nav__icon" aria-hidden="true"></i></h4>
+                      </div>
+                      <div class="notification-body">
+                        <h2 class="notification-body__title"><span>Oops... wystąpił błąd!</span></h2>
+                        <p class="notification-body__description"> 
+                           <strong>${$scope.firstName} ${$scope.surName}</strong>
+                           Rekord nie został dodany do systemu. Zweryfikuj poprawność wprowadzonych danych.</p>
                       </div>
                     `,
                     position: 'right',
