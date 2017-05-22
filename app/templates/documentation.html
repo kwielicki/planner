@@ -7,7 +7,7 @@
                          <div class="page-header__inner">
                              <h1 class="page-header__title">{{pageHeader.title.documentation}}</h1>
                              <h2 class="page-header__subtitle">{{pageHeader.subtitle.documentation}}</h2>
-                             <h3>Aktualna wersja aplikacji: <code>1.0.2</code></h3>
+                             <h3>Aktualna wersja aplikacji: <code ng-controller="controllerAppVersion">{{appVersion}}</code></h3>
                          </div>
                      </div>
                  </div>
@@ -18,8 +18,16 @@
 <section class="section">
 	<div class="container">
 		<div class="row">
-            <div class="col-xs-12">
+        <div class="col-xs-12">
                 <div class="changelog changelog--active">
+                    <h2>Wersja 1.0.3 - lista zmian</h2>
+                    <ul>
+                        <li>dodanie notyfikacji podczas dodawania rekordu (sukces, błąd)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="changelog">
                     <h2>Wersja 1.0.2 - lista zmian</h2>
                     <ul>
                         <li>modyfikacja menu

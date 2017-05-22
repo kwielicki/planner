@@ -1,6 +1,7 @@
 .changelog {
-    padding: $spacer;
+	margin: $padding-sm 0;
     &--active {
+    	padding: $spacer;
         background-color: rgba(red($brand-success), green($brand-success), blue($brand-success), .1);
     }
 }

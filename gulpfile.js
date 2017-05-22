@@ -71,7 +71,8 @@ gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-index'], fu
 		paths.assets.app + 'app.module.js',
 		paths.assets.app		+ 'app.routes.js',
 		paths.assets.ctrl  + 'ctrl.add.new.guest.js',
-		paths.assets.ctrl  + 'ctrl-page-header.js'
+		paths.assets.ctrl  + 'ctrl-page-header.js',
+		paths.assets.ctrl  + 'controller-app-version.js'
 	])
 	.pipe(plumber())
 	.pipe(concat('bundle.js'))

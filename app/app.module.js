@@ -1,7 +1,6 @@
 // Define the `weddingPlanner` main module
 var weddingPlanner = angular.module('weddingPlanner', ["ngRoute", "firebase", "cgNotify"]);
 
-
 // Navbar Controller
 weddingPlanner.controller('MainNavCtrl', [ '$scope', '$location', function ( $scope, $location) {
 
