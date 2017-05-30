@@ -1,5 +1,5 @@
 'use strict';
- 
+
 const gulp     = require('gulp');
 const util     = require('gulp-util');
 const sass 	   = require('gulp-sass');
@@ -28,7 +28,7 @@ gulp.task('sass', function () {
     .pipe(gulp.dest('app/assets/css'));
 });
 
-gulp.task('watch', ['sass'], function() {  
+gulp.task('watch', ['sass'], function() {
     gulp.watch(sassFiles,['sass']);
 });
 
@@ -63,13 +63,16 @@ gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-index'], fu
 		paths.assets.js + 'bootstrap.min.js',
 		paths.assets.js + 'angular1.5.3.min.js',
 		paths.assets.js + 'angular-route.min.js',
+		paths.assets.js + 'angular-animate.min.js',
 		paths.assets.js + 'firebase.js',
 		paths.assets.database  + util.env.projectName + '/**',
 		paths.assets.js + 'angularfire.min.js',
 		paths.assets.js + 'pdfmake.min.js',
 		paths.assets.js + 'vfs-fonts.min.js',
+		paths.assets.js + 'angular-notifications.js',
+		paths.assets.js + 'angular-accordions.min.js',
 		paths.assets.app + 'app.module.js',
-		paths.assets.app		+ 'app.routes.js',
+		paths.assets.app   + 'app.routes.js',
 		paths.assets.ctrl  + 'ctrl.add.new.guest.js',
 		paths.assets.ctrl  + 'ctrl-page-header.js',
 		paths.assets.ctrl  + 'controller-app-version.js'

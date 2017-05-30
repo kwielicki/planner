@@ -51,17 +51,7 @@ weddingPlanner.controller("addNewGuest", function($scope, $firebaseArray, notify
       extraInformation: $scope.extraInformation
     }).then(function(ref) {
                 notify({
-                    messageTemplate: `
-                      <div class="notification-header">
-                        <h4 class="notification-header__icon"><i class="fa fa-check-circle nav__icon" aria-hidden="true"></i></h4>
-                      </div>
-                      <div class="notification-body">
-                        <h2 class="notification-body__title"><span>Powodzenie!</span></h2>
-                        <p class="notification-body__description"> 
-                           <strong>${$scope.firstName} ${$scope.surName}</strong>
-                           Rekord został dodany do systemu. Dane zostały wprowadzone w sposób prawidłowy.</p>
-                      </div>
-                    `,
+                    messageTemplate: "\n    <div class=\"notification-header\">\n      <h4 class=\"notification-header__icon\"><i class=\"fa fa-check-circle nav__icon\" aria-hidden=\"true\"></i></h4>\n    </div>\n    <div class=\"notification-body\">\n      <h2 class=\"notification-body__title\"><span>Powodzenie!</span></h2>\n      <p class=\"notification-body__description\"> \n         <strong>" + $scope.firstName + " " + $scope.surName + "</strong>\n         Rekord zosta\u0142 dodany do systemu. Dane zosta\u0142y wprowadzone w spos\xF3b prawid\u0142owy.</p>\n    </div>\n ",
                     position: 'right',
                     classes: 'notification-success',
                     duration: 0
@@ -69,17 +59,7 @@ weddingPlanner.controller("addNewGuest", function($scope, $firebaseArray, notify
                 $('input').val('');
             }, function(error) {
                 notify({
-                    messageTemplate: `
-                      <div class="notification-header">
-                        <h4 class="notification-header__icon"><i class="fa fa-exclamation-circle nav__icon" aria-hidden="true"></i></h4>
-                      </div>
-                      <div class="notification-body">
-                        <h2 class="notification-body__title"><span>Oops... wystąpił błąd!</span></h2>
-                        <p class="notification-body__description"> 
-                           <strong>${$scope.firstName} ${$scope.surName}</strong>
-                           Rekord nie został dodany do systemu. Zweryfikuj poprawność wprowadzonych danych.</p>
-                      </div>
-                    `,
+                    messageTemplate: "\n                      <div class=\"notification-header\">\n                        <h4 class=\"notification-header__icon\"><i class=\"fa fa-exclamation-circle nav__icon\" aria-hidden=\"true\"></i></h4>\n                      </div>\n                      <div class=\"notification-body\">\n                        <h2 class=\"notification-body__title\"><span>Oops... wyst\u0105pi\u0142 b\u0142\u0105d!</span></h2>\n                        <p class=\"notification-body__description\"> \n                           <strong>" + $scope.firstName + " " + $scope.surName + "</strong>\n                           Rekord nie zosta\u0142 dodany do systemu. Zweryfikuj poprawno\u015B\u0107 wprowadzonych danych.</p>\n                      </div>\n                    ",
                     position: 'right',
                     classes: 'notification-warning',
                     dration: 0

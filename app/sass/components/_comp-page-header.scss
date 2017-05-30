@@ -3,4 +3,10 @@
         text-align: center;
         padding: 100px;
     }
+    &__title {
+    	margin-bottom: $padding-sm;
+    }
+    &__subtitle {
+    	font-size: $font-size-h4;
+    }
 }

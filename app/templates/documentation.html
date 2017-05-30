@@ -1,7 +1,7 @@
 <section class="section" ng-controller="pageHeader">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-sm-4">
                  <div class="component-layout">
                      <div class="page-header">
                          <div class="page-header__inner">
@@ -12,51 +12,61 @@
                      </div>
                  </div>
             </div>
+            <div class="col-sm-8">
+                <div class="component-layout">
+                    <!-- add `multiple` attribute to allow multiple sections to open at once -->
+                    <v-accordion class="vAccordion--default">
+                      <!-- add expanded attribute to open the section -->
+                      <v-pane expanded> <!-- [1.0.3] -->
+                        <v-pane-header>Wersja 1.0.3</v-pane-header>
+                        <v-pane-content>
+                            <ul>
+                    		 	<li>dodanie notyfikacji podczas dodawania rekordu</li>
+                            	<li>notyfikacji prezentowana jest w prawym górnym rogu ekranu, przy próbie dodania gościa do bazy danych</li>
+                            	<li>notyfikacja wyświetla się po <span class='success'>poprawnym dodaniu</span> gościa do bazy</li>
+                            	<li>notyfikacja wyświetla się w przypadku <span class='error'>błędu</span>. Rekord taki nie zostaje dodany do bazy</li>
+                            	<li>poprawa błędu podczas zliczania liczby gości</li>
+                            </ul>
+                        </v-pane-content>
+                      </v-pane>
+
+                      <v-pane> <!-- [1.0.2] -->
+                        <v-pane-header>Wersja 1.0.2</v-pane-header>
+                        <v-pane-content>
+                            <ul>
+                    		 	<li>modyfikacja menu
+                    		 		<ol>
+                    		 			<li>dodanie 'fistaszka' na aktywnym widoku</li>
+                    		 			<li>poprawa czytelność</li>
+                    		 		</ol>
+                    		 	</li>
+                    		 	<li>modyfikacja panelu wylogowującego</li>
+                    		 	<li>dodanie możliwości zamykania dropdown-menu przy pomocy kliku na okno</li>
+                    		 	<li>dodanie strony 404, zwracającej bład w wypadku błędnie wpisanego adresu URI</li>
+                	        </ul>
+                        </v-pane-content>
+                      </v-pane>
+
+                      <v-pane> <!-- [1.0.1] -->
+                        <v-pane-header>Wersja 1.0.1</v-pane-header>
+                        <v-pane-content>
+                            <ul>
+                    		 	<li>udostępnienie kontrolki do druku</li>
+                    		 	<li>zmiany dla widoku: login</li>
+                    		 	<li>zmiany dla widoku: dashboard</li>
+                    		 	<li>zmiany dla widoku: manage-guests</li>
+                    		 	<li>zmiany statusu 'Niepotwierdzony' na 'oczekujący'</li>
+                    		 	<li>zmiana widoku dla: logout panel</li>
+                    		 	<li>dodanie zaawansowanych statystyk</li>
+                    		 	<li>Liczba porządkowa w tabeli zaczyna się od '1'</li>
+                		    </ul>
+                        </v-pane-content>
+                      </v-pane>
+
+
+                    </v-accordion>
+                </div>
+            </div>
         </div>
     </div>
-</section>
-<section class="section">
-	<div class="container">
-		<div class="row">
-        <div class="col-xs-12">
-                <div class="changelog changelog--active">
-                    <h2>Wersja 1.0.3 - lista zmian</h2>
-                    <ul>
-                        <li>dodanie notyfikacji podczas dodawania rekordu (sukces, błąd)</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-xs-12">
-                <div class="changelog">
-                    <h2>Wersja 1.0.2 - lista zmian</h2>
-                    <ul>
-                        <li>modyfikacja menu
-                            <ol>
-                                <li>dodanie "fistaszka" na aktywnym widoku</li>
-                                <li>poprawa czytelność</li>
-                            </ol>
-                        </li>
-                        <li>modyfikacja panelu wylogowującego</li>
-                        <li>dodanie możliwości zamykania dropdown-menu przy pomocy kliku na okno</li>
-                        <li>dodanie strony 404, zwracającej bład w wypadku błędnie wpisanego adresu URI</li>
-                    </ul>
-                </div>
-            </div>
-			<div class="col-xs-12">
-				<div class="changelog">
-                    <h2>Wersja 1.0.1 - lista zmian</h2>
-    				<ul>
-    					<li>udostępnienie kontrolki do druku</li>
-    					<li>zmiany dla widoku: login</li>
-    					<li>zmiany dla widoku: dashboard</li>
-    					<li>zmiany dla widoku: manage-guests</li>
-    					<li>zmiany statusu "Niepotwierdzony" na "oczekujący"</li>
-    					<li>zmiana widoku dla: logout panel</li>
-    					<li>dodanie zaawansowanych statystyk</li>
-    					<li>Liczba porządkowa w tabeli zaczyna się od "1"</li>
-    				</ul>
-				</div>
-			</div>
-		</div>
-	</div>
 </section>
