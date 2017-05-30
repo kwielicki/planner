@@ -1,5 +1,8 @@
 .list-group + .list-group {
     margin-top: $padding-base;
+    &:last-of-type {
+        margin-bottom: $padding-base;
+    }
 }
 
 .list-group-item:first-child {
