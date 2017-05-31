@@ -1,7 +1,9 @@
 // Konfiguracja routingu dla aplikacji
 weddingPlanner.config(function($routeProvider) {
     $routeProvider
-        .when('/dashboard', {
+        .when('/', {
+            templateUrl: 'templates/dashboard.html'
+        }).when('/dashboard', {
             redirectTo: '/dashboard',
             templateUrl: 'templates/dashboard.html'
         }).when('/manage-guests', {
@@ -14,8 +16,7 @@ weddingPlanner.config(function($routeProvider) {
             templateUrl: 'templates/login.html'
         }).when('/documentation', {
             templateUrl: 'templates/documentation.html'
-        })
-        .otherwise({
+        }).otherwise({
             redirectTo: '/404',
             templateUrl: 'templates/404.html'
         })
