@@ -37,17 +37,15 @@
                                                    placeholder="np. Jan"
                                                    class="form-control form-control--modern form-control--username"
                                                    ng-minlength="3"
-                                                   required
-                                                   ng-pattern="/^[a-zA-Z\s]*$/" />
+                                                   ng-pattern="/^[a-zA-Z\s]*$/"
+                                                   required/>
                                         </div>
                                         <div role="alert" class="alerts"
                                              ng-class="{'has-error': formAddNewGuest.firstName.$error.minlength || formAddNewGuest.firstName.$error.pattern}">
-                                            <span class="error"
-                                                  ng-show="formAddNewGuest.firstName.$error.minlength" ng-animate>
+                                            <span class="error" ng-show="formAddNewGuest.firstName.$error.minlength" ng-animate>
                                                 To pole musi zawierać minimum 3 znaki.
                                             </span>
-                                            <span class="error"
-                                                  ng-show="formAddNewGuest.firstName.$error.pattern" ng-animate>
+                                            <span class="error" ng-show="formAddNewGuest.firstName.$error.pattern" ng-animate>
                                                 To pole musi zawierać wyłącznie litery.
                                             </span>
                                         </div>
@@ -80,11 +78,22 @@
                                         <label for="appSurName" class="label">Podaj nazwisko *</label>
                                         <div class="form-group__input">
                                             <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
-                                            <input type="text" name="surName" ng-model="surName" id="appSurName" placeholder="np. Kowalski" class="form-control form-control--modern form-control--username" ng-minlength="3" required/>
+                                            <input type="text"
+                                                   name="surName"
+                                                   ng-model="surName"
+                                                   id="appSurName"
+                                                   placeholder="np. Kowalski"
+                                                   class="form-control form-control--modern form-control--username"
+                                                   ng-minlength="3"
+                                                   ng-pattern="/^[a-zA-Z\s]*$/"
+                                                   required/>
                                         </div>
                                         <div role="alert" class="alerts">
                                             <span class="error" ng-show="formAddNewGuest.surName.$error.minlength">
                                                 To pole musi zawierać minimum 3 znaki.
+                                            </span>
+                                            <span class="error" ng-show="formAddNewGuest.surName.$error.pattern" ng-animate>
+                                                To pole musi zawierać wyłącznie litery.
                                             </span>
                                         </div>
                                     </div>
