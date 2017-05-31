@@ -30,11 +30,25 @@
                                         <label for="appFirstName" class="label">Podaj imię / imiona *</label>
                                         <div class="form-group__input">
                                             <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
-                                            <input type="text" name="firstName" ng-model="firstName" id="appFirstName" placeholder="np. Jan" class="form-control form-control--modern form-control--username" ng-minlength="3" required/>
+                                            <input type="text"
+                                                   name="firstName"
+                                                   ng-model="firstName"
+                                                   id="appFirstName"
+                                                   placeholder="np. Jan"
+                                                   class="form-control form-control--modern form-control--username"
+                                                   ng-minlength="3"
+                                                   required
+                                                   ng-pattern="/^[a-zA-Z\s]*$/" />
                                         </div>
-                                        <div role="alert" class="alerts">
-                                            <span class="error" ng-show="formAddNewGuest.firstName.$error.minlength">
+                                        <div role="alert" class="alerts"
+                                             ng-class="{'has-error': formAddNewGuest.firstName.$error.minlength || formAddNewGuest.firstName.$error.pattern}">
+                                            <span class="error"
+                                                  ng-show="formAddNewGuest.firstName.$error.minlength" ng-animate>
                                                 To pole musi zawierać minimum 3 znaki.
+                                            </span>
+                                            <span class="error"
+                                                  ng-show="formAddNewGuest.firstName.$error.pattern" ng-animate>
+                                                To pole musi zawierać wyłącznie litery.
                                             </span>
                                         </div>
                                     </div>

@@ -94,11 +94,15 @@ select {
             margin-bottom: 3rem;
         }
     }
-    .alerts {
-        position: absolute;
-    }
     .error {
         color: $brand-danger;
+        transition: opacity linear .2s;
+        opacity: 1;
+        position: relative;
+        display: block;
+    }
+    .ng-hide {
+        opacity: 0;
     }
 }
 .form-control {
