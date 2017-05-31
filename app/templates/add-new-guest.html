@@ -52,10 +52,28 @@
                                     </div>
                                     <!-- Wypełnij pole :: PRZEWIDYWANA LICZBA GOŚCI -->
                                     <div class="form-group form-group--modern form-group--label">
-                                        <label for="appGuestCount" class="label">Podaj przewidywaną liczbę osób *</label>
+                                        <label for="guestCount" class="label">Podaj przewidywaną liczbę osób *</label>
                                         <div class="form-group__input">
                                             <i aria-hidden="true" class="fa fa-sort-numeric-asc form-group__icon"></i>
-                                            <input type="number" name="guestCount" ng-model="guestCount" id="appGuestCount" class="form-control form-control--modern form-control--username" ng-minlength="1" required/>
+                                            <input type="text"
+                                                   name="guestCount"
+                                                   ng-model="guestCount"
+                                                   id="guestCount"
+                                                   class="form-control form-control--modern form-control--username"
+                                                   placeholder="np. 1"
+                                                   ng-minlength="1"
+                                                   ng-pattern="/^[1-9]*$/"
+                                                   format="currency"
+                                                   required/>
+                                        </div>
+                                        <div role="alert" class="alerts"
+                                             ng-class="{'has-error': formAddNewGuest.guestCount.$error.minlength || formAddNewGuest.guestCount.$error.pattern}">
+                                            <span class="error" ng-show="formAddNewGuest.guestCount.$error.minlength" ng-animate>
+                                                To pole musi zawierać minimum 1 znaki.
+                                            </span>
+                                            <span class="error" ng-show="formAddNewGuest.guestCount.$error.pattern" ng-animate>
+                                                To pole musi zawierać wyłącznie cyfry większe od 0 oraz musi to być liczba całkowita.
+                                            </span>
                                         </div>
                                     </div>
                                     <!-- Wypełnij pole :: STATUS -->
