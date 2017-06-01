@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/site-components.css" />
   </head>
   <body>
-   <header class="component header" ng-app="sampleApp" ng-controller="SampleCtrl" ng-show="firebaseUser" ng-cloak>
+   <header class="component header ng-cloak" ng-app="sampleApp" ng-controller="SampleCtrl" ng-show="firebaseUser">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-12">
@@ -88,7 +88,7 @@
     <main class="layout main">
         <div ng-view></div>
     </main>
-    <footer class="layout component footer" ng-show="firebaseUser" ng-cloak>
+    <footer class="layout component footer ng-cloak" ng-show="firebaseUser">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
