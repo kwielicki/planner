@@ -101,9 +101,9 @@ ref.once('value', function(snapshot) {
   snapshot.forEach(function(childSnapshot) {
     var childKey = childSnapshot.key;
     var childData = childSnapshot.val();
-    
 
-      /* 
+
+      /*
        * Logika odpowiedzialna za "Liczbę gości"
        * 1 - wszystkich
        * 2 - potwierdzonych
@@ -133,7 +133,7 @@ ref.once('value', function(snapshot) {
               break;
           }
 
-      /* 
+      /*
        * Logika odpowiedzialna za "Liczbę dzieci"
        * 1 - wszystkich
        * 2 - ze strony Pani Młodej
@@ -141,7 +141,7 @@ ref.once('value', function(snapshot) {
        */
 
         var fullChildrenNumbers = parseInt(childData.children, 10);
-        
+
         //- 2,3 Liczba dzici (od strony pani Młodej, pana Młodego)
           switch (childData.membership) {
             case "Pani Młoda":
@@ -160,7 +160,7 @@ ref.once('value', function(snapshot) {
           arrayFullChildrenNumber.push(fullChildrenNumbers);
           myFunction($('.statistics__global__numberOfChildren'), arrayFullChildrenNumber);
 
-       /* 
+       /*
        * Logika odpowiedzialna za liczbę gości ze strony Pani Młodej oraz Pana Młodego
        * 1 - wszystkich
        * 2 - potwierdzonych
@@ -210,7 +210,7 @@ ref.once('value', function(snapshot) {
   });
 });;
 
-       
+
 
 
   /* Funkcja odpowiadająca za Usunięcie zadanej osoby z bazy danych */

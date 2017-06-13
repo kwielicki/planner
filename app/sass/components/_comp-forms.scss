@@ -6,9 +6,56 @@
     &__button {
         margin-top: $padding-base;
         text-align: center;
+        button:disabled {
+            cursor: default;
+        }
     }
     + .form-group {
         margin: $padding-base 0;
+    }
+    //- Radio elements
+    &--radio {
+        input[type=radio] {
+            display: none;
+        }
+        input[type=radio]:checked + label {
+            &:after {
+                opacity: 1;
+            }
+        }
+    }
+    &__label {
+        position: relative;
+        cursor: pointer;
+        padding-left: $padding-medium;
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            margin-top: -8px;
+            display: block;
+            content: "";
+            width: 16px;
+            height: 16px;
+            border: 1px solid $border-color;
+            border-radius: $border-radius-sm;
+        }
+        &:after {
+            content: '';
+            position: absolute;
+            left: 3px;
+            top: 50%;
+            line-height: 10px;
+            margin-top: -5px;
+            font-size: 10px;
+            opacity: 0;
+            transition: all 0.4s ease;
+            width: 10px;
+            height: 10px;
+            background-color: $brand-primary;
+            border-radius: $border-radius-sm;
+        }
     }
 }
 

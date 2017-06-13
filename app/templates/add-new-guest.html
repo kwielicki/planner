@@ -19,7 +19,7 @@
     <div class="container">
         <div class="row">
             <!-- Dodanie nowego gościa do bazy danych -->
-            <form ng-submit="addNewPerson()" name="formAddNewGuest">
+            <form ng-submit="addNewPerson()" name="formAddNewGuest" ng-mode="formMy">
                 <div class="col-xs-12">
                     <div class="row">
                         <div class="col-sm-6">
@@ -34,19 +34,9 @@
                                     <div class="form-group form-group--modern form-group--label"
                                          ng-include="'../includes/forms/guest-count.html'"></div>
 
-                                    <!-- Wypełnij pole :: STATUS -->
-                                    <p>Wprowadź status:</p>
-                                    <div class="form-group">
-                                        <label>Potwierdzony
-                                            <input type="radio" ng-model="status" value="Potwierdzony">
-                                        </label><br/>
-                                        <label>Oczekujący
-                                            <input type="radio" ng-model="status" value="Oczekujący">
-                                        </label><br/>
-                                        <label>Odmowa
-                                            <input type="radio" ng-model="status" value="Odmowa">
-                                        </label>
-                                    </div>
+                                    <!-- Include status -->
+                                    <div class="form-group form-group--modern form-group--label"
+                                         ng-include="'../includes/forms/status.html'"></div>
                                 </div>
                                 <div class="col-sm-6">
 
@@ -56,7 +46,7 @@
 
                                     <!-- Wypełnij pole :: WYBIERZ PRZYNALEŻNOŚĆ -->
                                     <div class="form-group form-group--modern form-group--label">
-                                        <label for="appMembership" class="label">Wybierz przynależność osoby<span class="error" ng-show="formAddNewGuest.membership.$error.required">*</span></label>
+                                        <label for="appMembership" class="label">Wybierz przynależność osoby *</label>
                                         <select name="appMembership" id="appMembership" required ng-model="membership" class="form-control form-control--modern form-control--username" required>
                                             <option value="Pan Młody">Pan Młody</option>
                                             <option value="Pani Młoda">Pani Młoda</option>
