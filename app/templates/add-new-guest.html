@@ -25,57 +25,15 @@
                         <div class="col-sm-6">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <!-- Wypełnij pole :: IMIĘ -->
-                                    <div class="form-group form-group--modern form-group--label">
-                                        <label for="appFirstName" class="label">Podaj imię / imiona *</label>
-                                        <div class="form-group__input">
-                                            <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
-                                            <input type="text"
-                                                   name="firstName"
-                                                   ng-model="firstName"
-                                                   id="appFirstName"
-                                                   placeholder="np. Jan"
-                                                   class="form-control form-control--modern form-control--username"
-                                                   ng-minlength="3"
-                                                   ng-pattern="/^[a-zA-Z\s]*$/"
-                                                   required/>
-                                        </div>
-                                        <div role="alert" class="alerts"
-                                             ng-class="{'has-error': formAddNewGuest.firstName.$error.minlength || formAddNewGuest.firstName.$error.pattern}">
-                                            <span class="error" ng-show="formAddNewGuest.firstName.$error.minlength" ng-animate>
-                                                To pole musi zawierać minimum 3 znaki.
-                                            </span>
-                                            <span class="error" ng-show="formAddNewGuest.firstName.$error.pattern" ng-animate>
-                                                To pole musi zawierać wyłącznie litery.
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <!-- Wypełnij pole :: PRZEWIDYWANA LICZBA GOŚCI -->
-                                    <div class="form-group form-group--modern form-group--label">
-                                        <label for="guestCount" class="label">Podaj przewidywaną liczbę osób *</label>
-                                        <div class="form-group__input">
-                                            <i aria-hidden="true" class="fa fa-sort-numeric-asc form-group__icon"></i>
-                                            <input type="text"
-                                                   name="guestCount"
-                                                   ng-model="guestCount"
-                                                   id="guestCount"
-                                                   class="form-control form-control--modern form-control--username"
-                                                   placeholder="np. 1"
-                                                   ng-minlength="1"
-                                                   ng-pattern="/^[1-9]*$/"
-                                                   format="currency"
-                                                   required/>
-                                        </div>
-                                        <div role="alert" class="alerts"
-                                             ng-class="{'has-error': formAddNewGuest.guestCount.$error.minlength || formAddNewGuest.guestCount.$error.pattern}">
-                                            <span class="error" ng-show="formAddNewGuest.guestCount.$error.minlength" ng-animate>
-                                                To pole musi zawierać minimum 1 znaki.
-                                            </span>
-                                            <span class="error" ng-show="formAddNewGuest.guestCount.$error.pattern" ng-animate>
-                                                To pole musi zawierać wyłącznie cyfry większe od 0 oraz musi to być liczba całkowita.
-                                            </span>
-                                        </div>
-                                    </div>
+
+                                    <!-- Include first-name -->
+                                    <div class="form-group form-group--modern form-group--label"
+                                         ng-include="'../includes/forms/first-name.html'"></div>
+
+                                    <!-- Include guest-count -->
+                                    <div class="form-group form-group--modern form-group--label"
+                                         ng-include="'../includes/forms/guest-count.html'"></div>
+
                                     <!-- Wypełnij pole :: STATUS -->
                                     <p>Wprowadź status:</p>
                                     <div class="form-group">
@@ -91,30 +49,11 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <!-- Wypełnij pole :: NAZWISKO -->
-                                    <div class="form-group form-group--modern form-group--label">
-                                        <label for="appSurName" class="label">Podaj nazwisko *</label>
-                                        <div class="form-group__input">
-                                            <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
-                                            <input type="text"
-                                                   name="surName"
-                                                   ng-model="surName"
-                                                   id="appSurName"
-                                                   placeholder="np. Kowalski"
-                                                   class="form-control form-control--modern form-control--username"
-                                                   ng-minlength="3"
-                                                   ng-pattern="/^[a-zA-Z\s]*$/"
-                                                   required/>
-                                        </div>
-                                        <div role="alert" class="alerts">
-                                            <span class="error" ng-show="formAddNewGuest.surName.$error.minlength">
-                                                To pole musi zawierać minimum 3 znaki.
-                                            </span>
-                                            <span class="error" ng-show="formAddNewGuest.surName.$error.pattern" ng-animate>
-                                                To pole musi zawierać wyłącznie litery.
-                                            </span>
-                                        </div>
-                                    </div>
+
+                                    <!-- Include sur-name -->
+                                    <div class="form-group form-group--modern form-group--label"
+                                         ng-include="'../includes/forms/sur-name.html'"></div>
+
                                     <!-- Wypełnij pole :: WYBIERZ PRZYNALEŻNOŚĆ -->
                                     <div class="form-group form-group--modern form-group--label">
                                         <label for="appMembership" class="label">Wybierz przynależność osoby<span class="error" ng-show="formAddNewGuest.membership.$error.required">*</span></label>
@@ -123,22 +62,14 @@
                                             <option value="Pani Młoda">Pani Młoda</option>
                                         </select>
                                     </div>
-                                    <!-- Wypełnij pole :: Numer telefonu -->
-                                    <div class="form-group form-group--modern form-group--label">
-                                        <label for="appPhoneNumber" class="label">Wpisz numer telefonu<span class="error" ng-show="formAddNewGuest.membership.$error.required">*</span></label>
-                                        <div class="form-group__input">
-                                            <i aria-hidden="true" class="fa fa-mobile form-group__icon"></i>
-                                            <input type="text" name="appPhoneNumber" required ng-model="phoneNumber" id="appPhoneNumber" class="form-control form-control--modern form-control--username">
-                                        </div>
-                                    </div>
-                                    <!-- Wypełnij pole :: Dzieci -->
-                                    <div class="form-group form-group--modern form-group--label">
-                                        <label for="appChildren" class="label">Liczba dzieci</label>
-                                        <div class="form-group__input">
-                                            <i aria-hidden="true" class="fa fa-child form-group__icon"></i>
-                                            <input type="tel" name="appPhoneNumber" required ng-model="children" id="appChildren" class="form-control form-control--modern form-control--username">
-                                        </div>
-                                    </div>
+
+                                    <!-- Include phone-number -->
+                                    <div class="form-group form-group--modern form-group--label"
+                                         ng-include="'../includes/forms/phone-number.html'"></div>
+
+                                    <!-- Include children -->
+                                    <div class="form-group form-group--modern form-group--label"
+                                         ng-include="'../includes/forms/children.html'"></div>
                                 </div>
                             </div>
                         </div>

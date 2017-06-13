@@ -1,0 +1,24 @@
+<div>
+    <label for="surName" class="label">Podaj nazwisko *</label>
+    <div class="form-group__input">
+        <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
+        <input type="text"
+               name="surName"
+               id="surName"
+               class="form-control form-control--modern form-control--username"
+               ng-model="$parent.surName"
+               ng-pattern="/^[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ\s]*$/"
+               ng-minlength="3"
+               required
+               placeholder="np. Kowalski"
+               autocomplete="off"/>
+    </div>
+    <div role="alert" class="alerts">
+        <span class="error" ng-show="formAddNewGuest.surName.$error.minlength">
+            To pole musi zawierać minimum 3 znaki.
+        </span>
+        <span class="error" ng-show="formAddNewGuest.surName.$error.pattern" ng-animate>
+            To pole musi zawierać wyłącznie litery.
+        </span>
+    </div>
+</div>

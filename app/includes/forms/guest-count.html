@@ -1,0 +1,25 @@
+<div>
+    <label for="guestCount" class="label">Podaj przewidywaną liczbę osób *</label>
+    <div class="form-group__input">
+        <i aria-hidden="true" class="fa fa-sort-numeric-asc form-group__icon"></i>
+        <input type="text"
+               name="guestCount"
+               id="guestCount"
+               class="form-control form-control--modern form-control--username"
+               ng-model="$parent.guestCount"
+               ng-pattern="/^[1-9]*$/"
+               ng-minlength="1"
+               required
+               placeholder="np. 1"
+               autocomplete="off"/>
+    </div>
+    <div role="alert" class="alerts"
+         ng-class="{'has-error': formAddNewGuest.guestCount.$error.minlength || formAddNewGuest.guestCount.$error.pattern}">
+        <span class="error" ng-show="formAddNewGuest.guestCount.$error.minlength" ng-animate>
+            To pole musi zawierać minimum 1 znaki.
+        </span>
+        <span class="error" ng-show="formAddNewGuest.guestCount.$error.pattern" ng-animate>
+            To pole musi zawierać wyłącznie cyfry większe od 0 oraz musi to być liczba całkowita.
+        </span>
+    </div>
+</div>
