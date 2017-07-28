@@ -49,15 +49,20 @@ gulp.task('copy-templates', function() {
 		.pipe(gulp.dest('target/' + util.env.projectName + '/templates'))
 });
 
+gulp.task('copy-includes', function() {
+	return gulp.src('app/includes/**')
+		.pipe(gulp.dest('target/' + util.env.projectName + '/includes'))
+});
+
 gulp.task('copy-index', function() {
 	return gulp.src('index.core.html')
 		.pipe(plumber())
 		.pipe(concat('index.html'))
-		.pipe(htmlmin({collapseWhitespace: true}))
+		// .pipe(htmlmin({collapseWhitespace: true}))
 		.pipe(gulp.dest('target/' + util.env.projectName))
 });
 
-gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-index'], function () {
+gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-includes', 'copy-index'], function () {
 	return gulp.src([
 		paths.assets.js + 'jquery-2.2.4.min.js',
 		paths.assets.js + 'bootstrap.min.js',
