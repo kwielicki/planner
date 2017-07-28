@@ -43,12 +43,12 @@ weddingPlanner.controller("addNewGuest", function($scope, $firebaseArray, notify
       firstName: $scope.firstName,
       surName: $scope.surName,
       guestCount: parseInt($scope.guestCount, 10),
-      children: parseInt($scope.children, 10),
+      children: ($scope.children !== undefined) ? parseInt($scope.children, 10) : 0,
       dataAdded: d.getDate() + '-' + d.getMonth() + '-' + d.getUTCFullYear() + ',' + dateFormat(),
       membership: $scope.membership,
       status: $scope.status,
-      phoneNumber: parseInt($scope.phoneNumber, 10),
-      extraInformation: $scope.extraInformation
+      phoneNumber: ($scope.phoneNumber !== undefined) ? parseInt($scope.phoneNumber, 10) : '-',
+      extraInformation: ($scope.extraInformation !== undefined) ? $scope.extraInformation: 'brak'
     }).then(function(ref) {
                 notify({
                     messageTemplate: "\n    <div class=\"notification-header\">\n      <h4 class=\"notification-header__icon\"><i class=\"fa fa-check-circle nav__icon\" aria-hidden=\"true\"></i></h4>\n    </div>\n    <div class=\"notification-body\">\n      <h2 class=\"notification-body__title\"><span>Powodzenie!</span></h2>\n      <p class=\"notification-body__description\"> \n         <strong>" + $scope.firstName + " " + $scope.surName + "</strong>\n         Rekord zosta\u0142 dodany do systemu. Dane zosta\u0142y wprowadzone w spos\xF3b prawid\u0142owy.</p>\n    </div>\n ",

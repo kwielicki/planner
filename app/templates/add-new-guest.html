@@ -69,13 +69,14 @@
                             <!-- Wypełnij pole :: Informacje dodatkowe -->
                             <div class="form-group form-group--modern form-group--label">
                                 <label for="appExtraInformation" class="label">Informacje dodatkowe</label>
-                                <textarea name="name" ng-model="extraInformation" class="form-control form-control--modern form-control--username form-control--textarea" ng-minlength="3" required></textarea>
+                                <textarea name="name" ng-model="extraInformation" class="form-control form-control--modern form-control--username form-control--textarea" ng-minlength="3"></textarea>
                             </div>
                             <div class="form-group__button">
                                 <button type="submit" class="btn btn-primary"
                                         ng-disabled="formAddNewGuest.firstName.$invalid ||
                                         formAddNewGuest.surName.$invalid ||
-                                        formAddNewGuest.extraInformation.$invalid">
+                                        formAddNewGuest.guestCount.$invalid ||
+                                        formAddNewGuest.appMembership.$invalid ">
                                 Dodaj gościa</button>
                             </div>
                         </div>
