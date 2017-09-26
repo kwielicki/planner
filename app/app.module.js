@@ -132,7 +132,6 @@ weddingPlanner.controller('mainController', function($scope) {
   $scope.sortType     = 'firstName'; // set the default sort type
   $scope.sortReverse  = false;  // set the default sort order
   $scope.searchPerson   = '';     // set the default search/filter term
-
   $scope.printTable = function($scope) {
       var myTableArray = [];
       $('table tbody').find('tr').each(function() {
@@ -177,15 +176,15 @@ weddingPlanner.controller('mainController', function($scope) {
             }
         },
         content: [
-          {
-              stack: [
-                  {text: "Tabela generyczna - Twoja lista gości", style: "tableHeader"},
-                  {text: "- przedstawione wyniki uzależnione są od aktualnego ustawienia filtrowania", style: "tableSubheader"}
-              ]
-          },
-          {
-            table: {
-              widths: ["auto","auto","auto","auto","auto","auto", "auto", "auto"],
+            {
+                stack: [
+                    {text: "Tabela generyczna - Twoja lista gości", style: "tableHeader"},
+                    {text: "- przedstawione wyniki uzależnione są od aktualnego ustawienia filtrowania", style: "tableSubheader"}
+                ]
+            },
+            {
+                table: {
+                    widths: ["auto","auto","auto","auto","auto","auto", "auto", "auto"],
               body: [
                 [
                   [{text: "L.P", style: "tHead"}, lp],
@@ -221,7 +220,7 @@ weddingPlanner.controller('mainController', function($scope) {
       }
       };
 
-      pdfMake.createPdf(docDefinition).open();
+        pdfMake.createPdf(docDefinition).print();
 
   }
 
