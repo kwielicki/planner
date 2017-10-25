@@ -1,3 +1,11 @@
+/* angularjs 1.6.0 (latest now) routes not working
+ * Błąd podczas migracji na wersję angulara 1.6.0
+ * TODO: być może da się to zaimplementować w lepszy sposób
+ */
+weddingPlanner.config(['$locationProvider', function($locationProvider) {
+  $locationProvider.hashPrefix('');
+}]);
+
 // Konfiguracja routingu dla aplikacji
 weddingPlanner.config(function($routeProvider) {
     $routeProvider
@@ -21,8 +29,6 @@ weddingPlanner.config(function($routeProvider) {
             templateUrl: 'templates/404.html'
         })
 });
-
-
 
 weddingPlanner.run(["$rootScope", "$location", function($rootScope, $location) {
   $rootScope.$on("$routeChangeError", function(event, next, previous, error) {
