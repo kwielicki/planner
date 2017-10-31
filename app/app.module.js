@@ -121,6 +121,7 @@ weddingPlanner.controller('MainNavCtrl', [ '$scope', '$location', function ( $sc
 
     $scope.match = function() {
         location.reload();
+        localStorage.removeItem("lastsucceslogin");
     }
 
 }]);
@@ -248,6 +249,70 @@ weddingPlanner.controller('SampleCtrl', function($scope, $firebaseObject) {
     $scope.person = $firebaseObject(ref);
 });
 
+//- Logika logowania do aplikacji
+weddingPlanner.controller('userLogin', ['$scope', function($scope) {
+    $scope.inputType = 'password';
+    $scope.appSignIn = function() {
+        const email    = $scope.email;
+        const password = $scope.password;
+
+        if ((email === undefined || email === '') && (password === undefined || password === '')) {
+            const messageString = 'Podano niekompletne dane';
+            document.getElementById('error-message').innerHTML = messageString;
+        }
+
+        //- Firebase nie przeprowadza walidacji adresu email
+            firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(function(firebaseUser) {
+                if (typeof(Storage) !== "undefined") {
+                    const dateLoginIn = new Date(),
+                          dateStringTime = dateLoginIn.toDateString(),
+                          dataLocalTime  = dateLoginIn.toLocaleTimeString();
+                    if (!localStorage.getItem('lastsucceslogin')) {
+                        localStorage.setItem("lastsucceslogin", dateStringTime + ', ' + dataLocalTime);
+                    }
+                    document.getElementById('last-success-login').innerHTML = localStorage.getItem('lastsucceslogin');
+                }
+            })
+            .catch(function(error) {
+                /* Obsługa błędów mogących występować podczas próby logowania */
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                if (errorCode === 'auth/wrong-password') {
+                    const messageString = 'Podane hasło jest błędne';
+                    document.getElementById('error-message').innerHTML = messageString;
+                }
+
+                if (errorCode === 'auth/user-not-found') {
+                    const messageString = 'Login, który podałeś nie istnieje';
+                    document.getElementById('error-message').innerHTML = messageString;
+                }
+
+                if (errorCode === 'auth/invalid-email') {
+                    const messageString = 'Wprowadź poprawny adres e-mail';
+                    document.getElementById('error-message').innerHTML = messageString;
+                }
+
+                if (errorCode === 'auth/argument-error') {
+                    const messageString = 'Podałeś niekompletne dane';
+                    document.getElementById('error-message').innerHTML = messageString;
+                }
+
+            });
+
+    };
+
+    //- Pokazanie hasła
+    $scope.passwordHelper = function(eventName) {
+        if ($scope.inputType === 'password') {
+            $scope.inputType = 'text';
+        } else if ($scope.inputType === 'text'){
+            $scope.inputType = 'password';
+        }
+    }
+
+}]);
+
 weddingPlanner.controller("SampleCtrl", ["$scope", "Auth",
   function($scope, Auth) {
     $scope.auth = Auth;
@@ -255,5 +320,6 @@ weddingPlanner.controller("SampleCtrl", ["$scope", "Auth",
     $scope.auth.$onAuthStateChanged(function(firebaseUser) {
       $scope.firebaseUser = firebaseUser;
     });
+    document.getElementById('last-success-login').innerHTML = localStorage.getItem('lastsucceslogin');
   }
 ]);

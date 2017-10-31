@@ -57,6 +57,15 @@
             border-radius: $border-radius-sm;
         }
     }
+    &__password-healper {
+        display: table;
+        cursor: pointer;
+        margin-left: auto;
+        margin-right: 0;
+    }
+    &__helper {
+        margin-top: 0;
+    }
 }
 
 .form-control {

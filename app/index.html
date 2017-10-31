@@ -65,6 +65,9 @@
                                         <img src="assets/images/user-photo.png" alt="">
                                     </a>
                                     <ul class="list-unstyled dropdown-menu dropdown-menu--logout">
+                                        <li>
+                                            Ostatnie udane logowanie: <span id="last-success-login"></span>
+                                        </li>
                                         <li class="avatar">
                                             <figure>
                                                 <img src="assets/images/user-photo.png" alt="">
@@ -113,6 +116,7 @@
     <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
 
     <script src="assets/javascript/angular-notifications.js"></script>
+    <script src="assets/javascript/angular-sanitize.js"></script>
 
 	<!-- Konfiguracja demo -->
     <script>

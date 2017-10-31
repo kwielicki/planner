@@ -42,6 +42,9 @@
         font-weight: 400;
     }
     &__forms {
-        padding: 50px 25px;
+        padding: 50px 25px 15px 25px;
+    }
+    #error-message {
+        height: 24px;
     }
 }

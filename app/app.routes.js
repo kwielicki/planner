@@ -1,6 +1,6 @@
 /* angularjs 1.6.0 (latest now) routes not working
  * Błąd podczas migracji na wersję angulara 1.6.0
- * TODO: być może da się to zaimplementować w lepszy sposób
+ * TODO: być może da się to
  */
 weddingPlanner.config(['$locationProvider', function($locationProvider) {
   $locationProvider.hashPrefix('');
