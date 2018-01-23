@@ -130,9 +130,10 @@
                             <div class="table-management__row-details" ng-click="tableManagementDetails($event)">Pokaż szczegóły</div>
                             <div class="table-management__hidden-row">
                                 <ul class="table-management__list">
-                                    <li><span>Telefon: </span>{{ person.phoneNumber }}</li>
+                                    <li><span>Telefon: </span><strong class="pdf-maker--phone-number">{{ person.phoneNumber }}</strong></li>
                                     <li><span>Informacje dodatkowe: </span>{{ person.extraInformation }}</li>
                                     <li><span>Data dodania: </span>{{ person.dataAdded }}</li>
+                                    <li><span>Dodany przez: {{person.creator}}</span></li>
                                 </ul>
                                 <a href="#" ng-click="tableManagementHideDetails($event)" class="table-management__hide-button">Ukryj szczegóły</a>
                             </div>

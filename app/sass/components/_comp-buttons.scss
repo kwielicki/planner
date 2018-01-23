@@ -87,4 +87,14 @@
             min-width: 60px;
         }
     }
+    &--sm {
+        .btn {
+            margin: 10px;
+            min-width: 135px;
+        }
+    }
+    &--centered {
+        display: table;
+        margin: 0 auto;
+    }
 }

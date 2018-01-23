@@ -1,9 +1,8 @@
-weddingPlanner.controller("addNewGuest", function($scope, $firebaseArray, notify) {
+weddingPlanner.controller("addNewGuest", function($scope, $firebaseArray, notify, Auth) {
 
   var ref = firebase.database().ref().child("list_of_guest"),
       d = new Date(),
       days = ["Niedziela","Poniedziałek","Wtorek","Środa","Czwartek","Piątek","Sobota"];
-
 
   /* Zbiór funkcji, które odpowiadają za formatowanie daty,
    * która jest przekazywana do modelu bazy danych.
@@ -45,7 +44,6 @@ weddingPlanner.controller("addNewGuest", function($scope, $firebaseArray, notify
   //- Synchronizujemy obiekt person z tablica firebase
   $scope.persons = $firebaseArray(ref);
 
-
   /* Funkcja odpowiadająca za dodanie nowej osoby do bazy danych
    * Dodajemy do bazy takie dane jak:
    * -- fullName w skład którego wchodzą firstName oraz surName
@@ -62,9 +60,10 @@ weddingPlanner.controller("addNewGuest", function($scope, $firebaseArray, notify
       surName: $scope.surName,
       guestCount: parseInt($scope.guestCount, 10),
       children: ($scope.children !== undefined) ? parseInt($scope.children, 10) : 0,
-      dataAdded: d.getDate() + '-' + d.getMonth() + '-' + d.getUTCFullYear() + ',' + dateFormat(),
+      dataAdded: d.getDate() + '-' + ('0'+(d.getMonth()+1)).slice(-2) + '-' + d.getUTCFullYear() + ',' + dateFormat(),
       membership: $scope.membership,
       status: $scope.status,
+      creator: $scope.auth.$getAuth().email,
       phoneNumber: ($scope.phoneNumber !== undefined) ? parseInt($scope.phoneNumber, 10) : '-',
       extraInformation: ($scope.extraInformation !== undefined) ? $scope.extraInformation: 'brak'
     }).then(function(ref) {
@@ -82,7 +81,7 @@ weddingPlanner.controller("addNewGuest", function($scope, $firebaseArray, notify
                 classes: 'notification-warning',
                 dration: 0
               });
-        });;
+        });
 
   };
 
@@ -226,32 +225,6 @@ ref.once('value', function(snapshot) {
       }
 
   });
-});;
-
-  /* Funkcja odpowiadająca za Usunięcie zadanej osoby z bazy danych */
-  $scope.removeIt = function(person) {
-    $scope.persons.$remove(person);
-    $(document).ready(function(){
-        $('.modal-backdrop').remove();
-        $('body').removeClass('modal-open');
-    });
-  }
-
-  /* Funkcja odpowiadająca za edycja zadanej osoby w bazie danych
-   * @TODO stworzenie nowego routa, na którym będzie możliwość zedytowania
-   * konkretnej osoby
-   */
-  $scope.saveIt = function(person) {
-    $scope.persons.$save(person);
-  }
-
-
 });
 
-
-weddingPlanner.controller('changePath', ['$scope', '$location',function($scope, $location){
-  $scope.go = function (hash) {
-    $location.path(hash);
-    console.log($location.path(hash));
-   }
- }]);
+});

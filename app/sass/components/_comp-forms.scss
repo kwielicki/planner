@@ -187,3 +187,8 @@ textarea.ng-invalid {
 textarea.ng-valid {
     background-color: lightgreen;
 }
+
+// Ekran edycji (style dla grupy przycisków (Zapisz, Wróc))
+.form-group-actions {
+    padding-bottom: 35px;
+}

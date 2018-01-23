@@ -136,9 +136,9 @@ weddingPlanner.controller('mainController', function($scope) {
   $scope.searchPerson   = '';     // set the default search/filter term
   $scope.printTable = function($scope) {
       var myTableArray = [];
-      $('table tbody').find('tr').each(function() {
+      $('.table-management__body').find('.table-management__row').each(function() {
           var arrayOfThisRow = [];
-          var tableData = $(this).find('td:eq(0), td:eq(1), td:eq(2), td:eq(3), td:eq(4), td:eq(5), td:eq(6) > span, td:eq(7)');
+          var tableData = $(this).find('div:eq(0), div:eq(1), div:eq(2), div:eq(3), div:eq(4), div:eq(5), div:eq(6), .pdf-maker--phone-number');
           if (tableData.length > 0) {
               tableData.each(function() { arrayOfThisRow.push($(this).text()); });
               myTableArray.push(arrayOfThisRow);
@@ -153,7 +153,6 @@ weddingPlanner.controller('mainController', function($scope) {
           membership = [],
           status = [],
           phoneNumber= [];
-
       for (var p in myTableArray) {
           lp.push(myTableArray[p][0]);
           firstName.push(myTableArray[p][1]);
@@ -164,6 +163,7 @@ weddingPlanner.controller('mainController', function($scope) {
           status.push(myTableArray[p][6]);
           phoneNumber.push(myTableArray[p][7]);
       }
+
       var docDefinition = {
         pageOrientation: 'landscape',
         pageSize: 'A4',
@@ -303,7 +303,7 @@ weddingPlanner.controller('userLogin', ['$scope', function($scope) {
 
     };
 
-    //- Pokazanie hasła
+    //- Pokazanie / ukrywanie hasła
     $scope.passwordHelper = function(eventName) {
         if ($scope.inputType === 'password') {
             $scope.inputType = 'text';
