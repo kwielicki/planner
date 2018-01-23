@@ -18,6 +18,24 @@ weddingPlanner.config(function($routeProvider) {
             templateUrl: 'templates/manage-guests.html'
         }).when('/add-new-guest', {
             templateUrl: 'templates/add-new-guest.html'
+        }).when('/edit-guest/:personID', {
+            templateUrl: 'templates/edit-guest.html',
+            controller: 'appEditGuest',
+            resolve: {
+                "recordId": ['$route', function($route) {
+                    return {
+                        personID: function() {
+                            /* @TODO Być może da się to zaimplementować
+                             * w bardziej wydajny sposób. Aktualnie wykorzystuje
+                             * obiekt $route, z którego pobieram wartość parametru
+                             * i przekazuje go do controllera appEditGuest
+                             */
+                            const paramsValue = $route.current.params.personID;
+                            return paramsValue;
+                        }
+                    }
+                }]
+            }
         }).when('/statistics', {
             templateUrl: 'templates/statistics.html'
         }).when('/login', {
@@ -71,6 +89,19 @@ weddingPlanner.config(["$routeProvider", function($routeProvider) {
     // the rest is the same for ui-router and ngRoute...
     controller: "AccountCtrl",
     templateUrl: "templates/add-new-guest.html",
+    resolve: {
+      // controller will not be loaded until $requireSignIn resolves
+      // Auth refers to our $firebaseAuth wrapper in the factory below
+      "currentAuth": ["Auth", function(Auth) {
+        // $requireSignIn returns a promise so the resolve waits for it to complete
+        // If the promise is rejected, it will throw a $routeChangeError (see above)
+        return Auth.$requireSignIn();
+      }]
+    }
+}).when('/edit-guest', {
+    // the rest is the same for ui-router and ngRoute...
+    controller: "AccountCtrl",
+    templateUrl: "templates/edit-guest.html",
     resolve: {
       // controller will not be loaded until $requireSignIn resolves
       // Auth refers to our $firebaseAuth wrapper in the factory below

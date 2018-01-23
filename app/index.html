@@ -91,12 +91,12 @@
     <main class="layout main">
         <div ng-view></div>
     </main>
-    <footer class="layout component footer ng-cloak" ng-show="firebaseUser">
+    <footer class="layout component footer ng-cloak" ng-show="firebaseUser" ng-controller="ctrlFooter">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="footer__inner">
-                        <h6 class="small">&copy 2017 by e-inet.pl, wszystkie prawa zastrzeżone. Wersja aplikacji <code ng-controller="controllerAppVersion">{{appVersion}}</code></h6>
+                        <h6 class="small">&copy {{data | date:'yyyy'}} by e-inet.pl, wszystkie prawa zastrzeżone. Wersja aplikacji <code ng-controller="controllerAppVersion">{{appVersion}}</code></h6>
                     </div>
                 </div>
             </div>
@@ -116,7 +116,7 @@
     <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
 
     <script src="assets/javascript/angular-notifications.js"></script>
-    <script src="assets/javascript/angular-sanitize.js"></script>
+    <script src="assets/javascript/angular-bootstrap-ui.min.js"></script>
 
 	<!-- Konfiguracja demo -->
     <script>
@@ -141,6 +141,9 @@
 
     <!-- Controllers -->
     <script src="controllers/ctrl.add.new.guest.js"></script>
+    <script src="controllers/ctrl.edit-guest.js"></script>
+    <script src="controllers/ctrl-delete-person.js"></script>
+    <script src="controllers/ctrl-footer.js"></script>
     <script src="controllers/controller-app-version.js"></script>
 
     <!-- Components -->

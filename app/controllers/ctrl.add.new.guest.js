@@ -1,6 +1,5 @@
 weddingPlanner.controller("addNewGuest", function($scope, $firebaseArray, notify) {
 
-
   var ref = firebase.database().ref().child("list_of_guest"),
       d = new Date(),
       days = ["Niedziela","Poniedziałek","Wtorek","Środa","Czwartek","Piątek","Sobota"];
@@ -22,6 +21,25 @@ weddingPlanner.controller("addNewGuest", function($scope, $firebaseArray, notify
       var m = addZero(d.getMinutes());
       var s = addZero(d.getSeconds());
       return h + ":" + m + ":" + s;
+    }
+
+    /* Metoda tableManagementDetails służy do pokazania
+     * informacji dodatkowych znajdujących się w tableManagementDetails
+     */
+    $scope.tableManagementDetails = function( event ) {
+        var $this = $(event.currentTarget);
+        $this.addClass('ng-cloak');
+        $this.next().slideDown();
+    }
+
+    /* Metoda tableManagementHideDetails służy do ukrywania
+     * informacji dodatkowych znajdujących się w tableManagementDetails
+     */
+    $scope.tableManagementHideDetails = function( event ) {
+        var $this = $(event.currentTarget);
+        $this.parent().slideUp(400, function() {
+            $this.parents('.table-management__row ').find('.table-management__row-details').removeClass('ng-cloak');
+        });
     }
 
   //- Synchronizujemy obiekt person z tablica firebase
@@ -50,21 +68,21 @@ weddingPlanner.controller("addNewGuest", function($scope, $firebaseArray, notify
       phoneNumber: ($scope.phoneNumber !== undefined) ? parseInt($scope.phoneNumber, 10) : '-',
       extraInformation: ($scope.extraInformation !== undefined) ? $scope.extraInformation: 'brak'
     }).then(function(ref) {
-                notify({
-                    messageTemplate: "\n    <div class=\"notification-header\">\n      <h4 class=\"notification-header__icon\"><i class=\"fa fa-check-circle nav__icon\" aria-hidden=\"true\"></i></h4>\n    </div>\n    <div class=\"notification-body\">\n      <h2 class=\"notification-body__title\"><span>Powodzenie!</span></h2>\n      <p class=\"notification-body__description\"> \n         <strong>" + $scope.firstName + " " + $scope.surName + "</strong>\n         Rekord zosta\u0142 dodany do systemu. Dane zosta\u0142y wprowadzone w spos\xF3b prawid\u0142owy.</p>\n    </div>\n ",
-                    position: 'right',
-                    classes: 'notification-success',
-                    duration: 0
-                  });
-                $('input').val('');
-            }, function(error) {
-                notify({
-                    messageTemplate: "\n                      <div class=\"notification-header\">\n                        <h4 class=\"notification-header__icon\"><i class=\"fa fa-exclamation-circle nav__icon\" aria-hidden=\"true\"></i></h4>\n                      </div>\n                      <div class=\"notification-body\">\n                        <h2 class=\"notification-body__title\"><span>Oops... wyst\u0105pi\u0142 b\u0142\u0105d!</span></h2>\n                        <p class=\"notification-body__description\"> \n                           <strong>" + $scope.firstName + " " + $scope.surName + "</strong>\n                           Rekord nie zosta\u0142 dodany do systemu. Zweryfikuj poprawno\u015B\u0107 wprowadzonych danych.</p>\n                      </div>\n                    ",
-                    position: 'right',
-                    classes: 'notification-warning',
-                    dration: 0
-                  });
-            });;
+        notify({
+                messageTemplate: "\n    <div class=\"notification-header\">\n      <h4 class=\"notification-header__icon\"><i class=\"fa fa-check-circle nav__icon\" aria-hidden=\"true\"></i></h4>\n    </div>\n    <div class=\"notification-body\">\n      <h2 class=\"notification-body__title\"><span>Powodzenie!</span></h2>\n      <p class=\"notification-body__description\"> \n         <strong>" + $scope.firstName + " " + $scope.surName + "</strong>\n         Rekord zosta\u0142 dodany do systemu. Dane zosta\u0142y wprowadzone w spos\xF3b prawid\u0142owy.</p>\n    </div>\n ",
+                position: 'right',
+                classes: 'notification-success',
+                duration: 0
+              });
+            $('input').val('');
+        }, function(error) {
+            notify({
+                messageTemplate: "\n                      <div class=\"notification-header\">\n                        <h4 class=\"notification-header__icon\"><i class=\"fa fa-exclamation-circle nav__icon\" aria-hidden=\"true\"></i></h4>\n                      </div>\n                      <div class=\"notification-body\">\n                        <h2 class=\"notification-body__title\"><span>Oops... wyst\u0105pi\u0142 b\u0142\u0105d!</span></h2>\n                        <p class=\"notification-body__description\"> \n                           <strong>" + $scope.firstName + " " + $scope.surName + "</strong>\n                           Rekord nie zosta\u0142 dodany do systemu. Zweryfikuj poprawno\u015B\u0107 wprowadzonych danych.</p>\n                      </div>\n                    ",
+                position: 'right',
+                classes: 'notification-warning',
+                dration: 0
+              });
+        });;
 
   };
 
@@ -210,9 +228,6 @@ ref.once('value', function(snapshot) {
   });
 });;
 
-
-
-
   /* Funkcja odpowiadająca za Usunięcie zadanej osoby z bazy danych */
   $scope.removeIt = function(person) {
     $scope.persons.$remove(person);
@@ -222,12 +237,12 @@ ref.once('value', function(snapshot) {
     });
   }
 
-  /* Funkcja odpowiadająca za edycja zadanej osoby w bazie danych */
+  /* Funkcja odpowiadająca za edycja zadanej osoby w bazie danych
+   * @TODO stworzenie nowego routa, na którym będzie możliwość zedytowania
+   * konkretnej osoby
+   */
   $scope.saveIt = function(person) {
     $scope.persons.$save(person);
-    $(document).ready(function(){
-        $('.modal-backdrop').remove();
-    });
   }
 
 

@@ -41,185 +41,106 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid" ng-controller="addNewGuest">
+    <div class="container" ng-controller="addNewGuest">
         <div class="row">
             <div class="col-xs-12">
                 <h2 class="section-title">
                     <strong>Twoja lista gości</strong><span> - dane tabelaryczne</span>
                 </h2>
-                <table class="table table-bordered table-striped component table-management">
-                    <thead>
-                        <tr>
-                            <td>#</td>
-                            <td>
+                <div class="component table-management">
+                    <!-- Table header -->
+                    <div class="table-management__header">
+                        <div class="table-management__row">
+                            <div class="table-management__cell table-management__cell--index">L.P.</div>
+                            <div class="table-management__cell table-management__cell--first-name">
                                 <a href="#" ng-click="sortType = 'firstName'; sortReverse = !sortReverse">
                                     Imię
-                                    <span ng-show="sortType == 'firstName'" class="fa" ng-class="sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></span>
+                                    <span ng-show="sortType == 'firstName'" class="fa"
+                                          ng-class="sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></span>
                                 </a>
-                            </td>
-                            <td>
+                            </div>
+                            <div class="table-management__cell table-management__cell--surname">
                                 <a href="#" ng-click="sortType = 'surName'; sortReverse = !sortReverse">
                                     Nazwisko
-                                    <span ng-show="sortType == 'surName'" class="fa" ng-class="sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></span>
+                                    <span ng-show="sortType == 'surName'" class="fa"
+                                          ng-class="sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></span>
                                 </a>
-                            </td>
-                            <td>
+                            </div>
+                            <div class="table-management__cell table-management__cell--guest-count">
                                 <a href="#" ng-click="sortType = 'guestCount'; sortReverse = !sortReverse">
                                     Liczba osób
-                                    <span ng-show="sortType == 'guestCount'" class="fa" ng-class="sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></span>
+                                    <span ng-show="sortType == 'guestCount'" class="fa"
+                                          ng-class="sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></span>
                                 </a>
-                            </td>
-                            <td>
+                            </div>
+                            <div class="table-management__cell table-management__cell--children">
                                 <a href="#" ng-click= "sortType = 'children'; sortReverse = !sortReverse">
                                     Dzieci
-                                    <span ng-show="sortType == 'children'" class="fa" ng-class="sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></span>
+                                    <span ng-show="sortType == 'children'" class="fa"
+                                          ng-class="sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></span>
                                 </a>
-                            </td>
-                           <td>
+                            </div>
+                           <div class="table-management__cell table-management__cell--membership">
                                 <a href="#" ng-click= "sortType = 'membership'; sortReverse = !sortReverse">
                                     Przynależność
-                                    <span ng-show="sortType == 'membership'" class="fa" ng-class="sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></span>
+                                    <span ng-show="sortType == 'membership'" class="fa"
+                                          ng-class="sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></span>
                                 </a>
-                            </td>
-                            <td>
+                            </div>
+                            <div class="table-management__cell table-management__cell--status">
                                 <a href="#" ng-click="sortType = 'status'; sortReverse = !sortReverse">
                                     Status
-                                    <span ng-show="sortType == 'status'" class="fa" ng-class="sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></span>
+                                    <span ng-show="sortType == 'status'" class="fa"
+                                          ng-class="sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></span>
                                 </a>
-                            </td>
-                            <td>
-                                Telefon
-                            </td>
-                            <td>
-                                Extra inf.
-                            </td>
-                            <td>
+                            </div>
+                            <div class="table-management__cell">
                                 Operacje
-                            </td>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                    <tr ng-repeat="person in persons | orderBy:sortType:sortReverse | filter:searchPerson">
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ person.firstName }}</td>
-                        <td>{{ person.surName }}</td>
-                        <td>{{ person.guestCount }}</td>
-                        <td>{{ person.children }}</td>
-                        <td ng-class="{membershipWomen: person.membership === 'Pani Młoda', membershipMan: person.membership === 'Pan Młody'}">{{ person.membership }}</td>
-                        <td ng-class="{refusal: person.status === 'Odmowa', unconfirmed: person.status === 'Oczekujący'}" class="table-management__status">
-                            <span>{{ person.status }}</span>
-                        </td>
-                        <td>{{ person.phoneNumber }}</td>
-                        <td>{{ person.extraInformation }}</td>
-                        <!-- <td>{{ person.dataAdded }}</td> -->
-                        <td class="text-center">
-                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" ng-attr-data-target="{{'#remove-person-modal--' + $index + 1}}">Usuń</button>
-                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" ng-attr-data-target="{{'#edit-person-modal--' + $index + 1}}">Edytuj</button>                                       <!-- Modal -->
-                            <div class="modal fade" ng-attr-id="{{'remove-person-modal--' + $index + 1}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" title="Rezygunuję" data-dismiss="modal" aria-label="Rezygnuję"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">Czy chcesz <code>usunąć</code> tego gościa z bazy danych?</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Gość który zostanie usunięty to: <strong>{{ person.firstName }} {{ person.surName }}</strong></p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default dismiss-modal" data-dismiss="modal">Rezygnuję</button>
-                                        <button type="button" class="btn btn-primary" ng-click="removeIt(person)" data-dismiss="modal">Usuń permanentnie</button>
-                                    </div>
-                                    </div>
-                                </div>
                             </div>
-                            <div class="modal fade" ng-attr-id="{{'edit-person-modal--' + $index + 1}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" title="Rezygunuję" data-dismiss="modal" aria-label="Rezygnuję"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">Czy chcesz <code>edytować</code> tego gościa?</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Gość który zostanie edytowany to: <strong>{{ person.firstName }} {{ person.surName }}</strong></p>
-                                        <hr>
-                                        <div class="form-group form-group--modern form-group--label">
-                                            <label for="appFirstName" class="label">Podaj imię / imiona <span class="error" ng-show="formAddNewGuest.firstName.$error.required">*</span></label>
-                                            <div class="form-group__input">
-                                                <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
-                                                <input type="text" name="firstName" ng-model="person.firstName" id="appFirstName" class="form-control form-control--modern form-control--username"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group form-group--modern form-group--label">
-                                            <label for="appSurName" class="label">Podaj nazwisko<span class="error" ng-show="formAddNewGuest.surName.$error.required">*</span></label>
-                                            <div class="form-group__input">
-                                                <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
-                                                <input type="text" name="surName" ng-model="person.surName" id="appSurName" class="form-control form-control--modern form-control--username"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group form-group--modern form-group--label">
-                                            <label for="appMembership" class="label">Wybierz przynależność<span class="error" ng-show="formAddNewGuest.surName.$error.required">*</span></label>
-                                            <select name="appMembership" id="appMembership" required ng-model="person.membership" class="form-control form-control--modern form-control--username" required>
-                                                <option value="Pan Młody">Pan Młody</option>
-                                                <option value="Pani Młoda">Pani Młoda</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group form-group--modern form-group--label">
-                                            <label for="appGuestCount" class="label">Podaj przewidywaną liczbę osób *</label>
-                                            <div class="form-group__input">
-                                                <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
-                                                <input type="number" name="guestCount" ng-model="person.guestCount" id="appGuestCount" class="form-control form-control--modern form-control--username"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group form-group--modern form-group--label">
-                                            <label for="appGuestChildren" class="label">Podaj przewidywaną liczbę dzieci *</label>
-                                            <div class="form-group__input">
-                                                <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
-                                                <input type="number" name="children" ng-model="person.children" id="appGuestChildren" class="form-control form-control--modern form-control--username"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <p>Wybierz status:</p>
-                                            <label>Potwierdzony
-                                                <input type="radio" ng-model="person.status" value="Potwierdzony">
-                                            </label><br/>
-                                            <label>Oczekujący
-                                                <input type="radio" ng-model="person.status" value="Oczekujący">
-                                            </label><br/>
-                                            <label>Odmowa
-                                                <input type="radio" ng-model="person.status" value="Odmowa">
-                                            </label>
-                                        </div>
-                                        <div class="form-group form-group--modern form-group--label">
-                                            <label for="appGuestPhoneNumber" class="label">Zmodyfikuj numer telefonu</label>
-                                            <div class="form-group__input">
-                                                <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
-                                                <input type="text" name="phoneNumber" ng-model="person.phoneNumber" id="appGuestPhoneNumber" class="form-control form-control--modern form-control--username"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group form-group--modern form-group--label">
-                                            <label for="appGuestPhoneNumber" class="label">Informacje dodatkowe</label>
-                                            <div class="form-group__input">
-                                                <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
-                                                <textarea name="name" ng-model="person.extraInformation" class="form-control form-control--modern form-control--username form-control--textarea"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default dismiss-modal" data-dismiss="modal">Rezygnuję</button>
-                                        <button type="button" ng-click="saveIt(person)" class="btn btn-success dismiss-modal" data-dismiss="modal">Zapisz zmiany</button>
-                                    </div>
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="table-management__hidden-row">
+                            <div class="table-management__cell">
+                                Telefon
                             </div>
-                        </td>
-                    </tr>
-                    </tbody>
+                            <div class="table-management__cell">
+                                Informacje dodatkowe
+                            </div>
+                        </div>
+                    </div>
 
-                </table>
+                    <!-- Table body -->
+                    <div class="table-management__body">
+                        <div class="table-management__row table-management__row--body"
+                             ng-repeat="person in persons | orderBy:sortType:sortReverse | filter:searchPerson" title="Gość: {{ person.firstName}} {{ person.surName}}">
+                            <div class="table-management__cell table-management__cell--index"> {{ $index }}</div>
+                            <div class="table-management__cell table-management__cell--first-name"> {{ person.firstName }}</div>
+                            <div class="table-management__cell table-management__cell--surname"> {{ person.surName }}</div>
+                            <div class="table-management__cell table-management__cell--guest-count"> {{ person.guestCount }}</div>
+                            <div class="table-management__cell table-management__cell--children"> {{ person.children }}</div>
+                            <div class="table-management__cell table-management__cell--membership"> {{ person.membership }}</div>
+                            <div class="table-management__cell table-management__cell--status" data-status="{{(person.status === 'Oczekujący' ? 'Oczekujacy' : person.status) | lowercase}}"> {{ person.status }}</div>
+                            <div class="table-management__cell table-management__cell--btn-group">
+                                <div class="btn-group btn-group--xs">
+                                    <a href="#/edit-guest/{{person.$id}}" class="btn btn-success btn-xs" title="Edytuj">Edytuj</a>
+                                    <a href="#" class="btn btn-danger btn-xs" title="Usuń" ng-controller="ctrlDeletePerson" ng-click="deletePerson(person.$id)">Usuń</a>
+                                </div>
+                                <!-- <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" ng-attr-data-target="{{'#remove-person-modal--' + $index + 1}}">Usuń</button> -->
+                                <!-- <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" ng-attr-data-target="{{'#edit-person-modal--' + $index + 1}}">Edytuj</button> -->
+                            </div>
+                            <div class="table-management__row-details" ng-click="tableManagementDetails($event)">Pokaż szczegóły</div>
+                            <div class="table-management__hidden-row">
+                                <ul class="table-management__list">
+                                    <li><span>Telefon: </span>{{ person.phoneNumber }}</li>
+                                    <li><span>Informacje dodatkowe: </span>{{ person.extraInformation }}</li>
+                                    <li><span>Data dodania: </span>{{ person.dataAdded }}</li>
+                                </ul>
+                                <a href="#" ng-click="tableManagementHideDetails($event)" class="table-management__hide-button">Ukryj szczegóły</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
-
-        </div>
     </div>
+</div>
 </section>

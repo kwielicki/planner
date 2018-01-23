@@ -1,5 +1,6 @@
 .btn {
     @include font_weight(400);
+    @include transition_bezier;
     position: relative;
     padding: 15px 35px;
     font-size: 1.1em;
@@ -21,12 +22,21 @@
         }
     }
     &-danger {
-        background-color: $brand-danger;
-        color: $brand-dark;
-        border: 0;
+        color: $brand-danger;
+        border: 1px solid $brand-danger;
+        background-color: #fff;
         &:hover, &:focus, &:active {
-            background-color: $brand-gray-light;
-            color: $brand-dark;
+            background-color: darken($brand-danger, 5%);
+            color: #fff;
+        }
+    }
+    &-success {
+        color: $brand-success;
+        border: 1px solid $brand-success;
+        background-color: #fff;
+        &:hover, &:focus, &:active {
+            background-color: darken($brand-success, 5%);
+            color: #fff;
         }
     }
     &-warning {
@@ -50,7 +60,6 @@
         background-color: $brand-gray-light;
         border: 1px solid $border-color;
         color: $brand-dark;
-        cursor: default;
     }
     //- Small buttons
     &-sm {
@@ -58,6 +67,7 @@
     }
     &-xs {
         padding: 5px 10px;
+        border-radius: 2px;
     }
     &--edit {
         background-color: #fff;
@@ -66,5 +76,15 @@
     &--delete {
         background-color: #fff;
         border: 1px solid #aaa;
+    }
+}
+
+// Buttons group
+.btn-group {
+    &--xs {
+        .btn {
+            margin: 5px;
+            min-width: 60px;
+        }
     }
 }

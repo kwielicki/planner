@@ -1,53 +1,100 @@
 .table-management {
-    border-collapse: separate;
-    border-spacing: 0 5px;
-    &__status span {
-        color: #fff;
-        border-radius: .25em;
-        padding: .4em .6em;
-        display: inline-block;
-        min-width: 120px;
-        background: #7ab55c;
-        transition: all,250ms,cubic-bezier(.55,0,.1,1);
+    $root: &;
+    margin-bottom: $spacer;
+    background-color: #fff;
+    border-right: 1px solid $border-color-dropdown-element;
+    border-bottom: 3px solid $border-color-dropdown-element;
+    &__header {
+        font-weight: 600;
     }
-    .refusal span {
-        background-color: #d9534f;
+    &__row {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        border-bottom: 1px solid $border-color-dropdown-element;
+        &--body {
+            @include transition_bezier;
+            &:hover {
+                background-color: rgba(red($border-color-dropdown-element), green($border-color-dropdown-element), blue($border-color-dropdown-element), .2);
+            }
+        }
     }
-    .unconfirmed span {
-        background-color: #f0ad4e;
+    &__cell {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        border-left: 1px solid $border-color-dropdown-element;
+        border-right: 0;
+        padding: 1em .6em;
+        min-height: 65px;
+        &--index {
+            flex: 0 0 60px;
+        }
+        &--guest-count,
+        &--children {
+            flex: 0 0 115px;
+        }
+        &--btn-group {
+            justify-content: center;
+            button {
+                margin-right: 5px;
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
     }
-    thead {
+    &__hidden-row {
+        position: relative;
+        display: none;
+        width: 100%;
+        border: 1px solid $border-color-dropdown-element;
+        border-bottom: 0;
+        border-right: 0;
+        padding-left: 60px;
+    }
+    &__row-details {
+        position: absolute;
+        top: 57px;
+        left: 50%;
+        margin-left: -45px;
         background-color: #fff;
-        td {
-            padding: 15px 20px;
-            font-weight: 600;
-            &:first-child {
-                padding-right: 0;
-            }
+        border: 1px solid $border-color-dropdown-element;
+        padding: 5px;
+        z-index: 9;
+        cursor: pointer;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .3s;
+        #{$root}__row:hover & {
+            opacity: 1;
+            pointer-events: auto;
         }
     }
-    tbody {
-        td {
-            vertical-align: middle;
-            border: 0;
-            border: 1px solid #eeeeee !important;
-            color: #5b5b60;
-            border-top: none;
-            padding: 5px 20px;
-            &:first-child {
-                padding-right: 0;
-            }
-            &.membershipWomen {
-                background-color: pink;
-            }
-            &.membershipMan {
-                background-color: #a8e6fb;
-            }
-
-        }
-        tr:hover>td {
-            background: #5b5b60;
-            color: #fff;
-        }
+    &__list {
+        float: left;
+        list-style-type: none;
+        padding-left: 0;
+        padding: 1em 40rem 1em .6em;
+        margin-bottom: 0;
+    }
+    &__hide-button {
+        float: right;
+        background-color: #fff;
+        border: 1px solid $border-color-dropdown-element;
+        padding: 5px;
+        z-index: 9;
+        cursor: pointer;
+        margin: $padding-normal $padding-normal 0 0;
+        color: $brand-dark;
+    }
+    [data-status="potwierdzony"] {
+        color: $brand-success;
+    }
+    [data-status="odmowa"] {
+        color: $brand-danger;
+    }
+    [data-status="oczekujacy"] {
+        color: $brand-warning;
     }
 }

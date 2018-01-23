@@ -5,7 +5,8 @@ var weddingPlanner = angular.module('weddingPlanner',
     "firebase",
     "cgNotify",
     "vAccordion",
-    "ngAnimate"
+    "ngAnimate",
+    "ui.bootstrap"
   ]);
 
 // Navbar Controller
