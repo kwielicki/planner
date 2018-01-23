@@ -270,7 +270,7 @@ weddingPlanner.controller('userLogin', ['$scope', function($scope) {
                           dateStringTime = dateLoginIn.toDateString(),
                           dataLocalTime  = dateLoginIn.toLocaleTimeString();
                     if (!localStorage.getItem('lastsucceslogin')) {
-                        localStorage.setItem("lastsucceslogin", dateStringTime + ', ' + dataLocalTime);
+                        localStorage.setItem("lastsucceslogin", dateLoginIn.getDate() + '-' + ('0'+(dateLoginIn.getMonth()+1)).slice(-2) + '-' + dateLoginIn.getUTCFullYear());
                     }
                     document.getElementById('last-success-login').innerHTML = localStorage.getItem('lastsucceslogin');
                 }
