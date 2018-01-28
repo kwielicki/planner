@@ -11,7 +11,7 @@ var weddingPlanner = angular.module('weddingPlanner',
 
 // Navbar Controller
 weddingPlanner.controller('MainNavCtrl', [ '$scope', '$location', function ( $scope, $location) {
-
+    
     /* Występuje tutaj podział elementów w menu nawigacyjnym
      * 1 - globalNavigation {Panel głowny}
      * 2 - manage {Zarządzaj listą gości, Dodaj nowego gościa}

@@ -30,8 +30,8 @@ weddingPlanner.config(function($routeProvider) {
                              * obiekt $route, z którego pobieram wartość parametru
                              * i przekazuje go do controllera appEditGuest
                              */
-                            const paramsValue = $route.current.params.personID;
-                            return paramsValue;
+                            return $route.current.params.personID;
+
                         }
                     }
                 }]

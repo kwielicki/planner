@@ -98,20 +98,12 @@
                                 Operacje
                             </div>
                         </div>
-                        <div class="table-management__hidden-row">
-                            <div class="table-management__cell">
-                                Telefon
-                            </div>
-                            <div class="table-management__cell">
-                                Informacje dodatkowe
-                            </div>
-                        </div>
                     </div>
 
                     <!-- Table body -->
                     <div class="table-management__body">
                         <div class="table-management__row table-management__row--body"
-                             ng-repeat="person in persons | orderBy:sortType:sortReverse | filter:searchPerson" title="Gość: {{ person.firstName}} {{ person.surName}}">
+                             ng-repeat="person in persons | orderBy:sortType:sortReverse | filter:searchPerson">
                             <div class="table-management__cell table-management__cell--index"> {{ $index }}</div>
                             <div class="table-management__cell table-management__cell--first-name"> {{ person.firstName }}</div>
                             <div class="table-management__cell table-management__cell--surname"> {{ person.surName }}</div>
@@ -124,18 +116,40 @@
                                     <a href="#/edit-guest/{{person.$id}}" class="btn btn-success btn-xs" title="Edytuj">Edytuj</a>
                                     <a href="#" class="btn btn-danger btn-xs" title="Usuń" ng-controller="ctrlDeletePerson" ng-click="deletePerson(person.$id)">Usuń</a>
                                 </div>
-                                <!-- <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" ng-attr-data-target="{{'#remove-person-modal--' + $index + 1}}">Usuń</button> -->
-                                <!-- <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" ng-attr-data-target="{{'#edit-person-modal--' + $index + 1}}">Edytuj</button> -->
                             </div>
-                            <div class="table-management__row-details" ng-click="tableManagementDetails($event)">Pokaż szczegóły</div>
                             <div class="table-management__hidden-row">
-                                <ul class="table-management__list">
-                                    <li><span>Telefon: </span><strong class="pdf-maker--phone-number">{{ person.phoneNumber }}</strong></li>
-                                    <li><span>Informacje dodatkowe: </span>{{ person.extraInformation }}</li>
-                                    <li><span>Data dodania: </span>{{ person.dataAdded }}</li>
-                                    <li><span>Dodany przez: {{person.creator}}</span></li>
-                                </ul>
-                                <a href="#" ng-click="tableManagementHideDetails($event)" class="table-management__hide-button">Ukryj szczegóły</a>
+                                <v-accordion data-accordion-id="{{person.$id}}" class="vAccordion--default">
+                                    <v-pane>
+                                        <v-pane-header class="accordion__header table-management__row-details"
+                                            title="Więcej informacji dla {{person.firstName}} {{person.surName}}">
+                                            Pokaż szczegóły</v-pane-header>
+                                        <v-pane-content>
+                                            <ul class="table-management__list">
+                                                <li class="table-management__list-element">
+                                                    <span class="table-management__hidden-header">Telefon</span>
+                                                    <strong class="pdf-maker--phone-number table-management__hidden-description">{{ person.phoneNumber }}</strong>
+                                                </li>
+                                                <li class="table-management__list-element">
+                                                    <span class="table-management__hidden-header">Data dodania</span>
+                                                    <strong class="table-management__hidden-description">{{ person.dataAdded }}</strong>
+                                                </li>
+                                                <li class="table-management__list-element">
+                                                    <span class="table-management__hidden-header">Dodany przez</span>
+                                                    <strong class="table-management__hidden-description">{{person.creator}}</strong>
+                                                </li>
+                                                <li class="table-management__list-element table-management__list-element--wide">
+                                                    <span class="table-management__hidden-header">Informacje dodatkowe</span>
+                                                    <strong class="table-management__hidden-description">{{ person.extraInformation }}</strong>
+                                                </li>
+                                                <li class="table-management__list-element table-management__list-element--button">
+                                                    <button ng-click="$accordion.collapseAll()"
+                                                            class="btn btn-xs btn-transparent table-management__hide-button"
+                                                            title="Ukryj informację dla {{person.firstName}} {{person.surName}}">Ukryj szczegóły</button>
+                                                </li>
+                                            </ul>
+                                        </v-pane-content>
+                                    </v-pane>
+                                </v-accordion>
                             </div>
                         </div>
                     </div>

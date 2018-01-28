@@ -46,7 +46,7 @@
     }
     &__hidden-row {
         position: relative;
-        display: none;
+        //display: none;
         width: 100%;
         border: 1px solid $border-color-dropdown-element;
         border-bottom: 0;
@@ -55,12 +55,12 @@
     }
     &__row-details {
         position: absolute;
-        top: 57px;
+        top: -20px;
         left: 50%;
-        margin-left: -45px;
+        margin-left: -55px;
         background-color: #fff;
         border: 1px solid $border-color-dropdown-element;
-        padding: 5px;
+        padding: 5px 20px 5px 10px !important; /* Nadpisanie defaultowych styli */
         z-index: 9;
         cursor: pointer;
         opacity: 0;
@@ -72,21 +72,66 @@
         }
     }
     &__list {
-        float: left;
+        display: flex;
+        flex-wrap: wrap;
         list-style-type: none;
         padding-left: 0;
-        padding: 1em 40rem 1em .6em;
+        padding: 1em 40px 1em 0;
         margin-bottom: 0;
+        margin-left: -10px;
+        width: 100%;
+    }
+    &__list-element {
+        display: block;
+        position: relative;
+        width: calc(33.33333% - 20px);
+        margin: 10px;
+        padding: $padding-normal;
+        background: #fff;
+        box-shadow: 2px 2px 0 0 rgba(0,0,0,0.1);
+        border: 1px solid $border-color-dropdown-element;
+        &--wide {
+            width: calc(66.66666% - 20px);
+        }
+        &--button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: none;
+            border: 0;
+        }
+    }
+    &__hidden-description,
+    &__hidden-header{
+        display: block;
+    }
+    &__hidden-description {
+        padding: $padding-sm 0;
     }
     &__hide-button {
-        float: right;
         background-color: #fff;
         border: 1px solid $border-color-dropdown-element;
-        padding: 5px;
+        padding: 5px 20px 5px 10px !important; /* Nadpisanie defaultowych styli */
+        border-bottom: 2px solid #D8D8D8;
         z-index: 9;
         cursor: pointer;
-        margin: $padding-normal $padding-normal 0 0;
-        color: $brand-dark;
+        @include transition_bezier;
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 50%;
+            right: 5px;
+            width: 10px;
+            height: 1px;
+            background-color: #2196F3;
+            transform-origin: 50% 50%;
+            will-change: transform;
+            transition: all 0.25s;
+        }
+        &:hover {
+            color: $brand-primary;
+        }
     }
     [data-status="potwierdzony"] {
         color: $brand-success;
@@ -96,5 +141,15 @@
     }
     [data-status="oczekujacy"] {
         color: $brand-warning;
+    }
+    /* Modyfikacja komponentu accordion w ramach komponentu table management */
+    .vAccordion--default v-pane.is-expanded > v-pane-header {
+        display: none;
+    }
+    .vAccordion--default v-pane > v-pane-header {
+        &::before,
+        &::after {
+            right: 5px;
+        }
     }
 }
