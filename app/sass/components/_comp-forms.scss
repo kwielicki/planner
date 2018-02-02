@@ -178,14 +178,12 @@ select {
     }
     &--textarea {
         height: 150px;
+        padding: 12px 20px 20px;
     }
 }
 
 textarea.ng-invalid {
     background-color: #f211111a;
-}
-textarea.ng-valid {
-    background-color: lightgreen;
 }
 
 // Ekran edycji (style dla grupy przycisków (Zapisz, Wróc))
