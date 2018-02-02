@@ -1,14 +1,3 @@
-// Define the `weddingPlanner` main module
-var weddingPlanner = angular.module('weddingPlanner',
-  [
-    "ngRoute",
-    "firebase",
-    "cgNotify",
-    "vAccordion",
-    "ngAnimate",
-    "ui.bootstrap"
-  ]);
-
 // Navbar Controller
 weddingPlanner.controller('MainNavCtrl', [ '$scope', '$location', function ( $scope, $location) {
 
@@ -120,6 +109,10 @@ weddingPlanner.controller('MainNavCtrl', [ '$scope', '$location', function ( $sc
 
     }
 
+    /*
+     * @TODO zaimplementować lepszą funkcjonalność
+     * dotyczącą bezpiecznego wylogowania z aplikacji
+     */
     $scope.match = function() {
         location.reload();
         localStorage.removeItem("lastsucceslogin");
@@ -226,38 +219,4 @@ weddingPlanner.controller('mainController', function($scope) {
 
   }
 
-
 });
-
-weddingPlanner.directive('a', function() {
-    return {
-        restrict: 'E',
-        link: function(scope, elem, attrs) {
-            if(attrs.ngClick || attrs.href === '' || attrs.href === '#'){
-                elem.on('click', function(e){
-                    e.preventDefault();
-                });
-            }
-        }
-   };
-});
-
-
-//============================================= FIREBASE ==============================================//
-
-weddingPlanner.controller('SampleCtrl', function($scope, $firebaseObject) {
-    var ref = firebase.database().ref();
-    $scope.person = $firebaseObject(ref);
-});
-
-
-weddingPlanner.controller("SampleCtrl", ["$scope", "Auth",
-  function($scope, Auth) {
-    $scope.auth = Auth;
-    // any time auth state changes, add the user data to scope
-    $scope.auth.$onAuthStateChanged(function(firebaseUser) {
-      $scope.firebaseUser = firebaseUser;
-    });
-    document.getElementById('last-success-login').innerHTML = localStorage.getItem('lastsucceslogin');
-  }
-]);

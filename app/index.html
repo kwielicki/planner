@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="weddingPlanner" ng-controller="SampleCtrl">
+<html lang="en" ng-app="weddingPlanner" ng-controller="ctrlAppMainFirebase">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/site-components.css" />
   </head>
   <body>
-   <header class="component header ng-cloak" ng-app="sampleApp" ng-controller="SampleCtrl" ng-show="firebaseUser">
+   <header class="component header ng-cloak" ng-show="firebaseUser">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-12">
@@ -135,6 +135,8 @@
     <script src="assets/javascript/vfs-fonts.min.js"></script>
     <script src="assets/javascript/angular-accordions.min.js"></script>
 
+    <!-- Modules -->
+    <script src="modules/module-wedding-planner.js" type="text/javascript"></script>
 
     <script src="app.module.js"></script>
     <script src="app.routes.js"></script>
@@ -146,9 +148,13 @@
     <script src="controllers/ctrl-footer.js"></script>
     <script src="controllers/controller-app-version.js"></script>
     <script src="controllers/controller-user-login.js"></script>
+    <script src="controllers/controller-main-firebase.js"></script>
 
     <!-- Components -->
     <script src="controllers/ctrl-page-header.js" type="text/javascript"></script>
+
+    <!-- Directives -->
+    <script src="directive/directive-for-anchor.js" type="text/javascript"></script>
 
     </script>
   </body>
