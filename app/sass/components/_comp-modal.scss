@@ -1,4 +1,115 @@
-.modal-dialog {
-    max-height: 600px;
-    overflow-y: scroll;
+/* @componetn modal
+ * wymagane style
+ */
+
+/* Wyśrodkowanie
+ * wymagane dodanie klasy do właściwości `windowClass` modułu
+ * $uibModal
+ * przykład: windowClass: 'modal--centered'
+*/
+.modal--centered {
+  text-align: center;
+  padding: 0;
+  &::before {
+      content: '';
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+      margin-right: -4px;
+  }
+  .modal-dialog {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right:-4px;
+      overflow: auto;
+      width: 100%;
+      padding: $padding-normal * 2;
+      text-align: left;
+  }
+}
+
+/* Modal overlay
+ * występują dwa wariantu koloru overlaya. Wymagane jest dodanie
+ * odpowiedni klas do właściwośći openedClass modułu $uibModal
+ * przykład (light) - openedClass: 'modal-opened modal-overlay--light'
+ * przykład (dark) - openedClass: 'modal-opened modal-overlay--dark'
+*/
+.modal-overlay--light {
+    .modal-backdrop {
+        background: $modal-overlay-light-bg;
+        &.in {
+            opacity: $modal-overlay-opacity;
+        }
+    }
+}
+.modal-overlay--dark {
+    .modal-backdrop {
+        background: $modal-overlay-dark-bg;
+        &.in {
+            opacity: $modal-overlay-opacity;
+        }
+    }
+}
+
+/* Modal planner - variants */
+.modal-planner {
+    $comp: &;
+    #{$comp}__header {
+        padding: $padding-normal;
+    }
+    #{$comp}__title {
+        margin-bottom: 0;
+    }
+}
+
+//  Delete as danger
+.modal-planner {
+    $comp: &;
+    &--delete {
+        #{$comp}__header {
+            background-color: $brand-danger;
+        }
+        #{$comp}__title {
+            color: #fff;
+            font-weight: $fw-6;
+        }
+        #{$comp}__guest-name {
+            text-decoration: underline;
+        }
+        .modal-content {
+            border-color: $brand-danger;
+        }
+        .modal-description {
+            padding: $padding-normal;
+            padding-bottom: $padding-sm;
+            border-bottom: 1px solid $border-color;
+            &-title {
+                margin-bottom: $padding-xs;
+                font-weight: $fw-6;
+            }
+        }
+        .modal-buttons {
+            text-align: center;
+            margin: ($padding-sm * 2) 0 $padding-sm 0;
+        }
+    }
+}
+
+// Box shadow dla modala
+.modal--shadowed {
+    .modal-content {
+        border-width: 1px;
+        border-style: solid;
+        border-radius: $border-radius;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.1);
+    }
+}
+
+// Modal close
+.modal-close {
+    position: absolute;
+    right: 0;
+    top: -30px;
+    right: 0;
+    color: $brand-dark;
 }

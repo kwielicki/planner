@@ -43,7 +43,6 @@ weddingPlanner.controller("addNewGuest", function($scope, $firebaseArray, notify
 
   //- Synchronizujemy obiekt person z tablica firebase
   $scope.persons = $firebaseArray(ref);
-
   /* Funkcja odpowiadająca za dodanie nowej osoby do bazy danych
    * Dodajemy do bazy takie dane jak:
    * -- fullName w skład którego wchodzą firstName oraz surName

@@ -28,6 +28,7 @@ weddingPlanner.controller('userLogin', ['$scope', function($scope) {
                 /* Obsługa błędów mogących występować podczas próby logowania */
                 var errorCode = error.code;
                 var errorMessage = error.message;
+                console.log(errorCode)
                 if (errorCode === 'auth/wrong-password') {
                     const messageString = 'Podane hasło jest błędne';
                     document.getElementById('error-message').innerHTML = messageString;

@@ -14,8 +14,11 @@
         border-bottom: 1px solid $border-color-dropdown-element;
         &--body {
             @include transition_bezier;
-            &:hover {
+            &:nth-child(2n) {
                 background-color: rgba(red($border-color-dropdown-element), green($border-color-dropdown-element), blue($border-color-dropdown-element), .2);
+            }
+            &:hover {
+                background-color: rgba(red($border-color-dropdown-element), green($border-color-dropdown-element), blue($border-color-dropdown-element), .4);
             }
         }
     }

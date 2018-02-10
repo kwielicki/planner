@@ -101,9 +101,9 @@
                     </div>
 
                     <!-- Table body -->
-                    <div class="table-management__body">
+                    <div class="table-management__body has--preloader">
                         <div class="table-management__row table-management__row--body"
-                             ng-repeat="person in persons | orderBy:sortType:sortReverse | filter:searchPerson">
+                             ng-repeat="person in persons | orderBy:sortType:sortReverse | filter:searchPerson" dire-table-preloader="direTablePreloader()">
                             <div class="table-management__cell table-management__cell--index"> {{ $index }}</div>
                             <div class="table-management__cell table-management__cell--first-name"> {{ person.firstName }}</div>
                             <div class="table-management__cell table-management__cell--surname"> {{ person.surName }}</div>
@@ -153,8 +153,8 @@
                             </div>
                         </div>
                     </div>
+                    <span class="js-preloader"></span>
                 </div>
-
             </div>
     </div>
 </div>

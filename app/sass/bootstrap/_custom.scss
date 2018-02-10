@@ -23,6 +23,7 @@ $padding-base: 35px;
 $padding-medium: 28px;
 $padding-normal: 15px;
 $padding-sm: 10px;
+$padding-xs: 5px;
 $spacer: 5rem;
 
 //- Radius
@@ -53,3 +54,11 @@ $v-pane-disabled-opacity:           0.6 !default;
 
 $v-pane-expand-animation-duration:  0.5s  !default;
 $v-pane-hover-animation-duration:   0.25s !default;
+
+//- Modals
+$modal-overlay-light-bg: #fff;
+$modal-overlay-dark-bg:  #333;
+$modal-overlay-opacity:  .7;
+
+//- Font weights
+$fw-6: 600;
