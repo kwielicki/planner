@@ -27,3 +27,23 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.preloader--init {
+    position: relative;
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: #f5f5f5;
+        opacity: .7;
+        z-index: 99;
+    }
+    &.is--loaded {
+        &::after {
+            display: none;
+        }
+    }
+}

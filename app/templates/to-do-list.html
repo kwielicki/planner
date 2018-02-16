@@ -15,35 +15,59 @@
     </div>
 </section>
 
-<section class="section">
+<section class="section" ng-controller="ctrlToDoList">
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
-                <div class="component widget widget--category" data-component-name="widget--category">
+                <div class="component app-selectize preloader--init" data-component-name="app-selectize" ng-class="{'is--loaded': preloaderChecker}">
+                    <div class="app-selectize__form">
+                        <h4 class="app-selectize__label">Dodaj nową kategorię
+                            <span ng-hide="todoCategoryDirty"> - wybierz kategorię</span>
+                            <span ng-hide="todoCategoryDuplicated"> - wybrana kategoria jest używana</span>
+                        </h4>
+                        <selectize config='todoListSelectizeConfig' options='todoListSelectizeOptions' ng-model="todoCategoryName"></selectize>
+                        <a href="#" ng-click="todoListSelectizeAdd()" ng-show="todoListSelectizeSelected">Dodaj kategorię</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="component widget widget--category preloader--init" data-component-name="widget--category" ng-class="{'is--loaded': preloaderChecker}">
                     <div class="inner">
                         <div class="widget__header">
                             <h2 class="widget__title"><strong>Dostępne kategorie</strong></h2>
                         </div>
                         <div class="widget__content">
-                            <div class="selectize">
-                                <p><code>@TODO</code> Tutaj powinien być select (najlepiej byłoby podpiąć selectize)</p>
-                            </div>
                             <div class="category">
-                                <p><code>@TODO</code> Tutaj powinny być kategorie</p>
+                                <p ng-show="todoListDatabaseEmpty" class="text-xs-center">
+                                    Nie posiadasz dostępnych kategorii.
+                                    <br>
+                                    Aby móc skorzystać z <code>TODO Listy</code> musisz stworzyć
+                                    prznajmniej jedną kategorię
+                                </p>
+                                <ul ng-repeat="category in todoList">
+                                    <li><a href="#" ng-click="todoListShowContent(category.$id)">{{ category.todoCategoryName }}</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-sm-8">
-                <div class="component widget widget--content" data-component-name="widget--content">
+                <div class="component widget widget--content preloader--init" data-component-name="widget--content" ng-class="{'is--loaded': preloaderChecker}">
                     <div class="inner">
                         <div class="widget__header">
                             <h2 class="widget__title"><strong>Opis poszczególnych kategorii</strong></h2>
                         </div>
                         <div class="widget__content">
                             <div class="selectize">
-                                <p><code>@TODO</code> Tutaj powinien się znaleźć content</p>
+                                <p ng-show="todoListContentEmpty" class="text-xs-center">
+                                    Wybierz kategorię, aby <code>przefiltorwać</code> listę notatek.
+                                </p>
+                                <div ng-repeat="singleContent in availableContent" class="text-xs-center">
+                                    <p>Aktualnie brak notatek dla kategorii <code>{{ availableContent.todoCategoryName }}</code></p>
+                                </div>
                             </div>
                         </div>
                     </div>
