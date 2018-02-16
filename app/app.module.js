@@ -27,6 +27,11 @@ weddingPlanner.controller('MainNavCtrl', [ '$scope', '$location', function ( $sc
                     name:   'Dodaj nowego gościa',
                     url:    '/add-new-guest',
                     title:  'Dodaj nowego gościa'
+                },
+                {
+                    name: 'Lista rzeczy do zrobienia',
+                    url:  '/to-do-list',
+                    title:'Lista rzeczy do zrobienia'
                 }
             ]
         },

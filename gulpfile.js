@@ -17,7 +17,9 @@ var sassFiles = 'app/sass/**/*.scss',
 			js: 'app/assets/javascript/',
 			database: 'database/',
 			app: 'app/',
-			ctrl: 'app/controllers/'
+			ctrl: 'app/controllers/',
+			module: 'app/modules/',
+			directive: 'app/directive/'
 		}
 	}
 
@@ -76,11 +78,20 @@ gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-includes', 
 		paths.assets.js + 'vfs-fonts.min.js',
 		paths.assets.js + 'angular-notifications.js',
 		paths.assets.js + 'angular-accordions.min.js',
+		paths.assets.js + 'angular-bootstrap-ui.min.js',
+		paths.assets.module + 'module-wedding-planner.js',
 		paths.assets.app + 'app.module.js',
 		paths.assets.app   + 'app.routes.js',
 		paths.assets.ctrl  + 'ctrl.add.new.guest.js',
+		paths.assets.ctrl  + 'ctrl.edit-guest.js',
 		paths.assets.ctrl  + 'ctrl-page-header.js',
-		paths.assets.ctrl  + 'controller-app-version.js'
+		paths.assets.ctrl  + 'controller-app-version.js',
+		paths.assets.ctrl  + 'ctrl-footer.js',
+		paths.assets.ctrl  + 'ctrl-delete-person.js',
+		paths.assets.ctrl  + 'controller-user-login.js',
+		paths.assets.ctrl  + 'controller-main-firebase.js',
+		paths.assets.directive  + 'directive-for-anchor.js',
+		paths.assets.directive  + 'directive-for-table-preloader.js'
 	])
 	.pipe(plumber())
 	.pipe(concat('bundle.js'))

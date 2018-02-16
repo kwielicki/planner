@@ -8,30 +8,7 @@ weddingPlanner.controller('ctrlDeletePerson', [ '$scope', '$firebaseArray', '$ui
         const expectedPerson = $scope.persons.$getRecord(personID);
         $scope.animationsEnabled = true;
 
-        var templateModal = `
-            <div class="modal-planner__header">
-                <h3 class="modal-planner__title">Osoba która zostanie usunięta to -
-                    <span class="text-uppercase modal-planner__guest-name">${expectedPerson.firstName} ${expectedPerson.surName}</span>
-                    <i class="fa fa-question-circle" title="${expectedPerson.firstName} ${expectedPerson.surName} - dodany przez ${expectedPerson.creator}"></i>
-                </h3>
-            </div>
-            <div class="modal-body">
-                <div ng-hide="whenDeleteGuestComplete">
-                    <div class="modal-description text-xs-center">
-                        <h2 class="modal-description-title">Uwaga!</h2>
-                        <h3 class="modal-description-subtitle">Dane dla tego gościa zostanę trwale usunięte.</h3>
-                    </div>
-                    <div class="modal-buttons">
-                        <a href="#" ng-click="deletePermanent()" class="btn btn-danger">Usuń trwale</a>
-                        <a href="#" ng-click="closeModal()" class="btn btn-default">Nie usuwaj</a>
-                    </div>
-                </div>
-                <div ng-show="whenDeleteGuestComplete" class="hide text-xs-center">${expectedPerson.firstName} ${expectedPerson.surName} - gość usunięty</div>
-                <div ng-show="whenDeleteGuestError" class="hide text-xs-center">Oops. Wystąpił błąd. Skontaktuj się z administratorem.</div>
-
-            </div>
-            <a href="#" class="modal-close" title="Zamknij okno" ng-click="closeModal()">Zamknij</a>
-        `;
+        var templateModal = "\n            <div class=\"modal-planner__header\">\n                <h3 class=\"modal-planner__title\">Osoba kt\xF3ra zostanie usuni\u0119ta to -\n                    <span class=\"text-uppercase modal-planner__guest-name\">" + expectedPerson.firstName + " " + expectedPerson.surName + "</span>\n                    <i class=\"fa fa-question-circle\" title=\"" + expectedPerson.firstName + " " + expectedPerson.surName + " - dodany przez " + expectedPerson.creator + "\"></i>\n                </h3>\n            </div>\n            <div class=\"modal-body\">\n                <div ng-hide=\"whenDeleteGuestComplete\">\n                    <div class=\"modal-description text-xs-center\">\n                        <h2 class=\"modal-description-title\">Uwaga!</h2>\n                        <h3 class=\"modal-description-subtitle\">Dane dla tego go\u015Bcia zostan\u0119 trwale usuni\u0119te.</h3>\n                    </div>\n                    <div class=\"modal-buttons\">\n                        <a href=\"#\" ng-click=\"deletePermanent()\" class=\"btn btn-danger\">Usu\u0144 trwale</a>\n                        <a href=\"#\" ng-click=\"closeModal()\" class=\"btn btn-default\">Nie usuwaj</a>\n                    </div>\n                </div>\n                <div ng-show=\"whenDeleteGuestComplete\" class=\"hide text-xs-center\">" + expectedPerson.firstName + " " + expectedPerson.surName + " - go\u015B\u0107 usuni\u0119ty</div>\n                <div ng-show=\"whenDeleteGuestError\" class=\"hide text-xs-center\">Oops. Wyst\u0105pi\u0142 b\u0142\u0105d. Skontaktuj si\u0119 z administratorem.</div>\n\n            </div>\n            <a href=\"#\" class=\"modal-close\" title=\"Zamknij okno\" ng-click=\"closeModal()\">Zamknij</a>\n        ";
 
         var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
@@ -46,13 +23,11 @@ weddingPlanner.controller('ctrlDeletePerson', [ '$scope', '$firebaseArray', '$ui
                     /* Argument personID zwraca identyfikator rekordu
                      * w firebase. Jest on przekazywany jako parametr w widoku.
                      */
-                    $firebaseSceope.persons.$remove(expectedPerson)
-                        .then(value => {
-                            $firebaseSceope.whenDeleteGuestComplete = true;
-                        })
-                        .catch(err => {
-                            $firebaseSceope.whenDeleteGuestError = true;
-                        })
+                     $firebaseSceope.persons.$remove(expectedPerson).then(function (value) {
+                         $firebaseSceope.whenDeleteGuestComplete = true;
+                     }).catch(function (err) {
+                         $firebaseSceope.whenDeleteGuestError = true;
+                     });
                     $scope.whenDeleteGuestComplete = true;
                 };
                 $scope.closeModal = function() {

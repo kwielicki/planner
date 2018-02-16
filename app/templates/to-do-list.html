@@ -1,0 +1,54 @@
+<section class="section" ng-controller="pageHeader">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                 <div class="component-layout">
+                     <div class="page-header">
+                         <div class="page-header__inner">
+                             <h1 class="page-header__title">{{pageHeader.title.toDoList}}</h1>
+                             <h2 class="page-header__subtitle">{{pageHeader.subtitle.toDoList}}</h2>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="component widget widget--category" data-component-name="widget--category">
+                    <div class="inner">
+                        <div class="widget__header">
+                            <h2 class="widget__title"><strong>Dostępne kategorie</strong></h2>
+                        </div>
+                        <div class="widget__content">
+                            <div class="selectize">
+                                <p><code>@TODO</code> Tutaj powinien być select (najlepiej byłoby podpiąć selectize)</p>
+                            </div>
+                            <div class="category">
+                                <p><code>@TODO</code> Tutaj powinny być kategorie</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="component widget widget--content" data-component-name="widget--content">
+                    <div class="inner">
+                        <div class="widget__header">
+                            <h2 class="widget__title"><strong>Opis poszczególnych kategorii</strong></h2>
+                        </div>
+                        <div class="widget__content">
+                            <div class="selectize">
+                                <p><code>@TODO</code> Tutaj powinien się znaleźć content</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

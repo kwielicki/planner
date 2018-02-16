@@ -1,4 +1,4 @@
-.section-title {
+%section-title {
     font-size: 1em;
     margin-top: 0;
     background-color: $brand-dark;
@@ -6,4 +6,8 @@
     color: #fff;
     padding: 15px;
     border-radius: 5px;
+}
+
+.section-title {
+    @extend %section-title;
 }

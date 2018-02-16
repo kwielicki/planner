@@ -63,6 +63,14 @@ weddingPlanner.config(function($routeProvider) {
                   return Auth.$requireSignIn();
                 }]
             }
+        }).when('/to-do-list', {
+            templateUrl: 'templates/to-do-list.html',
+            controller: "AuthorizationCtrl",
+            resolve: {
+              "currentAuth": ["Auth", function(Auth) {
+                return Auth.$requireSignIn();
+              }]
+            }
         }).when('/statistics', {
             templateUrl: 'templates/statistics.html',
             controller: "AuthorizationCtrl",
