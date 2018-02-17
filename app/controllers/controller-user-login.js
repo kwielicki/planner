@@ -1,5 +1,5 @@
 //- Logika logowania do aplikacji
-weddingPlanner.controller('userLogin', ['$scope', function($scope) {
+weddingPlanner.controller('userLogin', ['$scope', '$window', function( $scope, $window ) {
 
     $scope.inputType = 'password';
     $scope.loginText = 'Zaloguj się';
@@ -23,6 +23,12 @@ weddingPlanner.controller('userLogin', ['$scope', function($scope) {
             firebase.auth().signInWithEmailAndPassword(email, password)
             .then(function(firebaseUser) {
                 $scope.loginText = "Uwierzytelnianie zakończone";
+
+                /* Kiedy nastąpi uwierzytelnienie, następuje przekierowanie
+                 * na dedykowany route
+                 */
+                $window.location.href = '/#/dashboard';
+
                 if (typeof(Storage) !== "undefined") {
                     const dateLoginIn = new Date(),
                           dateStringTime = dateLoginIn.toDateString(),
