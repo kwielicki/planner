@@ -113,16 +113,6 @@ weddingPlanner.controller('MainNavCtrl', [ '$scope', '$location', function ( $sc
 
 
     }
-
-    /*
-     * @TODO zaimplementować lepszą funkcjonalność
-     * dotyczącą bezpiecznego wylogowania z aplikacji
-     */
-    $scope.match = function() {
-        location.reload();
-        localStorage.removeItem("lastsucceslogin");
-    }
-
 }]);
 
 

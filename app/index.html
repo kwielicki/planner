@@ -78,8 +78,8 @@
                                                 </figcaption>
                                             </figure>
                                         </li>
-                                        <li class="footer">
-                                            <button ng-click="auth.$signOut(); match()" class="btn btn-transparent btn-xs">Wyloguj</button>
+                                        <li class="footer" ng-controller="ctrlUserLogout">
+                                            <button ng-click="appSignOut()" class="btn btn-transparent btn-xs">Wyloguj</button>
                                         </li>
                                     </ul>
                                 </li>
@@ -152,6 +152,7 @@
     <script src="controllers/ctrl-footer.js"></script>
     <script src="controllers/controller-app-version.js"></script>
     <script src="controllers/controller-user-login.js"></script>
+    <script src="controllers/controller-user-logout.js"></script>
     <script src="controllers/controller-main-firebase.js"></script>
     <script src="controllers/controller-to-do-list.js"></script>
 
