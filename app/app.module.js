@@ -9,6 +9,21 @@ weddingPlanner.controller('MainNavCtrl', [ '$scope', '$location', function ( $sc
      ***
      * Każda zmiana wiąże się z przebudową poniższego obiektu
      */
+
+     /* Obsługa dropdown menu w nawigacji */
+     $scope.propertiesMenuCloses = "Otwórz menu";
+     $scope.toggled = function (open) {
+        /* open to typ boolean
+         * - zwraca true, gdy menu jest otworzone
+         * - zwraca false, gdy menu jest zamknięte
+         */
+        if ( open === true ) {
+            $scope.propertiesMenuCloses = "Zamknij menu";
+        } else {
+            $scope.propertiesMenuCloses = "Otwórz menu";
+        }
+     }
+
     $scope.menuItems = [
         {
             globalNavigation: {
@@ -57,62 +72,6 @@ weddingPlanner.controller('MainNavCtrl', [ '$scope', '$location', function ( $sc
     $scope.isActive = function (viewLocation) {
         return viewLocation === $location.path();
     };
-
-    // Obsługa menu
-    $scope.openMenu = function() {
-
-        var anchorMenu = $('.nav__anchor--menu'),
-            dataTitle  = anchorMenu.attr('data-title-open'),
-            dataTitleClosed = anchorMenu.attr('data-title-closed');
-
-        anchorMenu.toggleClass('is-active');
-        $('.dropdown-menu--global').toggleClass('is-open').fadeToggle();
-
-        if (anchorMenu.hasClass('is-active')) {
-            anchorMenu.attr('title', dataTitleClosed);
-            anchorMenu.find('span').text(dataTitleClosed);
-
-        } else {
-            anchorMenu.attr('title', dataTitle);
-            anchorMenu.find('span').text(dataTitle);
-        }
-
-        $(window).click(function() {
-            if (anchorMenu.hasClass('is-active')) {
-                anchorMenu.removeClass('is-active');
-                $('.dropdown-menu--global').removeClass('is-open').fadeOut();
-                anchorMenu.attr('title', dataTitle);
-                anchorMenu.find('span').text(dataTitle)
-            }
-        });
-
-        $('.nav__element').click(function(event){
-            event.stopPropagation();
-        });
-
-    }
-
-    // Obsługa logout
-
-    $scope.logoutMenu = function() {
-        var logoutMenu = $(".nav__anchor--logout");
-
-        logoutMenu.toggleClass('is-active');
-        $('.dropdown-menu--logout').toggleClass('is-open').fadeToggle();
-
-        $(window).click(function() {
-            if (logoutMenu.hasClass('is-active')) {
-                logoutMenu.removeClass('is-active');
-                $('.dropdown-menu--logout').removeClass('is-open').fadeOut();
-            }
-        });
-
-        $('.nav__element, .dropdown-menu__element').click(function(event){
-            event.stopPropagation();
-        });
-
-
-    }
 }]);
 
 
