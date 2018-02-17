@@ -2,18 +2,27 @@
 weddingPlanner.controller('userLogin', ['$scope', function($scope) {
 
     $scope.inputType = 'password';
+    $scope.loginText = 'Zaloguj się';
+
     $scope.appSignIn = function() {
+        /* Dodanie klaski na loginButton */
+        $scope.authorizationInit = true;
+        $scope.loginText = "Trwa uwierzytelnianie...";
+
         const email    = $scope.email;
         const password = $scope.password;
 
         if ((email === undefined || email === '') && (password === undefined || password === '')) {
             const messageString = 'Podano niekompletne dane';
             document.getElementById('error-message').innerHTML = messageString;
+            $scope.authorizationInit = false;
+            $scope.loginText = "Niepowodzenie. Spróbuj ponownie...";
         }
 
         //- Firebase nie przeprowadza walidacji adresu email
             firebase.auth().signInWithEmailAndPassword(email, password)
             .then(function(firebaseUser) {
+                $scope.loginText = "Uwierzytelnianie zakończone";
                 if (typeof(Storage) !== "undefined") {
                     const dateLoginIn = new Date(),
                           dateStringTime = dateLoginIn.toDateString(),
@@ -47,7 +56,8 @@ weddingPlanner.controller('userLogin', ['$scope', function($scope) {
                     const messageString = 'Podałeś niekompletne dane';
                     document.getElementById('error-message').innerHTML = messageString;
                 }
-
+                $scope.authorizationInit = false;
+                $scope.loginText = "Niepowodzenie. Spróbuj ponownie...";
             });
 
     };

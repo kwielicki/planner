@@ -18,7 +18,9 @@
                 <span ng-mouseenter="passwordHelper()" ng-mouseleave="passwordHelper()" class="form-group__password-healper">Pokaż hasło</span>
             </div>
             <div class="form-group form-group--modern">
-                <button ng-click="appSignIn()" class="btn btn--motive btn-block">Zaloguj się</button>
+                <button ng-click="appSignIn()" class="btn btn--motive btn-block" ng-class="authorizationInit ? 'is--loading' : 'is--error'">
+                    <span>{{loginText}}</span>
+                </button>
             </div>
             <div class="form-group form-group--modern form-group__helper">
                 <div class="text-xs-center text-danger">
@@ -26,8 +28,7 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <div class="pull-right" ng-controller="controllerAppVersion">Wedding planner. Wersja aplikacji - <code>{{appVersion}}</code></div>
-            <div class="clearfix"></div>
+            <div class="text-xs-center" ng-controller="controllerAppVersion">Wedding planner. Wersja aplikacji - <code>{{appVersion}}</code></div>
         </form>
     </div>
 </div>

@@ -10,6 +10,14 @@
     transform: translate(-50%,-50%);
     box-shadow: 0 0 2px 2px #ccc;
     overflow: hidden;
+    @include media-breakpoint-down(xs) {
+        left: $grid-gutter-width-base / 2;
+        right: $grid-gutter-width-base / 2;
+        width: auto;
+        transform: translate(0, -50%);
+        box-shadow: 0 0 1px 1px $border-color;
+        border-bottom: 2px solid $border-color;
+    }
     &__header {
         position: relative;
         background-image: url('#{$assets_path}/bg-top-login.jpg');
