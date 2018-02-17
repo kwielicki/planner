@@ -2,5 +2,8 @@
     &__inner {
         padding: $padding-sm 0 0;
         border-top: 1px solid $border-color;
+        @include media-breakpoint-down(sm) {
+            text-align: center;
+        }
     }
 }

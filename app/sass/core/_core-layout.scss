@@ -9,6 +9,9 @@ html {
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.2);
     margin: 35px 0;
     padding: 35px;
+    @include media-breakpoint-down(sm) {
+        padding: $padding-sm $padding-normal;
+    }
 }
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
