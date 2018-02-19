@@ -20,7 +20,18 @@ weddingPlanner.controller('ctrlToDoList', function( $scope, $firebaseArray ) {
              * todoCategoryId - id potrzeby w bazie to_do_list_category,
              * todoCategoryName - nazwa potrzeby (etykieta opcji)
              */
-            var todoCategoryArray = [];
+            var todoCategoryArray = [
+                {
+                    id: 1,
+                    title: "Zakupy"
+                }, {
+                    id: 2,
+                    title: "Wieczór panieński"
+                }, {
+                    id: 3,
+                    title: "Wizyta u fryzjera"
+                }
+            ];
 
             ref.once('value', function(snapshot) {
                 snapshot.forEach(function(childSnapshot) {
@@ -43,9 +54,8 @@ weddingPlanner.controller('ctrlToDoList', function( $scope, $firebaseArray ) {
 
                 /* Wypełniam opcję w selectize danymi z bazy danych */
                 $scope.todoListSelectizeOptions = todoCategoryArray;
-
                 /* Obsługa przypadku, gdy baza danych jest pusta */
-                if (!todoCategoryArray.length) {
+                if (!$scope.todoList.length) {
                     console.log('Baza pusta'); /* @TODO - w przyszłości do usunięcia */
 
                     /* Jeśli baza danych jest pusta, pokazuję informację co trzeba
@@ -66,7 +76,6 @@ weddingPlanner.controller('ctrlToDoList', function( $scope, $firebaseArray ) {
                 $scope.todoListContentEmpty = false;
                 $scope.availableContent = $scope.todoList.$getRecord(currentCategoryID);
             }
-
         });
 
     $scope.todoListSelectizeConfig = {
@@ -74,7 +83,8 @@ weddingPlanner.controller('ctrlToDoList', function( $scope, $firebaseArray ) {
       valueField: 'title',
       labelField: 'title',
       delimiter: '|',
-      placeholder: 'Wybierz kategorię...',
+      optgroups: ["Najczęściej wybierane"],
+      placeholder: 'Wybierz lub dodaj nową kategorię',
       onInitialize: function( selectize ){
           $scope.todoListSelectizeSelected = true;
           $scope.todoCategoryDirty = true;
@@ -122,8 +132,16 @@ weddingPlanner.controller('ctrlToDoList', function( $scope, $firebaseArray ) {
           }
       },
       onChange: function ( selectize ) {
-
+          if ($scope.todoCategoryName === undefined) {
+              $scope.todoCategoryDuplicated = true;
+              return;
+          }
       },
-      maxItems: 1
+      maxItems: 1,
+      render: {
+          option_create: function ( data ) {
+              return '<div class="create app-selectize__newcat">Dodaję kategorię: <strong>' + data.input + '</strong>&hellip;</div>';
+          }
+        }
     };
 });

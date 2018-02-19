@@ -1,0 +1,30 @@
+.app-selectize {
+    $component: &;
+    &__label {
+        font-weight: 600;
+        margin-bottom: $padding-xs * 2;
+    }
+    .selectize-input {
+        padding: $padding-normal;
+    }
+    .selectize-dropdown {
+        padding: 0;
+        margin: 0;
+        width: 100% !important; // Override Javascript styles
+        border-bottom: 3px solid $border-color;
+        .option {
+            padding: $padding-sm $padding-normal;
+            font-weight: 500;
+            &.active {
+                background-color: #fff;
+            }
+            &:hover {
+                background-color: $border-color-dropdown-element;
+            }
+        }
+    }
+    .btn {
+        display: table;
+        margin: ($padding-xs) 0 ($padding-medium) auto;
+    }
+}

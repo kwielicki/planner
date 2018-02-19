@@ -22,11 +22,11 @@
                 <div class="component app-selectize preloader--init" data-component-name="app-selectize" ng-class="{'is--loaded': preloaderChecker}">
                     <div class="app-selectize__form">
                         <h4 class="app-selectize__label">Dodaj nową kategorię
-                            <span ng-hide="todoCategoryDirty"> - wybierz kategorię</span>
-                            <span ng-hide="todoCategoryDuplicated"> - wybrana kategoria jest używana</span>
+                            <span ng-hide="todoCategoryDirty" class="text-danger"> - wybierz kategorię</span>
+                            <span ng-hide="todoCategoryDuplicated" class="text-danger"> - wybrana kategoria jest używana</span>
                         </h4>
                         <selectize config='todoListSelectizeConfig' options='todoListSelectizeOptions' ng-model="todoCategoryName"></selectize>
-                        <a href="#" ng-click="todoListSelectizeAdd()" ng-show="todoListSelectizeSelected">Dodaj kategorię</a>
+                        <a href="#" ng-click="todoListSelectizeAdd()" ng-show="todoListSelectizeSelected" class="btn btn-primary btn-sm">Dodaj kategorię</a>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,9 @@
                                     prznajmniej jedną kategorię
                                 </p>
                                 <ul ng-repeat="category in todoList">
-                                    <li><a href="#" ng-click="todoListShowContent(category.$id)">{{ category.todoCategoryName }}</a></li>
+                                    <li>
+                                        <a href="#" data-category-id="{{category.$id}}" ng-click="todoListShowContent(category.$id)">{{ category.todoCategoryName }}</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -58,15 +60,22 @@
                 <div class="component widget widget--content preloader--init" data-component-name="widget--content" ng-class="{'is--loaded': preloaderChecker}">
                     <div class="inner">
                         <div class="widget__header">
-                            <h2 class="widget__title"><strong>Opis poszczególnych kategorii</strong></h2>
+                            <h2 class="widget__title"><strong>Lista przyporządkowanych notatek dla kategorii</strong> - "{{availableContent.todoCategoryName | lowercase}}"</h2>
                         </div>
                         <div class="widget__content">
+                            <div class-"widget__note">
+                                <div class="form-group">
+                                    <label for="appToDoListNote" class="form-label">Dodaj notakę w kategorii <strong>{{availableContent.$id | lowercase}}</strong></label>
+                                    <input type="text" name="appToDoListNote" value="" id="appToDoListNote" class="form-control" ng-model="todoNoteTitle"/>
+                                    <a href="#" class="btn btn-primary btn-sm" ng-click="todoListAddNote(availableContent.$id)">Dodaj notatkę</a>
+                                </div>
+                            </div>
                             <div class="selectize">
                                 <p ng-show="todoListContentEmpty" class="text-xs-center">
                                     Wybierz kategorię, aby <code>przefiltorwać</code> listę notatek.
                                 </p>
                                 <div ng-repeat="singleContent in availableContent" class="text-xs-center">
-                                    <p>Aktualnie brak notatek dla kategorii <code>{{ availableContent.todoCategoryName }}</code></p>
+                                    <p>Aktualnie brak notatek dla wybrane kategorii.</p>
                                 </div>
                             </div>
                         </div>
