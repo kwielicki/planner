@@ -20,23 +20,32 @@
         <div class="row">
             <div class="col-sm-4">
                 <div class="component app-selectize preloader--init" data-component-name="app-selectize" ng-class="{'is--loaded': preloaderChecker}">
+                    <span class="js-preloader"></span>
                     <div class="app-selectize__form">
                         <h4 class="app-selectize__label">Dodaj nową kategorię
                             <span ng-hide="todoCategoryDirty" class="text-danger"> - wybierz kategorię</span>
                             <span ng-hide="todoCategoryDuplicated" class="text-danger"> - wybrana kategoria jest używana</span>
                         </h4>
                         <selectize config='todoListSelectizeConfig' options='todoListSelectizeOptions' ng-model="todoCategoryName"></selectize>
-                        <a href="#" ng-click="todoListSelectizeAdd()" ng-show="todoListSelectizeSelected" class="btn btn-primary btn-sm">Dodaj kategorię</a>
+                        <a href="#" ng-click="todoListSelectizeAdd()" ng-show="todoListSelectizeSelected" class="btn btn-primary btn-sm">
+                            Dodaj kategorię
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-4">
-                <div class="component widget widget--category preloader--init" data-component-name="widget--category" ng-class="{'is--loaded': preloaderChecker}">
+                <div class="component widget widget--category preloader--init" data-component-name="widget" ng-class="{'is--loaded': preloaderChecker}">
+                    <span class="js-preloader"></span>
                     <div class="inner">
-                        <div class="widget__header">
-                            <h2 class="widget__title"><strong>Dostępne kategorie</strong></h2>
+                        <div class="widget__header widget__header--popover">
+                            <h2 class="widget__title">
+                                <strong>Dostępne kategorie</strong>
+                                <span class="widget__popover" uib-popover="{{categoryWidgetHeader}}" popover-placement="auto top-left" popover-trigger="'click outsideClick'">
+                                    <i class="fa fa-question-circle"></i>
+                                </span>
+                            </h2>
                         </div>
                         <div class="widget__content">
                             <div class="category">
@@ -46,9 +55,14 @@
                                     Aby móc skorzystać z <code>TODO Listy</code> musisz stworzyć
                                     prznajmniej jedną kategorię
                                 </p>
-                                <ul ng-repeat="category in todoList">
-                                    <li>
-                                        <a href="#" data-category-id="{{category.$id}}" ng-click="todoListShowContent(category.$id)">{{ category.todoCategoryName }}</a>
+                                <ul class="list-unstyled widget__list">
+                                    <li class="widget__list-element" ng-repeat="category in todoList" ng-class="{isActive: $index == selected}">
+                                        <a href="#" title ="{{category.todoCategoryName}}"
+                                                    class="widget__list-anchor"
+                                                    data-category-id="{{category.$id}}"
+                                                    ng-click="todoListShowContent(category.$id); activeItem($index)">
+                                            {{ category.todoCategoryName }}
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -58,12 +72,13 @@
             </div>
             <div class="col-sm-8">
                 <div class="component widget widget--content preloader--init" data-component-name="widget--content" ng-class="{'is--loaded': preloaderChecker}">
+                    <span class="js-preloader"></span>
                     <div class="inner">
                         <div class="widget__header">
-                            <h2 class="widget__title"><strong>Lista przyporządkowanych notatek dla kategorii</strong> - "{{availableContent.todoCategoryName | lowercase}}"</h2>
+                            <h2 class="widget__title"><strong>Przyporządkowane notatki</strong></h2>
                         </div>
                         <div class="widget__content">
-                            <div class-"widget__note">
+                            <div class="widget__note" ng-show="todoListContentNoteAvailable">
                                 <div class="form-group">
                                     <label for="appToDoListNote" class="form-label">Dodaj notakę w kategorii <strong>{{availableContent.$id | lowercase}}</strong></label>
                                     <input type="text" name="appToDoListNote" value="" id="appToDoListNote" class="form-control" ng-model="todoNoteTitle"/>
@@ -72,11 +87,19 @@
                             </div>
                             <div class="selectize">
                                 <p ng-show="todoListContentEmpty" class="text-xs-center">
-                                    Wybierz kategorię, aby <code>przefiltorwać</code> listę notatek.
+                                    Aby móc dodawać notatki wybierz <code>kategorię</code> znajdującą się w panelu <em>Dostępne kategorie</em>
                                 </p>
-                                <div ng-repeat="singleContent in availableContent" class="text-xs-center">
-                                    <p>Aktualnie brak notatek dla wybrane kategorii.</p>
-                                </div>
+                                <p ng-show="todoListContentNoteEmpty" class="text-xs-center">
+                                    Wybrana kategoria nie posiada jeszcze <code>notatek</code>.
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li ng-repeat="currentArrayWithCurrentNotes in dynamicalArrayWithCurrentNotes"
+                                        class="text-xs-center"
+                                        ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                                        Tytuł notatki {{$index}}: <strong>{{currentArrayWithCurrentNotes.noteTitle}}</strong>
+                                        <button title="{{currentArrayWithCurrentNotes.$id}}">Edycja notatki o ID</button>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>

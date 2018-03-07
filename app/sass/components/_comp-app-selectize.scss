@@ -1,4 +1,5 @@
 .app-selectize {
+    position: relative;
     $component: &;
     &__label {
         font-weight: 600;
@@ -26,5 +27,18 @@
     .btn {
         display: table;
         margin: ($padding-xs) 0 ($padding-medium) auto;
+    }
+    .js-preloader {
+        position: absolute;
+        z-index: 100;
+        left: 50%;
+        top: 50%;
+        margin-top: -20px;
+        margin-left: -20px;
+    }
+    &.is--loaded {
+        .js-preloader {
+            display: none;
+        }
     }
 }

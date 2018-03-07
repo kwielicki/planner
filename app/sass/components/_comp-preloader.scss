@@ -43,6 +43,12 @@
     }
     &.is--loaded {
         &::after {
+            animation-name: fadeOut;
+            animation-duration: 1s;
+            animation-fill-mode: both;
+            pointer-events: none;
+        }
+        .js-preloader {
             display: none;
         }
     }

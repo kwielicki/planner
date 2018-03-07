@@ -2,3 +2,4 @@ node_modules
 target
 database
 app/assets/css
+.idea

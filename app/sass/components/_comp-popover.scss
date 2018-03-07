@@ -1,0 +1,43 @@
+/* Component popover */
+.popover {
+    $component: &;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.05);
+    max-width: 350px;
+    width: 100%;
+    border: 1px solid $border-color-dropdown-element;
+    border-radius: $border-radius-sm;
+    color: $brand-dark;
+    padding: $padding-medium;
+    &-content {
+        padding: 0;
+    }
+    &.top {
+        margin-top: -15px;
+        margin-left: -33px;
+    }
+    &.top-left {
+        &::before,
+        &::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            position: absolute;
+        }
+    }
+    &.top-left {
+        &::before {
+            border-width: 11px 11px 0;
+            border-color: $border-color-dropdown-element transparent transparent;
+            bottom: -12px;
+            left: 30px;
+        }
+        &::after {
+            border-width: 11px 11px 0;
+            border-color: #fff transparent transparent;
+            bottom: -10px;
+            left: 30px;
+        }
+    }
+}

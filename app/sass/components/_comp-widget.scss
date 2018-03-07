@@ -1,3 +1,5 @@
+/* Component widget */
+
 .widget {
     $component: &;
     border: 1px solid $border-color;
@@ -13,5 +15,86 @@
     }
     &__content {
         padding: $padding-normal;
+    }
+
+    &__header {
+        &--popover {
+            position: relative;
+        }
+    }
+
+    // Umiejscowienie linku do popovera
+    &__popover {
+        position: absolute;
+        right: $padding-normal;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: $font-size-h2;
+        color: $border-color;
+    }
+
+    // Lista znajdująca się w komponencie "widgets"
+    &__list {
+        margin-bottom: 0;
+        &-element {
+            position: relative;
+            &::before,
+            &::after {
+                content: '';
+                display: block;
+                left: 0;
+                right: 0;
+                top: auto;
+                bottom: 0;
+                height: 1px;
+                position: absolute;
+            }
+            &::before {
+                width: 0;
+                z-index: 1;
+            }
+            &::after {
+                background-color: $border-color-dropdown-element;
+            }
+            &.isActive {
+                a {
+                    color: $brand-dark;
+                    padding-left: $padding-normal;
+                    cursor: default;
+                }
+                &::before {
+                    transition: width .3s;
+                    width: 100%;
+                    background-color: $border-color;
+                }
+            }
+            &:last-child {
+                &::before,
+                &::after {
+                    display: none;
+                }
+            }
+        }
+        &-anchor {
+            display: block;
+            padding: $padding-sm;
+            color: $brand-gray;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            &:hover {
+                color: $brand-dark;
+                padding-left: $padding-normal;
+            }
+        }
+    }
+    .js-preloader {
+        position: absolute;
+        z-index: 100;
+        left: 50%;
+        top: 50%;
+        margin-top: -20px;
+        margin-left: -20px;
     }
 }
