@@ -68,7 +68,7 @@ gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-includes', 
 	return gulp.src([
 		paths.assets.js + 'jquery-2.2.4.min.js',
 		paths.assets.js + 'bootstrap.min.js',
-		paths.assets.js + 'angular1.6.6.min.js',
+		paths.assets.js + 'angular1.6.9.min.js',
 		paths.assets.js + 'angular-route.min.js',
 		paths.assets.js + 'angular-animate.min.js',
 		paths.assets.js + 'firebase.js',
