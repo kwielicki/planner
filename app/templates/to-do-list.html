@@ -42,7 +42,18 @@
                         <div class="widget__header widget__header--popover">
                             <h2 class="widget__title">
                                 <strong>Dostępne kategorie</strong>
-                                <span class="widget__popover" uib-popover="{{categoryWidgetHeader}}" popover-placement="auto top-left" popover-trigger="'click outsideClick'">
+                                <!-- <span class="widget__popover" uib-popover="{{categoryWidgetHeader}}" popover-placement="auto top-left" popover-trigger="'click outsideClick'">
+                                    <i class="fa fa-question-circle"></i>
+                                </span> -->
+                                <span class="widget__popover" 
+                                      ng-controller="controllerPopover" 
+                                      uib-popover-template="appPopover.templateUrl" 
+                                      popover-placement="auto top-left" 
+                                      popover-trigger="'none outsideClick'"
+                                      data-popover-title="Informacja."
+                                      data-popover-content="{{categoryWidgetHeader}}"
+                                      popover-is-open="appPopover.open"
+                                      ng-click="appPopoverInit($event)">
                                     <i class="fa fa-question-circle"></i>
                                 </span>
                             </h2>
