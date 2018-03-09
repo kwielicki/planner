@@ -234,6 +234,6 @@ weddingPlanner.controller('ctrlToDoList', function( $scope, $firebaseArray ) {
     /* Properties */
 
         // Widget Kategorii
-        $scope.categoryWidgetHeader = "Poniżej znajdziesz kategorie do których możesz przyporządkować notatki.";
+        $scope.categoryWidgetHeader = "Stwórz kategorię lub wybierz już istniejącą, a następnie wygeneruj dla niej notatkę.";
 
 });

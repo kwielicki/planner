@@ -40,4 +40,50 @@
             left: 30px;
         }
     }
+
+    // Close icon
+    &__closing {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-size: 0;
+        &--icon {
+            display: block;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            &::before,
+            &::after {
+                content: '';
+                width: 2px;
+                height: 20px;
+                position: absolute;
+                background-color: $brand-dark;
+            }
+            &::before {
+                transform: rotate(45deg);
+            }
+            &::after {
+                transform: rotate(-45deg);
+            }
+        }
+        &:hover {
+            opacity: .8;
+        }
+    }
+
+    // Tytuł [opcjonalny]
+    &-title {
+        margin-bottom: 0;
+        background: none;
+        font-weight: 500;
+        padding: 0 0 $padding-xs;
+        border: none;
+        font-family: $font-family-secondary;
+    }
+
+    // content
+    &__content {
+        padding-top: $padding-xs;
+    }
 }
