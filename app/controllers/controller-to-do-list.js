@@ -1,4 +1,4 @@
-weddingPlanner.controller('ctrlToDoList', function( $scope, $firebaseArray ) {
+weddingPlanner.controller('ctrlToDoList', function( $scope, $firebaseArray, Auth ) {
 
     /* Utworzenie połączenia pomiędzy aplikacją a tabelami w bazie danych o nazwach
      * 1 - to_do_list_category
@@ -12,7 +12,6 @@ weddingPlanner.controller('ctrlToDoList', function( $scope, $firebaseArray ) {
     // 2- to_do_list_note
     const refListNote = firebase.database().ref().child("to_do_list_note");
     $scope.todoNoteList = $firebaseArray(refListNote);
-
 
     /* Czekamy na spełnienie się obietnicy z todoList
      * Kiedy promise będzie rozwiązany wykonuję metodę once
@@ -125,20 +124,30 @@ weddingPlanner.controller('ctrlToDoList', function( $scope, $firebaseArray ) {
                         }
                     })
                 });
-                if (dynamicalArrayWithCurrentNotes) {
-                    $scope.todoListContentNoteEmpty = true;
-                } else {
+
+                if (dynamicalArrayWithCurrentNotes.length > 0) {
+
                     $scope.todoListContentNoteEmpty = false;
+                } else {
+                    $scope.todoListContentNoteEmpty = true;
                 }
                 $scope.dynamicalArrayWithCurrentNotes = dynamicalArrayWithCurrentNotes;
             };
 
             /* Dodanie notatki i przyporządkowanie jej do odpowiedniej kategorii */
             $scope.todoListAddNote = function( currentCategoryID ) {
+                $scope.preloaderChecker = false;
                 $scope.todoNoteList.$add({
                     assignedCategoryID: currentCategoryID,
                     assignedCategoryName: $scope.todoList.$getRecord(currentCategoryID).todoCategoryName,
-                    noteTitle: $scope.todoNoteTitle
+                    noteTitle: $scope.noteTitle ,
+                    noteDescription: $scope.noteDescription,
+                    noteAuthor: Auth.$getAuth().email,
+                    noteStatus: {
+                        name: $scope.noteStatus.noteNamePriority,
+                        value: $scope.noteStatus.noteValuePriority
+                    },
+                    timestamp: firebase.database.ServerValue.TIMESTAMP
                 }).then(function( ref ) {
 
                     /* Po dodaniu kolejnej notatki do zadanej kategorii, uaktualniam wcześniej przygotowaną tablicę
@@ -148,11 +157,40 @@ weddingPlanner.controller('ctrlToDoList', function( $scope, $firebaseArray ) {
 
                     dynamicalArrayWithCurrentNotes.push(currentAddidingElement);
                     $scope.dynamicalArrayWithCurrentNotes = dynamicalArrayWithCurrentNotes;
-
-                    console.log(currentAddidingElement)
-
-                })
+                    $scope.preloaderChecker = true;
+                });
             }
+
+            /* Obserwuję zmiany podczas wypełniania wymaganych kontrolek dla notatek
+             * Title
+             * Description
+             * Status - jest selectem
+             * Option przyjmuje postać '{"noteValuePriority": number, "noteNamePriority": string}'
+             * Następnie krzystam z metody angular.fromJson, aby przygotować obiekt, który dodam do firebase
+             * - noteValuePriority > zostanie wykorzystane do sortowania według priorytetów
+             * - noteNamePriority > zostanie użyte do przekazania odpowiedniej klasy na komponent card
+             *   co umożliwi wyświetlenie odpowiedniej belki sygnalizującej priorytet
+             * @TODO dodać timestamp serwerowy (skorzystać z API angularFire)
+            */
+            $scope.observable = {
+                title: "",
+                description: "",
+                status: '{"noteValuePriority": 1, "noteNamePriority": "noteNeutralPriority"}'
+            };
+
+            /* Funkcja wykonywana na 3 różnych kontrolkach
+             * - kontrolka tytułu notatki
+             * - kontrolka opisu notatki
+             * - kontrolka statusu notatki
+             * - takie informacje jak: kategoria, autor - są dodowane dynamicznie
+             */
+            $scope.noteControlObservable = function() {
+                $scope.noteTitle       = $scope.observable.title;
+                $scope.noteDescription = $scope.observable.description;
+                $scope.noteStatus      = angular.fromJson($scope.observable.status);
+            }
+
+
         });
 
     /* Akcja odpowiedzialna za dodanie kategorii do todoLisy */
@@ -176,7 +214,6 @@ weddingPlanner.controller('ctrlToDoList', function( $scope, $firebaseArray ) {
                */
               if ($scope.todoCategoryName === undefined) {
                   $scope.todoCategoryDirty = false;
-                  console.log("Ooops. Kategoria nie została wybrana.");
                   return;
               }
               $scope.todoCategoryDirty = true;
@@ -190,19 +227,18 @@ weddingPlanner.controller('ctrlToDoList', function( $scope, $firebaseArray ) {
                 .then(function() {
                     ref.once('value', function(snapshot) {
                         snapshot.forEach(function(childSnapshot) {
-                            var todoCategoryName = childSnapshot.val().todoCategoryName;
+                            var todoCategoryName = (childSnapshot.val().todoCategoryName).toLowerCase();
                             todoListSelectizeArray.push(todoCategoryName);
                         });
 
                     });
-                    if (!todoListSelectizeArray.includes($scope.todoCategoryName)) {
+                    if (!todoListSelectizeArray.includes(($scope.todoCategoryName).toLowerCase())) {
                         $scope.todoListDatabaseEmpty = false;
                         $scope.todoList.$add({
                             todoCategoryName: $scope.todoCategoryName
                         });
                     } else {
                         $scope.todoCategoryDuplicated = false;
-                        console.log("Ooops. Wybrana kategoria - " + "'"+ $scope.todoCategoryName +"' jest używana.")
                     }
                 });
 

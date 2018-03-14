@@ -1,0 +1,83 @@
+/* Component card */
+.card {
+    $component: &;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid $border-color-dropdown-element;
+    box-shadow: 0 4px 2px -2px $border-color;
+    padding: $padding-medium;
+    min-height: 230px;
+    &__side {
+        float: left;
+        &--left {
+            width: 70%;
+        }
+        &--right {
+            width: 30%;
+            text-align: right;
+        }
+    }
+
+    &::after {
+        content: attr(data-index); // @TODO przepisać to na dyrektywe
+        font-size: 200px;
+        color: $border-color-dropdown-element;
+        position: absolute;
+        font-weight: 300;
+        top: 0;
+        right: 30px;
+        line-height: 0.8;
+        opacity: .3;
+    }
+
+    &__category {
+        margin-bottom: $padding-xs;
+        font-weight: 500;
+        color: $brand-gray;
+    }
+    &__author {
+        font-weight: 500;
+    }
+    &__title {
+        font-size: $font-size-h1;
+    }
+
+    &__priority {
+        position: absolute;
+        min-width: 115px;
+        display: block;
+        text-align: center;
+        bottom: 0;
+        right: 0;
+        span {
+            display: block;
+            padding: $padding-xs;
+            border-top-left-radius: $border-radius;
+            border: 1px solid transparent;
+        }
+        &--low {
+            color: #fff;
+            background-color: $brand-success;
+            border-color: $brand-success;
+        }
+        &--neutral {
+            color: #fff;
+            background-color: $brand-warning;
+            border-color: $brand-success;
+        }
+        &--high {
+            color: #fff;
+            background-color: $brand-danger;
+            border-color: $brand-success;
+        }
+    }
+
+    + .card {
+        margin-top: $padding-base;
+    }
+
+    &:first-of-type {
+        margin-top: $padding-base;
+    }
+
+}

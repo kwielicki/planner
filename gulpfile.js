@@ -19,7 +19,8 @@ var sassFiles = 'app/sass/**/*.scss',
 			app: 'app/',
 			ctrl: 'app/controllers/',
 			module: 'app/modules/',
-			directive: 'app/directive/'
+			directive: 'app/directive/',
+			components: 'app/components/'
 		}
 	}
 
@@ -94,8 +95,10 @@ gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-includes', 
 		paths.assets.ctrl  + 'controller-user-logout.js',
 		paths.assets.ctrl  + 'controller-main-firebase.js',
 		paths.assets.ctrl  + 'controller-to-do-list.js',
+		paths.assets.ctrl  + 'controller-popover.js',
 		paths.assets.directive  + 'directive-for-anchor.js',
-		paths.assets.directive  + 'directive-for-table-preloader.js'
+		paths.assets.directive  + 'directive-for-table-preloader.js',
+		paths.assets.components + 'app-card-component.js'
 	])
 	.pipe(plumber())
 	.pipe(concat('bundle.js'))

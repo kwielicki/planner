@@ -85,30 +85,40 @@
                         <div class="widget__header">
                             <h2 class="widget__title"><strong>Przyporządkowane notatki</strong></h2>
                         </div>
-                        <div class="widget__content">
-                            <div class="widget__note" ng-show="todoListContentNoteAvailable">
-                                <div class="form-group">
-                                    <label for="appToDoListNote" class="form-label">Dodaj notakę w kategorii <strong>{{availableContent.$id | lowercase}}</strong></label>
-                                    <input type="text" name="appToDoListNote" value="" id="appToDoListNote" class="form-control" ng-model="todoNoteTitle"/>
-                                    <a href="#" class="btn btn-primary btn-sm" ng-click="todoListAddNote(availableContent.$id)">Dodaj notatkę</a>
-                                </div>
+                        <div class="componet note" data-component-name="note">
+                            <div class="note__accordion" ng-show="todoListContentNoteAvailable">
+                                <v-accordion class="vAccordion--default">
+                                    <v-pane>
+                                        <v-pane-header>Dodaj notatkę do kategorii <strong>{{availableContent.todoCategoryName | lowercase}}</strong></v-pane-header>
+                                        <v-pane-content>
+                                            <div class="form-group">
+                                                <label for="">Podaj tytuł dla notatki</label>
+                                                <input type="text" class="form-control" ng-change="noteControlObservable()" ng-model="observable.title" ng-model-options="{debounce: 1000}"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Podaj opis dla notatki</label>
+                                                <input type="text" class="form-control" ng-change="noteControlObservable()" ng-model="observable.description" ng-model-options="{debounce: 1000}"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Podaj status notatki</label>
+                                                <select class="" name="" ng-change="noteControlObservable()" ng-model="observable.status">
+                                                    <option value='{"noteValuePriority": 1, "noteNamePriority": "noteNeutralPriority"}'>Priorytet Normalny</option>
+                                                    <option value='{"noteValuePriority": 2, "noteNamePriority": "noteHighPriority"}'>Priorytet wysoki</option>
+                                                    <option value='{"noteValuePriority": 0, "noteNamePriority": "noteLowPriority"}'>Priorytet niski</option>
+                                                </select>
+                                            </div>
+                                            <a href="#" class="btn btn-primary btn-sm" ng-click="todoListAddNote(availableContent.$id)">Dodaj notatkę</a>
+                                        </v-pane-content>
+                                    </v-pane>
+                                </v-accordion>
                             </div>
-                            <div class="selectize">
-                                <p ng-show="todoListContentEmpty" class="text-xs-center">
-                                    Aby móc dodawać notatki wybierz <code>kategorię</code> znajdującą się w panelu <em>Dostępne kategorie</em>
-                                </p>
-                                <p ng-show="todoListContentNoteEmpty" class="text-xs-center">
-                                    Wybrana kategoria nie posiada jeszcze <code>notatek</code>.
-                                </p>
-                                <ul class="list-unstyled">
-                                    <li ng-repeat="currentArrayWithCurrentNotes in dynamicalArrayWithCurrentNotes"
-                                        class="text-xs-center"
-                                        ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
-                                        Tytuł notatki {{$index}}: <strong>{{currentArrayWithCurrentNotes.noteTitle}}</strong>
-                                        <button title="{{currentArrayWithCurrentNotes.$id}}">Edycja notatki o ID</button>
-                                    </li>
-                                </ul>
-                            </div>
+                            <p ng-show="todoListContentEmpty" class="text-xs-center">
+                                Wygląda na to, że nie została wybrana <code>kategorię</code> znajdującą się w panelu <em>Dostępne kategorie</em>
+                            </p>
+                            <p ng-show="todoListContentNoteEmpty" class="text-xs-center">
+                                Wybrana kategoria nie posiada jeszcze <code>notatek</code>.
+                            </p>
+                            <planner-card data-component-name="card" class="component card" ng-repeat="currentArrayWithCurrentNotes in dynamicalArrayWithCurrentNotes | orderBy:'-timestamp'" data-index="{{$index}}"></planner-card>
                         </div>
                     </div>
                 </div>
