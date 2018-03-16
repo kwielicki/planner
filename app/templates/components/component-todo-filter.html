@@ -1,0 +1,19 @@
+<div class="btn-group" uib-dropdown is-open="status.isopen">
+    <button id="single-button" type="button" class="btn-link" uib-dropdown-toggle ng-disabled="disabled">
+        Sortuj <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+        <li ng-repeat="(key, value) in segmentsSorting">
+            <ul>
+                <li ng-repeat="(segmentKey, segmentValue) in value">
+                    <span class="segment__label">{{segmentKey}}</span>
+                    <ul>
+                        <li ng-repeat="data in segmentValue" ng-class="{isActive: $id == selected}">
+                            <a href="#" ng-click="setOrderProperty(data.sortProperty, $id)">{{data.sortName}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

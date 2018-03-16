@@ -5,6 +5,9 @@ weddingPlanner.controller('ctrlToDoList', function( $scope, $firebaseArray, Auth
      * 2 - to_do_list_note
      */
 
+     $scope.isPlannerCardActivated = false;
+
+
     // 1 - to_do_list_category
     const ref = firebase.database().ref().child("to_do_list_category");
     $scope.todoList = $firebaseArray(ref);
@@ -68,7 +71,6 @@ weddingPlanner.controller('ctrlToDoList', function( $scope, $firebaseArray, Auth
                  */
                 $scope.todoListSelectizeOptions = todoCategoryArray;
 
-
                 /* Obsługa przypadku, gdy baza danych jest pusta */
                 if (!$scope.todoList.length) {
 
@@ -128,8 +130,10 @@ weddingPlanner.controller('ctrlToDoList', function( $scope, $firebaseArray, Auth
                 if (dynamicalArrayWithCurrentNotes.length > 0) {
 
                     $scope.todoListContentNoteEmpty = false;
+                    $scope.isPlannerCardActivated = true;
                 } else {
                     $scope.todoListContentNoteEmpty = true;
+                    $scope.isPlannerCardActivated = false;
                 }
                 $scope.dynamicalArrayWithCurrentNotes = dynamicalArrayWithCurrentNotes;
             };
@@ -199,7 +203,6 @@ weddingPlanner.controller('ctrlToDoList', function( $scope, $firebaseArray, Auth
       valueField: 'title',
       labelField: 'title',
       delimiter: '|',
-      optgroups: ["Najczęściej wybierane"],
       placeholder: 'Wybierz lub dodaj nową kategorię',
       onInitialize: function(){
           $scope.todoListSelectizeSelected = true;

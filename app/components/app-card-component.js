@@ -10,8 +10,6 @@ angular.
             $scope.priorityName       = $scope.$parent.currentArrayWithCurrentNotes.noteStatus.name;
             $scope.priorityValue      = $scope.$parent.currentArrayWithCurrentNotes.noteStatus.value;
             $scope.noteIndex          = $scope.$parent.$index;
-
-
             // Ustawienie odpowiedniego napisu uwzględniając wagę priorytetową
             $scope.noteStatusLabel = function() {
                 switch ($scope.priorityName) {
@@ -48,6 +46,5 @@ angular.
             }
 
             $scope.notePriorityLabel = $scope.noteStatusLabel();
-
         }
     });

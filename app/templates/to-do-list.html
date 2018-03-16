@@ -118,7 +118,16 @@
                             <p ng-show="todoListContentNoteEmpty" class="text-xs-center">
                                 Wybrana kategoria nie posiada jeszcze <code>notatek</code>.
                             </p>
-                            <planner-card data-component-name="card" class="component card" ng-repeat="currentArrayWithCurrentNotes in dynamicalArrayWithCurrentNotes | orderBy:'-timestamp'" data-index="{{$index}}"></planner-card>
+
+                            <!-- Filtr dedykowany notatką -->
+                            <todo-filter ng-show="isPlannerCardActivated" class="component filter" data-component-name="filter"></todo-filter>
+
+                            <!-- Komponent renderujący notatki -->
+                            <planner-card data-component-name="card"
+                                          class="component card"
+                                          ng-repeat="currentArrayWithCurrentNotes in dynamicalArrayWithCurrentNotes | orderBy:propertyName | filter:query"
+                                          data-index="{{$index}}">
+                           </planner-card>
                         </div>
                     </div>
                 </div>
