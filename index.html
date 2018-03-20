@@ -94,17 +94,7 @@
     <main class="layout main">
         <div ng-view></div>
     </main>
-    <footer class="layout component footer ng-cloak" ng-show="firebaseUser" ng-controller="ctrlFooter">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="footer__inner">
-                        <h6 class="small">&copy {{data | date:'yyyy'}} by e-inet.pl, wszystkie prawa zastrzeżone. Wersja aplikacji <code ng-controller="controllerAppVersion">{{appVersion}}</code></h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <footer-app></footer-app>
 
 
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
@@ -150,7 +140,6 @@
     <script src="controllers/ctrl.add.new.guest.js"></script>
     <script src="controllers/ctrl.edit-guest.js"></script>
     <script src="controllers/ctrl-delete-person.js"></script>
-    <script src="controllers/ctrl-footer.js"></script>
     <script src="controllers/controller-app-version.js"></script>
     <script src="controllers/controller-user-login.js"></script>
     <script src="controllers/controller-user-logout.js"></script>
@@ -161,6 +150,8 @@
     <!-- Components -->
     <script src="controllers/ctrl-page-header.js" type="text/javascript"></script>
     <script src="components/app-card-component.js" type="text/javascript"></script>
+    <script src="components/app-todo-filter-component.js" type="text/javascript"></script>
+    <script src="components/app-footer-component.js" type="text/javascript"></script>
 
     <!-- Directives -->
     <script src="directive/directive-for-anchor.js" type="text/javascript"></script>

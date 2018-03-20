@@ -89,7 +89,6 @@ gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-includes', 
 		paths.assets.ctrl  + 'ctrl.edit-guest.js',
 		paths.assets.ctrl  + 'ctrl-page-header.js',
 		paths.assets.ctrl  + 'controller-app-version.js',
-		paths.assets.ctrl  + 'ctrl-footer.js',
 		paths.assets.ctrl  + 'ctrl-delete-person.js',
 		paths.assets.ctrl  + 'controller-user-login.js',
 		paths.assets.ctrl  + 'controller-user-logout.js',
@@ -99,7 +98,8 @@ gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-includes', 
 		paths.assets.directive  + 'directive-for-anchor.js',
 		paths.assets.directive  + 'directive-for-table-preloader.js',
 		paths.assets.components + 'app-card-component.js',
-		paths.assets.components + 'app-todo-filter-component.js'
+		paths.assets.components + 'app-todo-filter-component.js',
+		paths.assets.components + 'app-footer-component.js'
 	])
 	.pipe(plumber())
 	.pipe(concat('bundle.js'))
