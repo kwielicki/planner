@@ -1,5 +1,7 @@
 // Navbar Controller
-weddingPlanner.controller('MainNavCtrl', [ '$scope', '$location', function ( $scope, $location) {
+angular
+    .module('weddingPlanner')
+    .controller('MainNavCtrl', [ '$scope', '$location', function ( $scope, $location) {
 
     /* Występuje tutaj podział elementów w menu nawigacyjnym
      * 1 - globalNavigation {Panel głowny}
@@ -77,7 +79,9 @@ weddingPlanner.controller('MainNavCtrl', [ '$scope', '$location', function ( $sc
 
 
 // Table sorting
-weddingPlanner.controller('mainController', function($scope) {
+angular
+    .module('weddingPlanner')
+    .controller('mainController', function($scope) {
   $scope.sortType     = 'firstName'; // set the default sort type
   $scope.sortReverse  = false;  // set the default sort order
   $scope.searchPerson   = '';     // set the default search/filter term

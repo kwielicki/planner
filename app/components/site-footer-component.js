@@ -1,9 +1,9 @@
-angular.
-    module('weddingPlanner').
-    component('siteFooter', {
+angular
+    .module('weddingPlanner')
+    .component('siteFooter', {
         template:
-            '<footer class="component site-footer">' + 
-                '<ul class="list-unstyled">' + 
+            '<footer class="component site-footer">' +
+                '<ul class="list-unstyled">' +
                     '<li>' +
                         'Copyright by e-inet.pl' +
                     '</li>' +

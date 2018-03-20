@@ -1,6 +1,6 @@
-angular.
-    module('weddingPlanner').
-    component('todoFilter', {
+angular
+    .module('weddingPlanner')
+    .component('todoFilter', {
         templateUrl: 'templates/components/component-todo-filter.html',
         controller: function ( $scope, $rootScope ) {
             /* Domyślne sortowanie jest ustawione na Datę dodania (od najświeższych)

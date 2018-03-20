@@ -1,8 +1,8 @@
 /* Komponent, którgo zadaniem jest wygenerowanie pojedynczej notatki */
 
-angular.
-    module('weddingPlanner').
-    component('plannerCard', {
+angular
+    .module('weddingPlanner')
+    .component('plannerCard', {
         templateUrl: 'templates/components/component-card.html',
         controller: function( $scope ) {
             $scope.categoryName       = $scope.$parent.currentArrayWithCurrentNotes.assignedCategoryName;
