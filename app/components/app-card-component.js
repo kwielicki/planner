@@ -1,3 +1,5 @@
+/* Komponent, którgo zadaniem jest wygenerowanie pojedynczej notatki */
+
 angular.
     module('weddingPlanner').
     component('plannerCard', {
@@ -10,7 +12,8 @@ angular.
             $scope.priorityName       = $scope.$parent.currentArrayWithCurrentNotes.noteStatus.name;
             $scope.priorityValue      = $scope.$parent.currentArrayWithCurrentNotes.noteStatus.value;
             $scope.noteIndex          = $scope.$parent.$index;
-            // Ustawienie odpowiedniego napisu uwzględniając wagę priorytetową
+
+            /* Dodanie odpowiedniej labelki do badga prezentującego wagę notatki */
             $scope.noteStatusLabel = function() {
                 switch ($scope.priorityName) {
                     case 'noteLowPriority':
@@ -28,6 +31,7 @@ angular.
                 }
             };
 
+            /* Dodanie pomocniczej klasy na notatkę w zależności od jej priorytetu */
             $scope.noteClassModifier = function() {
                 switch ($scope.priorityValue) {
                     case 0:

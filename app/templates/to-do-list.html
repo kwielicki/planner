@@ -88,8 +88,8 @@
                         <div class="componet note" data-component-name="note">
                             <div class="note__accordion" ng-show="todoListContentNoteAvailable">
                                 <v-accordion class="vAccordion--default">
-                                    <v-pane>
-                                        <v-pane-header>Dodaj notatkę do kategorii <strong>{{availableContent.todoCategoryName | lowercase}}</strong></v-pane-header>
+                                    <v-pane class="note__accordion-pane">
+                                        <v-pane-header class="note__accordion-header">Dodaj notatkę do kategorii <strong>{{availableContent.todoCategoryName | lowercase}}</strong></v-pane-header>
                                         <v-pane-content>
                                             <div class="form-group">
                                                 <label for="">Podaj tytuł dla notatki</label>
@@ -120,7 +120,7 @@
                             </p>
 
                             <!-- Filtr dedykowany notatką -->
-                            <todo-filter ng-show="isPlannerCardActivated" class="component filter" data-component-name="filter"></todo-filter>
+                            <todo-filter ng-if="isPlannerCardActivated" class="component filter" data-component-name="filter"></todo-filter>
 
                             <!-- Komponent renderujący notatki -->
                             <planner-card data-component-name="card"

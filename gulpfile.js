@@ -98,7 +98,8 @@ gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-includes', 
 		paths.assets.ctrl  + 'controller-popover.js',
 		paths.assets.directive  + 'directive-for-anchor.js',
 		paths.assets.directive  + 'directive-for-table-preloader.js',
-		paths.assets.components + 'app-card-component.js'
+		paths.assets.components + 'app-card-component.js',
+		paths.assets.components + 'app-todo-filter-component.js'
 	])
 	.pipe(plumber())
 	.pipe(concat('bundle.js'))

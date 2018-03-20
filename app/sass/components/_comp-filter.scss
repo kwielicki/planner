@@ -1,4 +1,88 @@
 /* Componetn todo-planner */
 .filter {
-    
+    $component: &;
+    display: block;
+    margin: $padding-normal $padding-base $padding-sm;
+    + .card {
+        margin-top: $padding-sm;
+    }
+    &__dropdown {
+        left: auto;
+        left: 0;
+        top: -5px;
+        min-width: 215px;
+        border-color: #ccc;
+        border-radius: 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        animation-duration: .350s;
+        margin: 0;
+        padding: 0;
+    }
+    .dropdown-toggle::after {
+        display: none;
+    }
+    &__icon {
+        position: relative;
+        display: inline-block;
+        margin-left: $padding-normal;
+        margin-right: $padding-xs;
+        &::after {
+            content: '';
+            display: block;
+            width: 10px;
+            height: 10px;
+            top: 50%;
+            left: 50%;
+            border-style: solid;
+            border-color: $brand-dark;
+            border-width: 1px 1px 0 0;
+            position: absolute;
+            transform-origin: 50% 50% 50%;
+            transform: rotate(135deg);
+            margin: -14px 0 0 -5px;
+        }
+    }
+    &__segment-area {
+        border-bottom: 1px solid $border-color-dropdown-element;
+        padding: $padding-xs 0 $padding-sm 0;
+    }
+    &__segment-label {
+        color: $brand-primary;
+        font-size: $font-size-xs;
+        font-weight: 600;
+        padding: 0 $padding-normal;
+    }
+    &__segment-anchor {
+        color: $brand-dark;
+        padding: 0 $padding-normal 0 $padding-medium;
+        display: block;
+        position: relative;
+        &::before {
+            content: '\f192';
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: inherit;
+            position: absolute;
+            left: $padding-normal;
+            color: $brand-success;
+            line-height: 1;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 8px;
+            opacity: 0;
+            transition: opacity .3s;
+        }
+        &:hover {
+            background-color: $brand-gray-light;
+            color: inherit;
+        }
+        &.isActive {
+            background-color: $brand-gray-light;
+            color: inherit;
+            &::before {
+                opacity: 1;
+            }
+        }
+    }
 }

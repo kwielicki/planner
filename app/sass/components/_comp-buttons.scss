@@ -58,9 +58,15 @@
         }
     }
     &-transparent {
-        background-color: $brand-gray-light;
+        background-color: #fff;
         border: 1px solid $border-color;
+        border-bottom-width: 2px;
+        box-shadow: none;
         color: $brand-dark;
+        &:hover {
+            color: inherit;
+            background-color: $brand-gray-light;
+        }
     }
     //- Small buttons
     &-sm {

@@ -1,5 +1,13 @@
 /* Component Note */
 .note {
     $component: &;
-    padding: $padding-base;
+    &__accordion-pane {
+        padding: $padding-sm $padding-base;
+        &.is-expanded {
+            transition: all .5s;
+            background-color: $brand-gray-light;
+            border-bottom: 2px solid $border-color-dropdown-element;
+            margin-bottom: $padding-medium;
+        }
+    }
 }

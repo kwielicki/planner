@@ -1,4 +1,4 @@
-weddingPlanner.controller('ctrlToDoList', function( $scope, $firebaseArray, Auth ) {
+weddingPlanner.controller('ctrlToDoList', function( $scope, $firebaseArray, Auth, $rootScope ) {
 
     /* Utworzenie połączenia pomiędzy aplikacją a tabelami w bazie danych o nazwach
      * 1 - to_do_list_category
@@ -108,20 +108,40 @@ weddingPlanner.controller('ctrlToDoList', function( $scope, $firebaseArray, Auth
                 var dynamicalArrayWithCurrentNotes = [];
 
 
-            /*
-             * @TODO Opisać co tutaj się wyprawia.
-             */
             $scope.todoListShowContent = function ( currentCategoryID ) {
+
+                /* Podczas wyboru kategorii, ustawiam filtrowanie notatek na Domyślne
+                 * od najnowszych do najstarszych, resetuję również element aktywny z dropdown filtrowania
+                 */
+                $scope.propertyName = '-timestamp';
+                $rootScope.actuallySelectedToDoFilter = 'Filtruj notatki';
+                $rootScope.actuallySelected = false;
+                $rootScope.actuallySelectedLabelForToDoFilter = false;
+
+
+
+                /* Tablica, która zostanie wypełniona notakami, przyporządkowanymi
+                 * do wybranej Kategorii
+                 */
                 dynamicalArrayWithCurrentNotes = [];
+
+                /* Propertisy odpowiedzialne za:
+                 * - pokazanie preloadera
+                 * - pokazanie informacji o braku kategorii, notatek
+                 */
                 $scope.preloaderChecker = true;
                 $scope.todoListContentNoteAvailable = true;
                 $scope.todoListContentEmpty = false;
+
+
+                /*
+                 * @TODO Opisać co tutaj się wyprawia.
+                 */
                 $scope.availableContent = $scope.todoList.$getRecord(currentCategoryID);
                 refListNote.once('value', function(snapshot) {
                     snapshot.forEach(function(childSnapshot) {
                         if (childSnapshot.val().assignedCategoryID === $scope.availableContent.$id) {
                             $scope.xs = $scope.todoNoteList.$getRecord(childSnapshot.key);
-
                             dynamicalArrayWithCurrentNotes.push($scope.xs);
                         }
                     })

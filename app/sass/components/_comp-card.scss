@@ -1,12 +1,14 @@
 /* Component card */
 .card {
     $component: &;
+    display: block;
     position: relative;
     overflow: hidden;
     border: 1px solid $border-color-dropdown-element;
     box-shadow: 0 4px 2px -2px $border-color;
     padding: $padding-medium;
     min-height: 230px;
+    margin: $padding-base;
     &__side {
         float: left;
         &--left {
