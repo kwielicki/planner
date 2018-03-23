@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/site-components.css" />
   </head>
   <body>
-   <header class="component header ng-cloak" ng-show="firebaseUser">
+   <header class="component header ng-cloak" ng-if="firebaseUser">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-12">
@@ -68,18 +68,26 @@
                                         </a>
                                         <ul class="list-unstyled dropdown-menu dropdown-menu--logout animated zoomIn" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
                                             <li class="login-timer">
-                                                Zalogowany od <span id="last-success-login"></span>
+                                                Ostatnie poprawne logowanie:
+                                                <span class="login-timer__data">{{ user.lastSuccessedLoginData | date:'dd-MM-yyyy, HH:mm:ss'}}</span>
                                             </li>
                                             <li class="avatar">
                                                 <figure>
-                                                    <img src="assets/images/user-photo.png" alt="">
+                                                    <div class="avatar__photo">
+                                                        <img src="assets/images/user-photo.png" alt="User photo">
+                                                    </div>
                                                     <figcaption>
-                                                        <span>Zalogowany jako: </span><strong>{{ firebaseUser.email }}</strong>
+                                                        <span class="avatar__label">Zalogowany jako: </span>
+                                                        <div class="avatar__user" ng-class="firebaseUserDisplayName === true ? '' : 'avatar__user--only-email'">
+                                                            <span class="avatar__user-name" ng-if="firebaseUserDisplayName"> {{ firebaseUser.displayName }} </span>
+                                                            <span class="avatar__user-email"> {{ firebaseUser.email }} </span>
+                                                        </div>
                                                     </figcaption>
                                                 </figure>
                                             </li>
                                             <li class="footer" ng-controller="ctrlUserLogout">
-                                                <button ng-click="appSignOut()" class="btn btn-transparent btn-xs">Wyloguj</button>
+                                                <a ng-href="#/user-profile" class="btn btn-transparent btn-xs">Profil użytkownika</a>
+                                                <a href="#" ng-click="appSignOut()" class="btn btn-transparent btn-xs">Wyloguj</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -94,19 +102,11 @@
     <main class="layout main">
         <div ng-view></div>
     </main>
-    <footer class="layout component footer ng-cloak" ng-show="firebaseUser" ng-controller="ctrlFooter">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="footer__inner">
-                        <h6 class="small">&copy {{data | date:'yyyy'}} by e-inet.pl, wszystkie prawa zastrzeżone. Wersja aplikacji <code ng-controller="controllerAppVersion">{{appVersion}}</code></h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <footer-app></footer-app>
 
-    <script src="assets/javascript/bundle.js"></script>
+    <script src="assets/javascript/core-bundle.min.js"></script>
+    <script src="assets/javascript/firebase-sdk.min.js"></script>
+    <script src="assets/javascript/application-bundle.min.js"></script>
 
     </script>
   </body>

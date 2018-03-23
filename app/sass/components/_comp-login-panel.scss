@@ -2,13 +2,13 @@
     position: absolute;
     max-width: 400px;
     border-radius: $border-radius;
-    min-height: 300px;
     background-color: $brand-white;
     width: 100%;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    box-shadow: 0 0 2px 2px #ccc;
+    box-shadow: 0 0 1px #757575;
+    border-bottom: 1px solid #757575;
     overflow: hidden;
     @include media-breakpoint-down(xs) {
         left: $grid-gutter-width-base / 2;
@@ -23,17 +23,10 @@
         background-image: url('#{$assets_path}/bg-top-login.jpg');
         padding: 25px 0 30px 0;
         text-align: center;
-        &:before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: -10px;
-            margin-left: -7.5px;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 10px 7.5px 0 7.5px;
-            border-color: $brand-primary transparent transparent transparent;
+        small {
+            display: block;
+            font-size: $font-size-xs;
+            margin-top: $padding-xs;
         }
     }
     &__icon {
@@ -50,9 +43,17 @@
         font-weight: 400;
     }
     &__forms {
-        padding: 50px 25px 15px 25px;
+        padding: 50px 25px 0 25px;
     }
-    #error-message {
-        height: 24px;
+    .is-initialized {
+        cursor: default;
+        pointer-events: none;
+    }
+    &__footer {
+        background-color: #f5f5f5;
+        border-top: 1px solid rgba(0, 0, 0, 0.2);
+        padding: 10px 17.5px;
+        margin-left: -25px;
+        margin-right: -25px;
     }
 }

@@ -3,17 +3,36 @@
  */
 angular
     .module('weddingPlanner')
-    .controller("ctrlAppMainFirebase", ["$scope", "Auth", '$rootScope',
-        function($scope, Auth, $rootScope) {
+    .controller("ctrlAppMainFirebase", ["$scope", "Auth", '$rootScope', '$localStorage',
+        function($scope, Auth, $rootScope, $localStorage) {
             $scope.auth = Auth;
             // any time auth state changes, add the user data to scope
             $scope.auth.$onAuthStateChanged(function(firebaseUser) {
-              $scope.firebaseUser = firebaseUser;
+                $scope.firebaseUser = firebaseUser;
+                /* Firebase standardowo zwraca null'a we właściwości firebaseUserDisplayName
+                 * jednakże, można zrobić update. Jeśli taka operacja zostanie wykonana,
+                *  w menusie pokazuję ten element
+                */
+                if ( firebaseUser !== null ) {
+                    if ( firebaseUser.displayName !== null ) {
+                        $scope.firebaseUserDisplayName = true;
+                        $scope.$apply();
+                    }
+                }
 
-              // Do użytku globalnego
-              $rootScope.firebaseUserGlobal = firebaseUser;
+                // Do użytku globalnego
+                $rootScope.firebaseUserGlobal = firebaseUser;
+
+                // Informacja dotycząca przekazania do widoku odpowiedniej daty
+                $scope.user = {
+                    lastSuccessedLoginData: $localStorage.lastSuccessedLoginData
+                };
 
             });
-            document.getElementById('last-success-login').innerHTML = localStorage.getItem('lastsucceslogin');
+
+            // Ustawienie
+            $scope.propertiesMenuCloses = "Otwórz menu";
+
+
         }
     ]);

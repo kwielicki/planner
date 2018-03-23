@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/site-components.css" />
   </head>
   <body>
-   <header class="component header ng-cloak" ng-show="firebaseUser">
+   <header class="component header ng-cloak" ng-if="firebaseUser">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-12">
@@ -68,18 +68,26 @@
                                         </a>
                                         <ul class="list-unstyled dropdown-menu dropdown-menu--logout animated zoomIn" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
                                             <li class="login-timer">
-                                                Zalogowany od <span id="last-success-login"></span>
+                                                Ostatnie poprawne logowanie:
+                                                <span class="login-timer__data">{{ user.lastSuccessedLoginData | date:'dd-MM-yyyy, HH:mm:ss'}}</span>
                                             </li>
                                             <li class="avatar">
                                                 <figure>
-                                                    <img src="assets/images/user-photo.png" alt="">
+                                                    <div class="avatar__photo">
+                                                        <img src="assets/images/user-photo.png" alt="User photo">
+                                                    </div>
                                                     <figcaption>
-                                                        <span>Zalogowany jako: </span><strong>{{ firebaseUser.email }}</strong>
+                                                        <span class="avatar__label">Zalogowany jako: </span>
+                                                        <div class="avatar__user" ng-class="firebaseUserDisplayName === true ? '' : 'avatar__user--only-email'">
+                                                            <span class="avatar__user-name" ng-if="firebaseUserDisplayName"> {{ firebaseUser.displayName }} </span>
+                                                            <span class="avatar__user-email"> {{ firebaseUser.email }} </span>
+                                                        </div>
                                                     </figcaption>
                                                 </figure>
                                             </li>
                                             <li class="footer" ng-controller="ctrlUserLogout">
-                                                <button ng-click="appSignOut()" class="btn btn-transparent btn-xs">Wyloguj</button>
+                                                <a ng-href="#/user-profile" class="btn btn-transparent btn-xs">Profil użytkownika</a>
+                                                <a href="#" ng-click="appSignOut()" class="btn btn-transparent btn-xs">Wyloguj</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -97,7 +105,7 @@
     <footer-app></footer-app>
 
 
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="assets/javascript/jquery-2.2.4.min.js"></script>
     <script src="assets/javascript/bootstrap.min.js"></script>
     <script src="assets/javascript/angular1.6.9.min.js"></script>
     <script src="assets/javascript/angular-route.min.js"></script>
@@ -106,9 +114,13 @@
     <script src="assets/javascript/angular-selectize2.js"></script>
 
     <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+    <script src="assets/javascript/firebase.js"></script>
+
     <!-- AngularFire -->
-    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+    <script src="assets/javascript/angularfire.min.js"></script>
+
+    <!-- Angular localStorage -->
+    <script src="assets/javascript/ngStorage.min.js"></script>
 
     <script src="assets/javascript/angular-notifications.js"></script>
     <script src="assets/javascript/angular-bootstrap-ui.min.js"></script>

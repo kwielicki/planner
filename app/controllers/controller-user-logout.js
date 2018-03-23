@@ -6,7 +6,7 @@
 
 angular
     .module('weddingPlanner')
-    .controller('ctrlUserLogout', function( $scope, $window ) {
+    .controller('ctrlUserLogout', ['$scope', '$window', '$localStorage', function( $scope, $window, $localStorage ) {
         $scope.appSignOut = function() {
             /* @TODO tuż przed wylogowaniem należy zniszczyć wszelkie
              * powiązania do referencyjnych tablic Firebas'a korzystając z
@@ -17,9 +17,15 @@ angular
              */
             firebase.auth().signOut()
                 .then(function() {
+
+                    /* Usuwam z $localStorage item przechowujący daną dot.
+                     * ostatniego poprawnego zalogowania
+                     */
+                    delete $localStorage.lastSuccessedLoginData;
+
                     $window.location.href = "/#/login";
                 }).catch(function(err) {
                     console.log(err);
                 });
         }
-    });
+    }]);

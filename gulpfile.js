@@ -8,6 +8,7 @@ const concat   = require('gulp-concat');
 const minify   = require('gulp-minify');
 const cleanCSS = require('gulp-clean-css');
 const htmlmin  = require('gulp-htmlmin');
+const babel    = require('gulp-babel');
 
 
 //- Kompilacja SASSÓW (Bootstrap + site components)
@@ -65,23 +66,55 @@ gulp.task('copy-index', function() {
 		.pipe(gulp.dest('target/' + util.env.projectName))
 });
 
-gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-includes', 'copy-index'], function () {
+// Application Core Build
+gulp.task('core-bundle', function() {
 	return gulp.src([
 		paths.assets.js + 'jquery-2.2.4.min.js',
 		paths.assets.js + 'bootstrap.min.js',
 		paths.assets.js + 'angular1.6.9.min.js',
 		paths.assets.js + 'angular-route.min.js',
 		paths.assets.js + 'angular-animate.min.js',
-		paths.assets.js + 'firebase.js',
-		paths.assets.database  + util.env.projectName + '/**',
-		paths.assets.js + 'angularfire.min.js',
-		paths.assets.js + 'pdfmake.min.js',
-		paths.assets.js + 'vfs-fonts.min.js',
-		paths.assets.js + 'angular-notifications.js',
-		paths.assets.js + 'angular-accordions.min.js',
-		paths.assets.js + 'angular-bootstrap-ui.min.js',
 		paths.assets.js + 'jquery-selectize.min.js',
 		paths.assets.js + 'angular-selectize2.js',
+		paths.assets.js + 'firebase.js',
+		paths.assets.js + 'angularfire.min.js',
+		paths.assets.js + 'ngStorage.min.js',
+		paths.assets.js + 'angular-notifications.js',
+		paths.assets.js + 'angular-bootstrap-ui.min.js',
+		paths.assets.js + 'pdfmake.min.js',
+		paths.assets.js + 'vfs-fonts.min.js',
+		paths.assets.js + 'angular-accordions.min.js'
+	])
+	.pipe(plumber())
+	.pipe(concat('core-bundle.js'))
+	.pipe(minify({
+        ext:{
+            min:'.min.js'
+        },
+		noSource: true,
+		mangle: true
+    }))
+	.pipe(gulp.dest('target/' + util.env.projectName + '/assets/javascript'))
+});
+
+// Firebase WEB SDK
+gulp.task('firebase-sdk', function() {
+	return gulp.src([
+		paths.assets.database  + util.env.projectName + '/**'
+	])
+	.pipe(concat('firebase-sdk.js'))
+	.pipe(minify({
+        ext:{
+            min:'.min.js'
+        },
+		noSource: true,
+		mangle: false
+    }))
+	.pipe(gulp.dest('target/' + util.env.projectName + '/assets/javascript'))
+});
+
+gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-includes', 'copy-index', 'core-bundle', 'firebase-sdk'], function () {
+	return gulp.src([
 		paths.assets.module + 'module-wedding-planner.js',
 		paths.assets.app + 'app.module.js',
 		paths.assets.app   + 'app.routes.js',
@@ -101,13 +134,17 @@ gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-includes', 
 		paths.assets.components + 'app-todo-filter-component.js',
 		paths.assets.components + 'app-footer-component.js'
 	])
+	.pipe(babel({
+        presets: ['es2015']
+    }))
 	.pipe(plumber())
-	.pipe(concat('bundle.js'))
+	.pipe(concat('application-bundle.js'))
 	.pipe(minify({
         ext:{
-            src:'.js',
             min:'.min.js'
-        }
+        },
+		noSource: true,
+		mangle: false
     }))
 	.pipe(gulp.dest('target/' + util.env.projectName + '/assets/javascript'))
 });

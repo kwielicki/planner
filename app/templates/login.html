@@ -1,34 +1,37 @@
 <div class="login-panel" ng-hide="firebaseUser" ng-controller="userLogin">
     <div class="login-panel__header">
-        <h6 class="login-panel__title">Login</h6>
+        <h6 class="login-panel__title">
+            WeddingPlanner
+            <small>zaloguj się do aplikacji</small>
+        </h6>
     </div>
     <div class="login-panel__forms">
-        <form class="login-panel__form">
+        <form class="login-panel__form" name="loginForm" novalidate ng-submit="appSignIn(loginForm.$valid, loginForm.$error)">
             <div class="form-group form-group--modern">
                 <div class="form-group__input">
                     <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
-                    <input type="text" class="form-control form-control--modern" placeholder="Adres e-mail" ng-model="email" autocomplete="off"/>
+                    <input type="email" class="form-control form-control--modern" placeholder="Adres e-mail" ng-model="user.email" required/>
                 </div>
             </div>
             <div class="form-group form-group--modern">
                 <div class="form-group__input">
                     <i aria-hidden="true" class="fa fa-key form-group__icon"></i>
-                    <input type="{{inputType}}" class="form-control form-control--modern" placeholder="Hasło" ng-model="password" />
+                    <input type="{{inputType}}" class="form-control form-control--modern" placeholder="Hasło" ng-model="user.password" required/>
                 </div>
                 <span ng-mouseenter="passwordHelper()" ng-mouseleave="passwordHelper()" class="form-group__password-healper">Pokaż hasło</span>
             </div>
             <div class="form-group form-group--modern">
-                <button ng-click="appSignIn()" class="btn btn--motive btn-block" ng-class="authorizationInit ? 'is--loading' : 'is--error'">
+                <button class="btn btn--motive btn-block" ng-class="authorizationInit ? 'is-initialized' : ''" ng-disabled="authorizationInit">
                     <span>{{loginText}}</span>
                 </button>
             </div>
-            <div class="form-group form-group--modern form-group__helper">
+            <div class="form-group form-group--modern form-group__helper" ng-class="firebaseAuthenticatedFailed === true ? 'error' : ''">
                 <div class="text-xs-center text-danger">
-                    <div id="error-message"></div>
+                    <div ng-if="firebaseAuthenticatedFailed"
+                         ng-class="firebaseAuthenticatedFailed === true ? 'animated tada' : 'fadeOut'">{{ firebaseErrorMessage }}</div>
                 </div>
-                <div class="clearfix"></div>
             </div>
-            <div class="text-xs-center" ng-controller="controllerAppVersion">Wedding planner. Wersja aplikacji - <code>{{appVersion}}</code></div>
+            <div class="text-xs-center login-panel__footer" ng-controller="controllerAppVersion">Wersja aplikacji -<code>{{appVersion}}</code></div>
         </form>
     </div>
 </div>

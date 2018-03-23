@@ -7,5 +7,6 @@ angular
         "vAccordion",
         "ngAnimate",
         "ui.bootstrap",
-        "selectize"
+        "selectize",
+        "ngStorage"
     ]);

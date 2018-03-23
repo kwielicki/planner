@@ -10,7 +10,7 @@
             cursor: default;
         }
     }
-    + .form-group {
+    + .form-group:not(.form-group__helper) {
         margin: $padding-base 0;
     }
     //- Radio elements
@@ -62,9 +62,6 @@
         cursor: pointer;
         margin-left: auto;
         margin-right: 0;
-    }
-    &__helper {
-        margin-top: 0;
     }
 }
 
@@ -159,6 +156,15 @@ select {
     }
     .ng-hide {
         opacity: 0;
+    }
+    &__helper {
+        margin-top: 0;
+        max-height: 0;
+        margin-bottom: $padding-medium;
+        transition: all .5s;
+        &.error {
+            max-height: 50px;
+        }
     }
 }
 .form-control {
