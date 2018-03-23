@@ -9,6 +9,7 @@ const minify   = require('gulp-minify');
 const cleanCSS = require('gulp-clean-css');
 const htmlmin  = require('gulp-htmlmin');
 const babel    = require('gulp-babel');
+const browserSync = require('browser-sync');
 
 
 //- Kompilacja SASSÓW (Bootstrap + site components)
@@ -29,10 +30,16 @@ var sassFiles = 'app/sass/**/*.scss',
 gulp.task('sass', function () {
   return gulp.src(sassFiles)
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('app/assets/css'));
+    .pipe(gulp.dest('app/assets/css'))
+	.pipe(browserSync.stream({once: true}));
 });
 
 gulp.task('watch', ['sass'], function() {
+	browserSync({
+			proxy: "http://127.0.0.1:8080"
+		}, function(err, bs) {
+    	console.log(err);
+	});
     gulp.watch(sassFiles,['sass']);
 });
 
