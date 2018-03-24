@@ -46,6 +46,14 @@ angular
                     return Auth.$requireSignIn();
                   }]
                 }
+            }).when('/user-profile', {
+                templateUrl: 'templates/user-profile.html',
+                controller: "AuthorizationCtrl",
+                resolve: {
+                    "currentAuth": ["Auth", function(Auth) {
+                        return Auth.$requireSignIn();
+                    }]
+                }
             }).when('/edit-guest/:personID', {
                 templateUrl: 'templates/edit-guest.html',
                 controller: 'appEditGuest',

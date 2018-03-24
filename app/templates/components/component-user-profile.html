@@ -1,0 +1,24 @@
+<section class="section">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="component user-profile user-profile--photo" data-component-name="user-profile">
+					<img ng-src="{{currentUserProfileImage}}" alt="User profile photo" ng-if="userProfileSrcSelected">
+					<input type="file" name="user-profile-photo" 
+						   onchange="angular.element(this).scope().fileNameGetter(this)">
+
+				   <button ng-click="userProfileUpload()" ng-if="userProfileSrcSelected">Wyślij plik</button>
+				   <ul ng-if="userProfileUploadedInit">
+				   		<li>Postęp przesyłu pliku - {{ userProfileUploadProgress | percentage:1 }}</li>
+				   </ul>
+
+				</div>
+			</div>
+			<div class="col-sm-8">
+				<div class="component user-profile user-profile--settings" data-component-name="user-profile">
+					Tutaj będą informacje o userze
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
