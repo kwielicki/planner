@@ -64,7 +64,8 @@
                                 <li class="nav__element nav__element--logout">
                                     <div class="btn-group" uib-dropdown auto-close="outsideClick" keyboard-nav="true">
                                         <a href="#" id="btn-append-to-body" class="nav__anchor nav__anchor--logout" uib-dropdown-toggle>
-                                            <img src="assets/images/user-photo.png" alt="">
+                                            <img ng-src="{{firebaseUser.photoURL}}" 
+                                                 src="assets/images/user-photo.png" alt="" image-change class="ng-src-animation">
                                         </a>
                                         <ul class="list-unstyled dropdown-menu dropdown-menu--logout animated zoomIn" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
                                             <li class="login-timer">
@@ -74,7 +75,7 @@
                                             <li class="avatar">
                                                 <figure>
                                                     <div class="avatar__photo">
-                                                        <img src="assets/images/user-photo.png" alt="User photo">
+                                                        <img ng-src="{{firebaseUser.photoURL}}" alt="User photo" image-change class="ng-src-animation">
                                                     </div>
                                                     <figcaption>
                                                         <span class="avatar__label">Zalogowany jako: </span>
@@ -165,10 +166,12 @@
     <script src="components/app-todo-filter-component.js" type="text/javascript"></script>
     <script src="components/app-footer-component.js" type="text/javascript"></script>
     <script src="components/app-user-profile-component.js" type="text/javascript"></script>
+    <script src="components/app-spinner-component.js" type="text/javascript"></script>
 
     <!-- Directives -->
     <script src="directive/directive-for-anchor.js" type="text/javascript"></script>
     <script src="directive/directive-for-table-preloader.js" type="text/javascript"></script>
+    <script src="directive/directive-for-fade-in.js" type="text/javascript"></script>
 
     <!-- Filters -->
     <script src="filters/app-percentage-filter.js" type="text/javascript"></script>

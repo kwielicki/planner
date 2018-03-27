@@ -22,7 +22,8 @@ var sassFiles = 'app/sass/**/*.scss',
 			ctrl: 'app/controllers/',
 			module: 'app/modules/',
 			directive: 'app/directive/',
-			components: 'app/components/'
+			components: 'app/components/',
+			filters: 'app/filters/'
 		}
 	}
 
@@ -137,9 +138,13 @@ gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-includes', 
 		paths.assets.ctrl  + 'controller-popover.js',
 		paths.assets.directive  + 'directive-for-anchor.js',
 		paths.assets.directive  + 'directive-for-table-preloader.js',
+		paths.assets.directive  + 'directive-for-fade-in.js',
 		paths.assets.components + 'app-card-component.js',
 		paths.assets.components + 'app-todo-filter-component.js',
-		paths.assets.components + 'app-footer-component.js'
+		paths.assets.components + 'app-footer-component.js',
+		paths.assets.components + 'app-user-profile-component.js',
+		paths.assets.components + 'app-spinner-component.js',
+		paths.assets.filters + 'app-percentage-filter.js'
 	])
 	.pipe(babel({
         presets: ['es2015']

@@ -64,7 +64,8 @@
                                 <li class="nav__element nav__element--logout">
                                     <div class="btn-group" uib-dropdown auto-close="outsideClick" keyboard-nav="true">
                                         <a href="#" id="btn-append-to-body" class="nav__anchor nav__anchor--logout" uib-dropdown-toggle>
-                                            <img src="assets/images/user-photo.png" alt="">
+                                            <img ng-src="{{firebaseUser.photoURL}}" 
+                                                 src="assets/images/user-photo.png" alt="" image-change class="ng-src-animation">
                                         </a>
                                         <ul class="list-unstyled dropdown-menu dropdown-menu--logout animated zoomIn" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
                                             <li class="login-timer">
@@ -74,7 +75,7 @@
                                             <li class="avatar">
                                                 <figure>
                                                     <div class="avatar__photo">
-                                                        <img src="assets/images/user-photo.png" alt="User photo">
+                                                        <img ng-src="{{firebaseUser.photoURL}}" alt="User photo" image-change class="ng-src-animation">
                                                     </div>
                                                     <figcaption>
                                                         <span class="avatar__label">Zalogowany jako: </span>
@@ -105,7 +106,7 @@
     <footer-app></footer-app>
 
 
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="assets/javascript/jquery-2.2.4.min.js"></script>
     <script src="assets/javascript/bootstrap.min.js"></script>
     <script src="assets/javascript/angular1.6.9.min.js"></script>
     <script src="assets/javascript/angular-route.min.js"></script>
@@ -114,26 +115,28 @@
     <script src="assets/javascript/angular-selectize2.js"></script>
 
     <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+    <script src="assets/javascript/firebase.js"></script>
+
     <!-- AngularFire -->
-    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+    <script src="assets/javascript/angularfire.min.js"></script>
+
     <!-- Angular localStorage -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
+    <script src="assets/javascript/ngStorage.min.js"></script>
 
     <script src="assets/javascript/angular-notifications.js"></script>
     <script src="assets/javascript/angular-bootstrap-ui.min.js"></script>
 
-	<!-- Konfiguracja demo -->
+    <!-- Konfiguracja demo -->
     <script>
-    	 var config = {
-		    apiKey: "AIzaSyBRjkMKqSHSateo0PxqgrcARp0o4yovlNs",
-		    authDomain: "wedding-demo.firebaseapp.com",
-		    databaseURL: "https://wedding-demo.firebaseio.com",
-		    projectId: "wedding-demo",
-		    storageBucket: "wedding-demo.appspot.com",
-		    messagingSenderId: "197163022152"
-  		};
-  		firebase.initializeApp(config);
+         var config = {
+            apiKey: "AIzaSyBRjkMKqSHSateo0PxqgrcARp0o4yovlNs",
+            authDomain: "wedding-demo.firebaseapp.com",
+            databaseURL: "https://wedding-demo.firebaseio.com",
+            projectId: "wedding-demo",
+            storageBucket: "wedding-demo.appspot.com",
+            messagingSenderId: "197163022152"
+        };
+        firebase.initializeApp(config);
     </script>
 
     <script src="assets/javascript/pdfmake.min.js"></script>
@@ -162,10 +165,17 @@
     <script src="components/app-card-component.js" type="text/javascript"></script>
     <script src="components/app-todo-filter-component.js" type="text/javascript"></script>
     <script src="components/app-footer-component.js" type="text/javascript"></script>
+    <script src="components/app-user-profile-component.js" type="text/javascript"></script>
+    <script src="components/app-spinner-component.js" type="text/javascript"></script>
 
     <!-- Directives -->
     <script src="directive/directive-for-anchor.js" type="text/javascript"></script>
     <script src="directive/directive-for-table-preloader.js" type="text/javascript"></script>
+    <script src="directive/directive-for-fade-in.js" type="text/javascript"></script>
+
+    <!-- Filters -->
+    <script src="filters/app-percentage-filter.js" type="text/javascript"></script>
+
 
     </script>
   </body>

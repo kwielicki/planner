@@ -1,0 +1,55 @@
+.progress {
+    height: 20px;
+    margin-bottom: 20px;
+    background-color: $brand-gray-light;
+    border-radius: $border-radius;
+    border: 1px solid $border-color-dropdown-element;
+    &-bar {
+	    float: left;
+	    width: 0;
+	    height: 100%;
+	    font-size: 12px;
+	    line-height: 20px;
+	    color: $brand-success;
+	    font-weight: 600;
+	    background-color: $brand-gray-light;
+	    text-align: center;
+	    transition: width .6s ease;
+        animation: progress-bar-stripes 2s linear infinite;
+        background-image: linear-gradient(45deg,rgba(255,255,255,1) 25%,transparent 25%,transparent 50%,rgba(255,255,255,1) 50%,rgba(255,255,255,1) 75%,transparent 75%,transparent);
+    	background-size: 40px 40px;
+    	position: relative;
+    }
+    &__caption {
+	    position: absolute;
+		bottom: 100%;
+		right: 0;
+		border: 1px solid $border-color-dropdown-element;
+		padding: 2px 5px;
+		border-radius: $border-radius-sm;
+		width: 50px;
+		margin-bottom: 10px;
+		margin-right: -25px;
+		background-color: #fff;
+		z-index: $zindex-dropdown-backdrop;
+		background-color: $brand-gray-light;
+		&::after {
+			content: '';
+			position: absolute;
+		    width: 0px;
+		    height: 0px;
+		    border-color: transparent;
+		    border-style: solid;
+		    border-left: 5px solid transparent;
+		    border-right: 5px solid transparent;
+		    border-top: 5px solid $border-color-dropdown-element;
+	        bottom: -9px;
+		    left: 50%;
+		    transform: translateX(-50%);
+		}
+    }
+}
+@keyframes progress-bar-stripes {
+  from  { background-position: 40px 0; }
+  to    { background-position: 0 0; }
+}

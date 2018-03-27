@@ -18,16 +18,16 @@
   height: $spacer-y; // todo: make a new var for this
   margin-bottom: $spacer-y;
 }
-.progress[value] {
-  // Set overall background
-  background-color: $progress-bg;
-  // Remove Firefox and Opera border
-  border: 0;
-  // Reset the default appearance
-  appearance: none;
-  // Set overall border radius
-  @include border-radius($progress-border-radius);
-}
+// .progress[value] {
+//   // Set overall background
+//   background-color: $progress-bg;
+//   // Remove Firefox and Opera border
+//   border: 0;
+//   // Reset the default appearance
+//   appearance: none;
+//   // Set overall border radius
+//   @include border-radius($progress-border-radius);
+// }
 
 // Filled-in portion of the bar
 .progress[value]::-ms-fill {

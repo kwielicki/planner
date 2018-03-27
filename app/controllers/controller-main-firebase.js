@@ -16,7 +16,7 @@ angular
                 if ( firebaseUser !== null ) {
                     if ( firebaseUser.displayName !== null ) {
                         $scope.firebaseUserDisplayName = true;
-                        $scope.$apply();
+                        // $scope.$apply();
                     }
                 }
 

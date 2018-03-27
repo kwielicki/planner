@@ -1,0 +1,33 @@
+.user-profile {
+	&__image {
+		height: 200px;
+		width: 200px;
+		margin: 0 auto;
+		border-radius: $border-radius;
+		overflow: hidden;
+		background-color: $brand-gray-light;
+		position: relative;
+		img {
+			position: relative;
+			z-index: 99;
+		}
+		  &.img-loaded {
+			.ytp-spinner {
+				display: none;
+			}
+		}
+		margin-bottom: $padding-medium;
+	}
+	&__name {
+
+	}
+	&__button {
+		text-align: right;
+	}
+	&__file {
+		display: none;
+	}
+	&__uploader {
+		margin-bottom: $padding-medium * 1.5;
+	}
+}

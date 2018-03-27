@@ -68,6 +68,13 @@
             background-color: $brand-gray-light;
         }
     }
+    &-file {
+        border: 1px dashed $border-color;
+        box-shadow: none;
+        &:hover {
+            background-color: $brand-gray-light;
+        }
+    }
     //- Small buttons
     &-sm {
         padding: 10px 25px;
