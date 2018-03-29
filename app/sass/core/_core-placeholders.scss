@@ -1,0 +1,9 @@
+// Placeholder box-shadow around
+%placeholder-box-shadow-around {
+    box-shadow: 0 0 1px $brand-gray;
+}
+
+// Placeholder border-top light
+%placeholder-border-top-light {
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+}

@@ -17,10 +17,17 @@
                 <div class="form-group__input">
                     <i aria-hidden="true" class="fa fa-key form-group__icon"></i>
                     <input type="{{inputType}}" class="form-control form-control--modern" placeholder="Hasło" ng-model="user.password" required/>
+                    <!-- Password Helper -->
+                    <span ng-click="passwordHelper()"
+                        ng-class="passwordHelperClassStatus"
+                        class="login-panel__password-helper"
+                        title="{{passwordHelperTitleContent}}">
+                        <i class="fa" aria-hidden="true" ng-class="passwordHelperClassStatus === 'is--activated' ? 'fa-eye-slash' : 'fa-eye'"></i>
+                    </span>
                 </div>
-                <span ng-mouseenter="passwordHelper()" ng-mouseleave="passwordHelper()" class="form-group__password-healper">Pokaż hasło</span>
+
             </div>
-            <div class="form-group form-group--modern">
+            <div class="form-group form-group--modern login-panel__action-button">
                 <button class="btn btn--motive btn-block" ng-class="authorizationInit ? 'is-initialized' : ''" ng-disabled="authorizationInit">
                     <span>{{loginText}}</span>
                 </button>

@@ -5,6 +5,7 @@ $font-family-base: 'Open Sans Condensed', sans-serif;
 $font-family-secondary: 'Roboto', sans-serif;
 $headings-font-weight: 500;
 $font-size-base: 1.6rem;
+$font-size-normal: 3.0rem;
 $font-size-h1: 3.5rem;
 $font-size-h2: 2.0rem;
 $font-size-sm: 1.6rem;
@@ -12,6 +13,7 @@ $font-size-xs: 1.2rem;
 
 //- Colors
 $brand-primary:     #2cc5f7;
+$brand-primary-related: #1aa4c1;
 $brand-white:       #fff;
 $brand-dark:        #27343e;
 $brand-gray:        #8c8c8c;
@@ -66,4 +68,10 @@ $modal-overlay-opacity:  .7;
 //- Font weights
 $fw-6: 600;
 
+/* Component Variables
+ * 1 - Login panel (.login-panel)
+ */
 
+    //- [1] Login panel
+    $login-panel-max-width: 400px;
+    $login-panel-icon-size: 8px;

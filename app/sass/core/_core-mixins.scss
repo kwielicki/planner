@@ -33,9 +33,16 @@
 }
 
 //- Border radius [mixin]
-
 @mixin border_radius($arg) {
     border-radius: $arg;
+}
+
+//- Wyśrodkowanie elementu przy pomocy position absolute oraz transform
+@mixin absolute-full-centering {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 
 //- Placeholder [mixin]

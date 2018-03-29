@@ -118,15 +118,19 @@ angular
         };
 
         /*
-         * Pokazanie / ukrycie hasła po evencie
-         * mouseenter oraz mouseleave
+         * Pokazanie / ukrycie hasła po evencie click
          * Cel - możliwość sprawdzenia poprawności hasła
          */
+        $scope.passwordHelperTitleContent = 'Pokaż hasło';
         $scope.passwordHelper = function() {
             if ($scope.inputType === 'password') {
                 $scope.inputType = 'text';
+                $scope.passwordHelperClassStatus = 'is--activated';
+                $scope.passwordHelperTitleContent = 'Ukryj hasło';
             } else if ($scope.inputType === 'text'){
                 $scope.inputType = 'password';
+                $scope.passwordHelperClassStatus = null;
+                $scope.passwordHelperTitleContent = 'Pokaż hasło';
             }
         }
 

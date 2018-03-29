@@ -1,28 +1,27 @@
+//- Komponent Login panel
+
 .login-panel {
-    position: absolute;
-    max-width: 400px;
+    @include absolute-full-centering;
+    @extend %placeholder-box-shadow-around;
+    max-width: $login-panel-max-width;
+    width: 100%;
     border-radius: $border-radius;
     background-color: $brand-white;
-    width: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    box-shadow: 0 0 1px #757575;
-    border-bottom: 1px solid #757575;
+    border-bottom: 1px solid $brand-gray;
     overflow: hidden;
     @include media-breakpoint-down(xs) {
         left: $grid-gutter-width-base / 2;
         right: $grid-gutter-width-base / 2;
         width: auto;
         transform: translate(0, -50%);
-        box-shadow: 0 0 1px 1px $border-color;
-        border-bottom: 2px solid $border-color;
     }
     &__header {
-        position: relative;
         background-image: url('#{$assets_path}/bg-top-login.jpg');
-        padding: 25px 0 30px 0;
+        padding: $padding-medium 0 $padding-base 0;
         text-align: center;
+        @include media-breakpoint-down(sm) {
+            padding: $padding-sm 0 $padding-normal 0;
+        }
         small {
             display: block;
             font-size: $font-size-xs;
@@ -30,7 +29,7 @@
         }
     }
     &__icon {
-        font-size: 8px;
+        font-size: $login-panel-icon-size;
         color: $brand-white;
         position: absolute;
         right: 5px;
@@ -39,21 +38,37 @@
     &__title {
         color: #fff;
         margin: 0;
-        font-size: 30px;
-        font-weight: 400;
+        font-size: $font-size-normal;
     }
     &__forms {
-        padding: 50px 25px 0 25px;
+        padding: $spacer $padding-medium 0 $padding-medium;
     }
     .is-initialized {
         cursor: default;
         pointer-events: none;
     }
     &__footer {
-        background-color: #f5f5f5;
-        border-top: 1px solid rgba(0, 0, 0, 0.2);
-        padding: 10px 17.5px;
-        margin-left: -25px;
-        margin-right: -25px;
+        @extend %placeholder-border-top-light;
+        background-color: $body-bg;
+        padding: $padding-sm $padding-normal;
+        margin-left: -($padding-medium);
+        margin-right: -($padding-medium);
+    }
+    &__password-helper {
+        @include transition_bezier;
+        position: absolute;
+        right: $padding-normal;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $brand-gray;
+        cursor: pointer;
+        &:hover, &.is--activated {
+            color: $code-color;
+        }
+    }
+    .form-group {
+        + .form-group {
+            margin-top: $padding-normal;
+        }
     }
 }
