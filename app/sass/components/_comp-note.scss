@@ -3,6 +3,10 @@
     $component: &;
     &__accordion-pane {
         padding: $padding-sm $padding-base;
+        @include media-breakpoint-down(md) {
+            padding-left: $padding-normal;
+            padding-right: $padding-normal;
+        }
         &.is-expanded {
             transition: all .5s;
             background-color: $brand-gray-light;

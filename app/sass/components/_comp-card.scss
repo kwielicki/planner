@@ -9,14 +9,25 @@
     padding: $padding-medium;
     min-height: 230px;
     margin: $padding-base;
+    @include media-breakpoint-down(md) {
+        margin-left: $padding-normal;
+        margin-right: $padding-normal;
+        padding: $padding-normal;
+    }
     &__side {
         float: left;
         &--left {
             width: 70%;
+            @include media-breakpoint-down(md) {
+                width: 100%;
+            }
         }
         &--right {
             width: 30%;
             text-align: right;
+            @include media-breakpoint-down(md) {
+                display: none;
+            }
         }
     }
 
@@ -39,11 +50,29 @@
     }
     &__author {
         font-weight: 500;
+        &--sm {
+            color: $brand-gray;
+            display: block;
+            margin-bottom: $padding-normal;
+            padding-bottom: $padding-xs;
+            border-bottom: 1px solid $border-color-dropdown-element;
+            font-size: $font-size-xs;
+            @include media-breakpoint-up(lg) {
+                display: none;
+            };
+        }
     }
     &__title {
         font-size: $font-size-h1;
+        @include media-breakpoint-down(md) {
+            font-size: $font-size-h3;
+        }
     }
-
+    &__description {
+        @include media-breakpoint-down(md) {
+            margin-bottom: $padding-medium * 2;
+        }
+    }
     &__priority {
         position: absolute;
         min-width: 115px;

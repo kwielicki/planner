@@ -3,6 +3,10 @@
     $component: &;
     display: block;
     margin: $padding-normal $padding-base $padding-sm;
+    @include media-breakpoint-down(md) {
+        margin-left: $padding-normal;
+        margin-right: $padding-normal;
+    }
     + .card {
         margin-top: $padding-sm;
     }
@@ -26,6 +30,14 @@
         display: inline-block;
         margin-left: $padding-normal;
         margin-right: $padding-xs;
+        @include media-breakpoint-down(md) {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            margin: 0;
+            line-height: 1;
+            margin-top: 6px;
+        }
         &::after {
             content: '';
             display: block;
@@ -83,6 +95,29 @@
             &::before {
                 opacity: 1;
             }
+        }
+    }
+    &__label {
+        display: none;
+    }
+    @include media-breakpoint-down(md) {
+        &__label {
+            display: block;
+            padding-bottom: $padding-xs;;
+            text-align: right;
+        }
+        .dropdown {
+            display: block;
+            &-menu {
+                right: 0;
+            }
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: $padding-sm $padding-normal;
+            margin-bottom: $padding-medium;
         }
     }
 }
