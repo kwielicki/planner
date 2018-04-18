@@ -1,0 +1,15 @@
+<div class="image-box__inner" ng-click="elementClickable($ctrl.element.imageBoxLinkValue)">
+	<div class="image-box__image">
+		<img ng-src="{{$ctrl.element.imageBoxSrc}}" alt="{{$ctrl.element.imageBoxAlt}}">
+	</div>
+	<div class="image-box__content">
+		<h3 class="image-box__title">
+			{{$ctrl.element.imageBoxTitle}}
+			<span ng-if="$ctrl.element.imageBoxIsNewest.value === true" class="image-box__infotip">
+				({{$ctrl.element.imageBoxIsNewest.label | lowercase}})
+			</span>
+		</h3>
+		<p class="image-box__description">{{$ctrl.element.imageBoxDescription}}</p>
+		<span href="{{$ctrl.element.imageBoxLinkValue}}" class="btn btn-primary btn-sm">{{$ctrl.element.imageBoxLinkLabel}}</span>
+	</div>
+</div>

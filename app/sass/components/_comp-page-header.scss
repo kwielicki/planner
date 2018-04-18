@@ -5,16 +5,20 @@
     }
     &__title {
     	margin-bottom: $padding-sm;
+        font-size: $font-size-h2;
+        display: inline-block;
+        color: $brand-primary;
+        padding-bottom: $padding-sm;
         @include media-breakpoint-down(sm) {
-            font-size: $font-size-h2;
             margin-bottom: $padding-xs;
+        }
+        .fa {
+            margin-right: $padding-xs;
         }
     }
     &__subtitle {
-    	font-size: $font-size-h4;
-        @include media-breakpoint-down(sm) {
-            font-size: $font-size-h5;
-            margin-bottom: 0;
-        }
+    	font-size: $font-size-h5;
+        margin-bottom: $padding-xs;
+        line-height: 1.4;
     }
 }

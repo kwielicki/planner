@@ -144,6 +144,8 @@ gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-includes', 
 		paths.assets.components + 'app-footer-component.js',
 		paths.assets.components + 'app-user-profile-component.js',
 		paths.assets.components + 'app-spinner-component.js',
+		paths.assets.components + 'app-image-box-component.js',
+		paths.assets.components + 'app-image-box-element-component.js',
 		paths.assets.filters + 'app-percentage-filter.js'
 	])
 	.pipe(babel({

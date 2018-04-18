@@ -5,7 +5,10 @@
                  <div class="component-layout">
                      <div class="page-header">
                          <div class="page-header__inner">
-                             <h1 class="page-header__title">{{pageHeader.title.dashboard}}</h1>
+                             <h1 class="page-header__title">
+                                <i class="fa fa-address-book-o" aria-hidden="true"></i>
+                                {{pageHeader.title.dashboard}}
+                            </h1>
                              <h2 class="page-header__subtitle">{{pageHeader.subtitle.dashboard}}</h2>
                          </div>
                      </div>
@@ -14,80 +17,13 @@
         </div>
     </div>
 </section>
-<section class="section">
+
+<!-- Image box for Dashboard -->
+<section>
     <div class="container">
         <div class="row">
-            <div class="col-sm-4">
-                <a ng-href="#/manage-guests" class="component image-box">
-                    <div class="image-box__inner">
-                        <div class="image-box__image">
-                            <img ng-src="assets/images/image-box-1.jpg" alt="">
-                        </div>
-                        <div class="image-box__content">
-                            <h3 class="image-box__title">Administruj listą gości</h3>
-                            <p class="image-box__description">Zarządzaj filtrami oraz operacjami modyfikacji rekordów</p>
-                            <span href="#!/manage-guests" class="btn btn-primary">Przejdź</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-4">
-                <a ng-href="#/add-new-guest" class="component image-box">
-                    <div class="image-box__inner">
-                        <div class="image-box__image">
-                            <img ng-src="assets/images/image-box-2.jpg" alt="">
-                        </div>
-                        <div class="image-box__content">
-                            <h3 class="image-box__title">Dodaj gościa</h3>
-                            <p class="image-box__description">Zarządzaj filtrami oraz operacjami modyfikacji rekordów</p>
-                            <span href="#!/add-new-guest" class="btn btn-primary">Przejdź</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-4">
-                <a ng-href="#/statistics" class="component image-box">
-                    <div class="image-box__inner">
-                        <div class="image-box__image">
-                            <img ng-src="assets/images/image-box-3.jpg" alt="">
-                        </div>
-                        <div class="image-box__content">
-                            <h3 class="image-box__title">Statystyki</h3>
-                            <p class="image-box__description">Zapoznaj się ze statystykami</p>
-                            <span ng-href="#!/statistics" class="btn btn-primary">Przejdź</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <a ng-href="#/documentation" class="component image-box">
-                    <div class="image-box__inner">
-                        <div class="image-box__image">
-                            <img ng-src="assets/images/image-box-4.jpg" alt="">
-                        </div>
-                        <div class="image-box__content">
-                            <h3 class="image-box__title">Dokumentacja</h3>
-                            <p class="image-box__description">Zapoznaj się ze dokumentacją</p>
-                            <span ng-href="#!/documentation" class="btn btn-primary">Przejdź</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-4">
-                <a ng-href="#/to-do-list" class="component image-box">
-                    <div class="image-box__inner">
-                        <div class="image-box__image">
-                            <img ng-src="assets/images/image-box-5.jpg" alt="">
-                        </div>
-                        <div class="image-box__content">
-                            <h3 class="image-box__title">Lista rzeczy do zrobienia <span class="success">(nowość)</span></h3>
-                            <p class="image-box__description">Sprawdź czy nic Ci nie umknęło</p>
-                            <span ng-href="#!/to-do-list" class="btn btn-primary">Przejdź</span>
-                        </div>
-                    </div>
-                </a>
+            <div class="col-xs-12">
+                <app-image-box></app-image-box>
             </div>
         </div>
     </div>
