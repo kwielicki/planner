@@ -15,7 +15,8 @@ angular
         $routeProvider
             .when('/', {
                 templateUrl: 'templates/dashboard.html',
-                controller: "AuthorizationCtrl",
+                controller: 'AuthorizationCtrl',
+                title: 'Panel Głowny | Wedding Planner',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -25,6 +26,7 @@ angular
                 redirectTo: '/dashboard',
                 templateUrl: 'templates/dashboard.html',
                 controller: "AuthorizationCtrl",
+                title: 'Panel Głowny | Wedding Planner',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -33,6 +35,7 @@ angular
             }).when('/manage-guests', {
                 templateUrl: 'templates/manage-guests.html',
                 controller: "AuthorizationCtrl",
+                title: 'Zarządzaj listą gości | Wedding Planner',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -41,6 +44,7 @@ angular
             }).when('/add-new-guest', {
                 templateUrl: 'templates/add-new-guest.html',
                 controller: "AuthorizationCtrl",
+                title: 'Dodaj nowego gościa | Wedding Planner',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -49,6 +53,7 @@ angular
             }).when('/user-profile', {
                 templateUrl: 'templates/user-profile.html',
                 controller: "AuthorizationCtrl",
+                title: 'Profil użytkownika | Wedding Planner',
                 resolve: {
                     "currentAuth": ["Auth", function(Auth) {
                         return Auth.$requireSignIn();
@@ -57,6 +62,7 @@ angular
             }).when('/edit-guest/:personID', {
                 templateUrl: 'templates/edit-guest.html',
                 controller: 'appEditGuest',
+                title: 'Edycja gościa | Wedding Planner',
                 resolve: {
                     "recordId": ['$route', function($route) {
                         return {
@@ -78,6 +84,7 @@ angular
             }).when('/to-do-list', {
                 templateUrl: 'templates/to-do-list.html',
                 controller: "AuthorizationCtrl",
+                title: 'Lista rzeczy do zrobienia | Wedding Planner',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -86,16 +93,19 @@ angular
             }).when('/statistics', {
                 templateUrl: 'templates/statistics.html',
                 controller: "AuthorizationCtrl",
+                title: 'Statystyki | Wedding Planner',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
                   }]
                 }
             }).when('/login', {
-                templateUrl: 'templates/login.html'
+                templateUrl: 'templates/login.html',
+                title: 'Logowanie | Wedding Planner',
             }).when('/documentation', {
                 templateUrl: 'templates/documentation.html',
                 controller: "AuthorizationCtrl",
+                title: 'Dokumentacja | Wedding Planner',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -104,6 +114,7 @@ angular
             }).otherwise({
                 redirectTo: '/404',
                 templateUrl: 'templates/404.html',
+                title: 'Strona nie została odnaleziona | Wedding Planner',
                 controller: "AuthorizationCtrl",
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
@@ -120,6 +131,9 @@ angular
             if (error === "AUTH_REQUIRED") {
                 $location.path("/login");
             }
+        });
+        $rootScope.$on("$routeChangeSuccess", (_, current) => {
+            document.title = current.$$route.title;
         });
     }]);
 
