@@ -44,8 +44,8 @@
         }
     }
     &__title {
-        font-weight: 600;
         margin-bottom: $padding-normal;
+        font-family: $font-family-secondary;
     }
     &__description {
         color: $brand-dark;

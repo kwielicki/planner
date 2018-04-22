@@ -1,0 +1,12 @@
+.intro-banner {
+	display: block;
+	background-color: #fff;
+	border-bottom: 2px solid $brand-gray;
+	padding: $padding-normal;
+	margin-bottom: $padding-base;
+	&__title {
+		font-size: $font-size-h3;
+		font-weight: 600;
+		margin: 0;
+	}
+}
