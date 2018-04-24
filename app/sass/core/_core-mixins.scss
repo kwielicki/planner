@@ -45,6 +45,12 @@
     transform: translate(-50%,-50%);
 }
 
+// Placeholder bootstrap grid negative horizontal margin (-15px)
+@mixin placeholder-negative-margin {
+    margin-left: -($grid-gutter-width-base / 2);
+    margin-right: -($grid-gutter-width-base / 2);
+}
+
 //- Placeholder [mixin]
 @mixin placeholder {
   ::-webkit-input-placeholder {@content}

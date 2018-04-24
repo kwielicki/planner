@@ -2,8 +2,11 @@ angular
     .module('weddingPlanner')
     .component('appIntroBanner', {
         templateUrl: 'templates/components/component-intro-banner.html',
+        transclude: {
+            'note': '?introBannerNote',
+            'desclimer': '?introBannerDesclimer'
+        },
         bindings: {
-         introbannerimage: '@',
 		 introbannertitle: '@',
 		 introbannerdescription: '@'
         },

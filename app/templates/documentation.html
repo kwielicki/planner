@@ -2,15 +2,14 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
-                 <div class="component-layout">
-                     <div class="page-header">
-                         <div class="page-header__inner">
-                             <h1 class="page-header__title">{{pageHeader.title.documentation}}</h1>
-                             <h2 class="page-header__subtitle">{{pageHeader.subtitle.documentation}}</h2>
-                             <h3>Aktualna wersja aplikacji: <code ng-controller="controllerAppVersion">{{appVersion}}</code></h3>
-                         </div>
-                     </div>
-                 </div>
+                <app-intro-banner
+                    class="intro-banner--sidebar"
+                    introBannerTitle="Dokumentacja"
+                    introbannerdescription={{pageHeader.subtitle.documentation}}>
+                    <intro-banner-desclimer>
+                        Aktualna wersja aplikacji <code ng-controller="controllerAppVersion">{{appVersion}}</code>
+                    </intro-banner-desclimer>
+                </app-intro-banner>
             </div>
             <div class="col-sm-8">
                 <div class="component-layout">
@@ -18,7 +17,7 @@
                     <v-accordion class="vAccordion--default">
                       <!-- add expanded attribute to open the section -->
                       <v-pane expanded> <!-- [1.0.6] -->
-                        <v-pane-header>Wersja 1.0.6</v-pane-header>
+                        <v-pane-header>Wersja 1.0.6 - aktualna wersja aplikacji</v-pane-header>
                         <v-pane-content>
                             <ul>
                     		 	<li>Dodanie notyfikacji w momencie dokonania edycji rekordu</li>

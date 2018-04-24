@@ -7,3 +7,9 @@
 %placeholder-border-top-light {
     border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
+
+// Placeholder bootstrap grid negative horizontal margin (-15px)
+%placeholder-negative-margin {
+    margin-left: -($grid-gutter-width-base / 2);
+    margin-right: -($grid-gutter-width-base / 2);
+}

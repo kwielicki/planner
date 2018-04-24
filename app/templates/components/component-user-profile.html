@@ -2,19 +2,11 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-4">
-				<div class="component-layout">
-                     <div class="page-header">
-                         <div class="page-header__inner">
-                             <h1 class="page-header__title">Profil użytkownika</h1>
-                             <h2 class="page-header__subtitle">Uaktualnij swój profil o takie elementy jak:</h2>
-                             <ul class="list-unstyled">
-                             	<li>- zdjęcie profilowe,</li>
-                             	<li>- imię,</li>
-                             	<li>- nazwisko</li>
-                             </ul>
-                         </div>
-                     </div>
-                 </div>
+				<app-intro-banner
+                    class="intro-banner--sidebar"
+                    introBannerTitle="Profil użytkownika"
+                    introbannerdescription="Uaktualnij swój profil o takie elementy jak: zdjęcie profilowe, imię oraz nazwisko">
+                </app-intro-banner>
 			</div>
 			<div class="col-sm-8">
 				<div class="component-layout">
@@ -29,13 +21,13 @@
 										</div>
 										<figcaption>
 											<label for="fileUploader" class="user-profile__uploader">
-												<input type="file" name="user-profile-photo" 
+												<input type="file" name="user-profile-photo"
 											   			   	   onchange="angular.element(this).scope().fileNameGetter(this)"
 											   			   	   id="fileUploader"
 											   			   	   class="user-profile__file">
 							   			   	    <span role="button" class="btn btn-file">Wybierz zdjęcie profilowe</span>
 											</label>
-		
+
 										   		<uib-progressbar max="100" value="dynamic" type="success" ng-if="userProfileUploadedInit" title="Postęp przesyłu pliku">
 										   			<span class="progress__caption">{{ userProfileUploadProgress | percentage:1 }}</span>
 										   		</uib-progressbar>
@@ -51,8 +43,8 @@
                                     		<label for="firstName" class="label">Podaj imię</label>
 		                                    <div class="form-group__input">
 		                                    	<i aria-hidden="true" class="fa fa-user form-group__icon"></i>
-												<input type="text" placeholder="Imię" 
-													ng-model="userProfile.firstname" 
+												<input type="text" placeholder="Imię"
+													ng-model="userProfile.firstname"
 													placeholder="Imię"
 													class="form-control form-control--modern form-control--username">
 							   			   	</div>
@@ -61,8 +53,8 @@
                                     		<label for="firstName" class="label">Podaj nazwisko</label>
 		                                    <div class="form-group__input">
 		                                    	<i aria-hidden="true" class="fa fa-user form-group__icon"></i>
-												<input type="text" placeholder="Nazwisko" 
-													ng-model="userProfile.surname" 
+												<input type="text" placeholder="Nazwisko"
+													ng-model="userProfile.surname"
 													placeholder="Imię"
 													class="form-control form-control--modern form-control--username">
 							   			   	</div>
@@ -70,7 +62,7 @@
                              			{{ result }}
                              			<div class="clearfix"></div>
 	                             		<div class="user-profile__button">
-											<a href="#" 
+											<a href="#"
 											   ng-click="userProfileName(userProfile.firstname, userProfile.surname)"
 											   class="btn btn-primary"
 											   ng-disabled="userProfilevalidate">Zaktualizuj dane</a>

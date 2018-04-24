@@ -1,12 +1,48 @@
 .intro-banner {
+	$component: &;
 	display: block;
 	background-color: #fff;
 	border-bottom: 2px solid $brand-gray;
 	padding: $padding-normal;
 	margin-bottom: $padding-base;
+	@include media-breakpoint-down(sm) {
+		@include placeholder-negative-margin;
+	}
 	&__title {
 		font-size: $font-size-h3;
 		font-weight: 600;
 		margin: 0;
+		@include media-breakpoint-down(sm) {
+			font-size: $font-size-h4;
+		}
+	}
+	&__subtitle {
+		font-size: $font-size-h5;
+		margin-bottom: 0;
+		padding-top: $padding-normal;
+		line-height: 1.3;
+	}
+	&--sidebar {
+	    background-color: #fff;
+	    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.2);
+		border-bottom: 0;
+	    margin: 35px 0;
+	    padding: 35px;
+	    @include media-breakpoint-down(sm) {
+	        padding: $padding-sm $padding-normal;
+	    }
+	}
+	&__note {
+		font-weight: 400;
+		color: $brand-danger;
+	}
+	&__desclimer {
+		display: block;
+		padding-top: $padding-xs;
+		margin-top: $padding-medium;
+		border-top: 1px solid $border-color-dropdown-element;
+		&:empty {
+			display: none;
+		}
 	}
 }
