@@ -14,7 +14,7 @@
         background-color: #fff;
         box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.2);
         margin-bottom: $padding-base;
-        flex-basis: calc(33.333333% - 30px);
+        flex-basis: calc(25% - 30px);
         margin: ($grid-gutter-width-base / 2);
         cursor: pointer;
         @include media-breakpoint-down(lg) {
