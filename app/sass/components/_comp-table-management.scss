@@ -5,13 +5,13 @@
     border-right: 1px solid $border-color-dropdown-element;
     border-bottom: 3px solid $border-color-dropdown-element;
     &__header {
-        font-weight: 600;
+        border-bottom: 2px solid $border-color;
+        cursor: pointer;
     }
     &__row {
         position: relative;
         display: flex;
         flex-wrap: wrap;
-        border-bottom: 1px solid $border-color-dropdown-element;
         &--body {
             @include transition_bezier;
             &:nth-child(2n) {
@@ -32,10 +32,10 @@
         min-height: 65px;
         &--index {
             flex: 0 0 60px;
+            cursor: default;
         }
-        &--guest-count,
-        &--children {
-            flex: 0 0 115px;
+        &--operations {
+            cursor: default;
         }
         &--btn-group {
             justify-content: center;
@@ -91,7 +91,7 @@
         margin: 10px;
         padding: $padding-normal;
         background: #fff;
-        box-shadow: 2px 2px 0 0 rgba(0,0,0,0.1);
+        //box-shadow: 2px 2px 0 0 rgba(0,0,0,0.1);
         border: 1px solid $border-color-dropdown-element;
         &--wide {
             width: calc(66.66666% - 20px);
@@ -154,5 +154,31 @@
         &::after {
             right: 5px;
         }
+    }
+}
+
+.manageguest-sorting-label {
+    float: right;
+    &__sorting-label,
+    &__sorting-order {
+        text-transform: lowercase;
+    }
+    &__sorting-label {
+        font-weight: 600;
+    }
+    &__sorting-order {
+        text-decoration: underline;
+    }
+    .animationIf.ng-enter,
+    .animationIf.ng-leave {
+      transition: opacity ease-in-out 0.3s;
+    }
+    .animationIf.ng-enter,
+    .animationIf.ng-leave.ng-leave-active {
+      opacity: 0;
+    }
+    .animationIf.ng-leave,
+    .animationIf.ng-enter.ng-enter-active {
+      opacity: 1;
     }
 }

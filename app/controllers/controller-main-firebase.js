@@ -5,6 +5,15 @@ angular
     .module('weddingPlanner')
     .controller("ctrlAppMainFirebase", ["$scope", "Auth", '$rootScope', '$localStorage',
         function($scope, Auth, $rootScope, $localStorage) {
+
+
+            // Planner states obiekt
+            $rootScope.plannerGlobal = {};
+            $rootScope.plannerGlobal = {
+                'manageGuestCurrentSortingValue': null,
+                'manageGuestCurrentSortingOrder': null
+            };
+
             $scope.auth = Auth;
             // any time auth state changes, add the user data to scope
             $scope.auth.$onAuthStateChanged(function(firebaseUser) {

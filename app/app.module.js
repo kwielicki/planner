@@ -1,7 +1,7 @@
 // Navbar Controller
 angular
     .module('weddingPlanner')
-    .controller('MainNavCtrl', [ '$scope', '$location', function ( $scope, $location) {
+    .controller('MainNavCtrl', [ '$scope', '$location', '$rootScope', function ( $scope, $location, $rootScope) {
 
     /* Występuje tutaj podział elementów w menu nawigacyjnym
      * 1 - globalNavigation {Panel głowny}
@@ -81,10 +81,27 @@ angular
 // Table sorting
 angular
     .module('weddingPlanner')
-    .controller('mainController', function($scope) {
-  $scope.sortType     = 'firstName'; // set the default sort type
-  $scope.sortReverse  = false;  // set the default sort order
+    .controller('mainController', function($scope, $rootScope) {
   $scope.searchPerson   = '';     // set the default search/filter term
+
+
+    if ( $rootScope.plannerGlobal.manageGuestCurrentSortingOrder !== null ) {
+        $scope.sortType = $rootScope.plannerGlobal.manageGuestCurrentSortingValue;
+    }
+
+  $scope.sortingTableManagement = function (sortName, sortOrder, sortLabel) {
+    $scope.sortType = sortName;
+
+    if ( sortOrder === true ) {
+        $rootScope.plannerGlobal.manageGuestCurrentSortingOrder = 'malejący';
+    } else {
+        $rootScope.plannerGlobal.manageGuestCurrentSortingOrder = 'rosnący';
+    }
+
+    $rootScope.plannerGlobal.manageGuestCurrentSortingValue = sortName;
+    $rootScope.plannerGlobal.manageGuestCurrentSortingLabel = sortLabel;
+  };
+
   $scope.printTable = function($scope) {
       var myTableArray = [];
       $('.table-management__body').find('.table-management__row').each(function() {

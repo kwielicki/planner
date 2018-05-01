@@ -58,7 +58,6 @@ angular.module('selectize', []).value('selectizeConfig', {}).directive("selectiz
 
       settings.onChange = function(value) {
         var value = angular.copy(selectize.items);
-        console.log(value);
         if (settings.maxItems == 1) {
           value = value[0]
         }
