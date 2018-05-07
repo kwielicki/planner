@@ -5,23 +5,18 @@ angular
         controller: function( $scope, $element, $rootScope ) {
 
             const ctrl = this;
-
-            //$scope.currentSortingValue = $rootScope.$watch($rootScope.plannerGlobal.manageGuestCurrentSortingValue);
-            //$scope.currentSortingOrder = $rootScope.$watch($rootScope.plannerGlobal.manageGuestCurrentSortingOrder);
-
+            
             $scope.manageTableFiltered = false;
-
 
             $scope.$watchCollection('[$root.plannerGlobal.manageGuestCurrentSortingLabel, $root.plannerGlobal.manageGuestCurrentSortingOrder]', function(oldValue, newValue) {
 
-                if ( oldValue !== undefined ) {
+                if ( oldValue[0] !== undefined ) {
                     $scope.manageTableFiltered = true;
                 }
 
                 $scope.currentSortingLabel = $rootScope.plannerGlobal.manageGuestCurrentSortingLabel;
-            });
-            $scope.$watchCollection('$root.plannerGlobal.manageGuestCurrentSortingOrder', function() {
                 $scope.currentSortingOrder = $rootScope.plannerGlobal.manageGuestCurrentSortingOrder;
+
             });
 
             // Klasy pomocnicze

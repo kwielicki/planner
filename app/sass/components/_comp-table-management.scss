@@ -23,6 +23,7 @@
         }
     }
     &__cell {
+        position: relative;
         display: flex;
         flex: 1;
         align-items: center;
@@ -155,6 +156,13 @@
             right: 5px;
         }
     }
+
+    /* Sort arrow */
+    &__sort-arrow {
+        position: absolute;
+        right: $padding-normal;
+    }
+
 }
 
 .manageguest-sorting-label {

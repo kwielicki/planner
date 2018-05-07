@@ -49,35 +49,33 @@
                             <div class="table-management__cell table-management__cell--index">L.P.</div>
                             <div class="table-management__cell table-management__cell--first-name" ng-click="sortingTableManagement('firstName', sortReverse = !sortReverse, 'Imię')">
                                 <span>Imię</span>
-                                <span class="icon-sortable" ng-class="sortReverse ? 'up' : 'down'">
-                                    <i class="fa fa-long-arrow-down" aria-hidden="true"></i>
-                                    <i class="fa fa-long-arrow-up" aria-hidden="true"></i>
-                                </span>
+                                <span ng-show="sortType == 'firstName'" class="table-management__sort-arrow fa"
+                                      ng-class="sortReverse ? 'fa-caret-down' : 'fa-caret-up'"></span>
                             </div>
                             <div class="table-management__cell table-management__cell--surname" ng-click="sortingTableManagement('surName', sortReverse = !sortReverse, 'Nazwisko')">
                                 <span>Nazwisko</span>
-                                <span ng-show="sortType == 'surName'" class="fa"
-                                      ng-class="sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></span>
+                                <span ng-show="sortType == 'surName'" class="table-management__sort-arrow fa"
+                                      ng-class="sortReverse ? 'fa-caret-down' : 'fa-caret-up'"></span>
                             </div>
                             <div class="table-management__cell table-management__cell--guest-count" ng-click="sortingTableManagement('guestCount', sortReverse = !sortReverse, 'Liczba osób')">
                                 <span>Oczekiwana liczba osób dorosłych</span>
-                                <span ng-show="sortType == 'guestCount'" class="fa"
-                                      ng-class="sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></span>
+                                <span ng-show="sortType == 'guestCount'" class="table-management__sort-arrow fa"
+                                      ng-class="sortReverse ? 'fa-caret-down' : 'fa-caret-up'"></span>
                             </div>
                             <div class="table-management__cell table-management__cell--children" ng-click="sortingTableManagement('children', sortReverse = !sortReverse, 'Liczba dzieci')">
                                 <span>Oczekiwana liczba dzieci</span>
-                                <span ng-show="sortType == 'children'" class="fa"
-                                      ng-class="sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></span>
+                                <span ng-show="sortType == 'children'" class="table-management__sort-arrow fa"
+                                      ng-class="sortReverse ? 'fa-caret-down' : 'fa-caret-up'"></span>
                             </div>
                            <div class="table-management__cell table-management__cell--membership" ng-click="sortingTableManagement('membership', sortReverse = !sortReverse, 'Przynależność')">
                                 <span>Przynależność</span>
-                                <span ng-show="sortType == 'membership'" class="fa"
-                                      ng-class="sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></span>
+                                <span ng-show="sortType == 'membership'" class="table-management__sort-arrow fa"
+                                      ng-class="sortReverse ? 'fa-caret-down' : 'fa-caret-up'"></span>
                             </div>
                             <div class="table-management__cell table-management__cell--status" ng-click="sortingTableManagement('status', sortReverse = !sortReverse, 'Status')">
-                                <span>Status<span>
-                                <span ng-show="sortType == 'status'" class="fa"
-                                      ng-class="sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></span>
+                                <span>Status</span>
+                                <span ng-show="sortType == 'status'" class="table-management__sort-arrow fa"
+                                      ng-class="sortReverse ? 'fa-caret-down' : 'fa-caret-up'"></span>
                             </div>
                             <div class="table-management__cell table-management__cell--operations">
                                 <span>Operacje</span>
