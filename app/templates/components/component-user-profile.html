@@ -59,13 +59,12 @@
 													class="form-control form-control--modern form-control--username">
 							   			   	</div>
                              			</div>
-                             			{{ result }}
                              			<div class="clearfix"></div>
 	                             		<div class="user-profile__button">
-											<a href="#"
+											<button href="#"
 											   ng-click="userProfileName(userProfile.firstname, userProfile.surname)"
 											   class="btn btn-primary"
-											   ng-disabled="userProfilevalidate">Zaktualizuj dane</a>
+											   ng-disabled="userProfilevalidate">Zaktualizuj dane</button>
 	                             		</div>
 									</div>
 								</div>
@@ -77,3 +76,4 @@
 		</div>
 	</div>
 </section>
+<planner-snackbar></planner-snackbar>

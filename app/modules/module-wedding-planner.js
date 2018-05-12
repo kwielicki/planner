@@ -8,5 +8,6 @@ angular
         "ngAnimate",
         "ui.bootstrap",
         "selectize",
-        "ngStorage"
+        "ngStorage",
+        "angular.plannerSnackbar"
     ]);

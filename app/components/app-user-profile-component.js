@@ -2,7 +2,7 @@ angular
     .module('weddingPlanner')
     .component('userProfile', {
         templateUrl: 'templates/components/component-user-profile.html',
-        controller: function ( $scope, $timeout ) {
+        controller: function ( $scope, $timeout, plannerSnackbar ) {
 
             var storage = firebase.storage();
             var storageRefDirecory = storage.ref();
@@ -34,14 +34,14 @@ angular
                 if ( fileObject.type === "image/png" || fileObject.type === "image/jpeg" ) {
 
                     $scope.fileObject = fileObject;
-                    
+
                     $scope.$apply(function(){
                       $scope.currentUserProfileImage = fileBlobUrl;
                    });
 
-                } 
+                }
 
-                
+
 
             };
 
@@ -73,44 +73,41 @@ angular
                         };
 
 
-                        /* Korzystając z metody equals porównuję dwa stringi. Metoda ta zwraca boolean 
+                        /* Korzystając z metody equals porównuję dwa stringi. Metoda ta zwraca boolean
                          * Porównuje obiekt user i jego właściwość displayName, które pochodzą z bazy
                          * z tym co użytkownik aktualnie wpisał do kontrolek znajdujących się w profilu
                          * użytkownika tj. imię oraz nazwisko
                          */
                         if ( angular.equals(user.displayName,`${userProfileFirstName} ${userProfileSurName}`) ) {
                             $scope.result = "Dane profilowe są aktualne";
-                            $timeout( function(){
-                                $scope.result = "";
-                            }, 1000 );
+                            plannerSnackbar.create($scope.result, 1500);
                         } else {
+                            $scope.userProfilevalidate = true;
                             $scope.result = "Trwa aktualizacja profilu...";
+                            plannerSnackbar.create($scope.result, 1500);
                             user.updateProfile({
                                 displayName: `${userProfileFirstName} ${userProfileSurName}`
                             }).then( function() {
                                 $scope.$apply(function(){
-                                    $scope.result = "Profil zaktualizowany";
-                                    $timeout( function(){
-                                        $scope.result = "";
-                                    }, 1000 );
+                                    $scope.result = `Profil dla użytkownika zostal zaktualizowany`;
+                                    $timeout(function() {
+                                        plannerSnackbar.create($scope.result, 1500);
+                                        $scope.userProfilevalidate = false;
+                                    }, 1500);
                                 });
                             }).catch( function( error ) {
                                 console.log( error );
                             });
                         }
 
-
-
-                        
-
                         /* Pełna obsługa przesyłu grafiki do firebase storage */
                         const fileElement = angular.element('#fileUploader');
                         if ( fileElement.val() != '' ) {
-                            
+
                             const userProfileUploadePhoto = storageImagesRefenrece.put($scope.fileObject, metadata);
 
                             userProfileUploadePhoto.on(firebase.storage.TaskEvent.STATE_CHANGED, function(snapshot) {
-        
+
 
                                 $scope.$apply(function(){
                                     $scope.userProfileUploadProgress = snapshot.bytesTransferred / snapshot.totalBytes;

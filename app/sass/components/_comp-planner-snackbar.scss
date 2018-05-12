@@ -1,0 +1,24 @@
+.planner-snackbar {
+	position: fixed;
+	z-index: $zindex-tooltip;
+	background-color: $brand-dark;
+	color: #fff;
+	padding: $padding-sm $padding-normal;
+	opacity: 0;
+	transition: all 0.3s;
+	max-width: 350px;
+	&--botleft {
+		left: 15px;
+		bottom: 15px;
+		transform: translateY(50px);
+		@include media-breakpoint-down(xs) {
+			right: $padding-xs;
+			left: $padding-xs;
+			bottom: 0;
+		}
+	}
+	&--animated {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
