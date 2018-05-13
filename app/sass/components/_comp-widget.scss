@@ -36,6 +36,9 @@
         cursor: pointer;
         font-size: $font-size-h2;
         color: $border-color;
+        @include media-breakpoint-down(sm) {
+            display: none;
+        }
     }
 
     // Lista znajdująca się w komponencie "widgets"
