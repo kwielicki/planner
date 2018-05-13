@@ -2,7 +2,6 @@
     position: relative;
     $component: &;
     &__label {
-        font-weight: 600;
         margin-bottom: $padding-xs * 2;
     }
     .selectize-input {

@@ -116,7 +116,7 @@ angular
                      * od najnowszych do najstarszych, resetuję również element aktywny z dropdown filtrowania
                      */
                     $scope.propertyName = '-timestamp';
-                    $rootScope.actuallySelectedToDoFilter = 'Filtruj notatki';
+                    $rootScope.actuallySelectedToDoFilter = 'Sortuj notatki';
                     $rootScope.actuallySelected = false;
                     $rootScope.actuallySelectedLabelForToDoFilter = false;
 

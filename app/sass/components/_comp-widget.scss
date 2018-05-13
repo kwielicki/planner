@@ -12,6 +12,10 @@
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
         margin-bottom: 0;
+        font-weight: 400;
+        strong {
+            font-weight: inherit;
+        }
     }
     &__content {
         padding: $padding-normal;
@@ -83,6 +87,8 @@
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
+            font-weight: 400;
+            font-size: $font-size-xs;
             &:hover {
                 color: $brand-dark;
                 padding-left: $padding-normal;

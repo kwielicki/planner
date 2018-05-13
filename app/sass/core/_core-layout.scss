@@ -4,6 +4,9 @@ html {
 html, body {
     height: 100%;
 }
+body {
+    font-weight: 300;
+}
 .container {
     max-width: 1320px;
 }
@@ -26,4 +29,9 @@ img {
 
 .btn:disabled {
     cursor: default;
+}
+ul {
+    li {
+        font-size: $font-size-xs;
+    }
 }

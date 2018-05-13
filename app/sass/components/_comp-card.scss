@@ -1,4 +1,14 @@
 /* Component card */
+.planner-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: $padding-base $padding-base 0 $padding-base;
+    margin-left: -($padding-sm);
+    margin-right: -($padding-sm);
+    @include media-breakpoint-down(md) {
+        padding: $padding-normal $padding-normal 0 $padding-normal;
+    }
+}
 .card {
     $component: &;
     display: block;
@@ -6,25 +16,26 @@
     overflow: hidden;
     border: 1px solid $border-color-dropdown-element;
     box-shadow: 0 4px 2px -2px $border-color;
-    padding: $padding-medium;
+    padding: $padding-normal;
     min-height: 230px;
-    margin: $padding-base;
+    margin: 0 $padding-sm $padding-base $padding-sm;
+    flex-basis: calc(50% - (#{$padding-sm} * 2));
+    vertical-align: top;
     @include media-breakpoint-down(md) {
-        margin-left: $padding-normal;
-        margin-right: $padding-normal;
-        padding: $padding-normal;
+        flex-basis: 100%;
     }
     &__side {
         float: left;
         &--left {
-            width: 70%;
+            width: 100%;
             @include media-breakpoint-down(md) {
                 width: 100%;
             }
         }
         &--right {
-            width: 30%;
+            position: absolute;
             text-align: right;
+            right: $padding-normal;
             @include media-breakpoint-down(md) {
                 display: none;
             }
@@ -44,9 +55,12 @@
     }
 
     &__category {
-        margin-bottom: $padding-xs;
+        margin-bottom: $padding-normal;
         font-weight: 500;
         color: $brand-gray;
+        @include media-breakpoint-down(md) {
+            margin-bottom: $padding-xs;
+        }
     }
     &__author {
         font-weight: 500;
@@ -63,12 +77,14 @@
         }
     }
     &__title {
-        font-size: $font-size-h1;
+        font-size: $font-size-h2;
+        color: $brand-dark;
         @include media-breakpoint-down(md) {
             font-size: $font-size-h3;
         }
     }
     &__description {
+        margin-bottom: $padding-base;
         @include media-breakpoint-down(md) {
             margin-bottom: $padding-medium * 2;
         }
@@ -102,13 +118,4 @@
             border-color: $brand-success;
         }
     }
-
-    + .card {
-        margin-top: $padding-base;
-    }
-
-    &:first-of-type {
-        margin-top: $padding-base;
-    }
-
 }

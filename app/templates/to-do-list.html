@@ -16,10 +16,10 @@
                 <div class="component app-selectize preloader--init" data-component-name="app-selectize" ng-class="{'is--loaded': preloaderChecker}">
                     <span class="js-preloader"></span>
                     <div class="app-selectize__form">
-                        <h4 class="app-selectize__label">Dodaj nową kategorię
+                        <h6 class="app-selectize__label">Dodaj nową kategorię
                             <span ng-hide="todoCategoryDirty" class="text-danger"> - wybierz kategorię</span>
                             <span ng-hide="todoCategoryDuplicated" class="text-danger"> - wybrana kategoria jest używana</span>
-                        </h4>
+                        </h6>
                         <selectize config='todoListSelectizeConfig' options='todoListSelectizeOptions' ng-model="todoCategoryName"></selectize>
                         <a href="#" ng-click="todoListSelectizeAdd()" ng-show="todoListSelectizeSelected" class="btn btn-primary btn-sm">
                             Dodaj kategorię
@@ -117,11 +117,13 @@
                             <todo-filter ng-if="isPlannerCardActivated" class="component filter" data-component-name="filter"></todo-filter>
 
                             <!-- Komponent renderujący notatki -->
-                            <planner-card data-component-name="card"
-                                          class="component card"
-                                          ng-repeat="currentArrayWithCurrentNotes in dynamicalArrayWithCurrentNotes | orderBy:propertyName | filter:query"
-                                          data-index="{{$index}}">
-                           </planner-card>
+                            <div class="planner-card-container" ng-show="isPlannerCardActivated">
+                                <planner-card data-component-name="card"
+                                class="component card"
+                                ng-repeat="currentArrayWithCurrentNotes in dynamicalArrayWithCurrentNotes | orderBy:propertyName | filter:query"
+                                data-index="{{$index}}">
+                            </planner-card>
+                            </div>
                         </div>
                     </div>
                 </div>
