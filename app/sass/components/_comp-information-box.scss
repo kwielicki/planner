@@ -1,0 +1,40 @@
+.information-box {
+	position: relative;
+	display: block;
+	padding: $padding-medium;
+	margin: $padding-medium auto;
+	text-align: left;
+	max-width: 767px;
+	border: 1px dashed $border-color-dropdown-element;
+	overflow: hidden;
+	&--top0 {
+		margin-top: 0;
+	}
+	@include media-breakpoint-down(lg) {
+		max-width: 481px;
+	}
+	@include media-breakpoint-down(sm) {
+		padding: $padding-normal;
+		max-width: 320px;
+	}
+	&__title {
+		font-weight: 500;
+		margin-bottom: $padding-xs;
+	}
+	.fa {
+		position: absolute;
+		right: -50px;
+		top: -50px;
+		font-size: 160px;
+		color: $border-color-dropdown-element;
+		opacity: 0.5;
+	}
+	&__content {
+		padding-top: $padding-normal;
+	}
+	p {
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+}

@@ -106,12 +106,20 @@
                                     </v-pane>
                                 </v-accordion>
                             </div>
-                            <p ng-show="todoListContentEmpty" class="text-xs-center">
-                                Wygląda na to, że nie została wybrana <code>kategorię</code> znajdującą się w panelu <em>Dostępne kategorie</em>
-                            </p>
-                            <p ng-show="todoListContentNoteEmpty" class="text-xs-center">
-                                Wybrana kategoria nie posiada jeszcze <code>notatek</code>.
-                            </p>
+
+                            <app-information-box ng-if="todoListContentNoteEmpty" class="information-box--top0">
+                                <information-box-content>
+                                    <p>Wybrana kategoria nie posiada jeszcze <code>notatek</code>.</p>
+                                    <p>Stwórz notatkę korzytając z dedykowanego formularza.</p>
+                                </information-box-content>
+                            </app-information-box>
+
+                            <app-information-box ng-if="todoListContentEmpty">
+                                <information-box-content>
+                                    <p>Wygląda na to, że nie została wybrana <code>kategoria</code> znajdującą się w panelu <em>Dostępne kategorie</em>.</p>
+                                    <p>Jeśli nie ma dostępnych kategorii stwórz je korzystając z kontrolki <span class="underline">Dodaj nową kategorię</span></p>
+                                </information-box-content>
+                            </app-information-box>
 
                             <!-- Filtr dedykowany notatką -->
                             <todo-filter ng-if="isPlannerCardActivated" class="component filter" data-component-name="filter"></todo-filter>
