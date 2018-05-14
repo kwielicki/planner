@@ -51,12 +51,13 @@
                         </div>
                         <div class="widget__content">
                             <div class="category">
-                                <p ng-show="todoListDatabaseEmpty" class="text-xs-center">
-                                    Nie posiadasz dostępnych kategorii.
-                                    <br>
-                                    Aby móc skorzystać z <code>TODO Listy</code> musisz stworzyć
-                                    prznajmniej jedną kategorię
-                                </p>
+                                <app-information-box ng-if="todoListDatabaseEmpty" class="information-box--top0">
+                                    <information-box-content>
+                                        <p>Nie posiadasz dostępnych kategorii.</p>
+                                        <p>Aby móc skorzystać z <code>TODO Listy</code> musisz stworzyć
+                                        prznajmniej jedną kategorię.</p>
+                                    </information-box-content>
+                                </app-information-box>
                                 <ul class="list-unstyled widget__list">
                                     <li class="widget__list-element" ng-repeat="category in todoList" ng-class="{isActive: $index == selected}">
                                         <a href="#" title ="{{category.todoCategoryName}}"
