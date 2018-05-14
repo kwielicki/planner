@@ -3,13 +3,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
-                <app-intro-banner introBannerTitle="Lista rzeczy do zrobienia"></app-intro-banner>
+                <app-intro-banner introBannerTitle="Notatnik weselny"></app-intro-banner>
             </div>
         </div>
     </div>
 </section>
 
-<section class="section" ng-controller="ctrlToDoList">
+<section class="section" ng-controller="ctrlWeddingNotebook">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
@@ -17,11 +17,11 @@
                     <span class="js-preloader"></span>
                     <div class="app-selectize__form">
                         <h6 class="app-selectize__label">Dodaj nową kategorię
-                            <span ng-hide="todoCategoryDirty" class="text-danger"> - wybierz kategorię</span>
-                            <span ng-hide="todoCategoryDuplicated" class="text-danger"> - wybrana kategoria jest używana</span>
+                            <span ng-hide="weddingNotebookCategoryDirty" class="text-danger"> - wybierz kategorię</span>
+                            <span ng-hide="weddingNotebookCategoryDuplicated" class="text-danger"> - wybrana kategoria jest używana</span>
                         </h6>
-                        <selectize config='todoListSelectizeConfig' options='todoListSelectizeOptions' ng-model="todoCategoryName"></selectize>
-                        <a href="#" ng-click="todoListSelectizeAdd()" ng-show="todoListSelectizeSelected" class="btn btn-primary btn-sm">
+                        <selectize config='weddingNotebookSelectizeConfig' options='weddingNotebookSelectizeOptions' ng-model="weddingNotebookCategoryName"></selectize>
+                        <a href="#" ng-click="weddingNotebookSelectizeAdd()" ng-show="weddingNotebookSelectizeSelected" class="btn btn-primary btn-sm">
                             Dodaj kategorię
                         </a>
                     </div>
@@ -51,20 +51,20 @@
                         </div>
                         <div class="widget__content">
                             <div class="category">
-                                <app-information-box ng-if="todoListDatabaseEmpty" class="information-box--top0">
+                                <app-information-box ng-if="weddingNotebookDatabaseEmpty" class="information-box--top0">
                                     <information-box-content>
                                         <p>Nie posiadasz dostępnych kategorii.</p>
-                                        <p>Aby móc skorzystać z <code>TODO Listy</code> musisz stworzyć
+                                        <p>Aby móc skorzystać z <code>Notatnika weselnego</code> musisz stworzyć
                                         prznajmniej jedną kategorię.</p>
                                     </information-box-content>
                                 </app-information-box>
                                 <ul class="list-unstyled widget__list">
-                                    <li class="widget__list-element" ng-repeat="category in todoList" ng-class="{isActive: $index == selected}">
-                                        <a href="#" title ="{{category.todoCategoryName}}"
+                                    <li class="widget__list-element" ng-repeat="category in weddingNotebook" ng-class="{isActive: $index == selected}">
+                                        <a href="#" title ="{{category.weddingNotebookCategoryName}}"
                                                     class="widget__list-anchor"
                                                     data-category-id="{{category.$id}}"
-                                                    ng-click="todoListShowContent(category.$id); activeItem($index)">
-                                            {{ category.todoCategoryName }}
+                                                    ng-click="weddingNotebookShowContent(category.$id); activeItem($index)">
+                                            {{ category.weddingNotebookCategoryName }}
                                         </a>
                                     </li>
                                 </ul>
@@ -81,10 +81,10 @@
                             <h2 class="widget__title"><strong>Przyporządkowane notatki</strong></h2>
                         </div>
                         <div class="componet note" data-component-name="note">
-                            <div class="note__accordion" ng-show="todoListContentNoteAvailable">
+                            <div class="note__accordion" ng-show="weddingNotebookContentNoteAvailable">
                                 <v-accordion class="vAccordion--default">
                                     <v-pane class="note__accordion-pane">
-                                        <v-pane-header class="note__accordion-header">Dodaj notatkę do kategorii <strong>{{availableContent.todoCategoryName | lowercase}}</strong></v-pane-header>
+                                        <v-pane-header class="note__accordion-header">Dodaj notatkę do kategorii <strong>{{availableContent.weddingNotebookCategoryName | lowercase}}</strong></v-pane-header>
                                         <v-pane-content>
                                             <div class="form-group">
                                                 <label for="">Podaj tytuł dla notatki</label>
@@ -102,20 +102,20 @@
                                                     <option value='{"noteValuePriority": 0, "noteNamePriority": "noteLowPriority"}'>Priorytet niski</option>
                                                 </select>
                                             </div>
-                                            <a href="#" class="btn btn-primary btn-sm" ng-click="todoListAddNote(availableContent.$id)">Dodaj notatkę</a>
+                                            <a href="#" class="btn btn-primary btn-sm" ng-click="weddingNotebookAddNote(availableContent.$id)">Dodaj notatkę</a>
                                         </v-pane-content>
                                     </v-pane>
                                 </v-accordion>
                             </div>
 
-                            <app-information-box ng-if="todoListContentNoteEmpty" class="information-box--top0">
+                            <app-information-box ng-if="weddingNotebookContentNoteEmpty" class="information-box--top0">
                                 <information-box-content>
                                     <p>Wybrana kategoria nie posiada jeszcze <code>notatek</code>.</p>
                                     <p>Stwórz notatkę korzytając z dedykowanego formularza.</p>
                                 </information-box-content>
                             </app-information-box>
 
-                            <app-information-box ng-if="todoListContentEmpty">
+                            <app-information-box ng-if="weddingNotebookContentEmpty">
                                 <information-box-content>
                                     <p>Wygląda na to, że nie została wybrana <code>kategoria</code> znajdującą się w panelu <em>Dostępne kategorie</em>.</p>
                                     <p>Jeśli nie ma dostępnych kategorii stwórz je korzystając z kontrolki <span class="underline">Dodaj nową kategorię</span></p>
@@ -123,7 +123,7 @@
                             </app-information-box>
 
                             <!-- Filtr dedykowany notatką -->
-                            <todo-filter ng-if="isPlannerCardActivated" class="component filter" data-component-name="filter"></todo-filter>
+                            <weddingNotebook-filter ng-if="isPlannerCardActivated" class="component filter" data-component-name="filter"></weddingNotebook-filter>
 
                             <!-- Komponent renderujący notatki -->
                             <div class="planner-card-container" ng-if="isPlannerCardActivated">

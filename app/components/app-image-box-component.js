@@ -63,12 +63,12 @@ angular
                 }, {
                     id: 5,
                     imageBoxSrc: 'assets/images/image-box-5.jpg',
-                    imageBoxAlt: 'Lista rzeczy do zrobienia',
-                    imageBoxTitle: 'Lista rzeczy do zrobienia',
+                    imageBoxAlt: 'Notatnik',
+                    imageBoxTitle: 'Notatnik',
                     imageBoxDescription: 'Korzystając z kategorii zarządzaj notatkami, które ułatwią Ci proces przygotowań do ślubu',
                     imageBoxLinkLabel: 'Przejdź do notatek',
-                    imageBoxLinkValue: '#/to-do-list',
-                    imageBoxCssClass: 'image-box--todolist',
+                    imageBoxLinkValue: '#/wedding-notebook',
+                    imageBoxCssClass: 'image-box--wedding-notebook',
                     imageBoxIsNewest: {
                         value: true,
                         label: "Nowość"

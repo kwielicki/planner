@@ -1,6 +1,6 @@
 angular
     .module('weddingPlanner')
-    .controller('ctrlToDoList', function( $scope, $firebaseArray, Auth, $rootScope ) {
+    .controller('ctrlWeddingNotebook', function( $scope, $firebaseArray, Auth, $rootScope ) {
 
         /* Utworzenie połączenia pomiędzy aplikacją a tabelami w bazie danych o nazwach
          * 1 - to_do_list_category
@@ -11,30 +11,30 @@ angular
 
 
         // 1 - to_do_list_category
-        const ref = firebase.database().ref().child("to_do_list_category");
-        $scope.todoList = $firebaseArray(ref);
+        const ref = firebase.database().ref().child("wedding_notebook_category");
+        $scope.weddingNotebook = $firebaseArray(ref);
 
         // 2- to_do_list_note
-        const refListNote = firebase.database().ref().child("to_do_list_note");
-        $scope.todoNoteList = $firebaseArray(refListNote);
+        const refListNote = firebase.database().ref().child("wedding_notebook_note");
+        $scope.weddingNotebookNoteList = $firebaseArray(refListNote);
 
-        /* Czekamy na spełnienie się obietnicy z todoList
+        /* Czekamy na spełnienie się obietnicy z weddingNotebook
          * Kiedy promise będzie rozwiązany wykonuję metodę once
          * i iteruję po itemach bazy w celu wygenrowania tablicy, która
          * będzie źródłem danych z których skorzysta "Selectize"
          * w celu wygenerowania opcji wyboru.
          */
-        $scope.todoList.$loaded()
+        $scope.weddingNotebook.$loaded()
             .then(function() {
 
                 /* Pusta tablica, czeka na zapełnienie danymi z bazy danych
                  * Wymagana jest tablica o określonej strukturze:
-                 * todoCategoryId - id potrzeby w bazie to_do_list_category,
-                 * todoCategoryName - nazwa potrzeby (etykieta opcji)
+                 * weddingNotebookCategoryId - id potrzeby w bazie to_do_list_category,
+                 * weddingNotebookCategoryName - nazwa potrzeby (etykieta opcji)
                  * Tablica wypełniona poniższymi danymi, to tak naprawdę "defaultowe" dane,
                  * które sugeruję użytkownikowi jako trafne kategorii których oczekuje
                  */
-                var todoCategoryArray = [
+                var weddingNotebookCategoryArray = [
                     {
                         id: 1,
                         title: "Zakupy"
@@ -50,37 +50,37 @@ angular
                 ref.once('value', function(snapshot) {
                     snapshot.forEach(function(childSnapshot) {
 
-                        var todoCategoryId = childSnapshot.key; // ID
-                        var todoCategoryName = childSnapshot.val().todoCategoryName; // Nazwa
+                        var weddingNotebookCategoryId = childSnapshot.key; // ID
+                        var weddingNotebookCategoryName = childSnapshot.val().weddingNotebookCategoryName; // Nazwa
 
-                        /* Pushuję do tablicy todoCategoryArray obiekty składające się z
+                        /* Pushuję do tablicy weddingNotebookCategoryArray obiekty składające się z
                          * - ID kategorii
                          * - nazwy kategorii
                          * Dzięki temu selectize otrzymuje tablicę na kształt:
                          * [{id: id1, name: name1}, {id: id2, name: name2}]
                          */
-                        todoCategoryArray.push({
-                            id: todoCategoryId,
-                            title: todoCategoryName
+                        weddingNotebookCategoryArray.push({
+                            id: weddingNotebookCategoryId,
+                            title: weddingNotebookCategoryName
                         });
 
                     });
 
                     /* Uzupełniam selectize o kolejne dane, które dodał użytkownik
-                     * @TODO do zaimplementowania obsługa dodawania / edycji nazwy kategorii,
-                     * @TODO należy mieć na uwadzę referencyjność dwóch wyżej wymienionych tablic
-                     * @TODO podczas interakcji z kategorią narazy uaktualnić wymagane notatki
+                     * @weddingNotebook do zaimplementowania obsługa dodawania / edycji nazwy kategorii,
+                     * @weddingNotebook należy mieć na uwadzę referencyjność dwóch wyżej wymienionych tablic
+                     * @weddingNotebook podczas interakcji z kategorią narazy uaktualnić wymagane notatki
                      */
-                    $scope.todoListSelectizeOptions = todoCategoryArray;
+                    $scope.weddingNotebookSelectizeOptions = weddingNotebookCategoryArray;
 
                     /* Obsługa przypadku, gdy baza danych jest pusta */
-                    if (!$scope.todoList.length) {
+                    if (!$scope.weddingNotebook.length) {
 
-                        /* Korzystając z dyrektywy ng-show="todoListDatabaseEmpty" pokazuję komunikat jeśli aplikacja
+                        /* Korzystając z dyrektywy ng-show="weddingNotebookDatabaseEmpty" pokazuję komunikat jeśli aplikacja
                          * nie posiada żadnej dostępnej kategorii.
                          * Użytkownik jest zobowiązany do utworzenia kategorii w celu wygenerowania notatki
                          */
-                        $scope.todoListDatabaseEmpty = true;
+                        $scope.weddingNotebookDatabaseEmpty = true;
 
                         /* Korzystając z dyrektywy ng-class="preloaderChecker" do momentu pełnego załadowania się danych z bazy
                          * nakładam przy pomocy CSS maskę, która sprawia UX'owe wrażenie zaczytywania danych z bazy
@@ -102,7 +102,7 @@ angular
                  */
 
                     // Ukrywam kontrolkę do dodawania notatek, jeśli żadna kategoria nie została wybrana
-                    $scope.todoListContentEmpty = true;
+                    $scope.weddingNotebookContentEmpty = true;
 
                     /* Tablica do której pushuję obiekty pobrane z firebase
                      * aby potem przefiltrować po nich w ng-repeat
@@ -110,15 +110,15 @@ angular
                     var dynamicalArrayWithCurrentNotes = [];
 
 
-                $scope.todoListShowContent = function ( currentCategoryID ) {
+                $scope.weddingNotebookShowContent = function ( currentCategoryID ) {
 
                     /* Podczas wyboru kategorii, ustawiam filtrowanie notatek na Domyślne
                      * od najnowszych do najstarszych, resetuję również element aktywny z dropdown filtrowania
                      */
                     $scope.propertyName = '-timestamp';
-                    $rootScope.actuallySelectedToDoFilter = 'Sortuj notatki';
+                    $rootScope.actuallySelectedweddingNotebookFilter = 'Sortuj notatki';
                     $rootScope.actuallySelected = false;
-                    $rootScope.actuallySelectedLabelForToDoFilter = false;
+                    $rootScope.actuallySelectedLabelForweddingNotebookFilter = false;
 
 
 
@@ -132,18 +132,18 @@ angular
                      * - pokazanie informacji o braku kategorii, notatek
                      */
                     $scope.preloaderChecker = true;
-                    $scope.todoListContentNoteAvailable = true;
-                    $scope.todoListContentEmpty = false;
+                    $scope.weddingNotebookContentNoteAvailable = true;
+                    $scope.weddingNotebookContentEmpty = false;
 
 
                     /*
-                     * @TODO Opisać co tutaj się wyprawia.
+                     * @weddingNotebook Opisać co tutaj się wyprawia.
                      */
-                    $scope.availableContent = $scope.todoList.$getRecord(currentCategoryID);
+                    $scope.availableContent = $scope.weddingNotebook.$getRecord(currentCategoryID);
                     refListNote.once('value', function(snapshot) {
                         snapshot.forEach(function(childSnapshot) {
                             if (childSnapshot.val().assignedCategoryID === $scope.availableContent.$id) {
-                                $scope.xs = $scope.todoNoteList.$getRecord(childSnapshot.key);
+                                $scope.xs = $scope.weddingNotebookNoteList.$getRecord(childSnapshot.key);
                                 dynamicalArrayWithCurrentNotes.push($scope.xs);
                             }
                         })
@@ -151,23 +151,23 @@ angular
 
                     if (dynamicalArrayWithCurrentNotes.length > 0) {
 
-                        $scope.todoListContentNoteEmpty = false;
+                        $scope.weddingNotebookContentNoteEmpty = false;
                         $scope.isPlannerCardActivated = true;
                     } else {
-                        $scope.todoListContentNoteEmpty = true;
+                        $scope.weddingNotebookContentNoteEmpty = true;
                         $scope.isPlannerCardActivated = false;
                     }
                     $scope.dynamicalArrayWithCurrentNotes = dynamicalArrayWithCurrentNotes;
                 };
 
                 /* Dodanie notatki i przyporządkowanie jej do odpowiedniej kategorii */
-                $scope.todoListAddNote = function( currentCategoryID ) {
+                $scope.weddingNotebookAddNote = function( currentCategoryID ) {
                     $scope.preloaderChecker = false;
                     $scope.isPlannerCardActivated = true;
-                    $scope.todoListContentNoteEmpty = false;
-                    $scope.todoNoteList.$add({
+                    $scope.weddingNotebookContentNoteEmpty = false;
+                    $scope.weddingNotebookNoteList.$add({
                         assignedCategoryID: currentCategoryID,
-                        assignedCategoryName: $scope.todoList.$getRecord(currentCategoryID).todoCategoryName,
+                        assignedCategoryName: $scope.weddingNotebook.$getRecord(currentCategoryID).weddingNotebookCategoryName,
                         noteTitle: $scope.noteTitle ,
                         noteDescription: $scope.noteDescription,
                         noteAuthor: Auth.$getAuth().email,
@@ -181,7 +181,7 @@ angular
                         /* Po dodaniu kolejnej notatki do zadanej kategorii, uaktualniam wcześniej przygotowaną tablicę
                          * o kolejny object o id ref
                          */
-                        var currentAddidingElement = $scope.todoNoteList.$getRecord(ref.key);
+                        var currentAddidingElement = $scope.weddingNotebookNoteList.$getRecord(ref.key);
 
                         dynamicalArrayWithCurrentNotes.push(currentAddidingElement);
                         $scope.dynamicalArrayWithCurrentNotes = dynamicalArrayWithCurrentNotes;
@@ -198,7 +198,7 @@ angular
                  * - noteValuePriority > zostanie wykorzystane do sortowania według priorytetów
                  * - noteNamePriority > zostanie użyte do przekazania odpowiedniej klasy na komponent card
                  *   co umożliwi wyświetlenie odpowiedniej belki sygnalizującej priorytet
-                 * @TODO dodać timestamp serwerowy (skorzystać z API angularFire)
+                 * @weddingNotebook dodać timestamp serwerowy (skorzystać z API angularFire)
                 */
                 $scope.observable = {
                     title: "",
@@ -221,51 +221,51 @@ angular
 
             });
 
-        /* Akcja odpowiedzialna za dodanie kategorii do todoLisy */
-        $scope.todoListSelectizeConfig = {
+        /* Akcja odpowiedzialna za dodanie kategorii do weddingNotebookLisy */
+        $scope.weddingNotebookSelectizeConfig = {
           create: true,
           valueField: 'title',
           labelField: 'title',
           delimiter: '|',
           placeholder: 'Wybierz lub dodaj nową kategorię',
           onInitialize: function(){
-              $scope.todoListSelectizeSelected = true;
-              $scope.todoCategoryDirty = true;
-              $scope.todoCategoryDuplicated = true;
+              $scope.weddingNotebookSelectizeSelected = true;
+              $scope.weddingNotebookCategoryDirty = true;
+              $scope.weddingNotebookCategoryDuplicated = true;
 
               /* Dodanie kategorii do bazy danych */
-              $scope.todoListSelectizeAdd = function() {
+              $scope.weddingNotebookSelectizeAdd = function() {
                   /* Gdy osoba próbuje dodać kategorię, bez jej wyboru rzucam
                    * wyjątek i pokazuję stosowny komunikat. A następnie zwracam ten wyjątek
                    * i kończę działanie metody.
                    */
-                  if ($scope.todoCategoryName === undefined) {
-                      $scope.todoCategoryDirty = false;
+                  if ($scope.weddingNotebookCategoryName === undefined) {
+                      $scope.weddingNotebookCategoryDirty = false;
                       return;
                   }
-                  $scope.todoCategoryDirty = true;
+                  $scope.weddingNotebookCategoryDirty = true;
 
                   /* Tutaj jest logika dotycząca pokazywania odpowiednich komunikatów
                    * w przypadki kiedy użytkownik próbuje zduplikować kategorię
                    * Rzucam wyjątek w postaci komunikatu
                    */
-                  var todoListSelectizeArray = [];
-                  $scope.todoList.$loaded()
+                  var weddingNotebookSelectizeArray = [];
+                  $scope.weddingNotebook.$loaded()
                     .then(function() {
                         ref.once('value', function(snapshot) {
                             snapshot.forEach(function(childSnapshot) {
-                                var todoCategoryName = (childSnapshot.val().todoCategoryName).toLowerCase();
-                                todoListSelectizeArray.push(todoCategoryName);
+                                var weddingNotebookCategoryName = (childSnapshot.val().weddingNotebookCategoryName).toLowerCase();
+                                weddingNotebookSelectizeArray.push(weddingNotebookCategoryName);
                             });
 
                         });
-                        if (!todoListSelectizeArray.includes(($scope.todoCategoryName).toLowerCase())) {
-                            $scope.todoListDatabaseEmpty = false;
-                            $scope.todoList.$add({
-                                todoCategoryName: $scope.todoCategoryName
+                        if (!weddingNotebookSelectizeArray.includes(($scope.weddingNotebookCategoryName).toLowerCase())) {
+                            $scope.weddingNotebookDatabaseEmpty = false;
+                            $scope.weddingNotebook.$add({
+                                weddingNotebookCategoryName: $scope.weddingNotebookCategoryName
                             });
                         } else {
-                            $scope.todoCategoryDuplicated = false;
+                            $scope.weddingNotebookCategoryDuplicated = false;
                         }
                     });
 
@@ -273,8 +273,8 @@ angular
               }
           },
           onChange: function () {
-              if ($scope.todoCategoryName === undefined) {
-                  $scope.todoCategoryDuplicated = true;
+              if ($scope.weddingNotebookCategoryName === undefined) {
+                  $scope.weddingNotebookCategoryDuplicated = true;
               }
           },
           maxItems: 1,

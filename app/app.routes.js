@@ -1,6 +1,6 @@
 /* angularjs 1.6.0 (latest now) routes not working
  * Błąd podczas migracji na wersję angulara 1.6.0
- * TODO: być może da się to
+ * @TODO: być może da się to zaimplementować w lepszy sposób
  */
 angular
     .module('weddingPlanner')
@@ -81,10 +81,10 @@ angular
                       return Auth.$requireSignIn();
                     }]
                 }
-            }).when('/to-do-list', {
-                templateUrl: 'templates/to-do-list.html',
+            }).when('/wedding-notebook', {
+                templateUrl: 'templates/wedding-notebook.html',
                 controller: "AuthorizationCtrl",
-                title: 'Lista rzeczy do zrobienia | Wedding Planner',
+                title: 'Notatnik weselne | Wedding Planner',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();

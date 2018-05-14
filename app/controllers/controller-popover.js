@@ -22,7 +22,7 @@ angular
             $scope.appPopoverInit = function ( event ) {
 
                 /* Zmienna popoverContent przechowuje "stringa" z atrybutu data-popover content
-                 * TODO: dodać atrybut, który da możliwość przekazania HTML'a.
+                 * @TODO: dodać atrybut, który da możliwość przekazania HTML'a.
                 */
                 const popoverContent = event.currentTarget.attributes['data-popover-content'].nodeValue;
 

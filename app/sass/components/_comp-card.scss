@@ -44,7 +44,7 @@
     }
 
     &::after {
-        content: attr(data-index); // @TODO przepisać to na dyrektywe
+        content: attr(data-index); // @weddingNotebook przepisać to na dyrektywe
         font-size: 150px;
         color: $border-color-dropdown-element;
         position: absolute;

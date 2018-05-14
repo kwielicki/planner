@@ -1,18 +1,18 @@
 angular
     .module('weddingPlanner')
-    .component('todoFilter', {
-        templateUrl: 'templates/components/component-todo-filter.html',
+    .component('weddingNotebookFilter', {
+        templateUrl: 'templates/components/component-wedding-notebook-filter.html',
         controller: function ( $scope, $rootScope ) {
             /* Domyślne sortowanie jest ustawione na Datę dodania (od najświeższych)
             * tj. "-timestamp", właściwość ta jest dynamicznie generowana przez server firebase i przypisana do każdej dodawanej notatki
             */
             $scope.$parent.$parent.propertyName = '-timestamp';
             $rootScope.actuallySelected = null;
-            $rootScope.actuallySelectedLabelForToDoFilter = false;
+            $rootScope.actuallySelectedLabelForWeddingNotebook = false;
 
             $scope.setOrderProperty = function ( propertyName, elementID, sortPropertyLabel, sortName ) {
                 $scope.$parent.$parent.propertyName = propertyName;
-                $rootScope.actuallySelectedToDoFilter = sortPropertyLabel + ": " + sortName;
+                $rootScope.actuallySelectedWeddingNotebookFilter = sortPropertyLabel + ": " + sortName;
                 $rootScope.actuallySelected  = elementID;
             }
 
