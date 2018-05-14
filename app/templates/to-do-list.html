@@ -125,12 +125,12 @@
                             <todo-filter ng-if="isPlannerCardActivated" class="component filter" data-component-name="filter"></todo-filter>
 
                             <!-- Komponent renderujący notatki -->
-                            <div class="planner-card-container" ng-show="isPlannerCardActivated">
+                            <div class="planner-card-container" ng-if="isPlannerCardActivated">
                                 <planner-card data-component-name="card"
-                                class="component card"
-                                ng-repeat="currentArrayWithCurrentNotes in dynamicalArrayWithCurrentNotes | orderBy:propertyName | filter:query"
-                                data-index="{{$index}}">
-                            </planner-card>
+                                    class="component card"
+                                    ng-repeat="currentArrayWithCurrentNotes in dynamicalArrayWithCurrentNotes | orderBy:propertyName | filter:query"
+                                    data-index="{{$index}}">
+                                </planner-card>
                             </div>
                         </div>
                     </div>

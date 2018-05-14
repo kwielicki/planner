@@ -163,6 +163,8 @@ angular
                 /* Dodanie notatki i przyporządkowanie jej do odpowiedniej kategorii */
                 $scope.todoListAddNote = function( currentCategoryID ) {
                     $scope.preloaderChecker = false;
+                    $scope.isPlannerCardActivated = true;
+                    $scope.todoListContentNoteEmpty = false;
                     $scope.todoNoteList.$add({
                         assignedCategoryID: currentCategoryID,
                         assignedCategoryName: $scope.todoList.$getRecord(currentCategoryID).todoCategoryName,
