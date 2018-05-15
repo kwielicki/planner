@@ -8,7 +8,7 @@ angular
             */
             $scope.$parent.$parent.propertyName = '-timestamp';
             $rootScope.actuallySelected = null;
-            $rootScope.actuallySelectedLabelForWeddingNotebook = false;
+            $rootScope.actuallySelectedLabelForWeddingNotebookFilter = false;
 
             $scope.setOrderProperty = function ( propertyName, elementID, sortPropertyLabel, sortName ) {
                 $scope.$parent.$parent.propertyName = propertyName;
