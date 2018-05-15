@@ -46,9 +46,21 @@ angular
                     title:  'Dodaj nowego gościa'
                 },
                 {
+                    name: 'Notatnik weselny',
+                    url:  '/wedding-notebook',
+                    title:'Notatnik weselny'
+                },
+                {
                     name: 'Lista rzeczy do zrobienia',
                     url:  '/to-do-list',
-                    title:'Lista rzeczy do zrobienia'
+                    title:'Lista rzeczy do zrobienia',
+                    specialClass: 'not--available'
+                },
+                {
+                    name: 'Zarządzaj wydatkami',
+                    url:  '/manage-expenses',
+                    title:'Zarządzaj wydatkami',
+                    specialClass: 'not--available'
                 }
             ]
         },

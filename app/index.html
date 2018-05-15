@@ -38,7 +38,7 @@
                                             <li class="dropdown-menu__element dropdown-menu__element--manage">
                                                 <ul class="list-unstyled">
                                                     <li ng-repeat="menuItem in menuItems[1].manage" ng-class="{active: isActive('{{ menuItem.url }}')}">
-                                                        <a ng-href="#{{menuItem.url}}" title="{{menuItem.title}}" class="dropdown-menu__anchor">{{ menuItem.name }}</a>
+                                                        <a ng-href="#{{menuItem.url}}" title="{{menuItem.title}}" class="dropdown-menu__anchor" ng-class="menuItem.specialClass">{{ menuItem.name }}</a>
                                                     </li>
                                                 </ul>
                                             </li>

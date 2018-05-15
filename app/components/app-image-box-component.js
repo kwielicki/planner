@@ -76,6 +76,15 @@ angular
                 }, {
                     id: 6,
                     imageBoxSrc: 'assets/images/image-box-6.jpg',
+                    imageBoxAlt: 'Lista rzeczy do zrobienia',
+                    imageBoxTitle: 'Lista rzeczy do zrobienia',
+                    imageBoxDescription: 'Zorganizuj się. Zanim wszystko poukładasz, musisz wiedzieć, co w ogóle masz do zrobienia, a to najłatwiej spisywać na bieżąco',
+                    imageBoxLinkLabel: 'W trakcie realizacji...',
+                    imageBoxLinkValue: '#/todo-list',
+                    imageBoxCssClass: 'image-box--expenses',
+                }, {
+                    id: 7,
+                    imageBoxSrc: 'assets/images/image-box-7.jpg',
                     imageBoxAlt: 'Zarządzaj wydatkami',
                     imageBoxTitle: 'Zarządzaj wydatkami',
                     imageBoxDescription: 'Moduł udostępniający narzędzia służące do analizy wydatków związanych z planowaniem wesela',
