@@ -160,6 +160,11 @@
 			&:hover {
 				background-color: $border-color-dropdown-element;
 			}
+			&.not--available {
+				opacity: 0.5;
+				pointer-events: none;
+				cursor: default;
+			}
 		}
 		&--logout {
 			min-width: 300px;
