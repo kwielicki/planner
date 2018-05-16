@@ -3,7 +3,10 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="footer__inner">
-                    <h6 class="small">&copy {{date | date:'yyyy'}} by e-inet.pl, wszystkie prawa zastrzeżone. Wersja aplikacji <code ng-controller="controllerAppVersion">{{appVersion}}</code></h6>
+                    <h6 class="small">
+                        &copy {{date | date:'yyyy'}} by e-inet.pl, wszystkie prawa zastrzeżone.
+                        <span class="footer__app-version">Wersja aplikacji <code ng-controller="controllerAppVersion">{{appVersion}}</code></span>
+                    </h6>
                 </div>
             </div>
         </div>

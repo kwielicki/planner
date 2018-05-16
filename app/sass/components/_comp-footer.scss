@@ -5,5 +5,16 @@
         @include media-breakpoint-down(sm) {
             text-align: center;
         }
+        @include media-breakpoint-down(xs) {
+            padding-top: $padding-normal;
+        }
+    }
+    &__app-version {
+        display: inline-block;
+        white-space: nowrap;
+        padding-top: $padding-xs;
+    }
+    .small {
+        margin-bottom: $padding-normal;
     }
 }
