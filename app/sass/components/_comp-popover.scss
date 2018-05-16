@@ -8,6 +8,34 @@
     border-radius: $border-radius-sm;
     color: $brand-dark;
     padding: $padding-medium;
+    &__footer {
+        display: none;
+        @include media-breakpoint-down(sm) {
+            display: block;
+            border-top: 1px solid $border-color-dropdown-element;
+            text-align: right;
+            padding-top: $padding-xs;
+            margin-top: $padding-normal;
+            a {
+                color: $brand-gray;
+                font-size: $font-size-xs;
+            }
+        }
+    }
+    @include media-breakpoint-down(sm) {
+        position: fixed;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%,-50%);
+    }
+    @include media-breakpoint-down(xs) {
+        left: $padding-normal !important;
+        right: $padding-normal !important;
+        transform: translate(0, -50%);
+        max-width:none;
+        width: auto;
+        padding: $padding-medium $padding-normal $padding-normal;
+    }
     &-content {
         padding: 0;
         font-weight: 300;
@@ -15,6 +43,9 @@
     &.top {
         margin-top: -15px;
         margin-left: -33px;
+        @include media-breakpoint-down(sm) {
+            margin: 0;
+        }
     }
     &.top-left {
         &::before,
@@ -25,6 +56,9 @@
             height: 0;
             border-style: solid;
             position: absolute;
+            @include media-breakpoint-down(sm) {
+                display: none;
+            }
         }
     }
     &.top-left {
@@ -86,5 +120,22 @@
     // content
     &__content {
         padding-top: $padding-xs;
+    }
+}
+
+// Popover overlay - urządzenia o szerokościach < 768px
+.popover--overlay {
+    @include media-breakpoint-down(sm) {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(0,0,0,.5);
+        z-index: $zindex-modal;
+    }
+    &.is--activated {
+        display: block;
     }
 }

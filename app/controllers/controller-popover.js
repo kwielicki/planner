@@ -3,7 +3,7 @@
  */
 angular
     .module('weddingPlanner')
-    .controller('controllerPopover', ['$scope', '$http' , '$sce' , function( $scope, $http, $sce ) {
+    .controller('controllerPopover', ['$scope', '$http' , '$sce', function( $scope, $http, $sce, element ) {
 
         /* Korzystam z serwisu $http i metodą get pobieram wymagany URL
          * pod którym znajduje się HTML, który zawiera elementy popovera
@@ -16,10 +16,24 @@ angular
             /* Korzystam z serwisu $sce i ustalam, że jest on bezpiecznym URL'em */
             const popoverTemplateUrl = $sce.trustAsUrl(response.config.url);
 
+            const newElement = angular.element("<div class='popover--overlay'></div>");
 
+            $scope.$watch('displayMode', function(value) {
+                switch(value) {
+                    case 'mobile':
+                        angular.element(document).find('body').append(newElement);
+                        break;
+                    default:
+                        angular.element(newElement).remove();
+                        break;
+                }
+            });
 
             /* Zadaniem metody appPopoverInit jest otworzenie popovera po clicku */
             $scope.appPopoverInit = function ( event ) {
+
+                angular.element(newElement).addClass('is--activated');
+
 
                 /* Zmienna popoverContent przechowuje "stringa" z atrybutu data-popover content
                  * @TODO: dodać atrybut, który da możliwość przekazania HTML'a.
@@ -34,8 +48,6 @@ angular
                     content: popoverContent,
                     open: true
                 };
-
-
             };
 
             /* W templatce znajduje się przycisk, który powoduje zamknięcie popovera
@@ -54,7 +66,10 @@ angular
                     open: false,
                     templateUrl: $sce.valueOf(popoverTemplateUrl),
                     content: $scope.appPopover.content
-                }
+                };
+
+                angular.element(newElement)
+                    .removeClass('is--activated')
             };
 
           });
