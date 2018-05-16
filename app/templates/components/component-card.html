@@ -1,12 +1,11 @@
 <div class="card__inner">
     <div class="card__side card__side--left">
-        <h6 class="card__category">{{categoryName}}</h6>
-        <span class="card__author--sm">Notatka dodana przez: {{noteAuthor}}</span>
+        <div class="card__header">
+            <span class="h6 card__category">Kategoria: <strong>{{categoryName}}</strong></span>
+            <span class="h6 card__author">Autor: <strong>{{noteAuthor}}</strong></span>
+        </div>
         <h5 class="card__title">{{noteTitle}}</h5>
         <p class="card__description">{{noteDescription}}</p>
-    </div>
-    <div class="card__side card__side--right">
-        <h6 class="card__author"><small>Dodana przez: {{noteAuthor}}</small></h6>
     </div>
     <div class="card__priority">
         <span ng-show="noteStatusLabel()" ng-class="noteClassModifier()">{{notePriorityLabel}}</span>

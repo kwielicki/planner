@@ -5,6 +5,10 @@
     padding: $padding-base $padding-base 0 $padding-base;
     margin-left: -($padding-sm);
     margin-right: -($padding-sm);
+    @include media-breakpoint-down(lg) {
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
     @include media-breakpoint-down(md) {
         padding: $padding-normal $padding-normal 0 $padding-normal;
     }
@@ -32,15 +36,6 @@
                 width: 100%;
             }
         }
-        &--right {
-            position: absolute;
-            text-align: right;
-            right: $padding-normal;
-            margin-top: -2px;
-            @include media-breakpoint-down(md) {
-                display: none;
-            }
-        }
     }
 
     &::after {
@@ -55,27 +50,32 @@
         opacity: .3;
     }
 
-    &__category {
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid $border-color-dropdown-element;
+        padding-bottom: $padding-sm;
         margin-bottom: $padding-normal;
-        font-weight: 500;
-        font-size: $font-size-xs;
-        color: $brand-gray;
-        @include media-breakpoint-down(md) {
-            margin-bottom: $padding-xs;
+        @include media-breakpoint-down(xs) {
+            flex-direction: column;
         }
     }
+
+    &__category,
     &__author {
-        font-weight: 500;
-        &--sm {
-            color: $brand-gray;
-            display: block;
-            margin-bottom: $padding-normal;
-            padding-bottom: $padding-xs;
-            border-bottom: 1px solid $border-color-dropdown-element;
-            font-size: $font-size-xs;
-            @include media-breakpoint-up(lg) {
-                display: none;
-            };
+        display: block;
+        font-size: $font-size-xs;
+        color: $brand-gray;
+        margin-bottom: 0;
+        strong {
+            text-transform: lowercase;
+        }
+    }
+
+    &__category {
+        margin-bottom: $padding-xs;
+        @include media-breakpoint-down(md) {
+            margin-bottom: $padding-xs;
         }
     }
     &__title {
