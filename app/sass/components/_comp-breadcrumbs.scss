@@ -1,0 +1,28 @@
+/* Component Breadcrumbs */
+.breadcrumbs {
+	display: block;
+	text-align: right;
+	padding-top: $padding-sm;
+	margin-bottom: $padding-normal*2.5;
+	background-color: #fff;
+	border-bottom: 1px solid $border-color-dropdown-element;
+	&--smaller {
+		margin-bottom: $padding-normal;
+	}
+	&__element {
+		display: inline-block;
+		position: relative;
+		margin-right: -4px;
+		padding: 0 $padding-xs;
+		&:not(:last-child) {
+			&:after {
+				content: '|';
+				position: absolute;
+				right: -2px;
+			}
+		}
+		&--major {
+			text-shadow: 0 0 0 $brand-primary;
+		}
+	}
+}

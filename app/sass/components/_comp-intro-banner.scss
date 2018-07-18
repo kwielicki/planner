@@ -4,7 +4,6 @@
 	background-color: #fff;
 	border-bottom: 2px solid $brand-gray;
 	padding: $padding-normal;
-	margin-bottom: $padding-base;
 	@include media-breakpoint-down(sm) {
 		@include placeholder-negative-margin;
 	}

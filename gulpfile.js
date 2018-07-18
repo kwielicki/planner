@@ -151,6 +151,7 @@ gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-includes', 
 		paths.assets.components + 'app-intro-banner.js',
 		paths.assets.components + 'app-manageguest-sorting-label.js',
 		paths.assets.components + 'app-information-box.js',
+		paths.assets.components + 'app-breadcrumbs.js',
 		paths.assets.filters + 'app-percentage-filter.js'
 	])
 	.pipe(babel({

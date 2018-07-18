@@ -126,17 +126,17 @@
     <script src="assets/javascript/angular-notifications.js"></script>
     <script src="assets/javascript/angular-bootstrap-ui.min.js"></script>
 
-    <!-- Konfiguracja demo -->
+	<!-- Konfiguracja demo -->
     <script>
-         var config = {
-            apiKey: "AIzaSyBRjkMKqSHSateo0PxqgrcARp0o4yovlNs",
-            authDomain: "wedding-demo.firebaseapp.com",
-            databaseURL: "https://wedding-demo.firebaseio.com",
-            projectId: "wedding-demo",
-            storageBucket: "wedding-demo.appspot.com",
-            messagingSenderId: "197163022152"
-        };
-        firebase.initializeApp(config);
+    	 var config = {
+		    apiKey: "AIzaSyBRjkMKqSHSateo0PxqgrcARp0o4yovlNs",
+		    authDomain: "wedding-demo.firebaseapp.com",
+		    databaseURL: "https://wedding-demo.firebaseio.com",
+		    projectId: "wedding-demo",
+		    storageBucket: "wedding-demo.appspot.com",
+		    messagingSenderId: "197163022152"
+  		};
+  		firebase.initializeApp(config);
     </script>
 
     <script src="assets/javascript/pdfmake.min.js"></script>
@@ -145,6 +145,7 @@
 
     <!-- Modules -->
     <script src="modules/module-wedding-planner.js" type="text/javascript"></script>
+    <script src="modules/module-planner-snackbar.js" type="text/javascript"></script>
 
     <script src="app.module.js"></script>
     <script src="app.routes.js"></script>
@@ -157,7 +158,7 @@
     <script src="controllers/controller-user-login.js"></script>
     <script src="controllers/controller-user-logout.js"></script>
     <script src="controllers/controller-main-firebase.js"></script>
-    <script src="controllers/controller-to-do-list.js"></script>
+    <script src="controllers/controller-wedding-notebook-list.js"></script>
     <script src="controllers/controller-popover.js"></script>
 
     <!-- Components -->
@@ -167,6 +168,12 @@
     <script src="components/app-footer-component.js" type="text/javascript"></script>
     <script src="components/app-user-profile-component.js" type="text/javascript"></script>
     <script src="components/app-spinner-component.js" type="text/javascript"></script>
+    <script src="components/app-image-box-component.js" type="text/javascript"></script>
+    <script src="components/app-image-box-element-component.js" type="text/javascript"></script>
+    <script src="components/app-intro-banner.js" type="text/javascript"></script>
+    <script src="components/app-manageguest-sorting-label.js" type="text/javascript"></script>
+    <script src="components/app-information-box.js" type="text/javascript"></script>
+    <script src="components/app-breadcrumbs.js" type="text/javascript"></script>
 
     <!-- Directives -->
     <script src="directive/directive-for-anchor.js" type="text/javascript"></script>

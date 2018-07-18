@@ -17,6 +17,7 @@ angular
                 templateUrl: 'templates/dashboard.html',
                 controller: 'AuthorizationCtrl',
                 title: 'Panel Głowny | Wedding Planner',
+                breadcrumbsTitle: 'Panel Głowny',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -27,6 +28,7 @@ angular
                 templateUrl: 'templates/dashboard.html',
                 controller: "AuthorizationCtrl",
                 title: 'Panel Głowny | Wedding Planner',
+                breadcrumbsTitle: 'Panel Głowny',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -35,7 +37,8 @@ angular
             }).when('/manage-guests', {
                 templateUrl: 'templates/manage-guests.html',
                 controller: "AuthorizationCtrl",
-                title: 'Zarządzaj listą gości | Wedding Planner',
+                title: 'Zarządzanie listą gości | Wedding Planner',
+                breadcrumbsTitle: 'Zarządzanie listą gości',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -44,7 +47,8 @@ angular
             }).when('/add-new-guest', {
                 templateUrl: 'templates/add-new-guest.html',
                 controller: "AuthorizationCtrl",
-                title: 'Dodaj nowego gościa | Wedding Planner',
+                title: 'Dodawanie nowego gościa | Wedding Planner',
+                breadcrumbsTitle: 'Dodawanie nowego gościa',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -54,6 +58,7 @@ angular
                 templateUrl: 'templates/user-profile.html',
                 controller: "AuthorizationCtrl",
                 title: 'Profil użytkownika | Wedding Planner',
+                breadcrumbsTitle: 'Profil użytkownika',
                 resolve: {
                     "currentAuth": ["Auth", function(Auth) {
                         return Auth.$requireSignIn();
@@ -63,6 +68,7 @@ angular
                 templateUrl: 'templates/edit-guest.html',
                 controller: 'appEditGuest',
                 title: 'Edycja gościa | Wedding Planner',
+                breadcrumbsTitle: 'Edycja gościa',
                 resolve: {
                     "recordId": ['$route', function($route) {
                         return {
@@ -84,7 +90,8 @@ angular
             }).when('/wedding-notebook', {
                 templateUrl: 'templates/wedding-notebook.html',
                 controller: "AuthorizationCtrl",
-                title: 'Notatnik weselne | Wedding Planner',
+                title: 'Notatnik weselny | Wedding Planner',
+                breadcrumbsTitle: 'Notatnik weselny',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -94,6 +101,17 @@ angular
                 templateUrl: 'templates/statistics.html',
                 controller: "AuthorizationCtrl",
                 title: 'Statystyki | Wedding Planner',
+                breadcrumbsTitle: 'Statystyki',
+                resolve: {
+                  "currentAuth": ["Auth", function(Auth) {
+                    return Auth.$requireSignIn();
+                  }]
+                }
+            }).when('/statistics/statistics-children', {
+                templateUrl: 'templates/statistics-deep/statistics-children.html',
+                controller: "AuthorizationCtrl",
+                title: 'Statystyki | Wedding Planner',
+                breadcrumbsTitle: 'Statystyki dziecko',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -106,6 +124,7 @@ angular
                 templateUrl: 'templates/documentation.html',
                 controller: "AuthorizationCtrl",
                 title: 'Dokumentacja | Wedding Planner',
+                breadcrumbsTitle: 'Dokumentacja',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -115,6 +134,7 @@ angular
                 redirectTo: '/404',
                 templateUrl: 'templates/404.html',
                 title: 'Strona nie została odnaleziona | Wedding Planner',
+                breadcrumbsTitle: '404',
                 controller: "AuthorizationCtrl",
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
