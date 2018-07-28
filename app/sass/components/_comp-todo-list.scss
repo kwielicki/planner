@@ -1,0 +1,212 @@
+/* Component Todo list */
+.todo-list {
+	$component: &;
+	&__header {
+		text-align: center;
+		padding: $padding-sm 0;
+	}
+	&__title {
+		margin-bottom: $padding-xs;
+	}
+	&__description {
+		font-weight: $fw-3;
+	}
+
+	// Formularz dodania zadania
+	
+
+	&__elements {
+		display: flex;
+		flex-wrap: wrap;
+		padding: $padding-medium 0;
+	}
+	&__element {
+		position: relative;
+		overflow: hidden;
+		width: calc(50% - #{$padding-normal}*2);
+		background-color: #fff;
+		margin: $padding-normal;
+		padding: $padding-normal;
+	    border: 1px solid $border-color-dropdown-element;
+	    box-shadow: 0 4px 2px -2px $border-color;
+	    padding: $padding-normal;
+	    min-height: 230px;
+	    margin: 0 $padding-sm $padding-base $padding-sm;
+	    flex-basis: calc(50% - (#{$padding-sm} * 2));
+		border-radius: $border-radius;
+	}
+	&__status {
+		position: absolute;
+		min-width: 115px;
+		display: block;
+		text-align: center;
+		bottom: 0;
+		right: 0;
+		font-size: $font-size-xs;
+		border-top-left-radius: $border-radius;
+		span {
+			display: block;
+			padding: $padding-xs;
+			border: 1px solid transparent;
+		}
+		&--confirmed {
+            color: $brand-white;
+            background-color: $brand-success;
+            border-color: $brand-success;
+        }
+        &--pending{
+            color: $brand-white;
+            background-color: $brand-warning;
+            border-color: $brand-warning;
+        }
+	}
+
+	// Opis zadania
+	&__task-title {
+		line-height: 1.4;
+		font-weight: 300;
+		small {
+			display: block;
+			margin-bottom: $padding-xs;
+		}
+	}
+
+	// Progress bar ( czas do wykonania zadania )
+	&__destination-time {
+		font-size: $font-size-xs;
+		display: flex;
+	    justify-content: space-between;
+	    flex-direction: row;
+	    flex-wrap: wrap;
+		&--confirmed {
+			border-bottom: 1px solid $border-color-dropdown-element;
+			padding-bottom: $padding-xs;
+			margin-bottom: 20px;
+		}
+	}
+
+	// Operations ( dropdown z możliwością edycji lub usunięcia zadania )
+	&__operations {
+		position: absolute;
+		right: 5px;
+		bottom: 35px;
+		.dropdown-menu {
+			top: auto;
+			right: 0;
+			bottom: 0;
+			left: auto;
+			background-color: #fff;
+			animation-duration: .3s;
+			border-radius: 0;
+			padding: 0;
+			margin: 0;
+			li {
+				a {
+					padding: 10px;
+					display: block;
+					color: $brand-dark;
+					font-size: $font-size-xs;
+					&:hover {
+						background-color: $border-color-dropdown-element;
+					}
+				}
+			}
+		}
+	}
+	&__button {
+		background-color: #fff;
+		box-shadow: none;
+		border: 1px solid $border-color-dropdown-element;
+		color: $brand-primary;
+		cursor: pointer;
+		&:after {
+			display: none;
+		}
+	}
+
+	.progress {
+		margin-top: $padding-xs;
+		height: 1px;
+		border: 0;
+		background-color: $border-color-dropdown-element;
+	}
+	.progress-bar {
+		animation: none;
+		background: $brand-primary;
+		height: 1px;
+	}
+
+	// Ikonka (opcjonalnie)
+	&__icon {
+		position: absolute;
+	    left: 50%;
+	    top: 50%;
+	    font-size: 30vh;
+	    opacity: 0.2;
+	    color: $brand-gray-light;
+		transform: translate(-50%,-50%);
+	}
+
+	// Checkbox switcher status
+	&__status-switcher {
+		position: absolute;
+		bottom: 5px;
+		line-height: 0;
+	}
+	.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  margin-bottom: 0;
+  transition: opacity .3s;
+  &.is--busy {
+	  opacity: .2;
+	  pointer-events: none;
+  }
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $border-color-dropdown-element;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 10px;
+  width: 10px;
+  left: 5px;
+  bottom: 5px;
+  background-color: $brand-white;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: $brand-primary;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+/* Rounded sliders */
+.slider.round {
+  border-radius: 10px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+}

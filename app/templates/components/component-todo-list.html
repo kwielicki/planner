@@ -1,0 +1,182 @@
+<div class="todo-list__inner">
+	<figure class="todo-list__graphic" style="text-align: center">
+		<img src="assets/images/list-icon.svg" alt="" style="max-width: 150px;">
+	</figure>
+	<div class="todo-list__header">
+		<h2 class="todo-list__title">Dzisiaj jest {{ dateOptions.minDate | date: 'EEEE, d-MM-yyyy' }}</h2>
+		<p class="todo-list__description h6">{{firebaseUserAuthenticated}}, sprawdź czy masz dzisiaj coś do zrobienia</p>
+	</div>
+	<div class="todo-list__content">
+		<div class="row">
+			<div class="col-sm-8">
+				<div class="component widget" data-component-name="widget">
+					<div class="widget__header widget__header--popover">
+						<h2 class="widget__title">
+							<strong>Lista zadań</strong>
+						</h2>
+					</div>
+					<!-- Preloader -->
+					<div ng-if="!todoList.length">Trwa ładowanie danych ...</div>
+
+					<!--
+						Zadania do zrealizowania. Status -"zadanie w trakcie realizacji" oraz "zadanie, w którym czas na jego realizację nie upłynął"
+						Domyślne sortowanie ustawione na czas ( min -> max )
+					-->
+					<uib-tabset ng-if="todoList.length">
+						<uib-tab index="0" heading="Zadania do zrealizowania ({{(todoList|filter:{todoStatus:false}).length - (todoList|filter:{timeToFinishTask:-1}).length}})" deselect="tabsDeselected()">
+							<div class="todo-list__elements">
+								<div class="todo-list__element" ng-repeat="element in todoList | orderBy:'timeToFinishTask'" ng-if="(element.todoStatus === false) && (element.timeToFinishTask !== -1)">
+									<div class="todo-list__destination-time">
+										<div>Ukończ zadanie do: {{element.todoDestinationTime}}</div>
+										<div ng-if="element.timeToFinishTask > 0">
+											<span class="todo-list__destination-label">Pozostało:</span>
+											<span class="todo-list__destination-value">{{element.timeToFinishTask}}</span>
+											<span class="todo-list__destination-prefix">
+												<span ng-if="element.timeToFinishTask === 1">dzień</span>
+												<span ng-if="element.timeToFinishTask !== 1">dni</span>
+											</span>
+										</div>
+										<div ng-if="element.timeToFinishTask === 0">
+											<span class="todo-list__destination-label error">Dziś mija termin</span>
+										</div>
+										<uib-progressbar value="1" max="element.timeToFinishTask"></uib-progressbar>
+									</div>
+									<h6 class="todo-list__task-title">
+										<small>Opis zadania:</small>
+										{{element.todoText}}
+									</h6>
+									<div class="todo-list__status-switcher">
+										<label class="switch" ng-class="beEasy">
+											<input type="checkbox"
+													ng-model="element.todoStatus"
+													ng-change="statusChecked(element.todoStatus, element.$id)"
+													ng-checked="element.todoStatus">
+										  <span class="slider round"></span>
+										</label>
+									</div>
+
+									<!-- Dropdown button -->
+									<div class="todo-list__operations" uib-dropdown is-open="status.isopen">
+								      <button uib-dropdown-toggle ng-disabled="disabled" class="todo-list__button">
+									    <i class="fa fa-bars" aria-hidden="true"></i>
+								      </button>
+								      <ul class="dropdown-menu animated zoomIn" uib-dropdown-menu role="menu">
+								        <li role="menuitem"><a href="#" ng-click="todoListTaskRemove(element.$id)">Usuń zadanie</a></li>
+								        <li role="menuitem"><a href="#" ng-click="todoListTaskEdit(element.$id)">Edytuj zadanie</a></li>
+								        <!-- <li role="menuitem"><a href="#">Edytuj zadanie</a></li> -->
+								      </ul>
+								    </div>
+
+									<div class="todo-list__status" ng-class="statusClassModifier(element.todoStatus)">
+										<span ng-class="todoStatusLabel(element.todoStatus)">{{todoStatusLabel(element.todoStatus)}}</span>
+									</div>
+								</div>
+							</div>
+						</uib-tab>
+
+						<!-- Zadania zrealizowane -->
+						<uib-tab index="1" heading="Zadania zrealizowane ({{(todoList|filter:{todoStatus:true}).length}})" ng-if="(todoList|filter:{todoStatus:true}).length > 0">
+							<div class="todo-list__elements">
+								<div class="todo-list__element" ng-repeat="element in todoList | filter: todoStatus === false | orderBy:'timeToFinishTask'" ng-if="(element.todoStatus === true) && (element.timeToFinishTask !== -1)">
+									<div class="todo-list__destination-time todo-list__destination-time--confirmed">
+										<span class="todo-list__destination-label">Zadanie ukończone:</span>
+										<div ng-if="element.timeToFinishTask > 0">
+											<span class="todo-list__destination-label">Ukończone przez: <strong>{{element.displayUser}}</strong></span>
+										</div>
+									</div>
+									<h6 class="todo-list__task-title">
+										<small>Opis zadania:</small>
+										{{element.todoText}}
+									</h6>
+									<div class="todo-list__status-switcher">
+										<label class="switch" ng-class="beEasy">
+											<input type="checkbox"
+													ng-model="element.todoStatus"
+													ng-change="statusChecked(element.todoStatus, element.$id)"
+													ng-checked="element.todoStatus">
+										  <span class="slider round"></span>
+										</label>
+									</div>
+									<div class="todo-list__status" ng-class="statusClassModifier(element.todoStatus)">
+										<span ng-class="todoStatusLabel(element.todoStatus)">{{todoStatusLabel(element.todoStatus)}}</span>
+									</div>
+								</div>
+							</div>
+						</uib-tab>
+
+						<!-- Zadanie nie zrealizowane -->
+						<uib-tab index="2" heading="Zadania nie zrealizowane ({{(todoList|filter:{timeToFinishTask:-1}).length}})"  ng-if="(todoList|filter:{timeToFinishTask:-1}).length">
+							<div class="todo-list__elements">
+								<div class="todo-list__element" ng-repeat="element in todoList | filter: todoStatus === true | orderBy:'timeToFinishTask'" ng-if="element.timeToFinishTask === -1">
+									<div class="todo-list__destination-time">
+										<div>Zadanie nie zostało ukończone do: {{element.todoDestinationTime}}</div>
+										<div ng-if="element.timeToFinishTask === -1">
+											<span class="todo-list__destination-label error">Czas minął</span>
+										</div>
+										<uib-progressbar value="1" max="element.timeToFinishTask"></uib-progressbar>
+									</div>
+									<h6 class="todo-list__task-title">
+										<small>Opis zadania:</small>
+										{{element.todoText}}
+									</h6>
+									<div class="todo-list__status" ng-class="statusClassModifier(element.todoStatus)">
+										<span ng-class="todoStatusLabel(element.todoStatus)">Zadanie nie zrealizowane</span>
+									</div>
+								</div>
+							</div>
+						</uib-tab>
+					</uib-tabset>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="component widget" data-component-name="widget">
+					<div class="widget__header" ng-show="todoListTaskEditableHidden">
+						<h2 class="widget__title">
+							<strong>Dodaj zadanie</strong>
+						</h2>
+						<div class="widget__inner">
+							<form class="material-form" name="formTodoListConfirmTask">
+								<div class="material-form__group">
+									<textarea ng-model="todoText" class="material-form__control material-form__control--textarea"></textarea>
+									<label class="material-form__label material-form__label--textarea">Wpisz treść zadania</label>
+								</div>
+								<div class="material-form__group material-form__group--calendar">
+									<span ng-click="calendarOpener()" class="material-form__icon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+									<input type="text" class="material-form__control" uib-datepicker-popup="{{format}}" ng-model="dt" ng-change="selectDate(dt)" is-open="calendarStatus.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+									<label class="material-form__label">Wybierz datę zakończenia zadania</label>
+								</div>
+								<div class="material-form__group text-xs-center">
+									<button type="button" name="button" ng-click="enterTodoContentToDatabase()" class="btn btn-sm btn-secondary">Zatwierdź zadanie</button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<!-- Edycja zadania -->
+					<div class="widget__header" ng-show="todoListTaskEditableVisible">
+						<h2 class="widget__title">
+							<strong>Edycja zadania</strong>
+						</h2>
+						<div class="widget__inner">
+							<form class="material-form">
+								<div class="material-form__group">
+									<textarea ng-model="todoList.todoText" class="material-form__control material-form__control--textarea"></textarea>
+									<label class="material-form__label material-form__label--textarea">Edycja treści zadania</label>
+								</div>
+								<div class="material-form__group material-form__group--calendar">
+									<span ng-click="calendarOpenerEditable()" class="material-form__icon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+									<input type="text" class="material-form__control" uib-datepicker-popup="{{format}}" ng-model="todoList.dt" ng-change="selectDate(todoList.dt)" is-open="calendarStatus.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+									<label class="material-form__label">Edycja daty zakończenia zadania</label>
+								</div>
+								<div class="material-form__group material-form__group--buttons text-xs-center">
+									<button type="button" name="button" ng-click="todoListTaskEditableAction()" class="btn btn-sm btn-secondary">Edytuj zadanie</button>
+									<button type="button" name="button" ng-click="todoListTaskEditableCanceled()" class="btn btn-sm btn-link">Nie edytuj</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<planner-snackbar></planner-snackbar>

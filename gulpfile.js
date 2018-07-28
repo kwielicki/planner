@@ -17,6 +17,7 @@ var sassFiles = 'app/sass/**/*.scss',
 	paths = {
 		assets: {
 			js: 'app/assets/javascript/',
+			i18n: 'app/assets/i18n/',
 			database: 'database/',
 			app: 'app/',
 			ctrl: 'app/controllers/',
@@ -91,7 +92,8 @@ gulp.task('core-bundle', function() {
 		paths.assets.js + 'angular-bootstrap-ui.min.js',
 		paths.assets.js + 'pdfmake.min.js',
 		paths.assets.js + 'vfs-fonts.min.js',
-		paths.assets.js + 'angular-accordions.min.js'
+		paths.assets.js + 'angular-accordions.min.js',
+		paths.assets.i18n + 'polish/angular-locale_pl-pl.js'
 	])
 	.pipe(plumber())
 	.pipe(concat('core-bundle.js'))
@@ -152,6 +154,7 @@ gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-includes', 
 		paths.assets.components + 'app-manageguest-sorting-label.js',
 		paths.assets.components + 'app-information-box.js',
 		paths.assets.components + 'app-breadcrumbs.js',
+		paths.assets.components + 'app-todo-list.js',
 		paths.assets.filters + 'app-percentage-filter.js'
 	])
 	.pipe(babel({

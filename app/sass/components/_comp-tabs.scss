@@ -1,0 +1,23 @@
+/* Component Tabs */
+.nav-tabs {
+	padding-left: $padding-normal;
+	padding-right: $padding-normal;
+	margin-left: -($padding-xs);
+	.nav-item {
+		padding: $padding-xs 0;
+		margin: $padding-normal $padding-xs;
+		border: 1px solid $border-color-dropdown-element;
+		&.active {
+			border-color: $brand-primary;
+			text-shadow: 0 0 0 $brand-primary;
+			.nav-link {
+				color: $brand-primary;
+				cursor: default;
+			}
+		}
+		.nav-link {
+			border: 0;
+			color: $brand-dark;
+		}
+	}
+}

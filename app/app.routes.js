@@ -107,11 +107,11 @@ angular
                     return Auth.$requireSignIn();
                   }]
                 }
-            }).when('/statistics/statistics-children', {
-                templateUrl: 'templates/statistics-deep/statistics-children.html',
+            }).when('/todo-list', {
+                templateUrl: 'templates/todo-list.html',
                 controller: "AuthorizationCtrl",
-                title: 'Statystyki | Wedding Planner',
-                breadcrumbsTitle: 'Statystyki dziecko',
+                title: 'Lista rzeczy do zrobienia | Wedding Planner',
+                breadcrumbsTitle: 'Lista rzeczy do zrobienia',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();

@@ -52,9 +52,8 @@ angular
                 },
                 {
                     name: 'Lista rzeczy do zrobienia',
-                    url:  '/to-do-list',
-                    title:'Lista rzeczy do zrobienia',
-                    specialClass: 'not--available'
+                    url:  '/todo-list',
+                    title:'Lista rzeczy do zrobienia'
                 },
                 {
                     name: 'Zarządzaj wydatkami',

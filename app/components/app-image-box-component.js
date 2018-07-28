@@ -68,20 +68,20 @@ angular
                     imageBoxDescription: 'Korzystając z kategorii zarządzaj notatkami, które ułatwią Ci proces przygotowań do ślubu',
                     imageBoxLinkLabel: 'Przejdź do notatek',
                     imageBoxLinkValue: '#/wedding-notebook',
-                    imageBoxCssClass: 'image-box--wedding-notebook',
-                    imageBoxIsNewest: {
-                        value: true,
-                        label: "Nowość"
-                    }
+                    imageBoxCssClass: 'image-box--wedding-notebook'
                 }, {
                     id: 6,
                     imageBoxSrc: 'assets/images/image-box-6.jpg',
                     imageBoxAlt: 'Lista rzeczy do zrobienia',
                     imageBoxTitle: 'Lista rzeczy do zrobienia',
                     imageBoxDescription: 'Zorganizuj się. Zanim wszystko poukładasz, musisz wiedzieć, co w ogóle masz do zrobienia, a to najłatwiej spisywać na bieżąco',
-                    imageBoxLinkLabel: 'W trakcie realizacji...',
+                    imageBoxLinkLabel: 'Przygotuj listę',
                     imageBoxLinkValue: '#/todo-list',
-                    imageBoxCssClass: 'image-box--expenses',
+                    imageBoxCssClass: 'image-box--todolist',
+                    imageBoxIsNewest: {
+                        value: true,
+                        label: "Nowość"
+                    }
                 }, {
                     id: 7,
                     imageBoxSrc: 'assets/images/image-box-7.jpg',

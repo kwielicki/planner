@@ -1,0 +1,58 @@
+/* Materials forms */
+.material-form {
+	$component: &;
+	&__group {
+		position: relative;
+		padding-top: 2rem;
+		+ #{$component}__group {
+			margin-top: $padding-normal;
+		}
+	}
+	&__control {
+		font-size: $font-size-xs;
+		width: 100%;
+		background-color: #fff;
+		padding: 0;
+		border: 0;
+		box-shadow: none;
+		outline: 0;
+		border-bottom: 1px solid $border-color;
+		min-height: 2rem;
+		&--textarea {
+			min-height: 5.8rem;
+			resize: vertical;
+		}
+		&:focus {
+			~ #{$component}__label {
+			    transform: translate(0,0);
+				font-size: 1rem;
+				color: $border-color;
+			}
+		}
+		&.ng-not-empty {
+			~ #{$component}__label {
+			    transform: translate(0,0);
+				font-size: 1rem;
+				color: $brand-success;
+			}
+		}
+	}
+	&__label {
+		position: absolute;
+		top: 0;
+		font-size: $font-size-xs;
+		transition: all .15s ease-out;
+		pointer-events: none;
+		cursor: text;
+		margin: 0;
+		transform: translate(0,2rem);
+		&--textarea {
+			transform: translate(0,1rem);
+		}
+	}
+	&__icon {
+		position: absolute;
+		right: 0;
+		color: $border-color;
+	}
+}
