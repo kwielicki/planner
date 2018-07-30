@@ -9,6 +9,10 @@
 	margin-bottom: $padding-normal*2.5;
 	background-color: #fff;
 	border-bottom: 1px solid $border-color-dropdown-element;
+	@include media-breakpoint-down(md) {
+        margin-left: -($padding-normal);
+        margin-right: -($padding-normal);
+    }
 	&--smaller {
 		margin-bottom: $padding-normal;
 	}
