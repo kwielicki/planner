@@ -80,9 +80,7 @@
 								<div class="todo-list__element" ng-repeat="element in todoList | filter: todoStatus === false | orderBy:'timeToFinishTask'" ng-if="(element.todoStatus === true) && (element.timeToFinishTask !== -1)">
 									<div class="todo-list__destination-time todo-list__destination-time--confirmed">
 										<span class="todo-list__destination-label">Zadanie ukończone:</span>
-										<div ng-if="element.timeToFinishTask > 0">
-											<span class="todo-list__destination-label">Ukończone przez: <strong>{{element.displayUser}}</strong></span>
-										</div>
+										<span class="todo-list__destination-label">Ukończone przez: <strong>{{element.displayUser}}</strong></span>
 									</div>
 									<h6 class="todo-list__task-title">
 										<small>Opis zadania:</small>
@@ -129,49 +127,69 @@
 				</div>
 			</div>
 			<div class="col-sm-4">
-				<div class="component widget" data-component-name="widget">
-					<div class="widget__header" ng-show="todoListTaskEditableHidden">
-						<h2 class="widget__title">
-							<strong>Dodaj zadanie</strong>
-						</h2>
-						<div class="widget__inner">
-							<form class="material-form" name="formTodoListConfirmTask">
-								<div class="material-form__group">
-									<textarea ng-model="todoText" class="material-form__control material-form__control--textarea"></textarea>
-									<label class="material-form__label material-form__label--textarea">Wpisz treść zadania</label>
-								</div>
-								<div class="material-form__group material-form__group--calendar">
-									<span ng-click="calendarOpener()" class="material-form__icon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-									<input type="text" class="material-form__control" uib-datepicker-popup="{{format}}" ng-model="dt" ng-change="selectDate(dt)" is-open="calendarStatus.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-									<label class="material-form__label">Wybierz datę zakończenia zadania</label>
-								</div>
-								<div class="material-form__group text-xs-center">
-									<button type="button" name="button" ng-click="enterTodoContentToDatabase()" class="btn btn-sm btn-secondary">Zatwierdź zadanie</button>
-								</div>
-							</form>
+				<div sticky offset="15">
+					<div class="component widget" data-component-name="widget">
+						<div class="widget__header" ng-show="todoListTaskEditableHidden">
+							<h2 class="widget__title">
+								<strong>Dodaj zadanie</strong>
+							</h2>
+							<div class="widget__inner">
+								<form class="material-form" name="formTodoListConfirmTask">
+									<div class="material-form__group">
+										<textarea ng-model="local.todoText" name="todoText" class="material-form__control material-form__control--textarea" required></textarea>
+										<label class="material-form__label material-form__label--textarea"
+											ng-class="{'error': formTodoListConfirmTask.todoText.$touched && formTodoListConfirmTask.todoText.$invalid}">
+											<span>Wpisz treść zadania</span>
+										</label>
+									</div>
+									<div class="material-form__group material-form__group--calendar">
+										<span ng-click="calendarOpener()" class="material-form__icon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+										<input type="text" name="datetime" class="material-form__control" uib-datepicker-popup="{{format}}"
+											ng-model="local.dt" ng-change="selectDate(local.dt)" is-open="calendarStatus.opened" datepicker-options="dateOptions"
+											ng-required="true" close-text="Zamknij kalendarz" clear-text="Wyczyść wybór" current-text="Dzisiaj" required/>
+										<label class="material-form__label"
+											ng-class="{'error': formTodoListConfirmTask.datetime.$touched && formTodoListConfirmTask.datetime.$invalid}">
+											<span>Wybierz datę zakończenia zadania</span>
+										</label>
+									</div>
+									<div class="material-form__group text-xs-center">
+										<button type="button" name="button" ng-click="enterTodoContentToDatabase()" class="btn btn-sm btn-secondary" ng-disabled="formTodoListConfirmTask.$invalid">Zatwierdź zadanie</button>
+									</div>
+								</form>
+							</div>
 						</div>
-					</div>
-					<!-- Edycja zadania -->
-					<div class="widget__header" ng-show="todoListTaskEditableVisible">
-						<h2 class="widget__title">
-							<strong>Edycja zadania</strong>
-						</h2>
-						<div class="widget__inner">
-							<form class="material-form">
-								<div class="material-form__group">
-									<textarea ng-model="todoList.todoText" class="material-form__control material-form__control--textarea"></textarea>
-									<label class="material-form__label material-form__label--textarea">Edycja treści zadania</label>
-								</div>
-								<div class="material-form__group material-form__group--calendar">
-									<span ng-click="calendarOpenerEditable()" class="material-form__icon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-									<input type="text" class="material-form__control" uib-datepicker-popup="{{format}}" ng-model="todoList.dt" ng-change="selectDate(todoList.dt)" is-open="calendarStatus.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-									<label class="material-form__label">Edycja daty zakończenia zadania</label>
-								</div>
-								<div class="material-form__group material-form__group--buttons text-xs-center">
-									<button type="button" name="button" ng-click="todoListTaskEditableAction()" class="btn btn-sm btn-secondary">Edytuj zadanie</button>
-									<button type="button" name="button" ng-click="todoListTaskEditableCanceled()" class="btn btn-sm btn-link">Nie edytuj</button>
-								</div>
-							</form>
+						<!-- Edycja zadania -->
+						<div class="widget__header" ng-show="todoListTaskEditableVisible">
+							<h2 class="widget__title">
+								<strong>Edycja zadania</strong>
+							</h2>
+							<div class="widget__inner">
+								<form class="material-form" name="formTodoListEditTask">
+									<div class="material-form__group">
+										<textarea ng-model="todoList.todoText" name="todoText" class="material-form__control material-form__control--textarea" required></textarea>
+										<label class="material-form__label material-form__label--textarea"
+											ng-class="{'error': formTodoListEditTask.todoText.$touched && formTodoListEditTask.todoText.$invalid}">
+											<span>Edycja treści zadania</span>
+										</label>
+									</div>
+									<div class="material-form__group material-form__group--calendar">
+										<span ng-click="calendarOpenerEditable()" class="material-form__icon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+										<input type="text" name="datetime" class="material-form__control" uib-datepicker-popup="{{format}}"
+											ng-model="todoList.dt"
+											ng-change="selectDate(todoList.dt)" is-open="calendarStatus.opened" datepicker-options="dateOptions"
+											ng-required="true" close-text="Zamknij kalendarz" clear-text="Wyczyść wybór" current-text="Dzisiaj" required/>
+										<label class="material-form__label"
+											ng-class="{'error': formTodoListEditTask.datetime.$touched && formTodoListEditTask.datetime.$invalid}">
+											<span>Edycja daty zakończenia zadania</span>
+										</label>
+									</div>
+									<div class="material-form__group material-form__group--buttons text-xs-center">
+										<button type="button" name="button" ng-click="todoListTaskEditableAction()" class="btn btn-sm btn-secondary"
+											ng-disabled="formTodoListEditTask.datetime.$untouched && formTodoListEditTask.todoText.$untouched">Edytuj zadanie</button>
+										<button type="button" name="button" ng-click="todoListTaskEditableCanceled()" class="btn btn-sm btn-link">Porzuć edycję</button>
+									</div>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>

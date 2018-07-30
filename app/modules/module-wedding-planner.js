@@ -9,5 +9,6 @@ angular
         "ui.bootstrap",
         "selectize",
         "ngStorage",
-        "angular.plannerSnackbar"
+        "angular.plannerSnackbar",
+        "sticky"
     ]);

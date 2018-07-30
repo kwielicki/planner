@@ -50,10 +50,12 @@ angular
 			 * które zostały do godziny 0
 			 */
 			$scope.selectDate = function(dt) {
-                var xx = dt.getTime() - $scope.dateOptions.minDate;
-				$scope.selectedDate = $filter('date')(dt, $scope.formats);
-				$scope.oryginalDateValue =  dt.getTime();
-                $scope.timeToFinishTask = Math.floor(xx/(1000*60*60*24)) + 1;
+				if ( dt !== undefined ) {
+					var xx = dt.getTime() - $scope.dateOptions.minDate;
+					$scope.selectedDate = $filter('date')(dt, $scope.formats);
+					$scope.oryginalDateValue =  dt.getTime();
+					$scope.timeToFinishTask = Math.floor(xx/(1000*60*60*24)) + 1;
+				}
 			}
 
 			/* Zmiana statusu zadania. Po jej zmianie następuje
@@ -135,14 +137,16 @@ angular
 
 			/* Zapisanie danych w bazie */
 			$scope.enterTodoContentToDatabase = function() {
+
 				$scope.todoList.$add({
-					todoText: $scope.todoText,
+					todoText: $scope.local.todoText,
 					todoDestinationTime: $scope.selectedDate,
 					todoDestinationTimeOryginal: $scope.oryginalDateValue,
                     timeToFinishTask: $scope.timeToFinishTask,
 					todoStatus: $scope.todoStatus,
 					displayUser: $rootScope.firebaseUserGlobal.displayName
 				}).then(function() {
+					$scope.local = {};
 					$scope.formTodoListConfirmTask.$setPristine();
 					$scope.formTodoListConfirmTask.$setUntouched();
 				});
@@ -178,14 +182,24 @@ angular
 				$scope.todoListTaskEditableAction = function() {
 					$scope.todoList.$save(expectedTask)
 						.then(function(ref) {
-							ref.update({
-								todoText: $scope.todoList.todoText,
-								todoDestinationTime: $scope.selectedDate,
-								todoDestinationTimeOryginal: $scope.oryginalDateValue,
-			                    timeToFinishTask: $scope.timeToFinishTask,
-							});
-							$scope.result = "Zadanie zostało zmodyfikowane";
+
+							if ( $scope.todoList.dt !== expectedTask.todoDestinationTimeOryginal ) {
+								ref.update({
+									todoDestinationTime: $scope.selectedDate,
+									todoDestinationTimeOryginal: $scope.oryginalDateValue,
+									timeToFinishTask: $scope.timeToFinishTask
+								});
+							}
+
+							if ( $scope.todoList.todoText !== expectedTask.todoText ) {
+								ref.update({
+									todoText: $scope.todoList.todoText
+								});
+							}
+
+							$scope.result = "Zadanie zmodyfikowane";
 							plannerSnackbar.create($scope.result, 1500);
+
 						})
 						.catch(function(error) {
 							$scope.result = "Błąd. Spróbuj ponownie";

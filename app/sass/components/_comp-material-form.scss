@@ -18,6 +18,12 @@
 		outline: 0;
 		border-bottom: 1px solid $border-color;
 		min-height: 2rem;
+		&.ng-invalid {
+			background-color: #fff;
+			&.ng-touched {
+				border-bottom-color: $brand-danger;
+			}
+		}
 		&--textarea {
 			min-height: 5.8rem;
 			resize: vertical;
@@ -27,12 +33,19 @@
 			    transform: translate(0,0);
 				font-size: 1rem;
 				color: $border-color;
+				&.error {
+					color: $brand-danger;
+				}
 			}
 		}
 		&.ng-not-empty {
 			~ #{$component}__label {
 			    transform: translate(0,0);
 				font-size: 1rem;
+			}
+		}
+		&.ng-valid {
+			~ #{$component}__label {
 				color: $brand-success;
 			}
 		}

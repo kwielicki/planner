@@ -127,6 +127,7 @@ gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-includes', 
 	return gulp.src([
 		paths.assets.module + 'module-wedding-planner.js',
 		paths.assets.module + 'module-planner-snackbar.js',
+		paths.assets.module + 'module-angular-sticky.js',
 		paths.assets.app + 'app.module.js',
 		paths.assets.app   + 'app.routes.js',
 		paths.assets.ctrl  + 'ctrl.add.new.guest.js',
