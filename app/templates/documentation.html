@@ -26,11 +26,22 @@
                     <!-- add `multiple` attribute to allow multiple sections to open at once -->
                     <v-accordion class="vAccordion--default">
                       <!-- add expanded attribute to open the section -->
-                      <v-pane expanded> <!-- [1.0.7] -->
-                        <v-pane-header>Wersja 1.0.7 - aktualna wersja aplikacji</v-pane-header>
+                      <v-pane expanded> <!-- [1.0.8] -->
+                        <v-pane-header>Wersja 1.0.8 - aktualna wersja aplikacji</v-pane-header>
                         <v-pane-content>
                             <ul>
-                    		 	<li>Uruchomienie modułu <a href="#/to-do-list">Notatnik weselny</a></li>
+                    		 	<li>Uruchomienie modułu <a href="#/todo-list">Lista rzeczy do zrobienia</a></li>
+                                <li>Dodanie komponentu wizualnego breadcrumbs. Jego zadaniem jest wspomagać nawigację w aplikacji</li>
+                                <li>Dodanie wyglądu dla formularzy <abbr title="Prosty, a równocześnie czytelny i łatwo dostosowywalny do różnych płaszczyzn styl graficzny">material design</abbr></li>
+                                <li>Wprowadzenie modyfikacji RWD 1.1</li>
+                            </ul>
+                        </v-pane-content>
+                      </v-pane>
+                      <v-pane> <!-- [1.0.7] -->
+                        <v-pane-header>Wersja 1.0.7</v-pane-header>
+                        <v-pane-content>
+                            <ul>
+                    		 	<li>Uruchomienie modułu <a href="#/wedding-notebook">Notatnik weselny</a></li>
                                 <li>
                                     Dodanie możliwości aktualizacji swojego profilu o takie takie dane jak:
                                     imię, nazwisko oraz zdjęcie profilowe.
@@ -118,7 +129,6 @@
                 		    </ul>
                         </v-pane-content>
                       </v-pane>
-
 
                     </v-accordion>
                 </div>
