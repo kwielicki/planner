@@ -1,8 +1,11 @@
-/* Component Breadcrumbs */
+/* Component Breadcrumbs
+ * Wymagana klasa w drzewie DOM "breadcrumbs"
+ */
 .breadcrumbs {
 	display: block;
 	text-align: right;
 	padding-top: $padding-sm;
+	padding: $padding-sm $padding-normal 0 $padding-normal;
 	margin-bottom: $padding-normal*2.5;
 	background-color: #fff;
 	border-bottom: 1px solid $border-color-dropdown-element;
