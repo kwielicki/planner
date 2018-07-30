@@ -1,28 +1,21 @@
-<div>
-    <label for="phoneNumber" class="label">Wpisz numer telefonu</label>
-    <div class="form-group__input">
-        <i aria-hidden="true" class="fa fa-mobile form-group__icon"></i>
-        <input type="text"
-               name="phoneNumber"
-               id="phoneNumber"
-               class="form-control form-control--modern form-control--username"
-               ng-model="$parent.phoneNumber"
-               ng-pattern="/^[1-9]*$/"
-               ng-minlength="9"
-               ng-maxlength="9"
-               placeholder="np. 666777222"
-               autocomplete="off">
-    </div>
-    <div role="alert" class="alerts"
-         ng-class="{'has-error': formAddNewGuest.phoneNumber.$error.minlength || formAddNewGuest.phoneNumber.$error.pattern || formAddNewGuest.phoneNumber.$error.maxlength}">
-        <span class="error" ng-show="formAddNewGuest.phoneNumber.$error.minlength" ng-animate>
-            To pole musi zawierać 9 cyfr.
-        </span>
-        <span class="error" ng-show="formAddNewGuest.phoneNumber.$error.maxlength" ng-animate>
-            To pole nie może zawierać więcej niż 9 cyfr.
-        </span>
-        <span class="error" ng-show="formAddNewGuest.phoneNumber.$error.pattern" ng-animate>
-            To pole musi zawierać wyłącznie cyfry większe od 0 oraz musi to być liczba całkowita.
-        </span>
-    </div>
+
+
+<input type="text"
+   name="phoneNumber"
+   id="phoneNumber"
+   class="material-form__control material-form__control--transparent"
+   ng-model="$parent.phoneNumber"
+   ng-pattern="/^[1-9]*$/"
+   ng-minlength="9"
+   ng-maxlength="9"
+   autocomplete="off"/>
+<label for="phoneNumber"
+    class="material-form__label"
+    ng-class="{'error': formAddNewGuest.phoneNumber.$touched && formAddNewGuest.phoneNumber.$invalid}">Wpisz numer telefonu <small>(pole nieobowiązkowe)</small></label>
+
+<div role="alert" class="material-form__alert"
+     ng-class="{'has-error': formAddNewGuest.phoneNumber.$error.minlength || formAddNewGuest.phoneNumber.$error.pattern || formAddNewGuest.phoneNumber.$error.maxlength}">
+    <span class="material-form__error" ng-show="formAddNewGuest.phoneNumber.$error.minlength || formAddNewGuest.phoneNumber.$error.pattern || formAddNewGuest.phoneNumber.$error.maxlength" ng-animate>
+        Wprowadź poprawny 9 cyfrowy numer telefonu
+    </span>
 </div>

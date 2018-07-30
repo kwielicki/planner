@@ -1,96 +1,92 @@
-<!-- Component intro-banner -->
-<section>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-12">
-                <app-intro-banner introBannerTitle="Dodawanie nowego gościa"></app-intro-banner>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- Component BreadCrumbs -->
 <section>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
-                <app-breadcrumbs></app-breadcrumbs>
+                <app-breadcrumbs class="breadcrumbs--smaller"></app-breadcrumbs>
             </div>
         </div>
     </div>
 </section>
 
-<section class="section" ng-controller="addNewGuest">
+<section class="section" ng-controller="pageHeader">
     <div class="container-fluid">
         <div class="row">
-            <!-- Dodanie nowego gościa do bazy danych -->
-            <form ng-submit="addNewPerson()" name="formAddNewGuest" ng-mode="formMy">
-                <div class="col-xs-12">
+            <div class="col-sm-4">
+                <app-intro-banner
+                    class="intro-banner--sidebar"
+                    introBannerTitle="Dodawanie nowego gościa"
+                    introbannerdescription={{pageHeader.subtitle.addNewGuest}}>
+                    <intro-banner-desclimer>
+                        <small>Pamiętaj, że każdy dodany gość do bazy danych może zostać edytowany lub usunięty</small>
+                    </intro-banner-desclimer>
+                </app-intro-banner>
+            </div>
+            <div class="col-sm-8">
+                <div class="component-layout">
+                    <!-- Dodanie nowego gościa do bazy danych -->
+                    <form ng-submit="addNewPerson()" name="formAddNewGuest" ng-model="formMy" class="material-form" autocomplete="off" ng-controller="addNewGuest">
+                    <!-- Include first-name -->
+                    <div class="material-form__group"
+                    ng-include="'../includes/forms/first-name.html'"></div>
+
+                    <!-- Include sur-name -->
+                    <div class="material-form__group"
+                    ng-include="'../includes/forms/sur-name.html'"></div>
+
+                    <!-- Include guest-count -->
+                    <div class="material-form__group"
+                    ng-include="'../includes/forms/guest-count.html'"></div>
+
+                    <!-- Wypełnij pole :: WYBIERZ PRZYNALEŻNOŚĆ -->
+                    <div class="material-form__group">
+                        <select name="appMembership" id="appMembership" required ng-model="membership" class="material-form__control material-form__control--transparent" required>
+                            <option value="Pan Młody">Pan Młody</option>
+                            <option value="Pani Młoda">Pani Młoda</option>
+                        </select>
+                        <label for="appMembership"
+                        class="material-form__label"
+                        ng-class="{'error': formAddNewGuest.appMembership.$touched && formAddNewGuest.appMembership.$invalid}">Wybierz przynależność osoby</label>
+                    </div>
+
+                    <!-- Include status -->
+                    <div class="material-form__group"
+                    ng-include="'../includes/forms/status.html'"></div>
+
+                    <!-- Include children -->
+                    <div class="material-form__group"
+                    ng-include="'../includes/forms/children.html'"></div>
+
+                    <!-- Include phone-number -->
+                    <div class="material-form__group"
+                    ng-include="'../includes/forms/phone-number.html'"></div>
+
+                    <!-- Wypełnij pole :: Informacje dodatkowe -->
+                    <div class="material-form__group material-form__group--textarea">
+                        <textarea name="extraInformation" ng-model="extraInformation" class="material-form__control material-form__control--textarea material-form__control--transparent"></textarea>
+                        <label for="appExtraInformation"
+                            class="material-form__label material-form__label--textarea"
+                            ng-class="{'error': formTodoListEditTask.extraInformation.$touched && formTodoListEditTask.extraInformation.$invalid}">
+                                Informacje dodatkowe <small>(pole nieobowiązkowe)</small>
+                        </label>
+                    </div>
+
                     <div class="row">
-                        <div class="col-sm-6">
-                            <div class="row">
-                                <div class="col-sm-6">
-
-                                    <!-- Include first-name -->
-                                    <div class="form-group form-group--modern form-group--label"
-                                         ng-include="'../includes/forms/first-name.html'"></div>
-
-                                    <!-- Include guest-count -->
-                                    <div class="form-group form-group--modern form-group--label"
-                                         ng-include="'../includes/forms/guest-count.html'"></div>
-
-                                    <!-- Include status -->
-                                    <div class="form-group form-group--modern form-group--label"
-                                         ng-include="'../includes/forms/status.html'"></div>
-                                </div>
-                                <div class="col-sm-6">
-
-                                    <!-- Include sur-name -->
-                                    <div class="form-group form-group--modern form-group--label"
-                                         ng-include="'../includes/forms/sur-name.html'"></div>
-
-                                    <!-- Wypełnij pole :: WYBIERZ PRZYNALEŻNOŚĆ -->
-                                    <div class="form-group form-group--modern form-group--label">
-                                        <label for="appMembership" class="label">Wybierz przynależność osoby *</label>
-                                        <select name="appMembership" id="appMembership" required ng-model="membership" class="form-control form-control--modern form-control--username" required>
-                                            <option value="Pan Młody">Pan Młody</option>
-                                            <option value="Pani Młoda">Pani Młoda</option>
-                                        </select>
-                                    </div>
-
-                                    <!-- Include phone-number -->
-                                    <div class="form-group form-group--modern form-group--label"
-                                         ng-include="'../includes/forms/phone-number.html'"></div>
-
-                                    <!-- Include children -->
-                                    <div class="form-group form-group--modern form-group--label"
-                                         ng-include="'../includes/forms/children.html'"></div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-sm-6">
-                            <!-- Wypełnij pole :: Informacje dodatkowe -->
-                            <div class="form-group form-group--modern form-group--label">
-                                <label for="appExtraInformation" class="label">Informacje dodatkowe</label>
-                                <textarea name="name" ng-model="extraInformation" class="form-control form-control--modern form-control--username form-control--textarea" ng-minlength="3"></textarea>
-                            </div>
-                            <div class="form-group__button">
-                            </div>
-                            <div class="btn-group btn-group--sm btn-group--centered">
-                                <button type="submit" class="btn btn-success"
+                        <div class="col-xs-12">
+                            <div class="material-form__group material-form__group--buttons material-form__group--spacer-bottom text-xs-center">
+                                <button type="submit" class="btn btn-sm btn-primary"
                                         ng-disabled="formAddNewGuest.firstName.$invalid ||
                                         formAddNewGuest.surName.$invalid ||
                                         formAddNewGuest.guestCount.$invalid ||
                                         formAddNewGuest.appMembership.$invalid ">
                                 Dodaj gościa</button>
-                                <a href="#/dashboard" class="btn btn-danger">Rezygnuję z dodania gościa</a>
+                                <a href="#/dashboard" class="btn btn-link">Anuluj</a>
                             </div>
                         </div>
                     </div>
+                </form>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </section>

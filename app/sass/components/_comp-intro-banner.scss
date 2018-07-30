@@ -44,5 +44,10 @@
 		&:empty {
 			display: none;
 		}
+		small {
+			display: inline-block;
+			font-size: $font-size-xs;
+			color: $gray-dark;
+		}
 	}
 }

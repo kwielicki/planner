@@ -75,6 +75,11 @@
             background-color: $brand-gray-light;
         }
     }
+    &-link {
+        border: 0;
+        box-shadow: none;
+        color: $headings-color;
+    }
     //- Small buttons
     &-sm {
         padding: 10px 25px;

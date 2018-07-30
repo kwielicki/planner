@@ -1,24 +1,19 @@
-<div>
-    <label for="children" class="label">Liczba dzieci</label>
-    <div class="form-group__input">
-        <i aria-hidden="true" class="fa fa-child form-group__icon"></i>
-        <input type="text"
-               name="children"
-               id="children"
-               class="form-control form-control--modern form-control--username"
-               ng-model="$parent.children"
-               ng-pattern="/^[0-9]*$/"
-               ng-minlength="1"
-               placeholder="np. 0"
-               autocomplete="off">
-    </div>
-    <div role="alert" class="alerts"
-         ng-class="{'has-error': formAddNewGuest.children.$error.minlength || formAddNewGuest.children.$error.pattern}">
-        <span class="error" ng-show="formAddNewGuest.children.$error.minlength" ng-animate>
-            To pole musi zawierać minimum 1 znaki.
-        </span>
-        <span class="error" ng-show="formAddNewGuest.children.$error.pattern" ng-animate>
-            To pole musi zawierać wyłącznie cyfry większe od 0 oraz musi to być liczba całkowita.
-        </span>
-    </div>
+<input type="text"
+    name="children"
+    id="children"
+    class="material-form__control material-form__control--transparent"
+    ng-model="$parent.children"
+    ng-pattern="/^[0-9]*$/"
+    ng-minlength="1"
+    autocomplete="off"/>
+
+<label for="children"
+    class="material-form__label"
+    ng-class="{'error': formAddNewGuest.children.$touched && formAddNewGuest.children.$invalid}">Liczba dzieci <small>(pole nieobowiązkowe)</small></label>
+
+<div role="alert" class="material-form__alert"=
+     ng-class="{'has-error': formAddNewGuest.children.$error.minlength || formAddNewGuest.children.$error.pattern}">
+    <span class="material-form__error" ng-show="formAddNewGuest.children.$error.minlength || formAddNewGuest.children.$error.pattern" ng-animate>
+        To pole musi zawierać wyłącznie cyfry większe od 0
+    </span>
 </div>

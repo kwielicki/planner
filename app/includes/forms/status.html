@@ -1,17 +1,8 @@
-<div>
-    <p class="label">Wprowadź status *</p>
-    <div class="form-group form-group--radio">
-        <div class="form-group__radio-item">
-            <input type="radio" ng-model="$parent.status" value="Potwierdzony" name="statusConfirmed" id="statusConfirmed">
-            <label for="statusConfirmed" class="form-group__label form-group__label--confirmed">Potwierdzony</label>
-        </div>
-        <div class="form-group__radio-item">
-            <input type="radio" ng-model="$parent.status" value="Oczekujący" name="statusWaiting" id="statusWaiting">
-            <label for="statusWaiting" class="form-group__label form-group__label--waiting">Oczekujący</label>
-        </div>
-        <div class="form-group__radio-item">
-            <input type="radio" ng-model="$parent.status" value="Odmowa" name="statusDeclined" id="statusDeclined">
-            <label for="statusDeclined" class="form-group__label form-group__label--declined">Odmowa</label>
-        </div>
-    </div>
-</div>
+<select name="status" id="status" required ng-model="$parent.status" class="material-form__control material-form__control--transparent" required>
+    <option value="Potwierdzony">Potwierdzony</option>
+    <option value="Oczekujący">Oczekujący</option>
+    <option value="Odmowa">Odmowa</option>
+</select>
+<label for="appMembership"
+    class="material-form__label"
+    ng-class="{'error': formAddNewGuest.status.$touched && formAddNewGuest.status.$invalid}">Wybierz status deklaracji gościa</label>

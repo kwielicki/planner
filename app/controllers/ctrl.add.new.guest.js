@@ -45,7 +45,7 @@ angular
 
         //- Synchronizujemy obiekt person z tablica firebase
             $scope.persons = $firebaseArray(ref);
-            
+
         /* Funkcja odpowiadająca za dodanie nowej osoby do bazy danych
         * Dodajemy do bazy takie dane jak:
         * -- fullName w skład którego wchodzą firstName oraz surName
@@ -75,7 +75,8 @@ angular
                     classes: 'notification-success',
                     duration: 0
                   });
-                $('input').val('');
+                $scope.formAddNewGuest.$setPristine();
+                $scope.formAddNewGuest.$setUntouched();
             }, function(error) {
                 notify({
                     messageTemplate: "\n                      <div class=\"notification-header\">\n                        <h4 class=\"notification-header__icon\"><i class=\"fa fa-exclamation-circle nav__icon\" aria-hidden=\"true\"></i></h4>\n                      </div>\n                      <div class=\"notification-body\">\n                        <h2 class=\"notification-body__title\"><span>Oops... wyst\u0105pi\u0142 b\u0142\u0105d!</span></h2>\n                        <p class=\"notification-body__description\"> \n                           <strong>" + $scope.firstName + " " + $scope.surName + "</strong>\n                           Rekord nie zosta\u0142 dodany do systemu. Zweryfikuj poprawno\u015B\u0107 wprowadzonych danych.</p>\n                      </div>\n                    ",

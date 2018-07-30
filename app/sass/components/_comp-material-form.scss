@@ -6,6 +6,12 @@
 		padding-top: 2rem;
 		+ #{$component}__group {
 			margin-top: $padding-normal;
+			&--textarea {
+				margin-top: $padding-sm + $padding-normal;
+			}
+		}
+		&--spacer-bottom {
+			padding-bottom: $padding-base;
 		}
 	}
 	&__control {
@@ -48,6 +54,17 @@
 			~ #{$component}__label {
 				color: $brand-success;
 			}
+			&.ng-untouched {
+				~ #{$component}__label {
+					color: $gray-dark;
+				}
+			}
+		}
+		&--transparent {
+			background: none;
+			&.ng-invalid {
+				background: none;
+			}
 		}
 	}
 	&__label {
@@ -68,4 +85,31 @@
 		right: 0;
 		color: $border-color;
 	}
+
+	// Obsługa błędów
+	&__alert {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		text-align: right;
+	}
+	&__error {
+		font-size: $font-size-xs;
+		color: $brand-danger;
+	}
+
+	/* Wyeliminowanie autofilla na Chrome */
+	input:-webkit-autofill,
+	input:-webkit-autofill:hover,
+	input:-webkit-autofill:focus,
+	input:-webkit-autofill:active,
+	textarea:-webkit-autofill,
+	textarea:-webkit-autofill:hover,
+	textarea:-webkit-autofill:focus,
+	textarea:-webkit-autofill:active {
+		-webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
+		-webkit-transition-delay: 9999s;
+	}
+
 }

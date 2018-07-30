@@ -81,12 +81,12 @@
 
 //- Select
 
-select {
-     @extend .form-control;
-    padding: 9px 21px;
-    height: 47px !important;
-    padding-left: 5px !important;
-}
+// select {
+//      @extend .form-control;
+//     padding: 9px 21px;
+//     height: 47px !important;
+//     padding-left: 5px !important;
+// }
 
 //- Label
 .label {
@@ -142,13 +142,13 @@ select {
             margin-bottom: 3rem;
         }
     }
-    .error {
-        color: $brand-danger;
-        transition: opacity linear .2s;
-        opacity: 1;
-        position: relative;
-        display: block;
-    }
+    // .error {
+    //     color: $brand-danger;
+    //     transition: opacity linear .2s;
+    //     opacity: 1;
+    //     position: relative;
+    //     display: block;
+    // }
     .ng-hide {
         opacity: 0;
     }
