@@ -31,7 +31,7 @@
                     <div class="form-group form-group--modern">
                         <div class="form-group__input">
                             <i aria-hidden="true" class="fa fa-search form-group__icon"></i>
-                            <input type="text" class="form-control form-control--modern" placeholder="Wpisz szukane słowo" ng-model="searchPerson" ng-model-options="{debounce: 200}">
+                            <input type="text" class="form-control form-control--modern" placeholder="Wpisz szukane słowo" ng-model="searchPerson">
                         </div>
                         <p>&nbsp;</p>
                     </div>
@@ -68,12 +68,12 @@
                                       ng-class="sortReverse ? 'fa-caret-down' : 'fa-caret-up'"></span>
                             </div>
                             <div class="table-management__cell table-management__cell--guest-count" ng-click="sortingTableManagement('guestCount', sortReverse = !sortReverse, 'Liczba osób')">
-                                <span>Oczekiwana liczba osób dorosłych</span>
+                                <span>Liczba osób dorosłych</span>
                                 <span ng-show="sortType == 'guestCount'" class="table-management__sort-arrow fa"
                                       ng-class="sortReverse ? 'fa-caret-down' : 'fa-caret-up'"></span>
                             </div>
                             <div class="table-management__cell table-management__cell--children" ng-click="sortingTableManagement('children', sortReverse = !sortReverse, 'Liczba dzieci')">
-                                <span>Oczekiwana liczba dzieci</span>
+                                <span>Liczba dzieci</span>
                                 <span ng-show="sortType == 'children'" class="table-management__sort-arrow fa"
                                       ng-class="sortReverse ? 'fa-caret-down' : 'fa-caret-up'"></span>
                             </div>
@@ -96,8 +96,8 @@
                     <!-- Table body -->
                     <div class="table-management__body has--preloader">
                         <div class="table-management__row table-management__row--body"
-                             ng-repeat="person in persons | orderBy:sortType:sortReverse | filter:searchPerson" dire-table-preloader="direTablePreloader()">
-                            <div class="table-management__cell table-management__cell--index"> {{ $index }}</div>
+                             ng-repeat="person in persons | orderBy:sortType:sortReverse | filter:searchPerson | offset: (currentPage-1)*itemPerPage | limitTo: itemPerPage" dire-table-preloader="direTablePreloader()">
+                            <div class="table-management__cell table-management__cell--index"> {{ ($index + 1) + (currentPage - 1) * itemPerPage}} </div>
                             <div class="table-management__cell table-management__cell--first-name"> {{ person.firstName }}</div>
                             <div class="table-management__cell table-management__cell--surname"> {{ person.surName }}</div>
                             <div class="table-management__cell table-management__cell--guest-count"> {{ person.guestCount }}</div>
@@ -143,6 +143,42 @@
                                         </v-pane-content>
                                     </v-pane>
                                 </v-accordion>
+                            </div>
+                        </div>
+
+                        <div class="table-management__paginator">
+                            <div class="table-management__paginator-size">
+                                <span class="table-management__paginator-label">Elementów na stronę: </span>
+                                <span uib-dropdown on-toggle="toggled(open)" class="table-management__paginator-value">
+                                  <a uib-dropdown-toggle>
+                                    {{label}}
+                                  </a>
+                                  <ul class="dropdown-menu animated zoomIn" uib-dropdown-menu aria-labelledby="simple-dropdown">
+                                    <li ng-repeat="el in elements" ng-click="clickedEl(el)">
+                                        {{el.itemsPerPage}}
+                                    </li>
+                                  </ul>
+                                </span>
+                            </div>
+                            <div class="table-management__paginator-note">
+                                Strona {{currentPage}} z {{numPages}}
+                            </div>
+                            <div class="table-management__paginator-navigation">
+                                <ul uib-pagination total-items="persons.length"
+                                    ng-model="currentPage"
+                                    ng-change="pageChanged()"
+                                    items-per-page="itemPerPage"
+                                    rotate="true"
+                                    max-size="0"
+                                    num-pages="numPages"
+                                    boundary-links="true"
+                                    class="pagination-sm list-unstyled"
+                                    previous-text="Poprzednia"
+                                    next-text="Następna"
+                                    first-text="Strona pierwsza"
+                                    last-text="Strona ostatnia"
+                                    template-url="templates/pagination/pagination.html"
+                                    ></ul>
                             </div>
                         </div>
                     </div>

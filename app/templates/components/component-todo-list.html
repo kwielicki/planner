@@ -16,16 +16,15 @@
 						</h2>
 					</div>
 					<!-- Preloader -->
-					<div ng-if="!todoList.length">Trwa ładowanie danych ...</div>
-
+					<div ng-if="!todoList.length" class="spinner-container"><app-spinner></app-spinner></div>
 					<!--
 						Zadania do zrealizowania. Status -"zadanie w trakcie realizacji" oraz "zadanie, w którym czas na jego realizację nie upłynął"
 						Domyślne sortowanie ustawione na czas ( min -> max )
 					-->
 					<uib-tabset ng-if="todoList.length">
-						<uib-tab index="0" heading="Zadania do zrealizowania ({{(todoList|filter:{todoStatus:false}).length - (todoList|filter:{timeToFinishTask:-1}).length}})" deselect="tabsDeselected()">
+						<uib-tab index="0" heading="Zadania do zrealizowania ({{filtered.length}})" deselect="tabsDeselected()">
 							<div class="todo-list__elements">
-								<div class="todo-list__element" ng-repeat="element in todoList | orderBy:'timeToFinishTask'" ng-if="(element.todoStatus === false) && (element.timeToFinishTask !== -1)">
+								<div class="todo-list__element" ng-repeat='element in filtered = (todoList | filter:{todoStatus:"false"} | filter: $ctrl.greaterThan("timeToFinishTask", -1)) | orderBy:"timeToFinishTask" track by $index'>
 									<div class="todo-list__destination-time">
 										<div>Ukończ zadanie do: {{element.todoDestinationTime}}</div>
 										<div ng-if="element.timeToFinishTask > 0">
@@ -63,7 +62,6 @@
 								      <ul class="dropdown-menu animated zoomIn" uib-dropdown-menu role="menu">
 								        <li role="menuitem"><a href="#" ng-click="todoListTaskRemove(element.$id)">Usuń zadanie</a></li>
 								        <li role="menuitem"><a href="#" ng-click="todoListTaskEdit(element.$id)">Edytuj zadanie</a></li>
-								        <!-- <li role="menuitem"><a href="#">Edytuj zadanie</a></li> -->
 								      </ul>
 								    </div>
 
@@ -75,11 +73,11 @@
 						</uib-tab>
 
 						<!-- Zadania zrealizowane -->
-						<uib-tab index="1" heading="Zadania zrealizowane ({{(todoList|filter:{todoStatus:true}).length}})" ng-if="(todoList|filter:{todoStatus:true}).length > 0">
+						<uib-tab index="1" heading="Zadania zrealizowane ({{filtered.length}})" ng-if="(todoList|filter:{todoStatus:true}).length > 0">
 							<div class="todo-list__elements">
-								<div class="todo-list__element" ng-repeat="element in todoList | filter: todoStatus === false | orderBy:'timeToFinishTask'" ng-if="(element.todoStatus === true) && (element.timeToFinishTask !== -1)">
+								<div class="todo-list__element" ng-repeat='element in filtered = (todoList | filter:{todoStatus:"true"}) | orderBy:"timeToFinishTask" track by $index'>
 									<div class="todo-list__destination-time todo-list__destination-time--confirmed">
-										<span class="todo-list__destination-label">Zadanie ukończone:</span>
+										<span class="todo-list__destination-label">Zadanie ukończone</span>
 										<span class="todo-list__destination-label">Ukończone przez: <strong>{{element.displayUser}}</strong></span>
 									</div>
 									<h6 class="todo-list__task-title">
@@ -95,6 +93,16 @@
 										  <span class="slider round"></span>
 										</label>
 									</div>
+									<!-- Dropdown button -->
+									<div class="todo-list__operations" uib-dropdown is-open="status.isopen">
+								      <button uib-dropdown-toggle ng-disabled="disabled" class="todo-list__button">
+									    <i class="fa fa-bars" aria-hidden="true"></i>
+								      </button>
+								      <ul class="dropdown-menu animated zoomIn" uib-dropdown-menu role="menu">
+								        <li role="menuitem"><a href="#" ng-click="todoListTaskRemove(element.$id)">Usuń zadanie</a></li>
+								        <li role="menuitem"><a href="#" ng-click="todoListTaskEdit(element.$id)">Edytuj zadanie</a></li>
+								      </ul>
+								    </div>
 									<div class="todo-list__status" ng-class="statusClassModifier(element.todoStatus)">
 										<span ng-class="todoStatusLabel(element.todoStatus)">{{todoStatusLabel(element.todoStatus)}}</span>
 									</div>
@@ -103,9 +111,9 @@
 						</uib-tab>
 
 						<!-- Zadanie nie zrealizowane -->
-						<uib-tab index="2" heading="Zadania nie zrealizowane ({{(todoList|filter:{timeToFinishTask:-1}).length}})"  ng-if="(todoList|filter:{timeToFinishTask:-1}).length">
+						<uib-tab index="2" heading="Zadania nie zrealizowane ({{filtered.length}})" ng-if="(todoList|filter:{timeToFinishTask:'-1'}).length">
 							<div class="todo-list__elements">
-								<div class="todo-list__element" ng-repeat="element in todoList | filter: todoStatus === true | orderBy:'timeToFinishTask'" ng-if="element.timeToFinishTask === -1">
+								<div class="todo-list__element" ng-repeat='element in filtered = (todoList | filter:{todoStatus:"false", timeToFinishTask: "-1"}) | orderBy:"timeToFinishTask" track by $index'>
 									<div class="todo-list__destination-time">
 										<div>Zadanie nie zostało ukończone do: {{element.todoDestinationTime}}</div>
 										<div ng-if="element.timeToFinishTask === -1">
@@ -117,6 +125,15 @@
 										<small>Opis zadania:</small>
 										{{element.todoText}}
 									</h6>
+									<!-- Dropdown button -->
+									<div class="todo-list__operations" uib-dropdown is-open="status.isopen">
+								      <button uib-dropdown-toggle ng-disabled="disabled" class="todo-list__button">
+									    <i class="fa fa-bars" aria-hidden="true"></i>
+								      </button>
+								      <ul class="dropdown-menu animated zoomIn" uib-dropdown-menu role="menu">
+								        <li role="menuitem"><a href="#" ng-click="todoListTaskRemove(element.$id)">Usuń zadanie</a></li>
+								      </ul>
+								    </div>
 									<div class="todo-list__status" ng-class="statusClassModifier(element.todoStatus)">
 										<span ng-class="todoStatusLabel(element.todoStatus)">Zadanie nie zrealizowane</span>
 									</div>
@@ -133,7 +150,8 @@
 							<h2 class="widget__title">
 								<strong>Dodaj zadanie</strong>
 							</h2>
-							<div class="widget__inner">
+							<div ng-if="!todoList.length" class="spinner-container"><app-spinner></app-spinner></div>
+							<div class="widget__inner" ng-show="todoList.length">
 								<form class="material-form" name="formTodoListConfirmTask">
 									<div class="material-form__group">
 										<textarea ng-model="local.todoText" name="todoText" class="material-form__control material-form__control--textarea" required></textarea>
@@ -163,7 +181,7 @@
 							<h2 class="widget__title">
 								<strong>Edycja zadania</strong>
 							</h2>
-							<div class="widget__inner">
+							<div class="widget__inner" ng-show="todoList.length">
 								<form class="material-form" name="formTodoListEditTask">
 									<div class="material-form__group">
 										<textarea ng-model="todoList.todoText" name="todoText" class="material-form__control material-form__control--textarea" required></textarea>

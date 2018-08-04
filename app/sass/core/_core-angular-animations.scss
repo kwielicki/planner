@@ -12,7 +12,9 @@
 		opacity: 1;
 	}
 }
-
+.spinner-container {
+	margin-top: 100px;
+}
 /* Animacja loading */
 .ytp-spinner {
 	$component: &;

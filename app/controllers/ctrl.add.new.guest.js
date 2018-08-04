@@ -1,6 +1,53 @@
 angular
+    .module('weddingPlanner').filter('offset', function() {
+              return function(input, start) {
+                start = parseInt(start, 10);
+                return input.slice(start);
+              };
+            });
+
+angular
     .module('weddingPlanner')
-    .controller("addNewGuest", function($scope, $firebaseArray, notify, Auth) {
+    .controller("addNewGuest", function($scope, $firebaseArray, notify, Auth, $rootScope, $location, $anchorScroll) {
+
+        /*
+         * Paginacja
+         * - currentPage -> paginacja działa od 1 strony
+         * - itemsPerPage -> liczba elementów wyświetlana na 1 stronie paginacji
+         * - maxSize -> ustawione na 0, aby ukryć listę z poszczególnymi stronami paginacji
+         */
+        $scope.currentPage = 1;
+        $scope.itemPerPage = 5;
+        $scope.label = $scope.itemPerPage;
+        $scope.maxSize = 0;
+        $scope.start = 0;
+
+        /* Przygotowanie dropdownu, który umożliwia użytkownikowi zmianę ilości
+         * wyświetlanych elementów per strona paginacji
+         */
+        $rootScope.$watch('numberOfTotalPersons', function() {
+            $scope.numberOfTotalPersons = $rootScope.numberOfTotalPersons;
+            if ( $scope.numberOfTotalPersons !== undefined ) {
+
+                var arry = [];
+
+                for (var i = $scope.itemPerPage; i < $scope.numberOfTotalPersons; i+=$scope.itemPerPage) {
+                    arry.push({'itemsPerPage': i})
+                }
+
+                arry.push({'itemsPerPage': $scope.numberOfTotalPersons});
+                $scope.elements = arry;
+
+            }
+        });
+        $scope.pageChanged = function() {
+            $scope.start = ($scope.currentPage - 1) * $scope.itemPerPage;
+
+        };
+        $scope.clickedEl = function(number) {
+            $scope.itemPerPage = number.itemsPerPage;
+            $scope.label = number.itemsPerPage;
+        }
 
         var ref = firebase.database().ref().child("list_of_guest"),
             d = new Date(),
@@ -118,6 +165,10 @@ angular
     }
 
     ref.once('value', function(snapshot) {
+
+        // Liczba wszystkich rekordów
+        $rootScope.numberOfTotalPersons = snapshot.numChildren();
+
       snapshot.forEach(function(childSnapshot) {
         var childKey = childSnapshot.key;
         var childData = childSnapshot.val();
@@ -132,7 +183,6 @@ angular
            */
 
             var fullGuestNumbers = parseInt(childData.guestCount, 10);
-
             //- 1 Liczba wszystkich gości
               arrayFullGuestNumber.push(fullGuestNumbers);
               myFunction($('.statistics__global__numberOfGuest'), arrayFullGuestNumber);

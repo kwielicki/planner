@@ -5,6 +5,12 @@ angular
 		controller: function($scope, $element, $rootScope, $firebaseArray, $filter, $http, $timeout, plannerSnackbar) {
 			const ctrl = this;
 
+			ctrl.greaterThan = function(prop, val){
+			    return function(item){
+			      return item[prop] > val;
+			    }
+			}
+
 			/* TodoLista daje również możliwość dodania
 			 * daty, do której zadanie powinno zostać wykonane.
 			 * Maksymalna data, która może zostać wybrana to maxDate

@@ -13,7 +13,7 @@
 	}
 
 	// Formularz dodania zadania
-	
+
 
 	&__elements {
 		display: flex;
@@ -34,6 +34,10 @@
 	    margin: 0 $padding-sm $padding-base $padding-sm;
 	    flex-basis: calc(50% - (#{$padding-sm} * 2));
 		border-radius: $border-radius;
+		@include media-breakpoint-down(sm) {
+			width: 100%;
+			flex-basis: 100%;
+		}
 	}
 	&__status {
 		position: absolute;

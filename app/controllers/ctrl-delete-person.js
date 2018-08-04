@@ -1,6 +1,6 @@
 angular
     .module('weddingPlanner')
-    .controller('ctrlDeletePerson', [ '$scope', '$firebaseArray', '$uibModal',  function ( $scope, $firebaseArray, $uibModal ) {
+    .controller('ctrlDeletePerson', [ '$scope', '$firebaseArray', '$uibModal', '$rootScope',  function ( $scope, $firebaseArray, $uibModal, $rootScope ) {
         const ref = firebase.database().ref().child("list_of_guest");
         $scope.persons = $firebaseArray(ref);
 
@@ -26,7 +26,13 @@ angular
                          * w firebase. Jest on przekazywany jako parametr w widoku.
                          */
                          $firebaseSceope.persons.$remove(expectedPerson).then(function (value) {
-                             $firebaseSceope.whenDeleteGuestComplete = true;
+                            $firebaseSceope.whenDeleteGuestComplete = true;
+
+                            ref.once('value', function(snapshot) {
+                                /* Po usunięciu gościa z bazy danych zostaje wykonana aktualizacja ilości gości */
+                                $rootScope.numberOfTotalPersons = snapshot.numChildren();
+                            });
+
                          }).catch(function (err) {
                              $firebaseSceope.whenDeleteGuestError = true;
                          });

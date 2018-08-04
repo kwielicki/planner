@@ -93,7 +93,6 @@ angular
 angular
     .module('weddingPlanner')
     .controller('mainController', function($scope, $rootScope) {
-  $scope.searchPerson   = '';     // set the default search/filter term
 
 
     if ( $rootScope.plannerGlobal.manageGuestCurrentSortingOrder !== null ) {
