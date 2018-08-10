@@ -50,11 +50,13 @@ angular
 
                 user.providerData.forEach(function (profile) {
                     /* Pobranie odpowiednich danych z firebase i wypełnienie nimi modelu */
-                    const userProfileFullName = profile.displayName.split(' ');
-                    $scope.userProfile = {
-                        firstname: userProfileFullName[0], // firstName
-                        surname: userProfileFullName[1] // surName
-                    };
+                    if ( profile.displayName !== null ) {
+                        const userProfileFullName = profile.displayName.split(' ');
+                        $scope.userProfile = {
+                            firstname: userProfileFullName[0], // firstName
+                            surname: userProfileFullName[1] // surName
+                        };
+                    }
 
 
                     $scope.currentUserProfileImage  = profile.photoURL;

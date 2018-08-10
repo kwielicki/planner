@@ -95,8 +95,10 @@ angular
 
 			/* Dodanie do headera komponentu imienia zalogowanego użytkownika */
 			$rootScope.$watch('firebaseUserGlobal', function() {
-				const userProfileFullName = $rootScope.firebaseUserGlobal.displayName.split(' ');
-				$scope.firebaseUserAuthenticated = userProfileFullName[0];
+				if ( $rootScope.firebaseUserGlobal.displayName !== null ) {
+					const userProfileFullName = $rootScope.firebaseUserGlobal.displayName.split(' ');
+					$scope.firebaseUserAuthenticated = userProfileFullName[0];
+				}
 			});
 
 			// Klasy pomocnicze
