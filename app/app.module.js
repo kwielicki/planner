@@ -2,7 +2,6 @@
 angular
     .module('weddingPlanner')
     .controller('MainNavCtrl', [ '$scope', '$location', '$rootScope', function ( $scope, $location, $rootScope) {
-
     /* Występuje tutaj podział elementów w menu nawigacyjnym
      * 1 - globalNavigation {Panel głowny}
      * 2 - manage {Zarządzaj listą gości, Dodaj nowego gościa}
@@ -60,6 +59,11 @@ angular
                     url:  '/manage-expenses',
                     title:'Zarządzaj wydatkami',
                     specialClass: 'not--available'
+                },
+                {
+                    name:  'Aktualności',
+                    url:   '/news',
+                    title: 'Najświeższe informacje ze świata oraz z Polski'
                 }
             ]
         },

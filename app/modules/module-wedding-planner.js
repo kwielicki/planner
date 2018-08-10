@@ -11,5 +11,6 @@ angular
         "ngStorage",
         "angular.plannerSnackbar",
         "sticky",
-        "ngCookies"
+        "ngCookies",
+        "angularLazyImg"
     ]);

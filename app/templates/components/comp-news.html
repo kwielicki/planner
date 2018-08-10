@@ -1,0 +1,26 @@
+<div class="news__category">
+    <div class="news__category-label">{{$ctrl.categoryLabel}}</div>
+    <div class="news__category-list dropdown-material" uib-dropdown ng-model="$ctrl.selectedNewsCategory" on-toggle="$ctrl.openedMaterialDropdown(open)">
+        <span uib-dropdown-toggle class="news__category-selected dropdown-material__toggle">
+            {{$ctrl.selectedNewsCategory}}
+            <span class="dropdown-material__icon" ng-switch="$ctrl.isOpen">
+                <i class="fa fa-chevron-up" ng-switch-when="true"></i>
+                <i class="fa fa-chevron-down" ng-switch-when="false"></i>
+                <i class="fa fa-chevron-down" ng-switch-default="true"></i>
+            </span>
+    	</span>
+        <ul class="dropdown-material__list" uib-dropdown-menu>
+          <li class="dropdown-material__element" ng-repeat="category in $ctrl.newsCategory"
+  			ng-click="$ctrl.changeNewsCategory(category)"
+  			ng-hide="$ctrl.selectedNewsCategory === category.label">
+             {{category.label}}
+          </li>
+        </ul>
+    </div>
+</div>
+<div class="news__inner">
+	<comp-news-article
+		article="article"
+		ng-repeat="article in $ctrl.topHeadLinesArticles | filter:{urlToImage: ''}" ng-class="{'news__article--primary': $first}">
+	</comp-news-article>
+</div>

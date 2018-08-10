@@ -1,0 +1,18 @@
+<article class="news__content">
+	<figure class="news__image">
+		<img lazy-img="{{$ctrl.article.urlToImage}}" src="" alt="">
+		<figcaption class="sr-only">{{$ctrl.article.title}}</figcaption>
+		<span class="news__ribbon"><span>{{$ctrl.article.source.name}}</span></span>
+		<a ng-href="{{$ctrl.article.url}}" target="_blank" rel="noopener noreferrer" class="news__link-article" title="Przeczytaj cały artykuł"><i class="fab fa-readme"></i></span>
+	</figure>
+	<div class="news__body">
+		<div class="news__description">
+			<h4 class="news__title"><a ng-href="{{$ctrl.article.url}}" target="_blank" rel="noopener noreferrer">{{$ctrl.article.title}}</a></h4>
+			<p class="news__subtitle">{{$ctrl.article.description}}</p>
+		</div>
+		<div class="news__footer">
+			<div class="news__author">Autor: <span ng-if="$ctrl.article.author === null">autor nieznany</span>{{$ctrl.article.author}}</div>
+			<div class="news__publishDate">Data publikacji: {{$ctrl.article.publishedAt | date : 'd MMMM yyyy'}}</div>
+		</div>
+	</div>
+</article>

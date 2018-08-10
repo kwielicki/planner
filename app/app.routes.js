@@ -130,6 +130,16 @@ angular
                     return Auth.$requireSignIn();
                   }]
                 }
+            }).when('/news', {
+                templateUrl: 'templates/news.html',
+                controller: "AuthorizationCtrl",
+                title: 'Nowinki ze świata | Wedding Planner',
+                breadcrumbsTitle: 'Aktualności',
+                resolve: {
+                  "currentAuth": ["Auth", function(Auth) {
+                    return Auth.$requireSignIn();
+                  }]
+                }
             }).otherwise({
                 redirectTo: '/404',
                 templateUrl: 'templates/404.html',

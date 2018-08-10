@@ -29,7 +29,7 @@ angular
                     imageBoxSrc: 'assets/images/image-box-1.jpg',
                     imageBoxAlt: 'Administruj listą gości',
                     imageBoxTitle: 'Administruj listą gości',
-                    imageBoxDescription: 'Moduł ten jest głownym zarządcą Twojej listy gości. Z jego poziomu możesz aktualizować listę gości.',
+                    imageBoxDescription: 'Moduł ten jest głownym zarządcą Twojej listy gości. Z jego poziomu możesz aktualizować listę gości',
                     imageBoxLinkLabel: 'Zobacz listę gości',
                     imageBoxLinkValue: '#/manage-guests',
                     imageBoxCssClass: 'image-box--managing'
@@ -56,7 +56,7 @@ angular
                     imageBoxSrc: 'assets/images/image-box-4.jpg',
                     imageBoxAlt: 'Dokumentacja',
                     imageBoxTitle: 'Dokumentacja',
-                    imageBoxDescription: 'Zapoznaj się ze dokumentacją w której znajdziesz szczegółowy opis dostępnych funkcjonalności w aplikacji Wedding Planner',
+                    imageBoxDescription: 'Zapoznaj się ze dokumentacją w której znajdziesz szczegółowy opis dostępnych funkcjonalności',
                     imageBoxLinkLabel: 'Przejdź do dokumentacji',
                     imageBoxLinkValue: '#/documentation',
                     imageBoxCssClass: 'image-box--documentation'
@@ -74,7 +74,7 @@ angular
                     imageBoxSrc: 'assets/images/image-box-6.jpg',
                     imageBoxAlt: 'Lista rzeczy do zrobienia',
                     imageBoxTitle: 'Lista rzeczy do zrobienia',
-                    imageBoxDescription: 'Zorganizuj się. Zanim wszystko poukładasz, musisz wiedzieć, co w ogóle masz do zrobienia, a to najłatwiej spisywać na bieżąco',
+                    imageBoxDescription: 'Zorganizuj się. Zanim wszystko poukładasz, musisz wiedzieć, co w ogóle masz do zrobienia',
                     imageBoxLinkLabel: 'Przygotuj listę',
                     imageBoxLinkValue: '#/todo-list',
                     imageBoxCssClass: 'image-box--todolist',
@@ -91,6 +91,14 @@ angular
                     imageBoxLinkLabel: 'W trakcie realizacji...',
                     imageBoxLinkValue: '#/dashboard',
                     imageBoxCssClass: 'image-box--expenses',
+                }, {
+                    id: 8,
+                    imageBoxSrc: 'assets/images/image-box-8.jpg',
+                    imageBoxAlt: 'Aktualności',
+                    imageBoxTitle: 'Aktualności',
+                    imageBoxDescription: 'Sprawdź co ciekawego dzieje się wokół Ciebie. Moduł udostępnia ciekawe artykuły podzielone na kategorie',
+                    imageBoxLinkLabel: 'Przeczytaj',
+                    imageBoxLinkValue: '#/news'
                 }
             ];
 

@@ -158,6 +158,8 @@ gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-includes', 
 		paths.assets.components + 'app-breadcrumbs.js',
 		paths.assets.components + 'app-todo-list.js',
 		paths.assets.components + 'comp-cookies.js',
+		paths.assets.components + 'comp-news.js',
+		paths.assets.components + 'comp-news-article.js',
 		paths.assets.filters + 'app-percentage-filter.js'
 	])
 	.pipe(babel({

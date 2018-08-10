@@ -10,7 +10,7 @@ angular
 		 introbannertitle: '@',
 		 introbannerdescription: '@'
         },
-        controller: function( $scope, $element, $window ) {
+        controller: function( $scope, $element, $window, $rootScope ) {
 
             const ctrl = this;
 
