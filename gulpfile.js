@@ -83,6 +83,7 @@ gulp.task('core-bundle', function() {
 		paths.assets.js + 'angular1.6.9.min.js',
 		paths.assets.js + 'angular-route.min.js',
 		paths.assets.js + 'angular-animate.min.js',
+		paths.assets.js + 'angular1_6_9__cookies.js',
 		paths.assets.js + 'jquery-selectize.min.js',
 		paths.assets.js + 'angular-selectize2.js',
 		paths.assets.js + 'firebase.js',
@@ -156,6 +157,7 @@ gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-includes', 
 		paths.assets.components + 'app-information-box.js',
 		paths.assets.components + 'app-breadcrumbs.js',
 		paths.assets.components + 'app-todo-list.js',
+		paths.assets.components + 'comp-cookies.js',
 		paths.assets.filters + 'app-percentage-filter.js'
 	])
 	.pipe(babel({

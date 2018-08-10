@@ -10,5 +10,6 @@ angular
         "selectize",
         "ngStorage",
         "angular.plannerSnackbar",
-        "sticky"
+        "sticky",
+        "ngCookies"
     ]);

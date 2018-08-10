@@ -104,6 +104,13 @@
         <div ng-view autoscroll></div>
     </main>
     <footer-app></footer-app>
+    <comp-cookies
+        cookie-name="rodoCookie"
+        cookie-value="true"
+        cookie-title="Aplikacja korzysta z plików cookies"
+        cookie-description="Wedding Planner używa plików cookies. Korzystając z niej wyrażasz zgodę na ich używanie. Cookies wykorzystywane są w celu weryfikacji
+        użyteczności modułów oraz pewnych zachowań w samej aplikacji co przekłada się na podnoszenie jej funkcjonalności.">
+    </comp-cookies>
 
 
     <script src="assets/javascript/jquery-2.2.4.min.js"></script>
@@ -111,6 +118,7 @@
     <script src="assets/javascript/angular1.6.9.min.js"></script>
     <script src="assets/javascript/angular-route.min.js"></script>
     <script src="assets/javascript/angular-animate.min.js"></script>
+    <script src="assets/javascript/angular1_6_9__cookies.js"></script>
     <script src="assets/javascript/jquery-selectize.min.js"></script>
     <script src="assets/javascript/angular-selectize2.js"></script>
 
@@ -178,6 +186,7 @@
     <script src="components/app-information-box.js" type="text/javascript"></script>
     <script src="components/app-breadcrumbs.js" type="text/javascript"></script>
     <script src="components/app-todo-list.js" type="text/javascript"></script>
+    <script src="components/comp-cookies.js" type="text/javascript"></script>
 
     <!-- Directives -->
     <script src="directive/directive-for-anchor.js" type="text/javascript"></script>
