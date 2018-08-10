@@ -6,10 +6,12 @@ angular
 
             var storage = firebase.storage();
             var storageRefDirecory = storage.ref();
-            var storageImagesRefenrece = storageRefDirecory.child('user-images/user-photo.png');
             var user = firebase.auth().currentUser;
             $scope.userProfileSrcSelected = true;
 
+            /* Unikatowa nazwa dla pliku w firebase Storage */
+            const userEmail = user.email.split("@");
+            var storageImagesRefenrece = storageRefDirecory.child(`user-images/user-photo__${userEmail[0]}.png`);
 
             var metadata = {
               contentType: 'image/png',
