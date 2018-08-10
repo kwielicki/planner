@@ -124,6 +124,7 @@ angular
 			/* Uaktualnienie czasu, który pozostaje do wykonania zadania */
 			$scope.todoList.$loaded()
 	            .then(function() {
+					ctrl.dbLoaded = true;
 					ref.once('value', function(snapshot) {
 						snapshot.forEach(function(childSnapshot) {
 							let todoListElementId = $scope.todoList.$getRecord(childSnapshot.key)
@@ -195,7 +196,7 @@ angular
 								ref.update({
 									todoDestinationTime: $scope.selectedDate,
 									todoDestinationTimeOryginal: $scope.oryginalDateValue,
-									timeToFinishTask: $scope.timeToFinishTask
+									timeToFinishTask: $scope.timeToFinishTask,
 								});
 							}
 

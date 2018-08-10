@@ -103,6 +103,11 @@ angular
         * -- phoneNumber odpowiadający za przechowywanie numeru telefonu
         */
 
+        $scope.persons.$loaded()
+            .then(function() {
+                $scope.dbLoaded = true;
+            });
+
       $scope.addNewPerson = function() {
         $scope.persons.$add({
           firstName: $scope.firstName,

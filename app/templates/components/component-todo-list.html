@@ -16,7 +16,12 @@
 						</h2>
 					</div>
 					<!-- Preloader -->
-					<div ng-if="!todoList.length" class="spinner-container"><app-spinner></app-spinner></div>
+					<div ng-if="!todoList.length" class="spinner-container" ng-hide="$ctrl.dbLoaded"><app-spinner></app-spinner></div>
+					<app-information-box ng-if="!todoList.length && $ctrl.dbLoaded">
+						<information-box-content>
+							<p>Nie posiadasz jeszcze żadnego zadania</p>
+						</information-box-content>
+					</app-information-box>
 					<!--
 						Zadania do zrealizowania. Status -"zadanie w trakcie realizacji" oraz "zadanie, w którym czas na jego realizację nie upłynął"
 						Domyślne sortowanie ustawione na czas ( min -> max )
@@ -150,8 +155,8 @@
 							<h2 class="widget__title">
 								<strong>Dodaj zadanie</strong>
 							</h2>
-							<div ng-if="!todoList.length" class="spinner-container"><app-spinner></app-spinner></div>
-							<div class="widget__inner" ng-show="todoList.length">
+							<div ng-if="!todoList.length" class="spinner-container" ng-hide="$ctrl.dbLoaded"><app-spinner></app-spinner></div>
+							<div class="widget__inner" ng-show="$ctrl.dbLoaded">
 								<form class="material-form" name="formTodoListConfirmTask">
 									<div class="material-form__group">
 										<textarea ng-model="local.todoText" name="todoText" class="material-form__control material-form__control--textarea" required></textarea>

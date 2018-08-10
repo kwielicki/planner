@@ -94,6 +94,11 @@
                     </div>
 
                     <!-- Table body -->
+                    <app-information-box ng-if="!persons.length && dbLoaded">
+						<information-box-content>
+							<p>Nie posiadasz jeszcze żadnego gościa. Dodaj gościa korzystając z modułu <a ng-href="/#/add-new-guest">Dodaj gościa</a></p>
+						</information-box-content>
+					</app-information-box>
                     <div class="table-management__body has--preloader">
                         <div class="table-management__row table-management__row--body"
                              ng-repeat="person in persons | orderBy:sortType:sortReverse | filter:searchPerson | offset: (currentPage-1)*itemPerPage | limitTo: itemPerPage" dire-table-preloader="direTablePreloader()">
@@ -146,7 +151,7 @@
                             </div>
                         </div>
 
-                        <div class="table-management__paginator">
+                        <div class="table-management__paginator" ng-if="persons.length">
                             <div class="table-management__paginator-size">
                                 <span class="table-management__paginator-label">Elementów na stronę: </span>
                                 <span uib-dropdown on-toggle="toggled(open)" class="table-management__paginator-value">
@@ -182,7 +187,7 @@
                             </div>
                         </div>
                     </div>
-                    <span class="js-preloader"></span>
+                    <span class="js-preloader" ng-hide="dbLoaded" ng-class="dbLoaded === true && 'is--done'"></span>
                 </div>
             </div>
     </div>
