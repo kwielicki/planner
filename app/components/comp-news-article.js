@@ -21,12 +21,5 @@ angular
                         ${ctrl.classHelpers.componentName}
                     `)
             };
-
-            // Pojedynczy element klikalny
-            $scope.elementClickable = function( imageBoxExpectedLinkValue ) {
-                $window.location.href = imageBoxExpectedLinkValue;
-            }
-
-
         }
     })
