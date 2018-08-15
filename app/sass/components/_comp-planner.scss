@@ -1,0 +1,40 @@
+/* Component Planner
+ * Wymagana klasa w drzewie DOM "planner"
+ */
+
+.planner {
+	$component: &;
+	&__header {
+		display: flex;
+	    border-bottom: 2px solid #ccc;
+		background-color: #fff;
+		#{$component}__heading {
+			flex-basis: calc(100%/7);
+			border-left: 1px solid #ebebeb;
+			padding: $padding-normal $padding-sm;
+			&--category {
+
+			}
+		}
+	}
+	&__category {
+		border-bottom: 1px solid #ccc;
+		margin-bottom: 35px;
+		padding-bottom: 35px;
+	}
+	&__notes {
+		display: flex;
+		#{$component}__note {
+			flex-basis: calc(100%/7);
+			padding: $padding-normal $padding-sm;
+			background-color: #fff;
+		}
+	}
+	&__body {
+		background-color: #fff;
+		padding: $padding-normal $padding-sm;
+		font-size: $font-size-h2;
+		margin-bottom: 0;
+		color: $brand-primary-related;
+	}
+}

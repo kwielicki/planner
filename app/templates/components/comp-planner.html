@@ -1,0 +1,104 @@
+<input type="text" name="" value="" ng-model="$ctrl.cat_name">
+<button type="button" name="button" ng-click="$ctrl.plannerCategoryAdd($ctrl.cat_name)">Dodaj kategorię</button>
+
+
+
+<div class="planner__table">
+	<div class="planner__header">
+		<div class="planner__heading planner__heading--category">Kategorie</div>
+		<div class="planner__heading planner__heading--advance">Zaliczka</div>
+		<div class="planner__heading planner__heading--supplement">Dopłata</div>
+		<div class="planner__heading planner__heading--price">Cena za całość</div>
+		<div class="planner__heading planner__heading--status">Status</div>
+		<div class="planner__heading planner__heading--description">Uwagi</div>
+		<div class="planner__heading planner__heading--description">Akcje</div>
+	</div>
+	<div class="planner-table__content">
+		<div class="planner__category" ng-repeat="el in $ctrl.planner_DB__ref">
+			<div class="planner__body planner__body--category">{{el.categoryName}}</div>
+			<div class="planner__notes" ng-repeat="(key, value) in el.elements">
+				<div class="planner__note planner__note--title">{{value.title}}</div>
+				<div class="planner__note planner__note--advance">
+					<span ng-hide="expandedRecord === value">{{value.advance.amount | currency }}</span>
+					<input ng-show="expandedRecord === value" ng-model="value.advance.amount" type="number" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
+				</div>
+				<div class="planner__note planner__note--supplement">
+					{{value.price.amount - value.advance.amount | currency}}
+				</div>
+				<div class="planner__note planner__note--price">
+					<span ng-hide="expandedRecord === value">{{value.price.amount | currency }}</span>
+					<input ng-show="expandedRecord === value" ng-model="value.price.amount" type="number" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
+				</div>
+				<div class="planner__note planner__note--status">
+					<span ng-switch="value.status.value" ng-hide="expandedRecord === value">
+						<span ng-switch-when="true">{{value.status.label.done}}</span>
+						<span ng-switch-when="false">{{value.status.label.inprogress}}</span>
+						<span ng-switch-default>{{value.status.label.default}}</span>
+					</span>
+					<input type="checkbox" ng-model="value.status.value" ng-show="expandedRecord === value"/>
+				</div>
+				<div class="planner__note planner__note--desc">
+					<span ng-hide="expandedRecord === value">{{value.desc}}</span>
+					<input ng-model="value.desc" ng-show="expandedRecord === value"/>
+				</div>
+				<div class="planner__note planner__note--actions">
+					<div class="planner__buttons">
+						<span ng-click="$ctrl.plannerRemoveExpectedNote(key, el.$id)" ng-hide="expandedRecord === value">Usuń</span>
+						<span ng-click="$ctrl.plannerEditExpectedNote(value)" ng-hide="expandedRecord === value">Edytuj</span>
+					</div>
+					<div class="planner__buttons">
+						<span ng-click="$ctrl.plannerDiscardExpectedNote(value)" ng-show="expandedRecord === value">Cofnij</span>
+						<span ng-click="$ctrl.plannerSaveExpectedNote(key, el.$id, value)" ng-show="expandedRecord === value">Zapisz</span>
+					</div>
+				</div>
+			</div>
+			<div>
+				<p><input type="text" name="" value="" ng-model="plannerNoteName__$id"></p>
+				<button type="button" name="button" ng-click="$ctrl.plannerNoteAddByCategoryRef(el.$id, plannerNoteName__$id)">Dodaj notatkę</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- <ul>
+	<li ng-repeat="el in $ctrl.planner_DB__ref">
+		<p>Nazwa kategorii: {{el.categoryName}}</p>
+		<input type="text" name="" value="" ng-model="plannerNoteName__$id">
+		<button type="button" name="button" ng-click="$ctrl.plannerNoteAddByCategoryRef(el.$id, plannerNoteName__$id)">Dodaj tytuł dla notatki w kategorii <code>{{el.$id}}</code></button>
+		<ul>
+			<li ng-repeat="(key, value) in el.elements">
+				<ul>
+					<li>{{value.title}}</li>
+					<li>Wpłacona zaliczka:
+						<span ng-show="$ctrl.isPresentation">{{value.advance.amount | currency }}</span>
+						<input ng-show="!$ctrl.isPresentation" ng-model="value.advance.amount" type="number" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
+					</li>
+					<li>Wymagana dopłata:
+						<span ng-show="$ctrl.isPresentation">{{value.supplement.amount | currency }}</span>
+						<input ng-show="!$ctrl.isPresentation" ng-model="value.supplement.amount" type="number" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
+					</li>
+					<li>Cena za całość: {{value.advance.amount + value.supplement.amount | currency}}</li>
+					<li>
+						<span ng-switch="value.status.value" ng-show="$ctrl.isPresentation">
+							<span ng-switch-when="true">{{value.status.label.done}}</span>
+							<span ng-switch-when="false">{{value.status.label.inprogress}}</span>
+							<span ng-switch-default>{{value.status.label.default}}</span>
+						</span>
+						<input type="checkbox" ng-model="value.status.value" ng-show="!$ctrl.isPresentation"/>
+					</li>
+					<li>
+						<span ng-show="$ctrl.isPresentation">{{value.desc}}</span>
+						<input ng-model="value.desc" ng-show="!$ctrl.isPresentation"/>
+					</li>
+				</ul>
+				<p ng-click="$ctrl.plannerRemoveExpectedNote(key, el.$id)" ng-show="$ctrl.isPresentation"><span>Usuń</span></p>
+				<p ng-click="$ctrl.plannerEditExpectedNote(value)" ng-show="$ctrl.isPresentation"><span>Edytuj</span></p>
+				<p ng-click="$ctrl.plannerDiscardExpectedNote(value)" ng-show="!$ctrl.isPresentation"><span>Cofnij</span></p>
+				<p ng-click="$ctrl.plannerSaveExpectedNote(key, el.$id, value)" ng-show="!$ctrl.isPresentation"><span>Zapisz</span></p>
+			</li>
+		</ul>
+	</li>
+</ul> -->
+
+<planner-snackbar></planner-snackbar>

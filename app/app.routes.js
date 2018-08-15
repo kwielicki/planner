@@ -140,6 +140,16 @@ angular
                     return Auth.$requireSignIn();
                   }]
                 }
+            }).when('/planner', {
+                templateUrl: 'templates/planner.html',
+                controller: "AuthorizationCtrl",
+                title: 'Plan wesela oraz ślubu | Wedding Planner',
+                breadcrumbsTitle: 'Plan wesela oraz ślubu',
+                resolve: {
+                  "currentAuth": ["Auth", function(Auth) {
+                    return Auth.$requireSignIn();
+                  }]
+                }
             }).otherwise({
                 redirectTo: '/404',
                 templateUrl: 'templates/404.html',

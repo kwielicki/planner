@@ -39,28 +39,28 @@ angular
                     name: 'Zarządzaj listą gości',
                     url:  '/manage-guests',
                     title: 'Zarządzaj listą gości'
-                }, {
+                },{
                     name:   'Dodaj nowego gościa',
                     url:    '/add-new-guest',
                     title:  'Dodaj nowego gościa'
-                },
-                {
+                },{
+                    name:   'Plan wesela oraz ślubu',
+                    url:    '/planner',
+                    title:  'Zaplanuj wesele oraz ślub'
+                },{
                     name: 'Notatnik weselny',
                     url:  '/wedding-notebook',
                     title:'Notatnik weselny'
-                },
-                {
+                },{
                     name: 'Lista rzeczy do zrobienia',
                     url:  '/todo-list',
                     title:'Lista rzeczy do zrobienia'
-                },
-                {
+                },{
                     name: 'Zarządzaj wydatkami',
                     url:  '/manage-expenses',
                     title:'Zarządzaj wydatkami',
                     specialClass: 'not--available'
-                },
-                {
+                },{
                     name:  'Aktualności',
                     url:   '/news',
                     title: 'Najświeższe informacje ze świata oraz z Polski'
