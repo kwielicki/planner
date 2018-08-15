@@ -1,0 +1,167 @@
+/* Component Planner
+ * Wymagana klasa w drzewie DOM "planner"
+ */
+
+.planner {
+	$component: &;
+	&__content {
+		padding-top: 50px;
+	}
+	&__header {
+		display: flex;
+		background-color: #fff;
+		border-bottom: 2px solid $border-color;
+		#{$component}__heading {
+			flex-basis: calc(100%/7);
+			padding: $padding-normal $padding-sm;
+			&--category {
+
+			}
+		}
+	}
+	&__category {
+		@include transition_bezier;
+		margin-bottom: $padding-medium;
+		background-color: #fff;
+		padding: $padding-sm $padding-normal;
+		border: 1px solid $border-color;
+		&.is-expanded {
+			padding-bottom: $padding-normal;
+			box-shadow: $google-box-shadow-1dp;
+			#{$component}__category-name {
+				border-color: $border-color;
+			}
+		}
+	}
+	&__notes {
+		@include transition_bezier;
+		border-bottom: 1px solid $border-color;
+		display: flex;
+		align-items: center;
+		&:hover {
+			background-color: $brand-gray-light;
+			#{$component}__button {
+				box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+			}
+		}
+		&--last {
+			border-bottom: 0;
+		}
+		#{$component}__note {
+			flex-basis: calc(100%/7);
+			font-size: $font-size-sm;
+			padding: $padding-normal $padding-sm;
+			&--desc {
+				span {
+					display: block;
+				}
+			}
+		}
+	}
+	&__category-name {
+		@include transition_bezier;
+		background-color: #fff;
+		padding: $padding-normal $padding-sm $padding-normal 0;
+		color: $brand-gray;
+		font-size: $font-size-h6;
+		margin-bottom: 0;
+		border-bottom: 1px solid transparent;
+		strong {
+			color: $brand-dark;
+		}
+	}
+	&__heading {
+		font-weight: $fw-5;
+		font-size: $font-size-h6;
+	}
+	&__button {
+		transition: none;
+		cursor: pointer;
+		display: inline-block;
+		box-shadow: none;
+	}
+	&__table {
+		position: relative;
+		&.is--done {
+			&:before {
+				@include absolute;
+				content: '';
+				background-color: rgba(255,255,255,.5);
+				z-index: 9;
+			}
+		}
+	}
+	&__character-circle {
+		border-radius: $border-rounded;
+		display: inline-block;
+		margin-right: $padding-normal;
+		width: 35px;
+		height: 35px;
+		text-align: center;
+		line-height: 25px;
+		color: #000;
+		padding: 5px;
+		font-size: 12px;
+		border-radius: 50%;
+		overflow: hidden;
+		word-break: break-word;
+		text-overflow: ellipsis;
+		white-space: pre;
+		vertical-align: middle;
+	}
+	&__preloader {
+		@include absolute-full-centering;
+		position: fixed;
+		z-index: 10;
+	}
+
+	// Formularze
+	&-form {
+		&__group {
+			max-width: 481px;
+			margin: 0 auto;
+			&--note {
+				padding-top: $padding-base;
+			}
+		}
+		&__input {
+			display: block;
+			width: 100%;
+			border: none;
+			border-radius: $border-radius-sm;
+			height: 44px;
+			box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+			padding-left: $padding-normal;
+			margin-bottom: $padding-normal;
+			&:focus {
+				outline: none;
+			}
+		}
+		&__button {
+			display: table;
+			margin: 0 auto;
+		}
+	}
+
+	// Preheader (deleted category and note about number of elements (notes))
+	&__pre-header {
+		font-size: $font-size-xs;
+		text-align: right;
+		color: $brand-gray;
+		&--removing {
+			@include transition_bezier;
+			cursor: pointer;
+			&:hover {
+				color: $brand-dark;
+			}
+		}
+		.ng-hide-remove {
+			transition: all linear 0.3s;
+			font-size: 0;
+		}
+		.ng-hide-add {
+			transition: all linear 0.3s;
+		}
+	}
+
+}

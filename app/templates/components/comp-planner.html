@@ -1,0 +1,89 @@
+
+<div ng-hide="!$ctrl.dbLoaded">
+	<form name="plannerCategoryForm" class="planner-form">
+		<div class="planner-form__group">
+			<input type="text" name="cat_name" ng-model="$ctrl.cat_name" ng-required="true" class="planner-form__input">
+			<button type="button" name="button" class="planner-form__button btn btn-sm btn-transparent" ng-click="$ctrl.plannerCategoryAdd($ctrl.cat_name)" ng-disabled="plannerCategoryForm.cat_name.$invalid">Dodaj kategorię</button>
+		</div>
+	</form>
+</div>
+
+<div class="planner__table" ng-class="!$ctrl.dbActionCompleted === false && 'is--done'">
+	<span class="js-preloader" ng-hide="$ctrl.dbLoaded" ng-class="$ctrl.dbLoaded === true && 'is--done'"></span>
+	<span class="js-preloader planner__preloader" ng-show="$ctrl.dbActionCompleted" ng-class="$ctrl.dbActionCompleted === false && 'is--done'"></span>
+	<v-accordion multiple class="planner__content vAccordion--primary" id="JSplanner__Accordion">
+		<v-pane id="v-pane__{{ el.$id }}" expanded="$first" class="planner__category" ng-repeat="el in $ctrl.planner_DB__Array | orderBy:$ctrl.chronological">
+			<div class="planner__pre-header">
+				<span ng-show="(el.elements | objLength) === 0" class="planner__pre-header--removing" ng-click="$ctrl.plannerRemoveCategory(el)">
+					Usuń kategorię</span>
+				</span>
+				<span ng-show="(el.elements | objLength) > 0">
+					Liczba notatek w kategorii: <strong>({{el.elements | objLength}})</strong> </span>
+				</span>
+			</div>
+			<v-pane-header class="planner__category-name">
+				<span class="planner__character-circle" ng-style={"background-color":"{{el.characterCircleBackground}}"}>{{el.categoryName | charactersInCircle}}</span> <strong>{{el.categoryName}}</strong>
+			</v-pane-header>
+			<v-pane-content>
+				<div class="planner__header">
+					<div class="planner__heading planner__heading--category">Nazwa notatki</div>
+					<div class="planner__heading planner__heading--advance">Zaliczka</div>
+					<div class="planner__heading planner__heading--supplement">Dopłata</div>
+					<div class="planner__heading planner__heading--price">Cena za całość</div>
+					<div class="planner__heading planner__heading--status">Status</div>
+					<div class="planner__heading planner__heading--description">Uwagi</div>
+					<div class="planner__heading planner__heading--description">Akcje</div>
+				</div>
+				<div class="planner__notes" ng-class="{'planner__notes--last': $last}" ng-repeat="(key, value) in el.elements">
+					<div class="planner__note planner__note--title">{{value.title}}</div>
+					<div class="planner__note planner__note--advance">
+						<span ng-hide="expandedRecord === value">{{value.advance.amount | currency }}</span>
+						<input ng-show="expandedRecord === value" ng-model="value.advance.amount" type="number" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
+					</div>
+					<div class="planner__note planner__note--supplement">
+						{{value.price.amount - value.advance.amount | currency}}
+					</div>
+					<div class="planner__note planner__note--price">
+						<span ng-hide="expandedRecord === value">{{value.price.amount | currency }}</span>
+						<input ng-show="expandedRecord === value" ng-model="value.price.amount" type="number" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
+					</div>
+					<div class="planner__note planner__note--status">
+						<span ng-switch="value.status.value" ng-hide="expandedRecord === value">
+							<span ng-switch-when="true" class="success">{{value.status.label.done}}</span>
+							<span ng-switch-when="false" class="is--default">{{value.status.label.inprogress}}</span>
+							<span class="is--default" ng-switch-default>{{value.status.label.default}}</span>
+						</span>
+						<input type="checkbox" ng-model="value.status.value" ng-show="expandedRecord === value"/>
+					</div>
+					<div class="planner__note planner__note--desc">
+						<span ng-hide="expandedRecord === value">{{value.desc}}</span>
+						<span ng-show="expandedRecord === value" ng-model="value.desc" contenteditable></span>
+					</div>
+					<div class="planner__note planner__note--actions">
+						<div class="planner__buttons" ng-if="expandedRecord !== value">
+							<span ng-click="$ctrl.plannerRemoveExpectedNote(key, el.$id)"
+								  ng-hide="expandedRecord === value"
+								  title="Usuń notatkę - {{value.title}}"
+								  class="planner__button btn-xs btn btn-danger">Usuń</span>
+							<span ng-click="$ctrl.plannerEditExpectedNote(value)" ng-hide="expandedRecord === value" class="planner__button btn btn-xs btn-secondary">Edytuj</span>
+						</div>
+						<div class="planner__buttons" ng-if="expandedRecord === value">
+							<span ng-click="$ctrl.plannerDiscardExpectedNote(value)" ng-show="expandedRecord === value" class="planner__button btn-xs btn btn-secondary">Cofnij</span>
+							<span ng-click="$ctrl.plannerSaveExpectedNote(key, el.$id, value)" ng-show="expandedRecord === value" class="planner__button btn-xs btn btn-success">Zapisz</span>
+						</div>
+					</div>
+				</div>
+				<div>
+					<form name="plannerNoteForm" class="planner-form">
+						<div class="planner-form__group planner-form__group--note">
+							<input type="text" name="cat_note" ng-required="true" class="planner-form__input" ng-model="el.plannerNoteName__$index">
+							<button type="button" name="button" class="planner-form__button btn btn-sm btn-transparent" ng-click="$ctrl.plannerNoteAddByCategoryRef(el.$id, el.plannerNoteName__$index)" ng-disabled="plannerNoteForm.cat_note.$invalid">Dodaj notatkę</button>
+						</div>
+					</form>
+				</div>
+			</v-pane-content>
+		</v-pane>
+	</div>
+</div>
+
+<planner-snackbar></planner-snackbar>

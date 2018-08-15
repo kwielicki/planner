@@ -12,5 +12,6 @@ angular
         "angular.plannerSnackbar",
         "sticky",
         "ngCookies",
-        "angularLazyImg"
+        "angularLazyImg",
+        "ngSanitize"
     ]);

@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Wedding Planner - aplikacja do zarządzania listą z gośćmi weselnymi</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/site-components.css" />
@@ -22,7 +21,7 @@
                         <nav class="navbar__nav" ng-controller="MainNavCtrl">
                             <ul class="list-unstyled nav">
                                 <li class="nav__element">
-                                    <div class="btn-group" uib-dropdown auto-close="outsideClick" keyboard-nav="true" on-toggle="toggled(open)">
+                                    <div class="btn-group" uib-dropdown auto-close="always" keyboard-nav="true" on-toggle="toggled(open)">
                                         <a href="#" id="btn-append-to-body" class="nav__anchor nav__anchor--menu" uib-dropdown-toggle>
                                             <span>{{propertiesMenuCloses}}</span>
                                             <i class="fa fa-bars nav__icon" aria-hidden="true"></i>
@@ -116,15 +115,15 @@
     <script src="assets/javascript/jquery-2.2.4.min.js"></script>
     <script src="assets/javascript/bootstrap.min.js"></script>
     <script src="assets/javascript/angular1.6.9.min.js"></script>
+    <script src="assets/javascript/angular-sanitize.js"></script>
     <script src="assets/javascript/angular-route.min.js"></script>
     <script src="assets/javascript/angular-animate.min.js"></script>
     <script src="assets/javascript/angular1_6_9__cookies.js"></script>
     <script src="assets/javascript/jquery-selectize.min.js"></script>
     <script src="assets/javascript/angular-selectize2.js"></script>
+    <script src="assets/javascript/angular-lazy-image.js"></script>
 
     <script src="assets/i18n/polish/angular-locale_pl-pl.js"></script>
-
-    <script>angular.module("angularLazyImg",[]),angular.module("angularLazyImg").factory("LazyImgMagic",["$window","$rootScope","lazyImgConfig","lazyImgHelpers",function(n,e,t,o){"use strict";function r(){for(var n=y.length-1;n>=0;n--){var e=y[n];e&&o.isElementInView(e.$elem[0],p.offset,m)&&(u(e),y.splice(n,1))}y.length||s()}function i(n){z.forEach(function(e){e[n]("scroll",I),e[n]("touchmove",I)}),f[n]("resize",I),f[n]("resize",d)}function a(){h=!0,setTimeout(function(){r(),i("on")},1)}function s(){h=!1,i("off")}function c(n){var e=y.indexOf(n);-1!==e&&y.splice(e,1)}function u(n){var t=new Image;t.onerror=function(){p.errorClass&&n.$elem.addClass(p.errorClass),n.errorSrc&&l(n.$elem,n.errorSrc),e.$apply(function(){e.$emit("lazyImg:error",n),p.onError(n)})},t.onload=function(){l(n.$elem,n.src),p.successClass&&n.$elem.addClass(p.successClass),e.$apply(function(){e.$emit("lazyImg:success",n),p.onSuccess(n)})},t.src=n.src}function l(n,e){"img"===n[0].nodeName.toLowerCase()?n[0].src=e:n.css("background-image",'url("'+e+'")')}function g(n){this.$elem=n}var m,f,y,h,p,I,d,z;return y=[],h=!1,p=t.getOptions(),f=angular.element(n),m=o.getWinDimensions(),d=o.throttle(function(){m=o.getWinDimensions()},60),p.container=p.containers||p.container,z=p.container?[].concat(p.container):[f],I=o.throttle(r,30),g.prototype.setSource=function(n){this.src=n,y.unshift(this),a()},g.prototype.setErrorSource=function(n){this.errorSrc=n},g.prototype.removeImage=function(){c(this),y.length||s()},g.prototype.checkImages=r,g.addContainer=function(n){s(),z.push(n),a()},g.removeContainer=function(n){s(),z.splice(z.indexOf(n),1),a()},g}]),angular.module("angularLazyImg").provider("lazyImgConfig",function(){"use strict";this.options={offset:100,errorClass:null,successClass:null,onError:function(){},onSuccess:function(){}},this.$get=function(){var n=this.options;return{getOptions:function(){return n}}},this.setOptions=function(n){angular.extend(this.options,n)}}),angular.module("angularLazyImg").factory("lazyImgHelpers",["$window",function(n){"use strict";return{isElementInView:function(n,e,t){var o=n.getBoundingClientRect();return o.left<=t.width+e&&o.right>=0-e&&o.top<=t.height+e&&o.bottom>=0-e},getWinDimensions:function(){return{height:n.innerHeight,width:n.innerWidth}},throttle:function(n,e,t){var o,r;return function(){var i=t||this,a=+new Date,s=arguments;o&&a<o+e?(clearTimeout(r),r=setTimeout(function(){o=a,n.apply(i,s)},e)):(o=a,n.apply(i,s))}}}}]),angular.module("angularLazyImg").directive("lazyImg",["$rootScope","$log","LazyImgMagic",function(n,e,t){"use strict";return{link:function(e,o,r){e.lazyImage=new t(o),e.lazyImage.setErrorSource(r.lazyImgError);var i=r.$observe("lazyImg",function(n){n&&(i(),e.lazyImage.setSource(n))}),a=n.$on("lazyImg:refresh",function(){e.lazyImage.checkImages()});e.$on("$destroy",function(){e.lazyImage.removeImage(),a()})},restrict:"A"}}]).directive("lazyImgContainer",["LazyImgMagic",function(n){"use strict";return{link:function(e,t){n.addContainer(t),e.$on("$destroy",function(){n.removeContainer(t)})},restrict:"A"}}]);</script>
 
     <!-- Firebase -->
     <script src="assets/javascript/firebase.js"></script>
@@ -191,15 +190,18 @@
     <script src="components/comp-cookies.js" type="text/javascript"></script>
     <script src="components/comp-news.js" type="text/javascript"></script>
     <script src="components/comp-news-article.js" type="text/javascript"></script>
+    <script src="components/comp-planner.js" type="text/javascript"></script>
 
     <!-- Directives -->
     <script src="directive/directive-for-anchor.js" type="text/javascript"></script>
     <script src="directive/directive-for-table-preloader.js" type="text/javascript"></script>
     <script src="directive/directive-for-fade-in.js" type="text/javascript"></script>
     <script src="directive/directive-display-mode-detection.js" type="text/javascript"></script>
+    <script src="directive/directive-contenteditable.js" type="text/javascript"></script>
 
     <!-- Filters -->
     <script src="filters/app-percentage-filter.js" type="text/javascript"></script>
+    <script src="filters/app-characters-in-circle.js" type="text/javascript"></script>
 
     <div class="display-mode" dn-display-mode="displayMode"></div>
   </body>

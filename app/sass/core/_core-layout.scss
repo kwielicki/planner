@@ -32,6 +32,7 @@ img {
 
 .btn:disabled {
     cursor: default;
+    pointer-events: none;
 }
 ul {
     li {

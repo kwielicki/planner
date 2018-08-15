@@ -53,9 +53,15 @@ gulp.task('copy-sass', function() {
 });
 
 gulp.task('copy-img', function() {
-	return gulp.src('app/assets/images/**')
+	return gulp.src(['app/assets/images/**', 'app/assets/fonts'])
 		.pipe(gulp.dest('target/' + util.env.projectName + '/assets/images'))
 });
+
+gulp.task('copy-fonts', function() {
+	return gulp.src('app/assets/fonts/**')
+		.pipe(gulp.dest('target/' + util.env.projectName + '/assets/fonts'))
+});
+
 
 gulp.task('copy-templates', function() {
 	return gulp.src('app/templates/**')
@@ -81,6 +87,7 @@ gulp.task('core-bundle', function() {
 		paths.assets.js + 'jquery-2.2.4.min.js',
 		paths.assets.js + 'bootstrap.min.js',
 		paths.assets.js + 'angular1.6.9.min.js',
+		paths.assets.js + 'angular-sanitize.js',
 		paths.assets.js + 'angular-route.min.js',
 		paths.assets.js + 'angular-animate.min.js',
 		paths.assets.js + 'angular1_6_9__cookies.js',
@@ -94,6 +101,7 @@ gulp.task('core-bundle', function() {
 		paths.assets.js + 'pdfmake.min.js',
 		paths.assets.js + 'vfs-fonts.min.js',
 		paths.assets.js + 'angular-accordions.min.js',
+		paths.assets.js + 'angular-lazy-image.js',
 		paths.assets.i18n + 'polish/angular-locale_pl-pl.js'
 	])
 	.pipe(plumber())
@@ -124,7 +132,7 @@ gulp.task('firebase-sdk', function() {
 	.pipe(gulp.dest('target/' + util.env.projectName + '/assets/javascript'))
 });
 
-gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-includes', 'copy-index', 'core-bundle', 'firebase-sdk'], function () {
+gulp.task('build', ['copy-sass', 'copy-img', 'copy-fonts', 'copy-templates', 'copy-includes', 'copy-index', 'core-bundle', 'firebase-sdk'], function () {
 	return gulp.src([
 		paths.assets.module + 'module-wedding-planner.js',
 		paths.assets.module + 'module-planner-snackbar.js',
@@ -145,6 +153,7 @@ gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-includes', 
 		paths.assets.directive  + 'directive-for-table-preloader.js',
 		paths.assets.directive  + 'directive-for-fade-in.js',
 		paths.assets.directive  + 'directive-display-mode-detection.js',
+		paths.assets.directive  + 'directive-contenteditable.js',
 		paths.assets.components + 'app-card-component.js',
 		paths.assets.components + 'app-wedding-notebook-filter-component.js',
 		paths.assets.components + 'app-footer-component.js',
@@ -160,7 +169,10 @@ gulp.task('build', ['copy-sass', 'copy-img', 'copy-templates', 'copy-includes', 
 		paths.assets.components + 'comp-cookies.js',
 		paths.assets.components + 'comp-news.js',
 		paths.assets.components + 'comp-news-article.js',
-		paths.assets.filters + 'app-percentage-filter.js'
+		paths.assets.components + 'comp-planner.js',
+		paths.assets.filters + 'app-percentage-filter.js',
+		paths.assets.filters + 'app-characters-in-circle.js',
+		paths.assets.filters + 'app-object-length.js'
 	])
 	.pipe(babel({
         presets: ['es2015']

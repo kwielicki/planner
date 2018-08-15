@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Wedding Planner - aplikacja do zarządzania listą z gośćmi weselnymi</title>
-    <script src="https://use.fontawesome.com/b4095e84c3.js"></script>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/site-components.css" />
@@ -22,7 +21,7 @@
                         <nav class="navbar__nav" ng-controller="MainNavCtrl">
                             <ul class="list-unstyled nav">
                                 <li class="nav__element">
-                                    <div class="btn-group" uib-dropdown auto-close="outsideClick" keyboard-nav="true" on-toggle="toggled(open)">
+                                    <div class="btn-group" uib-dropdown auto-close="always" keyboard-nav="true" on-toggle="toggled(open)">
                                         <a href="#" id="btn-append-to-body" class="nav__anchor nav__anchor--menu" uib-dropdown-toggle>
                                             <span>{{propertiesMenuCloses}}</span>
                                             <i class="fa fa-bars nav__icon" aria-hidden="true"></i>
@@ -104,6 +103,13 @@
         <div ng-view autoscroll></div>
     </main>
     <footer-app></footer-app>
+    <comp-cookies
+        cookie-name="rodoCookie"
+        cookie-value="true"
+        cookie-title="Aplikacja korzysta z plików cookies"
+        cookie-description="Wedding Planner używa plików cookies. Korzystając z niej wyrażasz zgodę na ich używanie. Cookies wykorzystywane są w celu weryfikacji
+        użyteczności modułów oraz pewnych zachowań w samej aplikacji co przekłada się na podnoszenie jej funkcjonalności.">
+    </comp-cookies>
 
     <script src="assets/javascript/core-bundle.min.js"></script>
     <script src="assets/javascript/firebase-sdk.min.js"></script>

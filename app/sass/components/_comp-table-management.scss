@@ -231,9 +231,10 @@
                 a {
                     font-size: 0;
                     color: $brand-dark;
+                    @extend %fa-icon;
+                    @extend .fa;
                     &:before {
-                        font-family: 'fontAwesome';
-                        font-size: 18px;
+                        font-size: 14px;
                     }
                 }
                 &.pagination-first {

@@ -43,6 +43,19 @@ angular
                     imageBoxLinkValue: '#/add-new-guest',
                     imageBoxCssClass: 'image-box--addiding'
                 }, {
+                    id: 2,
+                    imageBoxSrc: 'assets/images/image-box-9.jpg',
+                    imageBoxAlt: 'Organizer weselny',
+                    imageBoxTitle: 'Organizer weselny',
+                    imageBoxDescription: 'Kategoryzuj zadania, przewiduj wydatki oraz zarządzaj swoim czasem',
+                    imageBoxLinkLabel: 'Organizuj',
+                    imageBoxLinkValue: '#/wedding-organizer',
+                    imageBoxCssClass: 'image-box--addiding',
+                    imageBoxIsNewest: {
+                        value: true,
+                        label: "Nowość"
+                    }
+                }, {
                     id: 3,
                     imageBoxSrc: 'assets/images/image-box-3.jpg',
                     imageBoxAlt: 'Statystyki',
@@ -77,11 +90,7 @@ angular
                     imageBoxDescription: 'Zorganizuj się. Zanim wszystko poukładasz, musisz wiedzieć, co w ogóle masz do zrobienia',
                     imageBoxLinkLabel: 'Przygotuj listę',
                     imageBoxLinkValue: '#/todo-list',
-                    imageBoxCssClass: 'image-box--todolist',
-                    imageBoxIsNewest: {
-                        value: true,
-                        label: "Nowość"
-                    }
+                    imageBoxCssClass: 'image-box--todolist'
                 }, {
                     id: 7,
                     imageBoxSrc: 'assets/images/image-box-7.jpg',

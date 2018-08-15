@@ -131,4 +131,46 @@ v-pane-content {
       }
     }
   }
+
+    // Primary accordion theme
+    .vAccordion--primary {
+        v-pane-content {
+            > div {
+                padding-bottom: $v-accordion-spacing;
+                opacity: 0;
+                transform: translate3d(0, 30px, 0);
+                transition: all $v-pane-expand-animation-duration;
+          }
+        }
+        v-pane-header {
+            @extend %fa-icon;
+            @extend .fas;
+            position: relative;
+            display: block;
+            &:after {
+                content: fa-content($fa-var-chevron-down);
+                position: absolute;
+                right: $padding-normal;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            > div {
+              display: inline-block;
+              padding-right: $padding-sm;
+            }
+        }
+        v-pane {
+            &.is-expanded {
+                > v-pane-content > div {
+                    opacity: 1;
+                    transform: translate3d(0, 0, 0);
+                }
+                v-pane-header {
+                    &:after {
+                        content: fa-content($fa-var-chevron-up);
+                    }
+                }
+            }
+        }
+    }
 }

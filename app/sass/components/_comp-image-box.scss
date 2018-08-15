@@ -11,6 +11,7 @@
         pointer-events: none;
     }
     &__element {
+        @include transition_bezier;
         background-color: #fff;
         box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.2);
         margin-bottom: $padding-base;
@@ -24,6 +25,7 @@
             flex-basis: calc(100% - 30px);
         }
         &:hover {
+            box-shadow: $google-box-shadow-0dp;
             img {
                 transform: scale(1.3) rotate(10deg);
             }
