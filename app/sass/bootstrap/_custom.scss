@@ -1,9 +1,23 @@
+/* Table of content
+ * 1 - Fonts {family,size, weight, line height}
+ * 2 - Colors
+ * 3 - Spacers
+ * 4 - Radius
+ * 6 - Forms
+ * 7 - Dropdowns
+ * 8 - Files paths
+ * 9 - Accordions
+ * 10 - Modals
+ * 11 - Box shadows
+ * 12 - Layout
+ * Components dedicated variables
+ ** 1 - Login panel
+ */
 
 
 //- Fonts
 $font-family-base: 'Roboto', sans-serif;
 $font-family-secondary: 'Lato', sans-serif;
-$headings-font-weight: 500;
 $font-size-base: 1.6rem;
 $font-size-normal: 3.0rem;
 $font-size-h1: 3rem;
@@ -12,9 +26,16 @@ $font-size-h3: 2rem;
 $font-size-h4: 1.8rem;
 $font-size-h5: 1.6rem;
 $font-size-h6: 1.5rem;
+$font-size-xxl: 5rem;
 $font-size-sm: 1.4rem;
 $font-size-xs: 1.2rem;
+$headings-font-weight: 500;
 $headings-font-weight: 400;
+$fw-3: 300;
+$fw-4: 400;
+$fw-5: 500;
+$fw-6: 600;
+$line-height-normal: 1.4;
 
 //- Colors
 $brand-primary:     #2cc5f7;
@@ -27,6 +48,7 @@ $body-bg:           #f5f5f5;
 $headings-color:    $brand-dark;
 $border-color:      #e1e7ec;
 $border-color-dropdown-element: #ebebeb;
+$color-white:       #fff;
 
 //- Spacers
 $padding-large: 50px;
@@ -48,10 +70,9 @@ $input-color-placeholder: $brand-primary;
 //- Dropdowns
 $dropdown-min-width: 20rem;
 
-//- Files path
+//- Files paths
 $assets_path: "../images";
 $fa-font-path: "../fonts/font-awesome";
-
 
 //- Accordion
 $v-accordion-default-theme:         true !default;
@@ -72,21 +93,22 @@ $modal-overlay-light-bg: #fff;
 $modal-overlay-dark-bg:  #333;
 $modal-overlay-opacity:  .7;
 
-//- Font weights
-$fw-3: 300;
-$fw-4: 400;
-$fw-5: 500;
-$fw-6: 600;
-
 //- Box shadows
 $google-box-shadow-0dp: 0 1px 35px 0 rgba(0,0,0,.3);
 $google-box-shadow-1dp: 0 12px 21px rgba(0,0,0,0.1);
 $google-box-shadow-2dp: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+$google-box-shadow-3dp: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.2);
 
-/* Component Variables
+//- Layout
+$container-max-width:       1140px;
+$container-fluid-max-width: 1600px;
+
+/* Components dedicated variables
  * 1 - Login panel (.login-panel)
  */
 
     //- [1] Login panel
     $login-panel-max-width: 400px;
     $login-panel-icon-size: 8px;
+    $login-panel-perspective: 800px;
+    $login-panel-box-shadow: 0 0 37px rgba(255,255,255,0.3);

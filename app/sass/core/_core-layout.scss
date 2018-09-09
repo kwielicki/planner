@@ -1,27 +1,25 @@
 html {
-  font-size:62.5%; /* not really needed but make calculations from design to screen 1 to 0.1 */
+  font-size:62.5%;
 }
 html, body {
     height: 100%;
 }
 body {
-    font-weight: 300;
-}
-.container {
-    max-width: 1320px;
+    font-weight: $fw-3;
 }
 .container-fluid {
-    max-width: 1600px;
+    max-width: $container-fluid-max-width;
 }
 .component-layout {
-    background-color: #fff;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.2);
-    margin: 35px 0;
-    padding: 35px;
+    background-color: $color-white;
+    box-shadow: $google-box-shadow-3dp;
+    margin: $padding-base 0;
+    padding: $padding-base;
     @include media-breakpoint-down(sm) {
         padding: $padding-sm $padding-normal;
     }
 }
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
@@ -34,16 +32,18 @@ img {
     cursor: default;
     pointer-events: none;
 }
+
 ul {
     li {
         font-size: $font-size-xs;
     }
 }
+
 .underline {
     text-decoration: underline;
 }
 
 .tooltip {
-    font-weight: 300;
+    font-weight: $fw-3;
     font-size: $font-size-xs;
 }

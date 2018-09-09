@@ -154,6 +154,7 @@ gulp.task('build', ['copy-sass', 'copy-img', 'copy-fonts', 'copy-templates', 'co
 		paths.assets.directive  + 'directive-for-fade-in.js',
 		paths.assets.directive  + 'directive-display-mode-detection.js',
 		paths.assets.directive  + 'directive-contenteditable.js',
+		paths.assets.directive  + 'directive-focus-element-triggerer.js',
 		paths.assets.components + 'app-card-component.js',
 		paths.assets.components + 'app-wedding-notebook-filter-component.js',
 		paths.assets.components + 'app-footer-component.js',

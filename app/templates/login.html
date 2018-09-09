@@ -1,44 +1,52 @@
 <div class="login-panel" ng-hide="firebaseUser" ng-controller="userLogin">
-    <div class="login-panel__header">
-        <h6 class="login-panel__title">
-            WeddingPlanner
-            <small>zaloguj się do aplikacji</small>
-        </h6>
-    </div>
-    <div class="login-panel__forms">
-        <form class="login-panel__form" name="loginForm" novalidate ng-submit="appSignIn(loginForm.$valid, loginForm.$error)">
-            <div class="form-group form-group--modern">
-                <div class="form-group__input">
-                    <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
-                    <input type="email" class="form-control form-control--modern" placeholder="Adres e-mail" ng-model="user.email" required/>
+	<div class="login-panel__inner">
+		<div class="login-panel__info">
+			<h1 class="login-panel__intro"><strong>Wedding Planner</strong><br/>- zaplanuj swoje wesele perfekcyjnie</h1>
+			<h2 class="login-panel__promo">Oszczędzaj swój czas. Zaplanuj je z odpowiednim wyprzedzeniem.</h2>
+			<a href="#" class="login-panel__quick-login btn btn-shadowed" ng-click="loginPerspectiveActivated=true; focusInput=true">Zaloguj do aplikacji</a>
+		</div>
+        <div class="login-panel__perspective">
+            <div class="login-panel__authorization" ng-class="{'perspective--disabled': loginPerspectiveActivated}" ng-mouseleave="loginPerspectiveActivated=false">
+                <div class="login-panel__header">
+                    <h6 class="login-panel__title">
+                        WeddingPlanner
+                        <small>zaloguj się do aplikacji</small>
+                    </h6>
                 </div>
-            </div>
-            <div class="form-group form-group--modern">
-                <div class="form-group__input">
-                    <i aria-hidden="true" class="fa fa-key form-group__icon"></i>
-                    <input type="{{inputType}}" class="form-control form-control--modern" placeholder="Hasło" ng-model="user.password" required/>
-                    <!-- Password Helper -->
-                    <span ng-click="passwordHelper()"
-                        ng-class="passwordHelperClassStatus"
-                        class="login-panel__password-helper"
-                        title="{{passwordHelperTitleContent}}">
-                        <i class="fa" aria-hidden="true" ng-class="passwordHelperClassStatus === 'is--activated' ? 'fa-eye-slash' : 'fa-eye'"></i>
-                    </span>
-                </div>
+                <div class="login-panel__forms">
+                    <form class="login-panel__form" name="loginForm" novalidate ng-submit="appSignIn(loginForm.$valid, loginForm.$error)">
+                        <div class="form-group form-group--modern">
+                            <div class="form-group__input">
+                                <i aria-hidden="true" class="fa fa-user form-group__icon"></i>
+                                <input type="email" class="form-control form-control--modern" placeholder="Adres e-mail" ng-model="user.email" required focus-me="focusInput"/>
+                            </div>
+                        </div>
+                        <div class="form-group form-group--modern">
+                            <div class="form-group__input">
+                                <i aria-hidden="true" class="fa fa-key form-group__icon"></i>
+                                <input type="{{inputType}}" class="form-control form-control--modern" placeholder="Hasło" ng-model="user.password" required/>
+                                <!-- Password Helper -->
+                                <span ng-click="passwordHelper()" ng-class="passwordHelperClassStatus" class="login-panel__password-helper" title="{{passwordHelperTitleContent}}">
+                                    <i class="fa" aria-hidden="true" ng-class="passwordHelperClassStatus === 'is--activated' ? 'fa-eye-slash' : 'fa-eye'"></i>
+                                </span>
+                            </div>
 
-            </div>
-            <div class="form-group form-group--modern login-panel__action-button">
-                <button class="btn btn--motive btn-block" ng-class="authorizationInit ? 'is-initialized' : ''" ng-disabled="authorizationInit">
-                    <span>{{loginText}}</span>
-                </button>
-            </div>
-            <div class="form-group form-group--modern form-group__helper" ng-class="firebaseAuthenticatedFailed === true ? 'error' : ''">
-                <div class="text-xs-center text-danger">
-                    <div ng-if="firebaseAuthenticatedFailed"
-                         ng-class="firebaseAuthenticatedFailed === true ? 'animated tada' : 'fadeOut'">{{ firebaseErrorMessage }}</div>
+                        </div>
+                        <div class="form-group form-group--modern login-panel__action-button">
+                            <button class="btn btn--motive btn-block" ng-class="authorizationInit ? 'is-initialized' : ''" ng-disabled="authorizationInit">
+                                <span>{{loginText}}</span>
+                            </button>
+                        </div>
+                        <div class="form-group form-group--modern form-group__helper" ng-class="firebaseAuthenticatedFailed === true ? 'error' : ''">
+                            <div class="text-xs-center text-danger">
+                                <div ng-if="firebaseAuthenticatedFailed" ng-class="firebaseAuthenticatedFailed === true ? 'animated tada' : 'fadeOut'" class="login-panel__error">{{ firebaseErrorMessage }}</div>
+                            </div>
+                        </div>
+                        <div class="text-xs-center login-panel__footer" ng-controller="controllerAppVersion">Wersja aplikacji -<code>{{appVersion}}</code></div>
+                    </form>
                 </div>
             </div>
-            <div class="text-xs-center login-panel__footer" ng-controller="controllerAppVersion">Wersja aplikacji -<code>{{appVersion}}</code></div>
-        </form>
-    </div>
+        </div>
+	</div>
+    <img ng-src="assets/images/shape-01.png" alt="" class="login-panel__shape">
 </div>

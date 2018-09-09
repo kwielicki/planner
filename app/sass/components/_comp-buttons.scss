@@ -80,6 +80,28 @@
         box-shadow: none;
         color: $headings-color;
     }
+    &-shadowed {
+        box-shadow: 0 0 20px 0 #fff;
+        border: 1px solid #fff;
+        color: #fff;
+        &:hover {
+            background-color: #fff;
+            color: $brand-dark;
+        }
+        &:focus {
+            color: #fff;
+            background-color: transparent;
+            &:active {
+                color: #fff;
+                background-color: transparent;
+            }
+            &:hover {
+                background-color: #fff;
+                color: $brand-dark;
+            }
+        }
+
+    }
     //- Small buttons
     &-sm {
         padding: 10px 25px;

@@ -1,20 +1,115 @@
 //- Komponent Login panel
 
 .login-panel {
-    @include absolute-full-centering;
-    @extend %placeholder-box-shadow-around;
-    max-width: $login-panel-max-width;
-    width: 100%;
-    border-radius: $border-radius;
-    background-color: $brand-white;
-    border-bottom: 1px solid $brand-gray;
-    overflow: hidden;
-    @include media-breakpoint-down(xs) {
-        left: $grid-gutter-width-base / 2;
-        right: $grid-gutter-width-base / 2;
-        width: auto;
-        transform: translate(0, -50%);
+    $component: &;
+    @include media-breakpoint-up(lg) {
+        @include absolute;
+        background: -webkit-linear-gradient(right, #F43457 0%, #1866DE 100%);
     }
+    @include media-breakpoint-down(md) {
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 10px;
+            background: -webkit-linear-gradient(right, #F43457 0%, #1866DE 100%);
+        }
+    }
+    &__perspective {
+        flex-basis: 100%;
+        @include media-breakpoint-up(lg) {
+            display: flex;
+            flex-basis: 60%;
+            justify-content: center;
+            perspective: $login-panel-perspective;
+        }
+    }
+    &__info {
+        @include media-breakpoint-up(lg) {
+            flex-basis: 40%;
+        }
+        @include media-breakpoint-down(md) {
+            display: none;
+        }
+    }
+    &__inner {
+        @include make-container();
+        @include make-container-max-widths();
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 100%;
+        padding-left: ($grid-gutter-width-base / 2);
+        padding-right: ($grid-gutter-width-base / 2);
+        @include media-breakpoint-down(md) {
+            height: 100vh;
+        }
+    }
+    &__authorization {
+        @include transition_bezier;
+        @include media-breakpoint-up(lg) {
+            transform: rotateY(-30deg);
+            box-shadow: $login-panel-box-shadow;
+        }
+        @extend %placeholder-box-shadow-around;
+        max-width: $login-panel-max-width;
+        width: 100%;
+        border-radius: $border-radius;
+        background-color: $brand-white;
+        border-bottom: 1px solid $brand-gray;
+        overflow: hidden;
+        &:hover {
+            transform: none;
+        }
+        &.perspective--disabled {
+            transform: none;
+        }
+    }
+    &__intro {
+        color: $color-white;
+        font-weight: $fw-3;
+        font-size: $font-size-xxl;
+        strong {
+            font-weight: $fw-6;
+            text-transform: capitalize;
+        }
+    }
+    &__promo {
+        color: $color-white;
+        font-weight: $fw-3;
+        line-height: $line-height-normal;
+    }
+    &__shape {
+        @include media-breakpoint-up(lg) {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            min-width: 600px;
+            width: 100%;
+            height: 70px;
+            z-index: 1;
+            height: calc(100vh - 90vh);
+        }
+        @include media-breakpoint-down(md) {
+            display: none;
+        }
+    }
+    &__quick-login {
+        margin-top: $padding-normal;
+    }
+    &__action-button {
+        button {
+            font-size: $font-size-xs;
+        }
+    }
+    &__error {
+        font-size: $font-size-xs;
+    }
+}
+
+.login-panel {
     &__header {
         background-image: url('#{$assets_path}/bg-top-login.jpg');
         padding: $padding-medium 0 $padding-base 0;
@@ -36,7 +131,7 @@
         top: 5px;
     }
     &__title {
-        color: #fff;
+        color: $color-white;
         margin: 0;
         font-size: $font-size-normal;
     }
@@ -53,6 +148,7 @@
         padding: $padding-sm $padding-normal;
         margin-left: -($padding-medium);
         margin-right: -($padding-medium);
+        font-size: $font-size-xs;
     }
     &__password-helper {
         @include transition_bezier;
