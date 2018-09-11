@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700|Roboto:300,400,500,700');
 @import "bootstrap/bootstrap";
-@import "core/font-awesome/fontawesome.scss";
-@import "core/font-awesome/solid.scss";
+@import "core/font-awesome/fontawesome";
+@import "libraries/animate_css/animate.min";
+@import "core/font-awesome/solid";
 @import "core/core";
 @import "components/components";
 .active > a{
