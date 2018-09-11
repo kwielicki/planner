@@ -171,6 +171,7 @@ gulp.task('build', ['copy-sass', 'copy-img', 'copy-fonts', 'copy-templates', 'co
 		paths.assets.components + 'comp-news.js',
 		paths.assets.components + 'comp-news-article.js',
 		paths.assets.components + 'comp-planner.js',
+		paths.assets.components + 'comp-header.js',
 		paths.assets.filters + 'app-percentage-filter.js',
 		paths.assets.filters + 'app-characters-in-circle.js',
 		paths.assets.filters + 'app-object-length.js'

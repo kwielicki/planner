@@ -1,115 +1,29 @@
 <!doctype html>
 <html lang="en" ng-app="weddingPlanner" ng-controller="ctrlAppMainFirebase">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Wedding Planner - aplikacja do zarządzania listą z gośćmi weselnymi</title>
-    <link rel="stylesheet"
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Wedding Planner - aplikacja do zarządzania listą z gośćmi weselnymi</title>
+        <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/site-components.css" />
-  </head>
-  <body>
-   <header class="component header ng-cloak" ng-if="firebaseUser">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="navbar">
-                        <div class="navbar__brand">
-                            <a href="/#/dashboard" class="logo h5">weddingPlanner</a>
-                            <span class="navbar__brand--helper">panel administratora</span>
-                        </div>
-                        <nav class="navbar__nav" ng-controller="MainNavCtrl">
-                            <ul class="list-unstyled nav">
-                                <li class="nav__element">
-                                    <div class="btn-group" uib-dropdown auto-close="always" keyboard-nav="true" on-toggle="toggled(open)">
-                                        <a href="#" id="btn-append-to-body" class="nav__anchor nav__anchor--menu" uib-dropdown-toggle>
-                                            <span>{{propertiesMenuCloses}}</span>
-                                            <i class="fa fa-bars nav__icon" aria-hidden="true"></i>
-                                        </a>
-                                        <ul class="list-unstyled dropdown-menu dropdown-menu--global animated zoomIn" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-                                            <li class="dropdown-menu__element dropdown-menu__element--global">
-                                                <ul class="list-unstyled">
-                                                    <li ng-repeat="menuItem in menuItems[0]" ng-class="{active: isActive('{{ menuItem.url }}')}">
-                                                        <a ng-href="#{{menuItem.url}}" title="{{menuItem.title}}" class="dropdown-menu__anchor">{{ menuItem.name }}</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="dropdown-menu__element dropdown-menu__element--manage">
-                                                <ul class="list-unstyled">
-                                                    <li ng-repeat="menuItem in menuItems[1].manage" ng-class="{active: isActive('{{ menuItem.url }}')}">
-                                                        <a ng-href="#{{menuItem.url}}" title="{{menuItem.title}}" class="dropdown-menu__anchor" ng-class="menuItem.specialClass">{{ menuItem.name }}</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
+        <link rel="stylesheet" type="text/css" href="assets/css/site-components.css" />
+    </head>
+    <body>
+        <comp-header></comp-header>
 
-                                            <li class="dropdown-menu__element dropdown-menu__element--analyst">
-                                                <ul class="list-unstyled">
-                                                    <li ng-repeat="menuItem in menuItems[2]" ng-class="{active: isActive('{{ menuItem.url }}')}">
-                                                        <a ng-href="#{{menuItem.url}}" title="{{menuItem.title}}" class="dropdown-menu__anchor">{{ menuItem.name }}</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
+        <main class="layout main">
+            <div ng-view autoscroll></div>
+        </main>
 
-                                            <li class="dropdown-menu__element dropdown-menu__element--documentation">
-                                                <ul class="list-unstyled">
-                                                    <li ng-repeat="menuItem in menuItems[3]" ng-class="{active: isActive('{{ menuItem.url }}')}">
-                                                        <a ng-href="#{{menuItem.url}}" title="{{menuItem.title}}" class="dropdown-menu__anchor">{{ menuItem.name }}</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="nav__element nav__element--logout">
-                                    <div class="btn-group" uib-dropdown auto-close="outsideClick" keyboard-nav="true">
-                                        <a href="#" id="btn-append-to-body" class="nav__anchor nav__anchor--logout" uib-dropdown-toggle>
-                                            <img ng-src="{{firebaseUser.photoURL}}"
-                                                 src="assets/images/user-photo.png" alt="" image-change class="ng-src-animation">
-                                        </a>
-                                        <ul class="list-unstyled dropdown-menu dropdown-menu--logout animated zoomIn" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-                                            <li class="login-timer">
-                                                Ostatnie poprawne logowanie:
-                                                <span class="login-timer__data">{{ user.lastSuccessedLoginData | date:'dd-MM-yyyy, HH:mm:ss'}}</span>
-                                            </li>
-                                            <li class="avatar">
-                                                <figure>
-                                                    <div class="avatar__photo">
-                                                        <img ng-src="{{firebaseUser.photoURL}}" alt="User photo" image-change class="ng-src-animation">
-                                                    </div>
-                                                    <figcaption>
-                                                        <span class="avatar__label">Zalogowany jako: </span>
-                                                        <div class="avatar__user" ng-class="firebaseUserDisplayName === true ? '' : 'avatar__user--only-email'">
-                                                            <span class="avatar__user-name" ng-if="firebaseUserDisplayName"> {{ firebaseUser.displayName }} </span>
-                                                            <span class="avatar__user-email"> {{ firebaseUser.email }} </span>
-                                                        </div>
-                                                    </figcaption>
-                                                </figure>
-                                            </li>
-                                            <li class="footer" ng-controller="ctrlUserLogout">
-                                                <a ng-href="#/user-profile" class="btn btn-transparent btn-xs">Profil użytkownika</a>
-                                                <a href="#" ng-click="appSignOut()" class="btn btn-transparent btn-xs">Wyloguj</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <main class="layout main">
-        <div ng-view autoscroll></div>
-    </main>
-    <footer-app></footer-app>
-    <comp-cookies
-        cookie-name="rodoCookie"
-        cookie-value="true"
-        cookie-title="Aplikacja korzysta z plików cookies"
-        cookie-description="Wedding Planner używa plików cookies. Korzystając z niej wyrażasz zgodę na ich używanie. Cookies wykorzystywane są w celu weryfikacji
-        użyteczności modułów oraz pewnych zachowań w samej aplikacji co przekłada się na podnoszenie jej funkcjonalności.">
-    </comp-cookies>
+        <footer-app></footer-app>
+
+        <comp-cookies
+            cookie-name="rodoCookie"
+            cookie-value="true"
+            cookie-title="Aplikacja korzysta z plików cookies"
+            cookie-description="Wedding Planner używa plików cookies. Korzystając z niej wyrażasz zgodę na ich używanie. Cookies wykorzystywane są w celu weryfikacji
+            użyteczności modułów oraz pewnych zachowań w samej aplikacji co przekłada się na podnoszenie jej funkcjonalności.">
+        </comp-cookies>
 
 
     <script src="assets/javascript/jquery-2.2.4.min.js"></script>
@@ -191,6 +105,7 @@
     <script src="components/comp-news.js" type="text/javascript"></script>
     <script src="components/comp-news-article.js" type="text/javascript"></script>
     <script src="components/comp-planner.js" type="text/javascript"></script>
+    <script src="components/comp-header.js" type="text/javascript"></script>
 
     <!-- Directives -->
     <script src="directive/directive-for-anchor.js" type="text/javascript"></script>
