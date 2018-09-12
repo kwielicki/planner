@@ -1,0 +1,20 @@
+[
+	"01_jquery.js",
+	"02_bootstrap.min.js",
+	"03_angular.js",
+	"04_angular-sanitize.js",
+	"05_angular-route.js",
+	"06_angular-animate.js",
+	"07_angular-cookies.js",
+	"08_jquery-selectize.min.js",
+	"09_angular-selectize2.js",
+	"010_angular-lazy-image.js",
+	"011_firebase.js",
+	"012_angularfire.min.js",
+	"013_ngStorage.min.js",
+	"014_angular-notifications.js",
+	"015_angular-bootstrap-ui.min.js",
+	"016_pdfmake.min.js",
+	"017_angular-accordions.min.js",
+	"018_vfs-fonts.min.js"
+]

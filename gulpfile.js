@@ -11,9 +11,12 @@ const htmlmin  = require('gulp-htmlmin');
 const babel    = require('gulp-babel');
 const browserSync = require('browser-sync');
 
+const fs = require('fs');
+
+const jsonScriptConfig = JSON.parse(fs.readFileSync('app/assets/javascript/package.json'));
 
 //- Kompilacja SASSÓW (Bootstrap + site components)
-var sassFiles = 'app/sass/**/*.scss',
+const sassFiles = 'app/sass/**/*.scss',
 	paths = {
 		assets: {
 			js: 'app/assets/javascript/',
@@ -26,8 +29,12 @@ var sassFiles = 'app/sass/**/*.scss',
 			components: 'app/components/',
 			filters: 'app/filters/'
 		}
-	}
+	};
 
+const bundleScriptIterator = jsonScriptConfig.map(function(singleScript) {
+	return paths.assets.js + singleScript;
+});
+bundleScriptIterator.push(paths.assets.i18n + 'polish/angular-locale_pl-pl.js');
 
 gulp.task('sass', function () {
   return gulp.src(sassFiles)
@@ -83,27 +90,7 @@ gulp.task('copy-index', function() {
 
 // Application Core Build
 gulp.task('core-bundle', function() {
-	return gulp.src([
-		paths.assets.js + 'jquery-2.2.4.min.js',
-		paths.assets.js + 'bootstrap.min.js',
-		paths.assets.js + 'angular1.6.9.min.js',
-		paths.assets.js + 'angular-sanitize.js',
-		paths.assets.js + 'angular-route.min.js',
-		paths.assets.js + 'angular-animate.min.js',
-		paths.assets.js + 'angular1_6_9__cookies.js',
-		paths.assets.js + 'jquery-selectize.min.js',
-		paths.assets.js + 'angular-selectize2.js',
-		paths.assets.js + 'firebase.js',
-		paths.assets.js + 'angularfire.min.js',
-		paths.assets.js + 'ngStorage.min.js',
-		paths.assets.js + 'angular-notifications.js',
-		paths.assets.js + 'angular-bootstrap-ui.min.js',
-		paths.assets.js + 'pdfmake.min.js',
-		paths.assets.js + 'vfs-fonts.min.js',
-		paths.assets.js + 'angular-accordions.min.js',
-		paths.assets.js + 'angular-lazy-image.js',
-		paths.assets.i18n + 'polish/angular-locale_pl-pl.js'
-	])
+	return gulp.src(bundleScriptIterator)
 	.pipe(plumber())
 	.pipe(concat('core-bundle.js'))
 	.pipe(minify({
