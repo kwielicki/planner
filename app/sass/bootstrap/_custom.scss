@@ -47,6 +47,7 @@ $brand-gray-light:  #f6f6f6;
 $body-bg:           #f5f5f5;
 $headings-color:    $brand-dark;
 $border-color:      #e1e7ec;
+$border-color-dark: #bdbdbd;
 $border-color-dropdown-element: #ebebeb;
 $color-white:       #fff;
 
@@ -69,6 +70,7 @@ $input-color-placeholder: $brand-primary;
 
 //- Dropdowns
 $dropdown-min-width: 20rem;
+$dropdown-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.1);
 
 //- Files paths
 $assets_path: "../images";

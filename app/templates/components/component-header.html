@@ -4,45 +4,68 @@
 			 <div class="col-xs-12">
 				 <div class="navbar">
 					 <div class="navbar__brand">
-						 <a href="/#/dashboard" class="logo h5">weddingPlanner</a>
-						 <span class="navbar__brand--helper">panel administratora</span>
+						 <a href="/#/dashboard" class="logo">
+						 	<img src="assets/images/svg/wedding-planner-logo.svg"/>
+						 </a>
 					 </div>
 					 <nav class="navbar__nav">
 						 <ul class="list-unstyled nav">
 							 <li class="nav__element">
-								 <div class="btn-group" uib-dropdown auto-close="always" keyboard-nav="true" on-toggle="$ctrl.toggled(open)">
+								 <div class="btn-group" uib-dropdown auto-close="outsideClick" keyboard-nav="true" on-toggle="$ctrl.toggled(open)" dropdown-append-to-body=true is-open="$ctrl.sideBarMenuStatus">
 									 <a href="#" id="btn-append-to-body" class="nav__anchor nav__anchor--menu" uib-dropdown-toggle>
-										 <span>{{$ctrl.toggleMenuStatus}}</span>
-										 <i class="fa fa-bars nav__icon" aria-hidden="true"></i>
+										 <span class="nav__element-profileIcon"><i class="fas fa-briefcase"></i></span>
+										 <span class="nav__element-profileName">Zarządzaj modułami</span>
 									 </a>
-									 <ul class="list-unstyled dropdown-menu dropdown-menu--global animated zoomIn" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-										 <li class="dropdown-menu__element dropdown-menu__element--global">
-											 <ul class="list-unstyled">
-												 <li ng-repeat="menuItem in $ctrl.menuItems__dashboard" ng-class="{active: $ctrl.isActive('{{ menuItem.url }}')}">
-													 <a ng-href="#{{menuItem.url}}" title="{{menuItem.title}}" class="dropdown-menu__anchor">{{ menuItem.name }}</a>
-												 </li>
-											 </ul>
-										 </li>
-										 <li class="dropdown-menu__element dropdown-menu__element--manage">
+									 <ul class="list-unstyled dropdown-menu dropdown-menu__navigation" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+										<a class="dropdown-menu__close" href="#" ng-click="$ctrl.sideBarMenuHidding()"><i class="fas fa-times"></i></a>
+										 <li class="dropdown-menu__element">
+											 <div class="dropdown-menu__list-title">Dostępne moduły w Wedding Plannerze</div>
 											 <ul class="list-unstyled">
 												 <li ng-repeat="menuItem in $ctrl.menuItems__modules" ng-class="{active: $ctrl.isActive('{{ menuItem.url }}')}">
-													 <a ng-href="#{{menuItem.url}}" title="{{menuItem.title}}" class="dropdown-menu__anchor" ng-class="menuItem.specialClass">{{ menuItem.name }}</a>
+													 <a ng-href="#"
+													 	title="{{menuItem.title}}"
+														class="dropdown-menu__anchor"
+														 ng-class="menuItem.specialClass"
+														 ng-click="$ctrl.sideBarMenuHidding(menuItem.url)">
+														 <span class="dropdown-menu__icon">
+															 <ng-include src="menuItem.icon"></ng-include>
+														 </span>
+														 {{ menuItem.name }}
+													 </a>
 												 </li>
 											 </ul>
 										 </li>
 
-										 <li class="dropdown-menu__element dropdown-menu__element--analyst">
+										 <li class="dropdown-menu__element">
+											 <div class="dropdown-menu__list-title">Bądź na bieżąco ze swoją aplikacją</div>
 											 <ul class="list-unstyled">
-												 <li ng-repeat="menuItem in menuItems[2]" ng-class="{active: $ctrl.isActive('{{ menuItem.url }}')}">
-													 <a ng-href="#{{menuItem.url}}" title="{{menuItem.title}}" class="dropdown-menu__anchor">{{ menuItem.name }}</a>
+												 <li ng-repeat="menuItem in $ctrl.menuItems__doc" ng-class="{active: $ctrl.isActive('{{ menuItem.url }}')}">
+													 <a ng-href="#"
+													 	title="{{menuItem.title}}"
+														class="dropdown-menu__anchor"
+														ng-click="$ctrl.sideBarMenuHidding(menuItem.url)">
+														 <span class="dropdown-menu__icon">
+															 <ng-include src="menuItem.icon"></ng-include>
+														 </span>
+														 {{ menuItem.name }}
+													 </a>
 												 </li>
 											 </ul>
 										 </li>
 
-										 <li class="dropdown-menu__element dropdown-menu__element--documentation">
+										 <li class="dropdown-menu__element">
+											 <div class="dropdown-menu__list-title">Sprawdź aktualności ze świata</div>
 											 <ul class="list-unstyled">
 												 <li ng-repeat="menuItem in $ctrl.menuItems__additional" ng-class="{active: isActive('{{ menuItem.url }}')}">
-													 <a ng-href="#{{menuItem.url}}" title="{{menuItem.title}}" class="dropdown-menu__anchor">{{ menuItem.name }}</a>
+													 <a ng-href="#"
+													 	title="{{menuItem.title}}"
+														class="dropdown-menu__anchor"
+														ng-click="$ctrl.sideBarMenuHidding(menuItem.url)">
+														 <span class="dropdown-menu__icon">
+															 <ng-include src="menuItem.icon"></ng-include>
+														 </span>
+														 {{ menuItem.name }}
+													 </a>
 												 </li>
 											 </ul>
 										 </li>
@@ -52,10 +75,10 @@
 							 <li class="nav__element nav__element--logout">
 								 <div class="btn-group" uib-dropdown auto-close="outsideClick" keyboard-nav="true">
 									 <a href="#" id="btn-append-to-body" class="nav__anchor nav__anchor--logout" uib-dropdown-toggle>
-										 <img ng-src="{{$ctrl.firebaseUser.photoURL}}"
-											  src="assets/images/user-photo.png" alt="" image-change class="ng-src-animation">
+										<span class="nav__element-profileIcon"><i class="fas fa-user-circle"></i></span>
+										<span class="nav__element-profileName">Twój profil</span>
 									 </a>
-									 <ul class="list-unstyled dropdown-menu dropdown-menu--logout animated zoomIn" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+									 <ul class="list-unstyled dropdown-menu dropdown-menu--logout animated fadeIn" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
 										 <li class="login-timer">
 											 Ostatnie poprawne logowanie:
 											 <span class="login-timer__data">{{ $ctrl.user.lastSuccessedLoginData | date:'dd-MM-yyyy, HH:mm:ss'}}</span>

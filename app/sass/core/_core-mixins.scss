@@ -51,6 +51,37 @@
     margin-right: -($grid-gutter-width-base / 2);
 }
 
+// Dropdown :: Dropdown (ui.bootstrap.dropdown)
+@mixin dropdown-menu {
+    box-shadow: $dropdown-shadow;
+    border-color: $border-color;
+    border-radius: $border-radius;
+    padding: 0;
+    margin: 0;
+    animation-duration: .3s;
+    &:before, &:after {
+        content: " ";
+        bottom: 100%;
+    	right: $padding-sm*2;
+    	border: solid transparent;
+    	height: 0;
+    	width: 0;
+    	position: absolute;
+    	pointer-events: none;
+    }
+    &:before {
+        border-color: rgba(194, 225, 245, 0);
+    	border-bottom-color: $border-color;
+    	border-width: 10px;
+    }
+    &:after {
+        border-color: rgba(136, 183, 213, 0);
+    	border-bottom-color: #fff;
+    	border-width: 9px;
+    	margin-right: 1px;
+    }
+}
+
 //- Placeholder [mixin]
 @mixin placeholder {
   ::-webkit-input-placeholder {@content}

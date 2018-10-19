@@ -1,5 +1,6 @@
 .intro-banner {
 	$component: &;
+	position: relative;
 	display: block;
 	background-color: #fff;
 	border-bottom: 2px solid $brand-gray;

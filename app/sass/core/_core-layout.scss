@@ -6,6 +6,49 @@ html, body {
 }
 body {
     font-weight: $fw-3;
+    padding-top: 72px;
+    &.uib-dropdown-open {
+        overflow-y: hidden;
+    }
+    &::-webkit-scrollbar-track
+	{
+		background-color: $brand-gray-light;
+	}
+
+	&::-webkit-scrollbar
+	{
+		width: 10px;
+		background-color: $brand-gray-light;
+	}
+
+	&::-webkit-scrollbar-thumb
+	{
+		background-color: $border-color;
+	}
+    &::before {
+        content: '';
+        opacity: 0;
+        transition: opacity .3s;
+    }
+    &.uib-dropdown-open {
+        .dropdown-menu {
+            &__navigation {
+                transform: translateX(0);
+                box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 12px 18px 1px rgba(0,0,0,.2);
+            }
+        }
+        &::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0,0,0,.6);
+            z-index: 9;
+            opacity: 1;
+        }
+    }
 }
 .container-fluid {
     max-width: $container-fluid-max-width;
@@ -46,4 +89,7 @@ ul {
 .tooltip {
     font-weight: $fw-3;
     font-size: $font-size-xs;
+}
+.dropdown-menu {
+    @include dropdown-menu;
 }

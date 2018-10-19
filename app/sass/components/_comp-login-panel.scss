@@ -43,9 +43,6 @@
         height: 100%;
         padding-left: ($grid-gutter-width-base / 2);
         padding-right: ($grid-gutter-width-base / 2);
-        @include media-breakpoint-down(md) {
-            height: 100vh;
-        }
     }
     &__authorization {
         @include transition_bezier;
@@ -102,6 +99,8 @@
     &__action-button {
         button {
             font-size: $font-size-xs;
+            padding-left: $padding-xs;
+            padding-right: $padding-xs;
         }
     }
     &__error {
