@@ -16,6 +16,9 @@
 	&--smaller {
 		margin-bottom: $padding-normal;
 	}
+	&--simple {
+		margin-bottom: 0;
+	}
 	&__element {
 		display: inline-block;
 		position: relative;

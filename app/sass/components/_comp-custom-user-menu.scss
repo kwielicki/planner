@@ -1,0 +1,90 @@
+/* Component Custom user menu
+ * Wymagana klasa w drzewie DOM "custom-user-menu"
+ */
+
+.custom-user-menu {
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+		margin-left: -$padding-xs;
+		margin-right: -$padding-xs;
+	}
+	&__element {
+		@include transition_bezier;
+		position: relative;
+		width: calc(100%/3 - #{$padding-xs}*2);
+		border: 1px solid $border-color;
+		padding: $padding-normal $padding-medium $padding-normal $padding-normal;
+		background-color: $color-white;
+		margin: 0 $padding-xs $padding-sm $padding-xs;
+		cursor: pointer;
+		@include media-breakpoint-down(md) {
+			width: calc(100%/2 - #{$padding-xs}*2);
+		}
+		@include media-breakpoint-down(xs){
+			width: 100%;
+		}
+		&:hover {
+			box-shadow: $google-box-shadow-1dp;
+			transform: translate3d(0,-2px,0);
+		}
+		&.active {
+			border-color: $brand-primary;
+			color: $brand-primary;
+			@include font-awesome("\f00c", $pseudoElement: 'after') {
+				@include absolute-vertical-centering;
+				right: $padding-normal;
+			};
+			&:hover {
+				box-shadow: none;
+				transform: translate3d(0,0,0);
+			}
+		}
+		&.is--disabled {
+			opacity: .5;
+			pointer-events: none;
+		}
+	}
+
+	/* Komponent Alert - wykorzystany w ramach Menu */
+	.alert {
+		margin-top: $padding-base;
+	}
+
+	/* Kolejność wyborów */
+	&__steps {
+		margin-bottom: $padding-normal;
+		white-space: nowrap;
+		max-width: 768px;
+		border-bottom: 1px solid $border-color;
+		&-info {
+			@include media-breakpoint-up(md) {
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+			@include media-breakpoint-down(sm) {
+				overflow-x: auto;
+			}
+		}
+		&-link {
+			font-size: $font-size-xs;
+		}
+	}
+
+	&__buttons {
+		text-align: center;
+		padding: $padding-sm $padding-xs $padding-base $padding-xs;
+	}
+
+	&__title {
+		display: block;
+		font-size: $font-size-h4;
+	}
+
+	&__description {
+		@include text-truncate;
+		display: block;
+		font-size: $font-size-xs;
+		color: $brand-primary;
+	}
+}

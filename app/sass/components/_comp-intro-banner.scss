@@ -25,7 +25,7 @@
 	}
 	&--sidebar {
 	    background-color: #fff;
-	    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.2);
+	    box-shadow: 0 1px 1px 0 rgba(60,64,67,.08), 0 1px 3px 1px rgba(60,64,67,.16);
 		border-bottom: 0;
 	    margin: 35px 0;
 	    padding: 35px;
@@ -50,5 +50,12 @@
 			font-size: $font-size-xs;
 			color: $gray-dark;
 		}
+	}
+	&__historyback {
+		display: table;
+		margin-top: $padding-sm;
+		@include font-awesome('\f060') {
+			padding-right: $padding-xs;
+		};
 	}
 }

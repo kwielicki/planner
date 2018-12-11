@@ -1,12 +1,51 @@
 .user-profile {
-	&__image {
-		height: 200px;
-		width: 200px;
-		margin: 0 auto;
-		border-radius: $border-radius;
-		overflow: hidden;
-		background-color: $brand-gray-light;
+	$component: &;
+	&__banner {
 		position: relative;
+		display: flex;
+		align-items: flex-end;
+		min-height: 450px;
+		background: url('#{$assets_path}/user-profile-banner.jpg');
+		background-size: cover;
+		background-position: 50% 50%;
+		@include media-breakpoint-down(sm) {
+			min-height: 250px;
+		}
+		#{$component}__name {
+			color: $color-white;
+			margin: 0;
+			padding: $padding-normal;
+			small {
+				display: block;
+				padding-bottom: $padding-xs;
+			}
+			@include media-breakpoint-down(sm) {
+				display: none;
+			}
+		}
+	}
+
+	&__name {
+		&--mobile {
+			display: none;
+			@include media-breakpoint-down(sm) {
+				display: block;
+				margin: 0;
+				padding: $padding-normal;
+				margin-top: -50px;
+				small {
+					display: block;
+					padding-bottom: $padding-xs;
+				}
+			}
+		}
+	}
+
+	&__image {
+		position: relative;
+		background-color: #fff;
+		margin: 0 auto;
+		box-shadow: 0 6px 0 0 rgba(0,0,0,.01), 0 15px 32px 0 rgba(0,0,0,.06);
 		img {
 			position: relative;
 			z-index: 99;
@@ -17,7 +56,44 @@
 			}
 		}
 		margin-bottom: $padding-medium;
+		&--small {
+			box-shadow: none;
+		}
 	}
+	&__avatar {
+		position: relative;
+		width: 100px;
+		height: 100px;
+		border-radius: $border-rounded;
+		margin: 0 auto;
+		overflow: hidden;
+	    border: 5px solid #fff;
+		top: -50px;
+	}
+
+	&__navigation {
+		position: relative;
+		display: flex;
+		justify-content: space-between;
+		max-width: $container-max-width;
+		margin: 0 auto;
+		top: -50px;
+		@include media-breakpoint-down(sm) {
+			flex-direction: column;
+			top: 0;
+			padding: $padding-normal;
+			.btn {
+				+ .btn {
+					margin-top: $padding-normal;
+				}
+			}
+		}
+	}
+
+	.nav-tabs {
+		display: none;
+	}
+
 	&__name {
 
 	}

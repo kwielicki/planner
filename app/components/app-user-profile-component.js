@@ -2,16 +2,53 @@ angular
     .module('weddingPlanner')
     .component('userProfile', {
         templateUrl: 'templates/components/component-user-profile.html',
-        controller: function ( $scope, $timeout, plannerSnackbar ) {
+        controller: function ( $scope, $timeout, plannerSnackbar, $element, Auth, $rootScope ) {
 
+            var ctrl = this;
             var storage = firebase.storage();
             var storageRefDirecory = storage.ref();
             var user = firebase.auth().currentUser;
             $scope.userProfileSrcSelected = true;
 
+
             /* Unikatowa nazwa dla pliku w firebase Storage */
             const userEmail = user.email.split("@");
             var storageImagesRefenrece = storageRefDirecory.child(`user-images/user-photo__${userEmail[0]}.png`);
+
+            /* User full name */
+            ctrl.classHelpers = {
+                componentName: 'user-profile',
+                componentInitialized: 'user-profile--initialized'
+            };
+
+            /* The component "compHeader" contains information about userName, or userEmail
+			 * The method below allows for presentation these elements
+			 */
+			ctrl.auth = Auth;
+            ctrl.auth.$onAuthStateChanged(function(firebaseUser) {
+                ctrl.firebaseUser = firebaseUser;
+                /* Firebase standardowo zwraca null'a we właściwości firebaseUserDisplayName
+                 * jednakże, można zrobić update. Jeśli taka operacja zostanie wykonana,
+                *  w menusie pokazuję ten element
+                */
+                if ( firebaseUser !== null ) {
+                    if ( firebaseUser.displayName !== null ) {
+                        ctrl.firebaseUserDisplayName = true;
+                    }
+                }
+                // For global usage
+                ctrl.displayUserName = firebaseUser;
+            });
+
+
+            ctrl.$onInit = () => {
+                $element
+                    .addClass(`
+                        ${ctrl.classHelpers.componentName}
+						${ctrl.classHelpers.componentInitialized}
+                    `)
+					.attr('data-component-name', ctrl.classHelpers.componentName);
+            }
 
             var metadata = {
               contentType: 'image/png',
@@ -63,7 +100,6 @@ angular
                     $scope.currentUserProfileImage  = profile.photoURL;
 
                     /* Przypadek początkowy, kiedy nie jest wybrane żadne zdjęcie */
-                    console.log($scope.currentUserProfileImage);
                     if ( $scope.currentUserProfileImage === null ) {
                         $scope.defaultProfileImage = true;
                     }
@@ -100,6 +136,7 @@ angular
                                     $timeout(function() {
                                         plannerSnackbar.create($scope.result, 1500);
                                         $scope.userProfilevalidate = false;
+                                        ctrl.firebaseUserDisplayName = true;
                                     }, 1500);
                                 });
                             }).catch( function( error ) {

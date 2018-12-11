@@ -1,0 +1,63 @@
+/* Component Quick links
+ * Wymagana klasa w drzewie DOM "quick-links"
+ */
+.quick-links {
+	$component: &;
+	@include transition_bezier;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	transform: translateY(100%);
+	z-index: $zindex-dropdown;
+	background-color: #fff;
+	@include media-breakpoint-up(md) {
+		bottom: auto;
+		left: auto;
+		right: 0;
+		top: 50%;
+		transform: translateY(calc(-50%));
+		&--loaded {
+			box-shadow: 0 -2px 4px 0 rgba(0,0,0,.1);
+		}
+	}
+	@include media-breakpoint-down(sm) {
+		&--loaded {
+			transform: translateY(0);
+			box-shadow: 0 -2px 4px 0 rgba(0,0,0,.1);
+		}
+	}
+	&__list {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 0;
+		@include media-breakpoint-up(md) {
+			flex-direction: column;
+		}
+	}
+	&__element {
+		text-align: center;
+		@include media-breakpoint-up(md) {
+			border-top: 1px solid $brand-gray-light;
+		}
+		@include media-breakpoint-down(sm) {
+			width: 25%;
+			border-left: 1px solid $brand-gray-light;
+		}
+		&:first-child {
+			border: 0;
+		}
+	}
+	&__anchor {
+		display: block;
+		padding: $padding-sm;
+		font-size: 22px;
+		color: $brand-dark;
+		border-bottom: 2px solid transparent;
+		&.active {
+			border-color: $brand-primary;
+			color: $brand-primary;
+		}
+	}
+}
