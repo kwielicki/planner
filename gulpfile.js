@@ -45,7 +45,10 @@ gulp.task('sass', function () {
 
 gulp.task('watch', ['sass'], function() {
 	browserSync({
-			proxy: "http://127.0.0.1:8080"
+			proxy: "http://127.0.0.1:8080",
+			online: true,
+			tunnel: true,
+			loglevel: "debug"
 		}, function(err, bs) {
     	console.log(err);
 	});

@@ -7,6 +7,9 @@ html, body {
 body {
     font-weight: $fw-3;
     padding-top: 72px;
+    @include media-breakpoint-down(sm) {
+        padding-top: 63px;
+    }
     &.uib-dropdown-open {
         overflow-y: hidden;
     }

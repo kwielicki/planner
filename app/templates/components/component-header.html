@@ -14,7 +14,9 @@
 								 <div class="btn-group" uib-dropdown auto-close="outsideClick" keyboard-nav="true" on-toggle="$ctrl.toggled(open)" dropdown-append-to-body=true is-open="$ctrl.sideBarMenuStatus">
 									 <a href="#" id="btn-append-to-body" class="nav__anchor nav__anchor--menu" uib-dropdown-toggle>
 										 <span class="nav__element-profileIcon"><i class="fas fa-briefcase"></i></span>
-										 <span class="nav__element-profileName">Zarządzaj modułami</span>
+										 <span class="nav__element-profileName">
+											 <span class="nav__element-profileName-prefix">Dostępne</span> moduły
+										 </span>
 									 </a>
 									 <ul class="list-unstyled dropdown-menu dropdown-menu__navigation" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
 										<a class="dropdown-menu__close" href="#" ng-click="$ctrl.sideBarMenuHidding()"><i class="fas fa-times"></i></a>
@@ -76,7 +78,9 @@
 								 <div class="btn-group" uib-dropdown auto-close="outsideClick" keyboard-nav="true">
 									 <a href="#" id="btn-append-to-body" class="nav__anchor nav__anchor--logout" uib-dropdown-toggle>
 										<span class="nav__element-profileIcon"><i class="fas fa-user-circle"></i></span>
-										<span class="nav__element-profileName">Twój profil</span>
+										<span class="nav__element-profileName">
+											<span class="nav__element-profileName-prefix">Twój</span> profil
+										</span>
 									 </a>
 									 <ul class="list-unstyled dropdown-menu dropdown-menu--logout animated fadeIn" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
 										 <li class="login-timer">

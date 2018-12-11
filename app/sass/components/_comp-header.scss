@@ -79,6 +79,14 @@
 		}
 		&-profileName {
 			word-break: break-all;
+			&-prefix {
+				@include media-breakpoint-down(xs) {
+					@include sr-only;
+				}
+			}
+			@include media-breakpoint-down(xs) {
+				text-transform: capitalize;
+			}
 		}
 	}
 	&__anchor {
