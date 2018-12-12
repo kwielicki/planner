@@ -80,6 +80,15 @@
         box-shadow: none;
         color: $headings-color;
     }
+    &-material {
+        text-transform: uppercase;
+        box-shadow: none;
+        color: $headings-color;
+        &:hover {
+            color: $headings-color;
+            background-color: rgba(red(#6200ee), green(#6200ee), blue(#6200ee), .05);
+        }
+    }
     &-shadowed {
         box-shadow: 0 0 20px 0 #fff;
         border: 1px solid #fff;

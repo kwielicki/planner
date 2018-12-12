@@ -23,7 +23,7 @@
       margin-right:-4px;
       overflow: auto;
       width: 100%;
-      padding: $padding-normal * 2;
+      padding: $padding-normal;
       text-align: left;
       margin: 30px auto;
   }
@@ -44,6 +44,7 @@
     }
 }
 .modal-overlay--dark {
+    overflow-y: hidden;
     .modal-backdrop {
         background: $modal-overlay-dark-bg;
         &.in {
@@ -68,10 +69,11 @@
     $comp: &;
     &--delete {
         #{$comp}__header {
-            background-color: $brand-danger;
+            border-bottom: 1px solid $border-color;
         }
         #{$comp}__title {
-            color: #fff;
+            display: flex;
+            justify-content: space-between;
         }
         #{$comp}__guest-name {
             text-decoration: underline;
@@ -79,17 +81,25 @@
         .modal-content {
             border-color: $brand-danger;
         }
+        .modal-body {
+            padding: 0;
+        }
         .modal-description {
-            padding: $padding-normal;
-            padding-bottom: $padding-sm;
+            padding: $padding-large 0;
             border-bottom: 1px solid $border-color;
             &-title {
                 margin-bottom: $padding-xs;
                 font-weight: $fw-6;
+                color: $brand-danger;
+            }
+            &-subtitle {
+                font-weight: $fw-3;
+                padding: $padding-normal;
+                margin-bottom: 0;
             }
         }
         .modal-buttons {
-            text-align: center;
+            text-align: right;
             margin: ($padding-sm * 2) 0 $padding-sm 0;
         }
     }
@@ -98,10 +108,9 @@
 // Box shadow dla modala
 .modal--shadowed {
     .modal-content {
-        border-width: 1px;
-        border-style: solid;
+        border: 1px solid $color-white;
         border-radius: $border-radius;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 11px 15px -7px rgba(0,0,0,.2), 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12);
     }
 }
 
