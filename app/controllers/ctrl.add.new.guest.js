@@ -28,19 +28,15 @@ angular
 		$rootScope.$watch('numberOfTotalPersons', function() {
 			$scope.numberOfTotalPersons = $rootScope.numberOfTotalPersons;
 			if ($scope.numberOfTotalPersons !== undefined) {
-
-				var arry = [];
-
-				for (var i = $scope.itemPerPage; i < $scope.numberOfTotalPersons; i += $scope.itemPerPage) {
-					arry.push({
-						'itemsPerPage': i
-					})
-				}
-
-				arry.push({
-					'itemsPerPage': $scope.numberOfTotalPersons
-				});
-				$scope.elements = arry;
+				$scope.elements = [
+                    {
+						'itemsPerPage': 10
+					}, {
+						'itemsPerPage': 30
+					}, {
+						'itemsPerPage': 50
+					}
+                ];
 
 			}
 		});

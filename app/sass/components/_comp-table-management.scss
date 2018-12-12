@@ -7,6 +7,7 @@
     @include media-breakpoint-down(sm) {
         background-color: transparent;
         border: 0;
+        margin-bottom: $padding-medium;
     }
     &__header {
         border-bottom: 2px solid $border-color;
@@ -284,14 +285,31 @@
         justify-content: flex-end;
         align-items: center;
         padding: $padding-normal;
+        @include media-breakpoint-down(sm) {
+            flex-wrap: wrap;
+            padding: 0 0 $padding-normal 0;
+        }
         &-size,
         &-note {
             font-size: $font-size-xs;
             padding-right: $padding-normal;
             color: $brand-gray;
         }
+        &-note {
+            @include media-breakpoint-down(sm) {
+                width: 100%;
+                order: 1;
+                padding: 0 0 $padding-sm 0;
+                text-align: center;
+            }
+        }
         &-size {
             padding-right: $padding-medium;
+            @include media-breakpoint-down(sm) {
+                order: 2;
+                width: 60%;
+                padding-right: 0;
+            }
             .dropdown-toggle {
                 display: inline-block;
                 cursor: pointer;
@@ -333,6 +351,11 @@
         }
         &-navigation {
             padding-left: $padding-normal;
+            @include media-breakpoint-down(sm) {
+                order: 3;
+                width: 40%;
+                text-align: right;
+            }
             .pagination {
                 margin: 0;
             }
