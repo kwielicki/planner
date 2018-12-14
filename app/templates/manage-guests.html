@@ -174,27 +174,27 @@
                             <div class="table-management__cell table-management__cell--index"> {{ ($index + 1) + (currentPage - 1) * itemPerPage}} </div>
                             <div class="table-management__cell table-management__cell--first-name">
                                 <span class="table-management__cell-label">Imię</span>
-                                <span class="table-management__cell-value">{{ person.firstName }}</span>
+                                <span class="table-management__cell-value pdf-maker--firstname">{{ person.firstName }}</span>
                             </div>
                             <div class="table-management__cell table-management__cell--surname">
                                 <span class="table-management__cell-label">Nazwisko</span>
-                                <span class="table-management__cell-value">{{ person.surName }}</span>
+                                <span class="table-management__cell-value pdf-maker--surname">{{ person.surName }}</span>
                             </div>
                             <div class="table-management__cell table-management__cell--guest-count">
                                 <span class="table-management__cell-label">Liczba osób dorosłych</span>
-                                <span class="table-management__cell-value">{{ person.guestCount }}</span>
+                                <span class="table-management__cell-value pdf-maker--guestCount">{{ person.guestCount }}</span>
                             </div>
                             <div class="table-management__cell table-management__cell--children">
                                 <span class="table-management__cell-label">Liczba dzieci</span>
-                                <span class="table-management__cell-value">{{ person.children }}</span>
+                                <span class="table-management__cell-value pdf-maker--children">{{ person.children }}</span>
                             </div>
                             <div class="table-management__cell table-management__cell--membership">
                                 <span class="table-management__cell-label">Przynależność</span>
-                                <span class="table-management__cell-value">{{ person.membership }}</span>
+                                <span class="table-management__cell-value pdf-maker--membership">{{ person.membership }}</span>
                             </div>
                             <div class="table-management__cell table-management__cell--status" data-status="{{(person.status === 'Oczekujący' ? 'Oczekujacy' : person.status) | lowercase}}">
                                 <span class="table-management__cell-label">Status</span>
-                                <span class="table-management__cell-value">{{ person.status }}</span>
+                                <span class="table-management__cell-value pdf-maker--status">{{ person.status }}</span>
                             </div>
                             <div class="table-management__cell table-management__cell--btn-group">
                                 <div class="btn-group btn-group--xs">

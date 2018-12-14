@@ -28,7 +28,7 @@ angular
       var myTableArray = [];
       $('.table-management__body').find('.table-management__row').each(function() {
           var arrayOfThisRow = [];
-          var tableData = $(this).find('div:eq(0), div:eq(1), div:eq(2), div:eq(3), div:eq(4), div:eq(5), div:eq(6), .pdf-maker--phone-number');
+          var tableData = $(this).find('div:eq(0), .pdf-maker--firstname, .pdf-maker--surname, .pdf-maker--guestCount, .pdf-maker--children, .pdf-maker--membership, .pdf-maker--status, .pdf-maker--phone-number');
           if (tableData.length > 0) {
               tableData.each(function() { arrayOfThisRow.push($(this).text()); });
               myTableArray.push(arrayOfThisRow);
@@ -76,7 +76,7 @@ angular
             },
             {
                 table: {
-                    widths: ["auto","auto","auto","auto","auto","auto", "auto", "auto"],
+                    widths: ["auto","15%","15%","auto","15%","15%", "10%", "15%"],
               body: [
                 [
                   [{text: "L.P", style: "tHead"}, lp],
