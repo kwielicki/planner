@@ -8,6 +8,7 @@
         background-color: transparent;
         border: 0;
         margin-bottom: $padding-medium;
+        margin-top: $padding-sm;
     }
     &__header {
         border-bottom: 2px solid $border-color;
@@ -15,6 +16,11 @@
         @include media-breakpoint-down(sm) {
             display: none;
         }
+    }
+    &__empty {
+        display: block;
+        text-align: center;
+        padding: $padding-normal;
     }
     &__row {
         position: relative;

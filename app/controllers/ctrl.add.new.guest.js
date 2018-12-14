@@ -91,6 +91,7 @@ angular
 			$scope.persons.$add({
 				firstName: $scope.firstName,
 				surName: $scope.surName,
+				fullName: $scope.firstName + ' ' + $scope.surName,
 				guestCount: parseInt($scope.guestCount, 10),
 				children: ($scope.children !== undefined) ? parseInt($scope.children, 10) : 0,
 				dataAdded: firebase.database.ServerValue.TIMESTAMP,

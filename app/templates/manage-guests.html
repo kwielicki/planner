@@ -22,34 +22,98 @@
 
 <section class="section" ng-controller="mainController">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-3">
-                <h2 class="section-title">
-                        <strong>Wyszukiwarka</strong><span> - znajdź po haśle</span>
-                </h2>
-                <form>
-                    <div class="form-group form-group--modern">
-                        <div class="form-group__input">
-                            <i aria-hidden="true" class="fa fa-search form-group__icon"></i>
-                            <input type="text" class="form-control form-control--modern" placeholder="Wpisz szukane słowo" ng-model="searchPerson">
-                        </div>
-                        <p>&nbsp;</p>
+        <div class="row row--flex">
+            <div class="component widget widget--light widget--category col-flex-3" data-component-name="widget"">
+                <div class="inner">
+                    <div class="widget__header widget__header--popover">
+                        <h2 class="widget__title">
+                            <strong>Wyszukiwarka listy gości</strong>
+                            <span class="widget__popover"
+                                  ng-controller="controllerPopover"
+                                  uib-popover-template="appPopover.templateUrl"
+                                  popover-placement="auto top-left"
+                                  popover-trigger="'none'"
+                                  data-popover-title="Wskazówka"
+                                  data-popover-content="Wyszukiwarka działa w oparciu o kolumny 'Imię' oraz 'Nazwisko'."
+                                  popover-is-open="appPopover.open"
+                                  ng-click="appPopoverInit($event)">
+                                <i class="fa fa-question-circle"></i>
+                            </span>
+                        </h2>
                     </div>
-                </form>
+                    <div class="widget__content">
+                        <div class="form-group form-group--modern">
+                            <div class="form-group__input">
+                                <i aria-hidden="true" class="fa fa-search form-group__icon"></i>
+                                <input type="text" class="form-control form-control--modern" placeholder="Wyszukaj po imieniu lub nazwisku" ng-model="searchPerson.fullName">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-sm-3">
-                <h2 class="section-title">
-                        <strong>Wydrukuj</strong><span> - tabele (np. przefiltrowaną)</span>
-                </h2>
-                 <a href="#" ng-click="printTable()" class="btn btn-primary btn-sm btn-block">Pobierz PDF</a>
+            <div class="component widget widget--light widget--category col-flex-3" data-component-name="widget"">
+                <div class="inner">
+                    <div class="widget__header widget__header--popover">
+                        <h2 class="widget__title">
+                            <strong>Filtruj dane tabelaryczne</strong>
+                        </h2>
+                    </div>
+                    <div class="widget__content widget__content--flex">
+                        <div class="widget__content-item">
+                            <div class="select-group">
+                                <div class="select-label">
+                                    Filtruj po przynależności:
+                                </div>
+                                <div class="select-value">
+                                    <select ng-model="searchPerson.membership" class="material-form__control material-form__control--transparent">
+                                        <option value="">Wszystkie</option>
+                                        <option value="Pan Młody">Pan Młody</option>
+                                        <option value="Pani Młoda">Pani Mloda</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget__content-item">
+                            <div class="select-group">
+                                <div class="select-label">
+                                    Filtruj po statusie:
+                                </div>
+                                <div class="select-value">
+                                    <select ng-model="searchPerson.status" class="material-form__control material-form__control--transparent">
+                                        <option value="">Wszystkie</option>
+                                        <option value="Oczekujący">Oczekujący</option>
+                                        <option value="Potwierdzony">Potwierdzony</option>
+                                        <option value="Odmowa">Odmowa</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="component widget widget--light widget--category col-flex-3" data-component-name="widget"">
+                <div class="inner">
+                    <div class="widget__header widget__header--popover">
+                        <h2 class="widget__title">
+                            <strong>Wydrukuj dane tabelaryczne</strong>
+                        </h2>
+                    </div>
+                    <div class="widget__content">
+                        <a href="#" ng-click="printTable()" class="btn btn-material btn-block">Pobierz PDF</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="container-fluid" ng-controller="addNewGuest">
         <div class="row">
             <div class="col-xs-12">
+                <hr class="hr--light">
                 <h2 class="section-title">
-                    <strong>Twoja lista gości</strong><span> - dane tabelaryczne</span>
+                    <strong>Twoja lista gości</strong>
+                        <span> - dane tabelaryczne
+                            <span ng-if="dbLoaded">( {{ (persons | filter:searchPerson:accuracy).length }} )</span>
+                        </span>
                     <app-manage-guest-sorting-label></app-manage-guest-sorting-label>
                 </h2>
                 <div class="component table-management">
@@ -101,6 +165,10 @@
 						</information-box-content>
 					</app-information-box>
                     <div class="table-management__body has--preloader">
+                        <strong ng-if="persons.length && dbLoaded && (persons | filter:searchPerson:accuracy).length === 0" class="table-management__empty">
+                            Brak danych do wyświetlenia<br/>
+                            <small>Spróbuj zmienić nieco swoje kryteria wyszukiwania, aby znaleźć to, czego szukasz.</small>
+                        </strong>
                         <div class="table-management__row table-management__row--body"
                              ng-repeat="person in persons | orderBy:sortType:sortReverse | filter:searchPerson | offset: (currentPage-1)*itemPerPage | limitTo: itemPerPage" dire-table-preloader="direTablePreloader()">
                             <div class="table-management__cell table-management__cell--index"> {{ ($index + 1) + (currentPage - 1) * itemPerPage}} </div>
@@ -175,7 +243,7 @@
                             </div>
                         </div>
 
-                        <div class="table-management__paginator" ng-show="persons.length">
+                        <div class="table-management__paginator" ng-show="persons.length && (persons | filter:searchPerson:accuracy).length > 0">
                             <div class="table-management__paginator-size">
                                 <span class="table-management__paginator-label">Elementów na stronę: </span>
                                 <span uib-dropdown on-toggle="toggled(open)" class="table-management__paginator-value">

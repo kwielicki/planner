@@ -96,3 +96,31 @@ ul {
 .dropdown-menu {
     @include dropdown-menu;
 }
+.row {
+    &--flex {
+        display: flex;
+        margin: 0;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+.col-flex-3 {
+    width: calc(33.333333% - 30px);
+    margin: 0 10px;
+    @include media-breakpoint-down(sm) {
+        width: 100%;
+        margin: 0;
+    }
+}
+.select-label {
+    font-size: 10px;
+    padding-left: 4px;
+    margin-bottom: 5px;
+}
+
+hr {
+    &.hr--light {
+        margin: $padding-sm*2;
+        border: 0;
+    }
+}
