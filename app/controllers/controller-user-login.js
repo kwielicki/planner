@@ -53,28 +53,30 @@ angular
 
 
             //- Firebase nie przeprowadza walidacji adresu email
-                firebase.auth().signInWithEmailAndPassword( $scope.user.email, $scope.user.password )
-                .then(function(firebaseUser) {
+            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+                .then( () => {
+                    return firebase.auth().signInWithEmailAndPassword( $scope.user.email, $scope.user.password )
+                        .then(function(firebaseUser) {
 
-                    $scope.loginText = "Uwierzytelnianie zakończone";
-                    /* Kiedy nastąpi uwierzytelnienie, następuje przekierowanie
-                     * na dedykowany route
-                     */
-                    $window.location.href = '/#/dashboard';
+                            $scope.loginText = "Uwierzytelnianie zakończone";
+                            /* Kiedy nastąpi uwierzytelnienie, następuje przekierowanie
+                             * na dedykowany route
+                             */
+                            $window.location.href = '/#/dashboard';
 
-                    /*
-                     * Dodanie daty ostatniego (poprawnego) zalogowania
-                     * Dana zostaje zapisana w localStorage
-                     */
-                    if (typeof(Storage) !== "undefined") {
+                            /*
+                             * Dodanie daty ostatniego (poprawnego) zalogowania
+                             * Dana zostaje zapisana w localStorage
+                             */
+                            if (typeof(Storage) !== "undefined") {
 
-                        if ( !$localStorage.lastSuccessedLoginData ) {
-                            $localStorage.lastSuccessedLoginData = dateLoginIn;
-                        }
+                                if ( !$localStorage.lastSuccessedLoginData ) {
+                                    $localStorage.lastSuccessedLoginData = dateLoginIn;
+                                }
 
-                    }
-                })
-                .catch(function(error) {
+                            }
+                        });
+                }).catch(function(error) {
 
                     // W Local storage trzymam również datę ostatniej nieudanej próby logowania
                     $localStorage.lastUnsuccessfulLoginData = dateLoginIn;
