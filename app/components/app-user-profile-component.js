@@ -145,20 +145,21 @@ angular
                                 }
 
                             }, function() {
-
-                                user.updateProfile({
-                                    photoURL: userProfileUploadePhoto.snapshot.downloadURL
-                                }).then( function() {
-                                    $scope.$apply(function(){
-                                        $scope.currentUserProfileImage = userProfileUploadePhoto.snapshot.downloadURL;
-                                        $scope.userProfileSrcSelected = true;
-                                        angular.element('#fileUploader').val(null);
-                                        $timeout( function(){
-                                            $scope.userProfileUploadedInit   = false;
-                                        }, 1000 );
+                                storageImagesRefenrece.getDownloadURL().then(function(url) {
+                                    user.updateProfile({
+                                        photoURL: url
+                                    }).then( function() {
+                                        $scope.$apply(function(){
+                                            $scope.currentUserProfileImage = url;
+                                            $scope.userProfileSrcSelected = true;
+                                            angular.element('#fileUploader').val(null);
+                                            $timeout( function(){
+                                                $scope.userProfileUploadedInit   = false;
+                                            }, 1000 );
+                                        });
+                                    }).catch( function( error ) {
+                                        console.log( error );
                                     });
-                                }).catch( function( error ) {
-                                    console.log( error );
                                 });
 
                             });
