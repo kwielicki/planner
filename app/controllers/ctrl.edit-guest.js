@@ -1,6 +1,6 @@
 angular
     .module('weddingPlanner')
-    .controller("appEditGuest", function($scope, $firebaseArray, recordId, notify) {
+    .controller("appEditGuest", function($scope, $firebaseArray, recordId, notify, Auth) {
 
         /* Referencja do tabeli znajdującej się w bazie danych */
         const ref = firebase.database().ref("list_of_guest");
@@ -35,6 +35,18 @@ angular
                 $scope.sendRecordToDataBase = function() {
                     $scope.persons.$save(getCurrentRecord)
                     .then(function(ref) {
+                        /*
+                         * - update właściwości fullName
+                         * - dodanie informacji o osobie, która dokonała modyfikacji
+                         * - dodanie informacji o dacie dokonania modyfikacji
+                         * @TODO dodanie opcji, która pozowali sprawdzić co zostało zmienione
+                         */
+                        ref.update({
+                            fullName: getCurrentRecord.firstName + ' ' + getCurrentRecord.surName,
+                            editedBy: Auth.$getAuth().email,
+                            editedDate: firebase.database.ServerValue.TIMESTAMP,
+                            editedDifference: 'Przepraszam, ale aktualnie nie posiadam informacji co uległo edycji.'
+                        });
                         notify({
                                 messageTemplate: "\n    <div class=\"notification-header\">\n      <h4 class=\"notification-header__icon\"><i class=\"fa fa-check-circle nav__icon\" aria-hidden=\"true\"></i></h4>\n    </div>\n    <div class=\"notification-body\">\n      <h2 class=\"notification-body__title\"><span>Rekord zmodyfikowany!</span></h2>\n      <p class=\"notification-body__description\"> \n         <strong>" + getCurrentRecord.firstName + " " + getCurrentRecord.surName + "</strong>\n          Dane zostały zmodyfikowane.</p>\n    </div>\n ",
                                 position: 'right',

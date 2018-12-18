@@ -213,8 +213,12 @@
                                         <v-pane-content>
                                             <ul class="table-management__list">
                                                 <li class="table-management__list-element">
-                                                    <span class="table-management__hidden-header">Telefon</span>
+                                                    <span class="table-management__hidden-header">Telefon:</span>
                                                     <strong class="pdf-maker--phone-number table-management__hidden-description">{{ person.phoneNumber }}</strong>
+                                                </li>
+                                                <li class="table-management__list-element">
+                                                    <span class="table-management__hidden-header">Dodany przez:</span>
+                                                    <strong class="table-management__hidden-description">{{person.creator}}</strong>
                                                 </li>
                                                 <li class="table-management__list-element">
                                                     <span class="table-management__hidden-header">Data dodania</span>
@@ -223,12 +227,23 @@
                                                         godz. {{ person.dataAdded | date : 'H:m:s' }}
                                                     </strong>
                                                 </li>
-                                                <li class="table-management__list-element">
-                                                    <span class="table-management__hidden-header">Dodany przez</span>
-                                                    <strong class="table-management__hidden-description">{{person.creator}}</strong>
+                                                <li class="table-management__list-element" ng-if="person.editedBy">
+                                                    <span class="table-management__hidden-header">Osoba ostatnio edytująca:</span>
+                                                    <strong class="table-management__hidden-description">{{person.editedBy}}</strong>
+                                                </li>
+                                                <li class="table-management__list-element" ng-if="person.editedDate">
+                                                    <span class="table-management__hidden-header">Data ostatniej edycji:</span>
+                                                    <strong class="table-management__hidden-description">
+                                                        {{ person.editedDate | date : 'dd MMMM yyyy' }} <br/>
+                                                        godz. {{ person.editedDate | date : 'H:m:s' }}
+                                                    </strong>
+                                                </li>
+                                                <li class="table-management__list-element" ng-if="person.editedDifference">
+                                                    <span class="table-management__hidden-header">Edycji uległo:</span>
+                                                    <strong class="table-management__hidden-description">{{person.editedDifference}}</strong>
                                                 </li>
                                                 <li class="table-management__list-element table-management__list-element--wide">
-                                                    <span class="table-management__hidden-header">Informacje dodatkowe</span>
+                                                    <span class="table-management__hidden-header">Informacje dodatkowe:</span>
                                                     <strong class="table-management__hidden-description">{{ person.extraInformation }}</strong>
                                                 </li>
                                                 <li class="table-management__list-element table-management__list-element--button">
