@@ -12,16 +12,16 @@
 		margin-right: -($grid-gutter-width-base/2);
 	}
 	&__article {
-		flex-basis: 33.333333%;
+		width: 33.333333%;
 		padding: 15px;
 		@include media-breakpoint-down(lg) {
-			flex-basis: 50%;
+			width: 50%;
 		}
 		@include media-breakpoint-down(sm) {
-			flex-basis: 100%;
+			width: 100%;
 		}
 		&--primary {
-			flex-basis: 100%;
+			width: 100%;
 			margin-bottom: $padding-normal;
 			#{$component}__content {
 				display: flex;
@@ -31,9 +31,9 @@
 			}
 			#{$component}__image,
 			#{$component}__body {
-				flex-basis: 50%;
+				width: 50%;
 				@include media-breakpoint-down(sm) {
-					flex-basis: 100%;
+					width: 100%;
 				}
 			}
 			#{$component}__image {
@@ -65,14 +65,16 @@
 		flex-direction: column;
 	    justify-content: space-between;
 		padding: $padding-normal;
-		height: calc(100% - 200px);
+		height: calc(100% - 250px);
 	}
 	&__image {
 		position: relative;
-		height: 200px;
+		height: 250px;
 		overflow: hidden;
 		margin: 0;
 		background: #3085a3;
+		background-size: cover;
+		background-position: 50% 0;
 		&:before {
 			content: '';
 			position: absolute;
@@ -145,13 +147,21 @@
 		padding-bottom: 10px;
 		border-bottom: 1px solid $border-color-dropdown-element;
 		display: inline-block;
+		max-width: 100%;
+		overflow: hidden;
+		text-overflow: ellipsis;
 		a {
 			color: inherit;
 			display: inline-block;
+			overflow: hidden;
+			white-space: nowrap;
 			&:hover {
 				color: $brand-primary;
 			}
 		}
+	}
+	&__subtitle {
+		padding-bottom: $padding-normal;
 	}
 	&__footer {
 		display: flex;
