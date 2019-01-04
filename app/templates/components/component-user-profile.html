@@ -18,6 +18,9 @@
 										<div class="user-profile__image">
 											<app-spinner></app-spinner>
 											<img ng-src="{{currentUserProfileImage}}" alt="User profile photo" ng-if="userProfileSrcSelected" image-change class="ng-src-animation">
+											<span class="user-profile__image-default" ng-if="defaultProfileImage">
+												Brak zdjęcia profilowego
+											</span>
 										</div>
 										<figcaption>
 											<label for="fileUploader" class="user-profile__uploader">
@@ -60,12 +63,12 @@
 							   			   	</div>
                              			</div>
                              			<div class="clearfix"></div>
-	                             		<div class="user-profile__button">
+										<div class="user-profile__button">
 											<button href="#"
-											   ng-click="userProfileName(userProfile.firstname, userProfile.surname)"
-											   class="btn btn-primary"
-											   ng-disabled="userProfilevalidate">Zaktualizuj dane</button>
-	                             		</div>
+											ng-click="userProfileName(userProfile.firstname, userProfile.surname)"
+											class="btn btn-primary"
+											ng-disabled="userProfilevalidate || !userProfile.firstname || !userProfile.surname">Zaktualizuj dane</button>
+										</div>
 									</div>
 								</div>
 							</div>

@@ -20,7 +20,6 @@ angular
               }
             };
 
-
             $scope.userprofileSrc = '';
 
             // Zabawy z obrazkami
@@ -36,6 +35,7 @@ angular
                 if ( fileObject.type === "image/png" || fileObject.type === "image/jpeg" ) {
 
                     $scope.fileObject = fileObject;
+                    $scope.defaultProfileImage = false;
 
                     $scope.$apply(function(){
                       $scope.currentUserProfileImage = fileBlobUrl;
@@ -60,9 +60,12 @@ angular
                         };
                     }
 
-
                     $scope.currentUserProfileImage  = profile.photoURL;
 
+                    /* Przypadek początkowy, kiedy nie jest wybrane żadne zdjęcie */
+                    if ( $scope.currentUserProfileImage === null ) {
+                        $scope.defaultProfileImage = true;
+                    }
 
                     $scope.userProfileName = function( userProfileFirstName, userProfileSurName) {
 
@@ -75,8 +78,7 @@ angular
                             firstname: userProfileFirstName,
                             surname: userProfileSurName
                         };
-
-
+                        
                         /* Korzystając z metody equals porównuję dwa stringi. Metoda ta zwraca boolean
                          * Porównuje obiekt user i jego właściwość displayName, które pochodzą z bazy
                          * z tym co użytkownik aktualnie wpisał do kontrolek znajdujących się w profilu
