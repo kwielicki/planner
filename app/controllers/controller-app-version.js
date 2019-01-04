@@ -1,5 +1,5 @@
 angular
     .module('weddingPlanner')
     .controller('controllerAppVersion', [ '$scope', function ( $scope ) {
-        $scope.appVersion = '1.1.6';
+        $scope.appVersion = '1.1.7';
     }]);
