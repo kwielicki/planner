@@ -24,7 +24,7 @@ angular
                 * rekordu o ID do którego dajemy zapytanie
                 */
                 if (getCurrentRecord === null) {
-                    console.log('Brak recordu o ID "' + currentEditableID + '" w bazie danych.')
+                    // do nothing
                 } else {
                     $scope.person = getCurrentRecord;
                 }

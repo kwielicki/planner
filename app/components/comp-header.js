@@ -40,21 +40,6 @@ angular
 				return viewLocation === $location.path();
 			};
 
-
-			/* Dropdown menu support in main navigation */
-			ctrl.toggleMenuStatus = "Otwórz menu";
-			ctrl.toggled = function(open) {
-				/* open is a boolean type
-				 * - returning true if menu is opened
-				 * - returning false if menu is closed
-				 */
-				if (open === true) {
-					console.log('Menu opener');
-				} else {
-					console.log('Mennu closer');
-				}
-			}
-
 			/* Dropdown menu will be closed after click on any list element */
 			ctrl.sideBarMenuStatus = false;
 			ctrl.sideBarMenuHidding = function( viewLocation ) {

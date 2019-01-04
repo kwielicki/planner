@@ -63,6 +63,7 @@ angular
                     $scope.currentUserProfileImage  = profile.photoURL;
 
                     /* Przypadek początkowy, kiedy nie jest wybrane żadne zdjęcie */
+                    console.log($scope.currentUserProfileImage);
                     if ( $scope.currentUserProfileImage === null ) {
                         $scope.defaultProfileImage = true;
                     }
@@ -78,7 +79,7 @@ angular
                             firstname: userProfileFirstName,
                             surname: userProfileSurName
                         };
-                        
+
                         /* Korzystając z metody equals porównuję dwa stringi. Metoda ta zwraca boolean
                          * Porównuje obiekt user i jego właściwość displayName, które pochodzą z bazy
                          * z tym co użytkownik aktualnie wpisał do kontrolek znajdujących się w profilu
