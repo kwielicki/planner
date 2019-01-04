@@ -94,10 +94,12 @@ angular
             // });
 
 			/* Dodanie do headera komponentu imienia zalogowanego użytkownika */
-			$rootScope.$watch('firebaseUserGlobal', function() {
-				if ( $rootScope.firebaseUserGlobal.displayName !== null ) {
-					const userProfileFullName = $rootScope.firebaseUserGlobal.displayName.split(' ');
-					$scope.firebaseUserAuthenticated = userProfileFullName[0];
+			$rootScope.$watch('firebaseUserGlobal', function( prevValue ) {
+				if ( prevValue !== null ) {
+					if ( $rootScope.firebaseUserGlobal.displayName !== null ) {
+						const userProfileFullName = $rootScope.firebaseUserGlobal.displayName.split(' ');
+						$scope.firebaseUserAuthenticated = userProfileFullName[0];
+					}
 				}
 			});
 
