@@ -224,7 +224,7 @@
                                                     <span class="table-management__hidden-header">Data dodania</span>
                                                     <strong class="table-management__hidden-description">
                                                         {{ person.dataAdded | date : 'dd MMMM yyyy' }} <br/>
-                                                        godz. {{ person.dataAdded | date : 'H:m:s' }}
+                                                        godz. {{ person.dataAdded | date : 'H:m:ss' }}
                                                     </strong>
                                                 </li>
                                                 <li class="table-management__list-element" ng-if="person.editedBy">
@@ -235,7 +235,7 @@
                                                     <span class="table-management__hidden-header">Data ostatniej edycji:</span>
                                                     <strong class="table-management__hidden-description">
                                                         {{ person.editedDate | date : 'dd MMMM yyyy' }} <br/>
-                                                        godz. {{ person.editedDate | date : 'H:m:s' }}
+                                                        godz. {{ person.editedDate | date : 'H:m:ss' }}
                                                     </strong>
                                                 </li>
                                                 <li class="table-management__list-element" ng-if="person.editedDifference">
