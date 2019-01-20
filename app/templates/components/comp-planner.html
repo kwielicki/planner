@@ -2,10 +2,17 @@
 <div ng-hide="!$ctrl.dbLoaded">
 	<form name="plannerCategoryForm" class="planner-form">
 		<div class="planner-form__group">
-			<input type="text" name="cat_name" ng-model="$ctrl.cat_name" ng-required="true" class="planner-form__input">
+			<input type="text" name="cat_name" ng-model="$ctrl.cat_name" ng-required="true" class="planner-form__input" autocomplete="off">
 			<button type="button" name="button" class="planner-form__button btn btn-sm btn-transparent" ng-click="$ctrl.plannerCategoryAdd($ctrl.cat_name)" ng-disabled="plannerCategoryForm.cat_name.$invalid">Dodaj kategorię</button>
 		</div>
 	</form>
+</div>
+
+<div ng-if="$ctrl.planner_DB__Array.length === 0" ng-show="$ctrl.dbLoaded" class="empty--note">
+	<strong>
+		Brak danych do wyświetlenia
+		<small>Wygląda na to, że nie posiadasz żadnej kategorii. Stwórz kategorię korzystając z formularza powyżej</small>
+	</strong>
 </div>
 
 <div class="planner__table" ng-class="!$ctrl.dbActionCompleted === false && 'is--done'">
@@ -35,19 +42,26 @@
 					<div class="planner__heading planner__heading--description">Akcje</div>
 				</div>
 				<div class="planner__notes" ng-class="{'planner__notes--last': $last}" ng-repeat="(key, value) in el.elements">
-					<div class="planner__note planner__note--title">{{value.title}}</div>
+					<div class="planner__note planner__note--title">
+						<span class="planner__note-mobile-header">Nazwa notatki</span>
+						<span>{{value.title}}</span>
+					</div>
 					<div class="planner__note planner__note--advance">
+						<span class="planner__note-mobile-header">Kwota zaliczki</span>
 						<span ng-hide="expandedRecord === value">{{value.advance.amount | currency }}</span>
-						<input ng-show="expandedRecord === value" ng-model="value.advance.amount" type="number" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
+						<input ng-show="expandedRecord === value" ng-model="value.advance.amount" type="number" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" class="planner__note-editable" />
 					</div>
 					<div class="planner__note planner__note--supplement">
-						{{value.price.amount - value.advance.amount | currency}}
+						<span class="planner__note-mobile-header">Kwota dopłaty</span>
+						<span>{{value.price.amount - value.advance.amount | currency}}</span>
 					</div>
 					<div class="planner__note planner__note--price">
+						<span class="planner__note-mobile-header">Cena całkowita</span>
 						<span ng-hide="expandedRecord === value">{{value.price.amount | currency }}</span>
-						<input ng-show="expandedRecord === value" ng-model="value.price.amount" type="number" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" />
+						<input ng-show="expandedRecord === value" ng-model="value.price.amount" type="number" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" class="planner__note-editable"/>
 					</div>
 					<div class="planner__note planner__note--status">
+						<span class="planner__note-mobile-header">Status</span>
 						<span ng-switch="value.status.value" ng-hide="expandedRecord === value">
 							<span ng-switch-when="true" class="success">{{value.status.label.done}}</span>
 							<span ng-switch-when="false" class="is--default">{{value.status.label.inprogress}}</span>
@@ -56,8 +70,9 @@
 						<input type="checkbox" ng-model="value.status.value" ng-show="expandedRecord === value"/>
 					</div>
 					<div class="planner__note planner__note--desc">
+						<span class="planner__note-mobile-header">Dodatkowe uwagi</span>
 						<span ng-hide="expandedRecord === value">{{value.desc}}</span>
-						<span ng-show="expandedRecord === value" ng-model="value.desc" contenteditable></span>
+						<span ng-show="expandedRecord === value" ng-model="value.desc" contenteditable class="planner__note-editable"></span>
 					</div>
 					<div class="planner__note planner__note--actions">
 						<div class="planner__buttons" ng-if="expandedRecord !== value">
@@ -73,10 +88,30 @@
 						</div>
 					</div>
 				</div>
+				<div class="planner__footer" ng-if="(el.elements | objLength) > 0">
+					<div class="planner__footer-element is--wide">
+						<div class="planner__footer-heading">Podsumowanie wydatków dla notatek
+							<abbr title="Pamiętej, że zaprezentowane koszty ogólne uwzględniają wyłącznie notatki niezrealizowane">niezrealizowanych</abbr>
+							 w ramach kategorii <strong>{{el.categoryName}}</strong></div>
+					</div>
+					<div class="planner__footer-element">
+						<span class="planner__footer-title">Koszt całkowity dot. zaliczki</span>
+						<strong class="planner__footer-summary">{{el.elements | sumColumn: 'advance' | currency}}</strong>
+					</div>
+					<div class="planner__footer-element">
+						<span class="planner__footer-title">Koszt całkowity dot. dopłaty</span>
+						<strong class="planner__footer-summary">{{(el.elements | sumColumn: 'price') - (el.elements | sumColumn: 'advance') | currency}}</strong>
+					</div>
+					<div class="planner__footer-element">
+						<span class="planner__footer-title">Koszt całkowity</span>
+						<strong class="planner__footer-summary">{{(el.elements | sumColumn: 'price') | currency}}</strong>
+					</div>
+				</div>
 				<div>
 					<form name="plannerNoteForm" class="planner-form">
 						<div class="planner-form__group planner-form__group--note">
-							<input type="text" name="cat_note" ng-required="true" class="planner-form__input" ng-model="el.plannerNoteName__$index">
+							<label class="planner-form__label">Wprowadź nazwę dla kolejnej notatki</label>
+							<input type="text" name="cat_note" ng-required="true" class="planner-form__input" ng-model="el.plannerNoteName__$index" autocomplete="off">
 							<button type="button" name="button" class="planner-form__button btn btn-sm btn-transparent" ng-click="$ctrl.plannerNoteAddByCategoryRef(el.$id, el.plannerNoteName__$index)" ng-disabled="plannerNoteForm.cat_note.$invalid">Dodaj notatkę</button>
 						</div>
 					</form>

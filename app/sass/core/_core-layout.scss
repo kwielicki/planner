@@ -124,3 +124,11 @@ hr {
         border: 0;
     }
 }
+.empty--note {
+    text-align: center;
+    max-width: 780px;
+    margin: $padding-base auto 0 auto;
+    small {
+        display: block;
+    }
+}

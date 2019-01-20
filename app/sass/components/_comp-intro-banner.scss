@@ -39,8 +39,8 @@
 	}
 	&__desclimer {
 		display: block;
-		padding-top: $padding-xs;
-		margin-top: $padding-medium;
+		padding-top: $padding-xs * 2;
+		margin-top: $padding-normal;
 		border-top: 1px solid $border-color-dropdown-element;
 		&:empty {
 			display: none;

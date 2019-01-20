@@ -11,12 +11,45 @@
 		display: flex;
 		background-color: #fff;
 		border-bottom: 2px solid $border-color;
+		@include media-breakpoint-down(sm) {
+			display: none;
+		}
 		#{$component}__heading {
 			flex-basis: calc(100%/7);
 			padding: $padding-normal $padding-sm;
 			&--category {
 
 			}
+		}
+	}
+	&__footer {
+		display: flex;
+		flex-wrap: wrap;
+		font-size: $font-size-xs;
+		border-top: 2px solid $border-color;
+		&-element {
+			flex-basis: calc(100%/7);
+			padding: $padding-normal $padding-sm;
+			@include media-breakpoint-down(sm) {
+				flex-basis: 50%;
+				padding: $padding-sm;
+				&.is--wide {
+					flex-basis: 100%;
+					padding-bottom: $padding-xs;
+					br {
+						display: none;
+					}
+				}
+			}
+		}
+		&-heading {
+
+		}
+		&-title {
+
+		}
+		&-summary {
+			display: block;
 		}
 	}
 	&__category {
@@ -38,6 +71,11 @@
 		border-bottom: 1px solid $border-color;
 		display: flex;
 		align-items: center;
+		@include media-breakpoint-down(sm) {
+			flex-wrap: wrap;
+			align-items: flex-start;
+			margin-bottom: $padding-base;
+		}
 		&:hover {
 			background-color: $brand-gray-light;
 			#{$component}__button {
@@ -51,8 +89,18 @@
 			flex-basis: calc(100%/7);
 			font-size: $font-size-sm;
 			padding: $padding-normal $padding-sm;
+			@include media-breakpoint-down(sm) {
+				flex-basis: 50%;
+				padding: $padding-sm;
+				&--actions {
+					width: 100%;
+					flex-basis: 100%;
+					text-align: center;
+					border-top: 1px solid $border-color-dropdown-element;
+				}
+			}
 			&--desc {
-				span {
+				span:not(.planner__note-mobile-header) {
 					display: block;
 				}
 			}
@@ -161,6 +209,42 @@
 		}
 		.ng-hide-add {
 			transition: all linear 0.3s;
+		}
+	}
+
+	// Układ mobilny
+	&__note {
+		&-mobile-header {
+			@include media-breakpoint-up(md) {
+				display: none;
+			}
+			@include media-breakpoint-down(sm) {
+				display: block;
+                width: 100%;
+                color: $brand-gray;
+                font-size: $font-size-xs;
+			}
+		}
+		&-editable {
+			border: 0;
+			padding: 0;
+			outline: 1px dashed $border-color;
+			@include media-breakpoint-down(sm) {
+				width: 100%;
+			}
+		}
+	}
+
+	// Formularz dodawania notatki
+	&-form {
+		&__label {
+			font-size: $font-size-xs;
+		}
+		&__input {
+			@include media-breakpoint-down(sm) {
+				width: calc(100% - 2px);
+				margin: 0 auto $padding-sm auto;
+			}
 		}
 	}
 
