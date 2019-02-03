@@ -82,6 +82,21 @@
     }
 }
 
+//- Progress bar
+@mixin progress-bar-overlay ($bgColor, $alpha: .2){
+    &:after {
+        content: '';
+        @include absolute;
+        background-color: rgba(red($bgColor), green($bgColor), blue($bgColor), $alpha);
+    }
+}
+@mixin progress-bar-pin-color ($bgColor, $alpha: .8) {
+    background-color: rgba(red($bgColor), green($bgColor), blue($bgColor), $alpha);
+    &:after {
+        border-top-color: rgba(red($bgColor), green($bgColor), blue($bgColor), $alpha);
+    }
+}
+
 //- Placeholder [mixin]
 @mixin placeholder {
   ::-webkit-input-placeholder {@content}
