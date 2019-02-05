@@ -1,0 +1,216 @@
+{{$ctrl.guestDat}}
+<div class="statistic__inner" ng-if="$ctrl.dbLoaded">
+	<!-- Statystyki zbiorcze -->
+	<div class="statistic__element">
+		<h5 class="statistic__header">
+			Statystyki zbiorcze
+			<span class="statistic__title">{{$ctrl.i18n.overallGuestsLabel}}: {{$ctrl.guestData | guestStatistic: 'guestCount'}}</span>
+		</h5>
+		<div class="statistic__body">
+			<ul class="statistic__list list-unstyled">
+				<li>
+					<uib-progressbar class="progress--waiting" animate="true" value="100 * ($ctrl.guestData | guestStatistic: 'guestCount':'status':'Oczekujący') / ($ctrl.guestData | guestStatistic: 'guestCount')" type="waiting">
+						<span class="statistic__value">{{$ctrl.guestData | guestStatistic: 'guestCount':'status':'Oczekujący'}}</span>
+					</uib-progressbar>
+					<span class="statistic__subtitle">
+						{{$ctrl.i18n.waitingGuests}}. Stanowią {{100 * ($ctrl.guestData | guestStatistic: 'guestCount':'status':'Oczekujący') / ($ctrl.guestData | guestStatistic: 'guestCount')}}% łącznej liczby gości.
+					</span>
+				</li>
+				<li>
+					<uib-progressbar class="progress--confirmed" animate="true" value="100 * ($ctrl.guestData | guestStatistic: 'guestCount':'status':'Potwierdzony') / ($ctrl.guestData | guestStatistic: 'guestCount')" type="confirmed">
+						<span class="statistic__value">{{$ctrl.guestData | guestStatistic: 'guestCount':'status':'Potwierdzony'}}</span>
+					</uib-progressbar>
+					<span class="statistic__subtitle">
+						{{$ctrl.i18n.confirmedGuests}}. Stanowią {{100 * ($ctrl.guestData | guestStatistic: 'guestCount':'status':'Potwierdzony') / ($ctrl.guestData | guestStatistic: 'guestCount') | number:0 }}% łącznej liczby gości.
+					</span>
+				</li>
+				<li>
+					<uib-progressbar class="progress--declined" animate="true" value="100 * ($ctrl.guestData | guestStatistic: 'guestCount':'status':'Odmowa') / ($ctrl.guestData | guestStatistic: 'guestCount')" type="declined">
+						<span class="statistic__value">{{$ctrl.guestData | guestStatistic: 'guestCount':'status':'Odmowa'}}</span>
+					</uib-progressbar>
+					<span class="statistic__subtitle">
+						{{$ctrl.i18n.declinedGuests}}. Stanowią {{100 * ($ctrl.guestData | guestStatistic: 'guestCount':'status':'Odmowa') / ($ctrl.guestData | guestStatistic: 'guestCount') | number:0 }}% łącznej liczby gości.
+					</span>
+				</li>
+			</ul>
+			<v-accordion class="vAccordion--default statistic__additional">
+				<v-pane>
+					<v-pane-header>
+						{{$ctrl.i18n.overallChildrenAccordionHeader}}
+						<small class="statistic__additional-subheader">{{$ctrl.i18n.overallChildrenLabel}}: {{$ctrl.guestData | guestStatistic: 'children'}}</small>
+					</v-pane-header>
+					<v-pane-content>
+						<ul class="statistic__list list-unstyled">
+							<li>
+								<uib-progressbar class="progress--waiting" animate="true" value="100 * ($ctrl.guestData | guestStatistic: 'children':'status':'Oczekujący') / ($ctrl.guestData | guestStatistic: 'children')" type="waiting">
+									<span class="statistic__value">{{$ctrl.guestData | guestStatistic: 'children':'status':'Oczekujący'}}</span>
+								</uib-progressbar>
+								<span class="statistic__subtitle">
+									{{$ctrl.i18n.waitingChildren}}. Stanowią {{100 * ($ctrl.guestData | guestStatistic: 'children':'status':'Oczekujący') / ($ctrl.guestData | guestStatistic: 'children') | number:0 }}% łącznej liczby dzieci.
+								</span>
+							</li>
+							<li>
+								<uib-progressbar class="progress--confirmed" animate="true" value="100 * ($ctrl.guestData | guestStatistic: 'children':'status':'Potwierdzony') / ($ctrl.guestData | guestStatistic: 'children')" type="confirmed">
+									<span class="statistic__value">{{$ctrl.guestData | guestStatistic: 'children':'status':'Potwierdzony'}}</span>
+								</uib-progressbar>
+								<span class="statistic__subtitle">
+									{{$ctrl.i18n.confirmedChildren}}. Stanowią {{100 * ($ctrl.guestData | guestStatistic: 'children':'status':'Potwierdzony') / ($ctrl.guestData | guestStatistic: 'children') | number:0 }}% łącznej liczby dzieci.
+								</span>
+							</li>
+							<li>
+								<uib-progressbar class="progress--declined" animate="true" value="100 * ($ctrl.guestData | guestStatistic: 'children':'status':'Odmowa') / ($ctrl.guestData | guestStatistic: 'children')" type="declined">
+									<span class="statistic__value">{{$ctrl.guestData | guestStatistic: 'children':'status':'Odmowa'}}</span>
+								</uib-progressbar>
+								<span class="statistic__subtitle">
+									{{$ctrl.i18n.declinedChildren}}. Stanowią {{100 * ($ctrl.guestData | guestStatistic: 'children':'status':'Odmowa') / ($ctrl.guestData | guestStatistic: 'children') | number:0 }}% łącznej liczby dzieci.
+								</span>
+							</li>
+						</ul>
+					</v-pane-content>
+				</v-pane>
+			</v-accordion>
+		</div>
+	</div>
+	<!-- Statystyki dla Pani Młodej -->
+	<div class="statistic__element">
+		<h5 class="statistic__header">
+			Statystyki dla Panny Młodej
+			<span class="statistic__title">{{$ctrl.i18n.overallGuestsLabel}}: {{$ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pani Młoda'}}</span>
+		</h5>
+		<div class="statistic__body">
+			<ul class="statistic__list list-unstyled">
+				<li>
+					<uib-progressbar class="progress--waiting" animate="true" value="100 * ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pani Młoda':'Oczekujący') / ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pani Młoda')" type="waiting">
+						<span class="statistic__value">{{$ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pani Młoda':'Oczekujący'}}</span>
+					</uib-progressbar>
+					<span class="statistic__subtitle">
+						{{$ctrl.i18n.waitingGuests}}. Stanowią {{100 * ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pani Młoda':'Oczekujący') / ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pani Młoda') | number:0 }}% łącznej liczby gości.
+					</span>
+				</li>
+				<li>
+					<uib-progressbar class="progress--confirmed" animate="true" value="100 * ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pani Młoda':'Potwierdzony') / ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pani Młoda')" type="confirmed">
+						<span class="statistic__value">{{$ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pani Młoda':'Potwierdzony'}}</span>
+					</uib-progressbar>
+					<span class="statistic__subtitle">
+						{{$ctrl.i18n.confirmedGuests}}. Stanowią {{100 * ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pani Młoda':'Potwierdzony') / ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pani Młoda') | number:0 }}% łącznej liczby gości.
+					</span>
+				</li>
+				<li>
+					<uib-progressbar class="progress--declined" animate="true" value="100 * ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pani Młoda':'Odmowa') / ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pani Młoda')" type="declined">
+						<span class="statistic__value">{{$ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pani Młoda':'Odmowa'}}</span>
+					</uib-progressbar>
+					<span class="statistic__subtitle">
+						{{$ctrl.i18n.declinedGuests}}. Stanowią {{100 * ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pani Młoda':'Odmowa') / ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pani Młoda') | number:0 }}% łącznej liczby gości.
+					</span>
+				</li>
+			</ul>
+			<v-accordion class="vAccordion--default statistic__additional">
+				<v-pane>
+					<v-pane-header>
+						{{$ctrl.i18n.overallChildrenAccordionHeader}}
+						<small class="statistic__additional-subheader">{{$ctrl.i18n.overallChildrenLabel}}: {{$ctrl.guestData | guestStatistic: 'children':'membership':'Pani Młoda'}}</small>
+					</v-pane-header>
+					<v-pane-content>
+						<ul class="statistic__list list-unstyled">
+							<li>
+								<uib-progressbar class="progress--waiting" animate="true" value="100 * ($ctrl.guestData | guestStatistic: 'children':'membership':'Pani Młoda':'Oczekujący') / ($ctrl.guestData | guestStatistic: 'children':'membership':'Pani Młoda')" type="waiting">
+									<span class="statistic__value">{{$ctrl.guestData | guestStatistic: 'children':'membership':'Pani Młoda':'Oczekujący'}}</span>
+								</uib-progressbar>
+								<span class="statistic__subtitle">
+									{{$ctrl.i18n.waitingChildren}}. Stanowią {{100 * ($ctrl.guestData | guestStatistic: 'children':'membership':'Pani Młoda':'Oczekujący') / ($ctrl.guestData | guestStatistic: 'children':'membership':'Pani Młoda') | number:0 }}% łącznej liczby dzieci.
+								</span>
+							</li>
+							<li>
+								<uib-progressbar class="progress--confirmed" animate="true" value="100 * ($ctrl.guestData | guestStatistic: 'children':'membership':'Pani Młoda':'Potwierdzony') / ($ctrl.guestData | guestStatistic: 'children':'membership':'Pani Młoda')" type="confirmed">
+									<span class="statistic__value">{{$ctrl.guestData | guestStatistic: 'children':'membership':'Pani Młoda':'Potwierdzony'}}</span>
+								</uib-progressbar>
+								<span class="statistic__subtitle">
+									{{$ctrl.i18n.confirmedChildren}}. Stanowią {{100 * ($ctrl.guestData | guestStatistic: 'children':'membership':'Pani Młoda':'Potwierdzony') / ($ctrl.guestData | guestStatistic: 'children':'membership':'Pani Młoda') | number:0 }}% łącznej liczby dzieci.
+								</span>
+							</li>
+							<li>
+								<uib-progressbar class="progress--declined" animate="true" value="100 * ($ctrl.guestData | guestStatistic: 'children':'membership':'Pani Młoda':'Odmowa') / ($ctrl.guestData | guestStatistic: 'children':'membership':'Pani Młoda')" type="declined">
+									<span class="statistic__value">{{$ctrl.guestData | guestStatistic: 'children':'membership':'Pani Młoda':'Odmowa'}}</span>
+								</uib-progressbar>
+								<span class="statistic__subtitle">
+									{{$ctrl.i18n.declinedChildren}}. Stanowią {{100 * ($ctrl.guestData | guestStatistic: 'children':'membership':'Pani Młoda':'Odmowa') / ($ctrl.guestData | guestStatistic: 'children':'membership':'Pani Młoda') | number:0 }}% łącznej liczby dzieci.
+								</span>
+							</li>
+						</ul>
+					</v-pane-content>
+				</v-pane>
+			</v-accordion>
+		</div>
+	</div>
+	<!-- Statystyki dla Pana Młodego -->
+	<div class="statistic__element">
+		<h5 class="statistic__header">
+			Statystyki dla Pana Młodego
+			<span class="statistic__title">{{$ctrl.i18n.overallGuestsLabel}}: {{$ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pan Młody'}}</span>
+		</h5>
+		<div class="statistic__body">
+			<ul class="statistic__list list-unstyled">
+				<li>
+					<uib-progressbar class="progress--waiting" animate="true" value="100 * ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pan Młody':'Oczekujący') / ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pan Młody')" type="waiting">
+						<span class="statistic__value">{{$ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pan Młody':'Oczekujący'}}</span>
+					</uib-progressbar>
+					<span class="statistic__subtitle">
+						{{$ctrl.i18n.waitingGuests}}. Stanowią {{100 * ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pan Młody':'Oczekujący') / ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pan Młody') | number:0 }}% łącznej liczby gości.
+					</span>
+				</li>
+				<li>
+					<uib-progressbar class="progress--confirmed" animate="true" value="100 * ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pan Młody':'Potwierdzony') / ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pan Młody')" type="confirmed">
+						<span class="statistic__value">{{$ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pan Młody':'Potwierdzony'}}</span>
+					</uib-progressbar>
+					<span class="statistic__subtitle">
+						{{$ctrl.i18n.confirmedGuests}}. Stanowią {{100 * ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pan Młody':'Potwierdzony') / ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pan Młody') | number:0 }}% łącznej liczby gości.
+					</span>
+				</li>
+				<li>
+					<uib-progressbar class="progress--declined" animate="true" value="100 * ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pan Młody':'Odmowa') / ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pan Młody')" type="declined">
+						<span class="statistic__value">{{$ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pan Młody':'Odmowa'}}</span>
+					</uib-progressbar>
+					<span class="statistic__subtitle">
+						{{$ctrl.i18n.declinedGuests}}. Stanowią {{100 * ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pan Młody':'Odmowa') / ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pan Młody') | number:0 }}% łącznej liczby gości.
+					</span>
+				</li>
+			</ul>
+			<v-accordion class="vAccordion--default statistic__additional">
+				<v-pane>
+					<v-pane-header>
+						{{$ctrl.i18n.overallChildrenAccordionHeader}}
+						<small class="statistic__additional-subheader">{{$ctrl.i18n.overallChildrenLabel}}: {{$ctrl.guestData | guestStatistic: 'children':'membership':'Pan Młody'}}</small>
+					</v-pane-header>
+					<v-pane-content>
+						<ul class="statistic__list list-unstyled">
+							<li>
+								<uib-progressbar class="progress--waiting" animate="true" value="100 * ($ctrl.guestData | guestStatistic: 'children':'membership':'Pan Młody':'Oczekujący') / ($ctrl.guestData | guestStatistic: 'children':'membership':'Pan Młody')" type="waiting">
+									<span class="statistic__value">{{$ctrl.guestData | guestStatistic: 'children':'membership':'Pan Młody':'Oczekujący'}}</span>
+								</uib-progressbar>
+								<span class="statistic__subtitle">
+									{{$ctrl.i18n.waitingChildren}}. Stanowią {{100 * ($ctrl.guestData | guestStatistic: 'children':'membership':'Pan Młody':'Oczekujący') / ($ctrl.guestData | guestStatistic: 'children':'membership':'Pan Młody') | number:0 }}% łącznej liczby dzieci.
+								</span>
+							</li>
+							<li>
+								<uib-progressbar class="progress--confirmed" animate="true" value="100 * ($ctrl.guestData | guestStatistic: 'children':'membership':'Pan Młody':'Potwierdzony') / ($ctrl.guestData | guestStatistic: 'children':'membership':'Pan Młody')" type="confirmed">
+									<span class="statistic__value">{{$ctrl.guestData | guestStatistic: 'children':'membership':'Pan Młody':'Potwierdzony'}}</span>
+								</uib-progressbar>
+								<span class="statistic__subtitle">
+									{{$ctrl.i18n.confirmedChildren}}. Stanowią {{100 * ($ctrl.guestData | guestStatistic: 'children':'membership':'Pan Młody':'Potwierdzony') / ($ctrl.guestData | guestStatistic: 'children':'membership':'Pan Młody') | number:0 }}% łącznej liczby dzieci.
+								</span>
+							</li>
+							<li>
+								<uib-progressbar class="progress--declined" animate="true" value="100 * ($ctrl.guestData | guestStatistic: 'children':'membership':'Pan Młody':'Odmowa') / ($ctrl.guestData | guestStatistic: 'children':'membership':'Pan Młody')" type="declined">
+									<span class="statistic__value">{{$ctrl.guestData | guestStatistic: 'children':'membership':'Pan Młody':'Odmowa'}}</span>
+								</uib-progressbar>
+								<span class="statistic__subtitle">
+									{{$ctrl.i18n.declinedChildren}}. Stanowią {{100 * ($ctrl.guestData | guestStatistic: 'children':'membership':'Pan Młody':'Odmowa') / ($ctrl.guestData | guestStatistic: 'children':'membership':'Pan Młody') | number:0 }}% łącznej liczby dzieci.
+								</span>
+							</li>
+						</ul>
+					</v-pane-content>
+				</v-pane>
+			</v-accordion>
+		</div>
+	</div>
+</div>
