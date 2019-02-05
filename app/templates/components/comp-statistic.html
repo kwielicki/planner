@@ -12,7 +12,7 @@
 						<span class="statistic__value">{{$ctrl.guestData | guestStatistic: 'guestCount':'status':'Oczekujący'}}</span>
 					</uib-progressbar>
 					<span class="statistic__subtitle">
-						{{$ctrl.i18n.waitingGuests}}. Stanowią {{100 * ($ctrl.guestData | guestStatistic: 'guestCount':'status':'Oczekujący') / ($ctrl.guestData | guestStatistic: 'guestCount')}}% łącznej liczby gości.
+						{{$ctrl.i18n.waitingGuests}}. Stanowią {{100 * ($ctrl.guestData | guestStatistic: 'guestCount':'status':'Oczekujący') / ($ctrl.guestData | guestStatistic: 'guestCount') | number:0 }}% łącznej liczby gości.
 					</span>
 				</li>
 				<li>
