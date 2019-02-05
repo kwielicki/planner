@@ -32,7 +32,8 @@ angular
                                 ctrl.guestData.push(childData);
                             });
                         });
-                        ctrl.dbLoaded = true;
+                        ctrl.dbLoaded  = true;
+                        ctrl.preloaderHidden = 'hidden';
                     });
 
                 /* Komponent i18n */
