@@ -41,7 +41,7 @@
 					<div class="planner__heading planner__heading--description">Uwagi</div>
 					<div class="planner__heading planner__heading--description">Akcje</div>
 				</div>
-				<div class="planner__notes" ng-class="{'planner__notes--last': $last}" ng-repeat="(key, value) in el.elements">
+				<div class="planner__notes" ng-class="{'planner__notes--last': $last, 'is--completed': value.status.value}" ng-repeat="(key, value) in el.elements">
 					<div class="planner__note planner__note--title">
 						<span class="planner__note-mobile-header">Nazwa notatki</span>
 						<span>{{value.title}}</span>

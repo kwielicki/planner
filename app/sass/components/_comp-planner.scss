@@ -76,6 +76,12 @@
 			align-items: flex-start;
 			margin-bottom: $padding-base;
 		}
+		&.is--completed {
+			background-color: rgba(red($brand-success), green($brand-success), blue($brand-success), .1);
+			&:hover {
+				background-color: rgba(red($brand-success), green($brand-success), blue($brand-success), .1);
+			}
+		}
 		&:hover {
 			background-color: $brand-gray-light;
 			#{$component}__button {
