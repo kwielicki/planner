@@ -6,7 +6,6 @@
 	&__inner {
 		display: flex;
 		justify-content: space-between;
-		align-items: flex-start;
 		@include media-breakpoint-down(md) {
 			flex-wrap: wrap;
 		}

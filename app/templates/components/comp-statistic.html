@@ -5,7 +5,15 @@
 			Statystyki zbiorcze
 			<span class="statistic__title">{{$ctrl.i18n.overallGuestsLabel}}: {{$ctrl.guestData | guestStatistic: 'guestCount'}}</span>
 		</h5>
-		<div class="statistic__body">
+		<div class="statistic__body" ng-if="($ctrl.guestData | guestStatistic: 'guestCount') == 0">
+			<div class="empty--note">
+				<strong>
+					Brak danych do wyświetlenia
+					<small>Wygląda na to, że Pani Młoda nie posiada jeszcze żadnych gości.</small>
+				</strong>
+			</div>
+		</div>
+		<div class="statistic__body" ng-if="($ctrl.guestData | guestStatistic: 'guestCount') > 0">
 			<ul class="statistic__list list-unstyled">
 				<li>
 					<uib-progressbar class="progress--waiting" animate="true" value="100 * ($ctrl.guestData | guestStatistic: 'guestCount':'status':'Oczekujący') / ($ctrl.guestData | guestStatistic: 'guestCount')" type="waiting">
@@ -32,7 +40,7 @@
 					</span>
 				</li>
 			</ul>
-			<v-accordion class="vAccordion--default statistic__additional">
+			<v-accordion class="vAccordion--default statistic__additional" ng-if="($ctrl.guestData | guestStatistic: 'children') > 0">
 				<v-pane>
 					<v-pane-header>
 						{{$ctrl.i18n.overallChildrenAccordionHeader}}
@@ -76,7 +84,15 @@
 			Statystyki dla Panny Młodej
 			<span class="statistic__title">{{$ctrl.i18n.overallGuestsLabel}}: {{$ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pani Młoda'}}</span>
 		</h5>
-		<div class="statistic__body">
+		<div class="statistic__body" ng-if="($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pani Młoda') == 0">
+			<div class="empty--note">
+				<strong>
+					Brak danych do wyświetlenia
+					<small>Wygląda na to, że Pani Młoda nie posiada jeszcze żadnych gości.</small>
+				</strong>
+			</div>
+		</div>
+		<div class="statistic__body" ng-if="($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pani Młoda') > 0">
 			<ul class="statistic__list list-unstyled">
 				<li>
 					<uib-progressbar class="progress--waiting" animate="true" value="100 * ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pani Młoda':'Oczekujący') / ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pani Młoda')" type="waiting">
@@ -103,7 +119,7 @@
 					</span>
 				</li>
 			</ul>
-			<v-accordion class="vAccordion--default statistic__additional">
+			<v-accordion class="vAccordion--default statistic__additional" ng-if="($ctrl.guestData | guestStatistic: 'children':'membership':'Pani Młoda') > 0">
 				<v-pane>
 					<v-pane-header>
 						{{$ctrl.i18n.overallChildrenAccordionHeader}}
@@ -147,7 +163,15 @@
 			Statystyki dla Pana Młodego
 			<span class="statistic__title">{{$ctrl.i18n.overallGuestsLabel}}: {{$ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pan Młody'}}</span>
 		</h5>
-		<div class="statistic__body">
+		<div class="statistic__body" ng-if="($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pan Młody') == 0">
+			<div class="empty--note">
+				<strong>
+					Brak danych do wyświetlenia
+					<small>Wygląda na to, że Pani Młoda nie posiada jeszcze żadnych gości.</small>
+				</strong>
+			</div>
+		</div>
+		<div class="statistic__body" ng-if="($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pan Młody') > 0">
 			<ul class="statistic__list list-unstyled">
 				<li>
 					<uib-progressbar class="progress--waiting" animate="true" value="100 * ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pan Młody':'Oczekujący') / ($ctrl.guestData | guestStatistic: 'guestCount':'membership':'Pan Młody')" type="waiting">
@@ -174,7 +198,7 @@
 					</span>
 				</li>
 			</ul>
-			<v-accordion class="vAccordion--default statistic__additional">
+			<v-accordion class="vAccordion--default statistic__additional" ng-if="($ctrl.guestData | guestStatistic: 'children':'membership':'Pan Młody') > 0">
 				<v-pane>
 					<v-pane-header>
 						{{$ctrl.i18n.overallChildrenAccordionHeader}}
