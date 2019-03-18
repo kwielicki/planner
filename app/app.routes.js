@@ -66,8 +66,8 @@ angular
                 }
             }).when('/edit-guest/:personID', {
                 templateUrl: 'templates/edit-guest.html',
-                controller: 'appEditGuest',
                 title: 'Edycja gościa | Wedding Planner',
+                controller: "AuthorizationCtrl",
                 breadcrumbsTitle: 'Edycja gościa',
                 resolve: {
                     "recordId": ['$route', function($route) {

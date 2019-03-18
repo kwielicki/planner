@@ -1,0 +1,169 @@
+<section class="section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4">
+                <app-intro-banner
+                    class="intro-banner--sidebar"
+                    introBannerTitle="{{person.firstName}} {{person.surName}}"
+                    introbannerdescription="Widok edycji gościa">
+                    <intro-banner-desclimer>
+                        <small>Korzystając z formularza edytuj dane dotyczące Twojego gościa</small>
+                    </intro-banner-desclimer>
+                </app-intro-banner>
+            </div>
+            <div class="col-sm-8">
+                <div class="component-layout">
+                    <!-- Formularz edycji gościa -->
+                    <form ng-submit="$ctrl.plannerEditGuest()" name="planner__EDIT_guest" class="material-form" autocomplete="off">
+
+                        <!-- FirstName -->
+                        <div class="material-form__group">
+                            <input type="text"
+                                   name="firstName"
+                                   id="firstName"
+                                   class="material-form__control material-form__control--transparent"
+                                   ng-model="person.firstName"
+                                   ng-pattern="/^[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ\s]*$/"
+                                   ng-minlength="3"
+                                   required
+                                   autocomplete="off"/>
+                            <label for="firstName"
+                                   class="material-form__label"
+                                   ng-class="{'error': planner__EDIT_guest.firstName.$touched && planner__EDIT_guest.firstName.$invalid}">
+                                Podaj imię</label>
+                            <div role="alert"
+                                 class="material-form__alert"
+                                 ng-class="{'has-error': planner__EDIT_guest.firstName.$error.minlength || planner__EDIT_guest.firstName.$error.pattern}">
+                                <span class="material-form__error" ng-show="planner__EDIT_guest.firstName.$error.minlength || planner__EDIT_guest.firstName.$error.pattern" ng-animate>
+                                    To pole musi zawierać minimum 3 znaki oraz nie może zawierać cyfr
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- LastName -->
+                        <div class="material-form__group">
+                            <input type="text"
+                                   name="surName"
+                                   id="surName"
+                                   class="material-form__control material-form__control--transparent"
+                                   ng-model="person.surName"
+                                   ng-pattern="/^[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ\s]*$/"
+                                   ng-minlength="3"
+                                   required
+                                   autocomplete="off"/>
+                            <label for="surName" class="material-form__label" ng-class="{'error': planner__EDIT_guest.surName.$touched && planner__EDIT_guest.surName.$invalid}">
+                                Podaj nazwisko
+                            </label>
+                            <div role="alert"
+                                 class="material-form__alert"
+                                 ng-class="{'has-error': planner__EDIT_guest.surName.$error.minlength || planner__EDIT_guest.surName.$error.pattern}">
+                                <span class="material-form__error" ng-show="planner__EDIT_guest.surName.$error.minlength || planner__EDIT_guest.surName.$error.pattern" ng-animate>
+                                    To pole musi zawierać minimum 3 znaki oraz nie może zawierać cyfr
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- GuestCount -->
+                        <div class="material-form__group">
+                            <input type="text"
+                                   name="guestCount"
+                                   id="guestCount"
+                                   class="material-form__control material-form__control--transparent"
+                                   ng-model="person.guestCount"
+                                   ng-pattern="/^[1-9]\d*$/"
+                                   ng-minlength="1"
+                                   required
+                                   autocomplete="off"/>
+                            <label for="guestCount"
+                                   class="material-form__label"
+                                   ng-class="{'error': planner__EDIT_guest.guestCount.$touched && planner__EDIT_guest.guestCount.$invalid}">Podaj przewidywaną liczbę osób</label>
+                            <div role="alert"
+                                 class="material-form__alert"
+                                 ng-class="{'has-error': planner__EDIT_guest.guestCount.$error.minlength || planner__EDIT_guest.guestCount.$error.pattern}">
+                                <span class="material-form__error" ng-show="planner__EDIT_guest.guestCount.$error.minlength || planner__EDIT_guest.guestCount.$error.pattern">
+                                    To pole musi zawierać wyłącznie cyfry większe od 0
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Membership -->
+                        <div class="material-form__group">
+                            <select name="appMembership" id="appMembership" required ng-model="person.membership" class="material-form__control material-form__control--transparent" required>
+                                <option value="Pan Młody">Pan Młody</option>
+                                <option value="Pani Młoda">Pani Młoda</option>
+                            </select>
+                            <label for="appMembership"
+                                   class="material-form__label"
+                                   ng-class="{'error': planner__EDIT_guest.appMembership.$touched && planner__EDIT_guest.appMembership.$invalid}">Wybierz przynależność osoby
+                            </label>
+                        </div>
+
+                        <!-- Status -->
+                        <div class="material-form__group">
+                            <select name="status" id="status" required ng-model="person.status" class="material-form__control material-form__control--transparent" required>
+                                <option value="Potwierdzony">Potwierdzony</option>
+                                <option value="Oczekujący">Oczekujący</option>
+                                <option value="Odmowa">Odmowa</option>
+                            </select>
+                            <label for="appMembership"
+                                   class="material-form__label"
+                                   ng-class="{'error': planner__EDIT_guest.status.$touched && planner__EDIT_guest.status.$invalid}">Wybierz status deklaracji gościa
+                            </label>
+                        </div>
+
+                        <!-- Number of children -->
+                        <div class="material-form__group">
+                            <input type="text"
+                                   name="children"
+                                   id="children"
+                                   class="material-form__control material-form__control--transparent"
+                                   ng-model="person.children"
+                                   ng-pattern="/^[0-9]*$/"
+                                   ng-minlength="1"
+                                   autocomplete="off"/>
+                            <label for="children"
+                                   class="material-form__label"
+                                   ng-class="{'error': planner__EDIT_guest.children.$touched && planner__EDIT_guest.children.$invalid}">Liczba dzieci <small>(pole nieobowiązkowe)</small></label>
+                            <div role="alert" class="material-form__alert"
+                                 ng-class="{'has-error': formAddNewGuest.children.$error.minlength || formAddNewGuest.children.$error.pattern}">
+                                <span class="material-form__error" ng-show="planner__EDIT_guest.children.$error.minlength || planner__EDIT_guest.children.$error.pattern" ng-animate>
+                                    To pole musi zawierać wyłącznie cyfry większe od 0
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Additional information -->
+                        <div class="material-form__group material-form__group--textarea">
+                            <textarea name="extraInformation" ng-model="person.extraInformation" class="material-form__control material-form__control--textarea material-form__control--transparent"></textarea>
+                            <label for="appExtraInformation"
+                                class="material-form__label material-form__label--textarea"
+                                ng-class="{'error': planner__EDIT_guest.extraInformation.$touched && planner__EDIT_guest.extraInformation.$invalid}">
+                                    Informacje dodatkowe <small>(pole nieobowiązkowe)</small>
+                            </label>
+                        </div>
+
+                        <!-- Available actions -->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="material-form__group material-form__group--buttons material-form__group--spacer-bottom text-xs-center">
+                                    <button type="submit" class="btn btn-sm btn-primary"
+                                            ng-click="sendRecordToDataBase()"
+                                            ng-disabled="planner__EDIT_guest.firstName.$invalid ||
+                                            planner__EDIT_guest.surName.$invalid ||
+                                            planner__EDIT_guest.guestCount.$invalid ||
+                                            planner__EDIT_guest.appMembership.$invalid ||
+                                            planner__EDIT_guest.status.$invalid ||
+                                            planner__EDIT_guest.children.$invalid ||
+                                            !planner__EDIT_guest.$dirty">
+                                    Edytuj gościa</button>
+                                    <a href="#/manage-guests" class="btn btn-link">Anuluj</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<planner-snackbar></planner-snackbar>

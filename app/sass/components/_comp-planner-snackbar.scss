@@ -1,4 +1,5 @@
 .planner-snackbar {
+	$component: &;
 	position: fixed;
 	z-index: $zindex-tooltip;
 	background-color: $brand-dark;
@@ -7,6 +8,8 @@
 	opacity: 0;
 	transition: all 0.3s;
 	max-width: 350px;
+	box-shadow: $google-box-shadow-0dp;
+	overflow: hidden;
 	&--botleft {
 		left: 15px;
 		bottom: 15px;
@@ -21,4 +24,40 @@
 		opacity: 1;
 		transform: translateY(0);
 	}
+
+	&__content {
+		padding-top: $padding-sm;
+	}
+
+	&__subtitle {
+		font-size: $font-size-xs;
+		padding-bottom: $padding-xs;
+	}
+	&__info {
+		font-size: $font-size-xs;
+	}
+	&__icon {
+		position: absolute;
+		right: -25px;
+		top: -25px;
+		opacity: .3;
+		font-size: 80px;
+	}
+
+	// Warianty
+	&--success {
+		border-bottom: 2px solid $brand-success;
+		#{$component}__icon {
+			color: $brand-success;
+			margin-bottom: $padding-sm;
+		}
+	}
+	&--danger {
+		border-bottom: 2px solid $brand-danger;
+		#{$component}__icon {
+			color: $brand-danger;
+			margin-bottom: $padding-sm;
+		}
+	}
+
 }

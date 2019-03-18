@@ -10,15 +10,14 @@
 		.factory("plannerSnackbar", ['$rootScope', '$timeout', function ($rootScope, $timeout) {
 
 		return {
-			create : function ( content, duration, position ) {
+			create : function ( content, duration, position, variant ) {
 				$timeout(function(){
-					$rootScope.$broadcast('plannerCreateSnackbar', { 'content': content, 'duration': duration , 'position': position});
+					$rootScope.$broadcast('plannerCreateSnackbar', { 'content': content, 'duration': duration , 'position': position, 'variant': variant});
 				});
 			}
 		}
 	}])
 		.directive( "plannerSnackbar", ["$rootScope", "$compile", "$timeout", function( $rootScope, $compile, $timeout ) {
-
 			return function( scope, element, attrs ) {
 
 				// plannerSnackbar container
@@ -31,7 +30,9 @@
 				const plannerSnackbarDelay   = parseInt(attrs.plannerSnackbarDelay, 10) || 200;
 
 
-				// Broadcasting
+				// Removes Listeners before adding them
+       			// This line will solve the problem for multiple broadcast call
+				$rootScope.$$listeners['plannerCreateSnackbar'] = [];
 				$rootScope.$on('plannerCreateSnackbar', function( event, received ) {
 
 					// plannerSnackbar position
@@ -59,11 +60,26 @@
 							break;
 					}
 
-					const plannerSnackbarPPosition = received.position;
+					// plannerSnackbar variant
+					switch ( received.variant ) {
+						case "success":
+							received.variant = 'planner-snackbar--success';
+							break;
+						case "danger":
+							received.variant = 'planner-snackbar--danger';
+							break;
+						case "warning":
+							received.variant = 'planner-snackbar--warning';
+							break;
+						default:
+							received.variant = 'planner-snackbar--primary';
+							break;
+					}
+
 
 					// Struktura snackbara
 					const plannerSnackbarTemplate = `
-						<div class="planner-snackbar planer-snackbar--opened ${received.position}">
+						<div class="planner-snackbar planer-snackbar--opened ${received.position} ${received.variant}">
 							<div class="planner-snackbar__content">${received.content}</div>
 						</div>
 					`;
@@ -74,7 +90,7 @@
 					};
 
 					// Kompilacja strktury snackbara
-					const plannerSnackbarTemplateCompiler = angular.element( $compile(plannerSnackbarTemplate)(scope) );
+					const plannerSnackbarTemplateCompiler = angular.element( $compile(plannerSnackbarTemplate)(scope));
 
 					// Utworzenie snackbara
 					plannerSnackbarContainer.append(plannerSnackbarTemplateCompiler);
