@@ -1,0 +1,7 @@
+<ul ng-if="$ctrl.firebaseUserAuthenticated" class="quick-links__list list-unstyled">
+	<li ng-repeat="element in $ctrl.quickLinks" class="quick-links__element">
+		<a ng-href="{{element.quickLinkpath}}" title="{{element.quickLinkTitle}}" class="quick-links__anchor" ng-class="{active: $ctrl.isActive('{{ element.quickLinkPathAbsolute }}')}">
+			<i class="{{element.quickLinkIcon}}"></i>
+		</a>
+	</li>
+</ul>

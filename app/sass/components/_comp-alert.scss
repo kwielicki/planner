@@ -1,0 +1,73 @@
+/* Component Alert
+ * Wymagana klasa w drzewie DOM "alert"
+ */
+.alert {
+	$component: &;
+	box-shadow: 0 1px 1px 0 rgba(60,64,67,.08), 0 1px 3px 1px rgba(60,64,67,.16);
+	border-radius: $border-radius-sm;
+	border: 0;
+	color: $brand-dark;
+	&-success,
+	&-warning,
+	&-info,
+	&-danger {
+		background-color: $color-white;
+	}
+
+	&-success {
+		#{$component}__icon {
+			color: $brand-success;
+		}
+	}
+
+	&-info {
+		#{$component}__icon {
+			color: $brand-info;
+		}
+	}
+	&-warning {
+		#{$component}__icon {
+			color: $brand-danger;
+		}
+	}
+
+	&__inner {
+		display: flex;
+		padding: $padding-medium 0;
+		@include media-breakpoint-down(sm) {
+			flex-direction: column;
+			padding: $padding-normal;
+		}
+	}
+
+	&__icon {
+		display: flex;
+		align-items: flex-start;
+		font-size: 40px;
+		width: 100px;
+		@include media-breakpoint-up(md) {
+			justify-content: center;
+		}
+		@include media-breakpoint-down(sm) {
+			margin-bottom: $padding-sm;
+		};
+	}
+
+	&__content {
+		width: calc(100% - 100px);
+		@include media-breakpoint-down(sm) {
+			width: 100%;
+		}
+	}
+
+	&__title {
+		margin-bottom: $padding-xs;
+		font-weight: $fw-6;
+	}
+
+	&__description {
+		margin-bottom: 0;
+		font-size: $font-size-sm;
+	}
+
+}

@@ -1,0 +1,67 @@
+<div uib-alert class="alert user-menu__alert" ng-class="!$ctrl.isItActivated ? 'animated fadeIn alert-success' : 'animated shake alert-info'">
+	<div class="alert__inner" ng-if="!$ctrl.isItActivated">
+		<div class="alert__icon"><i class="fas fa-file-alt"></i></div>
+		<div class="alert__content">
+			<h5 class="alert__title">Wprowadzenie</h5>
+			<p class="alert__description">
+				Aby zapewnic Ci pełen komfort używania <em>szybkich linków</em> na urządzeniach mobilnych,
+				możesz wybrać ich maksymalnie 4.
+				Dzięki temu, podczas korzystania z z tej funckjonalności na Smartphonie Twój User Experience znacząco wzrośnie.
+			</p>
+		</div>
+	</div>
+	<div class="alert__inner" ng-if="$ctrl.isItActivated">
+		<div class="alert__icon"><i class="fas fa-exclamation-triangle"></i></div>
+		<div class="alert__content">
+			<h5 class="alert__title">Informacja</h5>
+			<p class="alert__description">
+				Wygląda na to, że został osiągnięty limit (4) linków. W każdej chwili możesz zmienić swój wybór, odznaczając
+				jeden z wybranych już linków i zastępując go innym.
+			</p>
+		</div>
+	</div>
+</div>
+<span class="js-preloader" ng-hide="$ctrl.dbLoaded" ng-class="$ctrl.dbLoaded === true && 'is--done'"></span>
+<div ng-if="$ctrl.dbLoaded">
+	<div class="custom-user-menu__steps" ng-if="($ctrl.quickLinksPerUser.length === 0)">
+		<div class="animated fadeIn">
+			Aktualnie nie posiadasz wybranych linków.
+			<p class="custom-user-menu__steps-info animated fadeIn">
+				<span class="custom-user-menu__steps-link badge badge-default">Wybierz przynajmniej jeden link, aby móc skorzystać z tej funkcjonalności</span></p>
+		</div>
+	</div>
+
+
+	<div class="custom-user-menu__steps" ng-if="($ctrl.quickLinksPerUser.length !== 0)">
+		<div class="animated fadeIn">
+			Aktualnie korzystasz z linków:
+			<p class="custom-user-menu__steps-info">
+				<span ng-repeat="link in $ctrl.quickLinksPerUser" class="custom-user-menu__steps-link badge badge-primary">
+					{{link.quickLinkTitle}}
+				</span>
+		</div>
+	</div>
+	<div class="custom-user-menu__steps" ng-if="!$ctrl.isDisabled && ($ctrl.quickLinksPerUser.length !== 0) && $ctrl.disableQL">
+		<div class="animated fadeIn">
+			Zastąp linki innymi:
+			<p class="custom-user-menu__steps-info">
+			<span ng-repeat="link in $ctrl.selectedLinks" class="custom-user-menu__steps-link badge badge-primary">{{link.breadcrumbsTitle}}</span></p>
+		</div>
+	</div>
+
+	<ul class="list-unstyled custom-user-menu__list">
+		<li title="{{availableRoute.description}}"
+			ng-repeat="availableRoute in $ctrl.uniqueRouteOriginalPath"
+			class="custom-user-menu__element"
+			ng-class="{'active': active, 'is--disabled': $ctrl.isItActivated && !active}"
+			ng-click="$ctrl.selectAvailableRoute(availableRoute, active = !active)">
+			<strong class="custom-user-menu__title">{{availableRoute.breadcrumbsTitle}}</strong>
+			<span class="custom-user-menu__description">{{availableRoute.description}}</span>
+		</li>
+	</ul>
+
+	<div class="custom-user-menu__buttons">
+		<button type="button" class="btn btn-primary" ng-click="$ctrl.customUserMenuCreator()" ng-disabled="$ctrl.isDisabled || $ctrl.deactivation">Zapisz mój wybór</button>
+		<button type="button" class="btn btn-link" ng-click="$ctrl.customUserMenuDisable()" ng-if="($ctrl.quickLinksPerUser.length !== 0)">Dezaktywuj linki</button>
+	</div>
+</div>

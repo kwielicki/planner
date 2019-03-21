@@ -17,7 +17,9 @@ angular
                 templateUrl: 'templates/dashboard.html',
                 controller: 'AuthorizationCtrl',
                 title: 'Panel Głowny | Wedding Planner',
+                description: 'Administruj',
                 breadcrumbsTitle: 'Panel Głowny',
+                availableForCustomUserMenu: false,
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -28,7 +30,10 @@ angular
                 templateUrl: 'templates/dashboard.html',
                 controller: "AuthorizationCtrl",
                 title: 'Panel Głowny | Wedding Planner',
+                description: 'Administruj',
                 breadcrumbsTitle: 'Panel Głowny',
+                availableForCustomUserMenu: true,
+                quickLinksIcon: 'fas fa-home',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -37,8 +42,11 @@ angular
             }).when('/manage-guests', {
                 templateUrl: 'templates/manage-guests.html',
                 controller: "AuthorizationCtrl",
-                title: 'Zarządzanie listą gości | Wedding Planner',
-                breadcrumbsTitle: 'Zarządzanie listą gości',
+                title: 'Twoja lista gości | Wedding Planner',
+                description: 'Zarządzaj',
+                breadcrumbsTitle: 'Twoja lista gości',
+                availableForCustomUserMenu: true,
+                quickLinksIcon: 'fas fa-tasks',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -48,7 +56,10 @@ angular
                 templateUrl: 'templates/add-new-guest.html',
                 controller: "AuthorizationCtrl",
                 title: 'Dodawanie nowego gościa | Wedding Planner',
+                description: 'Dodaj',
                 breadcrumbsTitle: 'Dodawanie nowego gościa',
+                availableForCustomUserMenu: true,
+                quickLinksIcon: 'fas fa-address-card',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -58,7 +69,10 @@ angular
                 templateUrl: 'templates/user-profile.html',
                 controller: "AuthorizationCtrl",
                 title: 'Profil użytkownika | Wedding Planner',
+                description: 'Zarządzaj',
                 breadcrumbsTitle: 'Profil użytkownika',
+                availableForCustomUserMenu: true,
+                quickLinksIcon: 'fas fa-user-alt',
                 resolve: {
                     "currentAuth": ["Auth", function(Auth) {
                         return Auth.$requireSignIn();
@@ -69,6 +83,8 @@ angular
                 title: 'Edycja gościa | Wedding Planner',
                 controller: "AuthorizationCtrl",
                 breadcrumbsTitle: 'Edycja gościa',
+                availableForCustomUserMenu: false,
+                quickLinksIcon: 'fas fa-book',
                 resolve: {
                     "recordId": ['$route', function($route) {
                         return {
@@ -91,7 +107,10 @@ angular
                 templateUrl: 'templates/wedding-notebook.html',
                 controller: "AuthorizationCtrl",
                 title: 'Notatnik weselny | Wedding Planner',
+                description: 'Notuj',
                 breadcrumbsTitle: 'Notatnik weselny',
+                availableForCustomUserMenu: true,
+                quickLinksIcon: 'fas fa-book-open',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -101,7 +120,10 @@ angular
                 templateUrl: 'templates/statistics.html',
                 controller: "AuthorizationCtrl",
                 title: 'Statystyki | Wedding Planner',
+                description: 'Analizuj',
                 breadcrumbsTitle: 'Statystyki',
+                availableForCustomUserMenu: true,
+                quickLinksIcon: 'fas fa-signal',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -112,6 +134,9 @@ angular
                 controller: "AuthorizationCtrl",
                 title: 'Lista rzeczy do zrobienia | Wedding Planner',
                 breadcrumbsTitle: 'Lista rzeczy do zrobienia',
+                description: 'Notuj',
+                availableForCustomUserMenu: true,
+                quickLinksIcon: 'fas fa-list-ol',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -120,11 +145,15 @@ angular
             }).when('/login', {
                 templateUrl: 'templates/login.html',
                 title: 'Logowanie | Wedding Planner',
+                availableForCustomUserMenu: false
             }).when('/documentation', {
                 templateUrl: 'templates/documentation.html',
                 controller: "AuthorizationCtrl",
                 title: 'Dokumentacja | Wedding Planner',
+                description: 'Czytaj',
                 breadcrumbsTitle: 'Dokumentacja',
+                availableForCustomUserMenu: true,
+                quickLinksIcon: 'fas fa-file-alt',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -134,7 +163,10 @@ angular
                 templateUrl: 'templates/news.html',
                 controller: "AuthorizationCtrl",
                 title: 'Nowinki ze świata | Wedding Planner',
+                description: 'Sprawdź',
                 breadcrumbsTitle: 'Aktualności',
+                availableForCustomUserMenu: true,
+                quickLinksIcon: 'fas fa-newspaper',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -144,7 +176,23 @@ angular
                 templateUrl: 'templates/planner.html',
                 controller: "AuthorizationCtrl",
                 title: 'Organizer weselny | Wedding Planner',
+                description: 'Kategoryzuj',
                 breadcrumbsTitle: 'Organizer weselny',
+                availableForCustomUserMenu: true,
+                quickLinksIcon: 'fas fa-pen-alt',
+                resolve: {
+                  "currentAuth": ["Auth", function(Auth) {
+                    return Auth.$requireSignIn();
+                  }]
+                }
+            }).when('/user-profile/quick-links-management', {
+                templateUrl: 'templates/quick-links-management.html',
+                controller: "AuthorizationCtrl",
+                title: 'Zarządzaj szybkimi linkami | Wedding Planner',
+                description: 'Zarządzaj',
+                breadcrumbsTitle: 'Szybkie linki',
+                availableForCustomUserMenu: true,
+                quickLinksIcon: 'fas fa-link',
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
                     return Auth.$requireSignIn();
@@ -155,6 +203,7 @@ angular
                 templateUrl: 'templates/404.html',
                 title: 'Strona nie została odnaleziona | Wedding Planner',
                 breadcrumbsTitle: '404',
+                availableForCustomUserMenu: false,
                 controller: "AuthorizationCtrl",
                 resolve: {
                   "currentAuth": ["Auth", function(Auth) {
