@@ -165,6 +165,7 @@ gulp.task('build', ['copy-sass', 'copy-img', 'copy-fonts', 'copy-templates', 'co
 		paths.assets.components + 'comp-edit-guest.js',
 		paths.assets.components + 'comp-custom-user-menu.js',
 		paths.assets.components + 'comp-quick-links.js',
+		paths.assets.components + 'comp-search-guest.js',
 		paths.assets.filters + 'app-percentage-filter.js',
 		paths.assets.filters + 'app-characters-in-circle.js',
 		paths.assets.filters + 'app-object-length.js',
