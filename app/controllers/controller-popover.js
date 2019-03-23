@@ -18,20 +18,10 @@ angular
 
             const newElement = angular.element("<div class='popover--overlay'></div>");
 
-            $scope.$watch('displayMode', function(value) {
-                switch(value) {
-                    case 'mobile':
-                        angular.element(document).find('body').append(newElement);
-                        break;
-                    default:
-                        angular.element(newElement).remove();
-                        break;
-                }
-            });
-
             /* Zadaniem metody appPopoverInit jest otworzenie popovera po clicku */
             $scope.appPopoverInit = function ( event ) {
-
+                
+                angular.element(document).find('body').append(newElement);
                 angular.element(newElement).addClass('is--activated');
 
 

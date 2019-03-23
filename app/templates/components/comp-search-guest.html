@@ -1,0 +1,48 @@
+<div class="search-guest__inner">
+	<div class="component widget widget--light widget--category" data-component-name="widget">
+		<div class="inner">
+			<div class="widget__header widget__header--popover">
+				<h2 class="widget__title">
+					<strong>Wyszukaj innego gościa do edycji</strong>
+					<span class="widget__popover"
+						  ng-controller="controllerPopover"
+						  uib-popover-template="appPopover.templateUrl"
+						  popover-placement="auto top-left"
+						  popover-trigger="'none'"
+						  data-popover-title="Wskazówka"
+						  data-popover-content="Wyszukiwarka działa w oparciu o Imię oraz Naziwsko. Np. 'Jan Kowalski'"
+						  popover-is-open="appPopover.open"
+						  ng-click="appPopoverInit($event)">
+						<i class="fa fa-question-circle"></i>
+					</span>
+				</h2>
+			</div>
+			<div class="widget__content">
+				<div class="form-group form-group--modern search-guest__wrapper" ng-click="$ctrl.toggleSearch();$event.stopPropagation();">
+					<div class="form-group__input">
+						<i aria-hidden="true" class="fa fa-search form-group__icon"></i>
+						<input type="text" placeholder="Wyszukaj innego gościa do edycji" class="form-control form-control--modern search-guest__input"
+										   ng-model="value"
+										   ng-model-options="{debounce: 350}"
+										   ng-change="$ctrl.searchGuest(value)"
+										   ng-blur="$ctrl.searchGuestBlured(value)"
+										   ng-focus="$ctrl.searchGuestFocused(value)"
+										   ng-class="{'active': $ctrl.isNotEmpty}">
+					</div>
+					<ul class="search-guest__autocompleter list-unstyled" ng-if="$ctrl.isNotEmpty">
+						<li ng-repeat="queryElement in $ctrl.queryList" class="search-guest__element">
+							<a ng-href="#/edit-guest/{{queryElement.id}}"
+							   title="Przejdź do edycji gościa {{queryElement.fullName}}"
+							   ng-mouseup="$ctrl.setSnackbarHelper(queryElement.fullName, queryElement.id)"
+							   ng-class="{'is--active': $ctrl.currentEditablePerson === queryElement.id}">
+								{{queryElement.fullName}}
+								<span ng-if="$ctrl.currentEditablePerson === queryElement.id"> - aktualnie edytowany gość</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<planner-snackbar></planner-snackbar>

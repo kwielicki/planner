@@ -1,0 +1,63 @@
+/* Component Search guest
+ * Wymagana klasa w drzewie DOM "search-guest"
+ */
+
+.search-guest {
+	display: block;
+	&__wrapper {
+		position: relative;
+	}
+	&__autocompleter {
+		position: absolute;
+		left: 0;
+		right: 0;
+		background-color: #fff;
+		box-shadow: $google-box-shadow-1dp;
+		border: 1px solid $border-color-dropdown-element;
+		border-top: 0;
+		margin: 0;
+		border-bottom-left-radius: $border-radius;
+		border-bottom-right-radius: $border-radius;
+		max-height: 220px;
+		overflow-y: auto;
+		z-index: 1;
+	}
+	&__element {
+		a {
+			position: relative;
+			display: block;
+			padding: $padding-normal;
+			color: $brand-dark;
+			border-bottom: 1px solid $border-color-dropdown-element;
+			padding-left: 70px;
+			font-size: $font-size-xs;
+			@include font-awesome("\f4ff", $pseudoElement: 'before') {
+				@include absolute-vertical-centering;
+				@include transition_bezier;
+				left: 30px;
+				color: $brand-gray;
+				opacity: .5;
+			};
+			&:hover {
+				background-color: $brand-gray-light;
+				text-shadow: 0 0 0 $brand-dark;
+				&:before {
+					color: inherit;
+					opacity: 1;
+				}
+			}
+			&.is--active {
+				color: $brand-success;
+				&:before {
+					color: inherit;
+				}
+			}
+		}
+	}
+	&__input {
+		&.active {
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+	}
+}
