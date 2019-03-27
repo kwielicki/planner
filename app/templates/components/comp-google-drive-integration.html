@@ -1,0 +1,46 @@
+<div class="component-layout">
+	<span class="js-preloader" ng-show="$ctrl.preloaderHidden"></span>
+	<div class="google-drive-integration__inner" ng-show="!$ctrl.preloaderHidden">
+		<form name="formForGoogleDriveIntegration">
+			<div class="material-form__group">
+				<input type="text"
+					   name="client_ID"
+					   class="material-form__control material-form__control--transparent"
+					   ng-model="$ctrl.clientID"
+					   required
+					   autocomplete="off"/>
+				<label
+					   class="material-form__label"
+					   ng-class="{'error': formForGoogleDriveIntegration.client_ID.$invalid}">
+				    Wprowadź client id
+			    </label>
+			</div>
+			<div class="material-form__group">
+				<input type="text"
+					   name="api_KEY"
+					   class="material-form__control material-form__control--transparent"
+					   ng-model="$ctrl.apiKEY"
+					   required
+					   autocomplete="off"/>
+				<label
+					   class="material-form__label"
+					   ng-class="{'error': formForGoogleDriveIntegration.api_KEY.$invalid}">
+				    Wprowadź api key
+				</label>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="material-form__group material-form__group--buttons material-form__group--spacer-bottom text-xs-center">
+						<button ng-click="$ctrl.setGoogleDriveIntegration(client_ID,api_KEY)" class="btn btn-sm btn-primary"
+						ng-disabled="formForGoogleDriveIntegration.client_ID.$invalid ||
+									 formForGoogleDriveIntegration.api_KEY.$invalid ||
+									 !formForGoogleDriveIntegration.$dirty">
+							Zapisz
+						</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<planner-snackbar></planner-snackbar>

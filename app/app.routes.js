@@ -198,6 +198,17 @@ angular
                     return Auth.$requireSignIn();
                   }]
                 }
+            }).when('/user-profile/wedding-planner-google-drive-integration', {
+                templateUrl: 'templates/wedding-planner-google-drive-integration.html',
+                controller: "AuthorizationCtrl",
+                title: 'Konfiguruj dostęp do Google Drive | Wedding Planner',
+                breadcrumbsTitle: 'Integracja z Google Drive',
+                availableForCustomUserMenu: false,
+                resolve: {
+                  "currentAuth": ["Auth", function(Auth) {
+                    return Auth.$requireSignIn();
+                  }]
+                }
             }).otherwise({
                 redirectTo: '/404',
                 templateUrl: 'templates/404.html',

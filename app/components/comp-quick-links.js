@@ -30,7 +30,6 @@ angular
                         ctrl.quickLinksStatus = $firebaseArray(refStatus);
                         ctrl.quickLinksStatus.$loaded()
                          	.then((response) => {
-                         		console.log(response);
                          		$element
                          			.addClass(`
                                         ${ctrl.classHelpers.componentName}--loaded

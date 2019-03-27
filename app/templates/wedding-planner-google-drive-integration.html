@@ -1,0 +1,34 @@
+<!-- Component BreadCrumbs -->
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <app-breadcrumbs class="breadcrumbs--smaller"></app-breadcrumbs>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-4">
+				<app-intro-banner
+					class="intro-banner--sidebar"
+					introBannerTitle="Aby korzystać z Google Drive należy przeprowadzić proces integracji."
+					introbannerdescription="">
+					<intro-banner-desclimer>
+						<small>
+							Aby móc przeprowadzić proces integracji z Twoim Google Drive, należy podać niezbędne dane.
+							Przygotuj swój CLIENT_ID oraz klucz API_KEY. Są one dostępne w
+							<a ng-href="https://www.iperiusbackup.net/en/how-to-enable-google-drive-api-and-get-client-credentials/" rel="noopener" target="_blank">konsoli google</a>.
+						</small>
+					</intro-banner-desclimer>
+				</app-intro-banner>
+			</div>
+			<div class="col-md-8">
+				<comp-google-drive-integration></comp-google-drive-integration>
+			</div>
+		</div>
+	</div>
+</section>
