@@ -14,7 +14,7 @@ angular
     .config(function($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'templates/dashboard.html',
+                templateUrl: 'templates/views/dashboard.html',
                 controller: 'AuthorizationCtrl',
                 title: 'Panel Głowny | Wedding Planner',
                 description: 'Administruj',
@@ -27,7 +27,7 @@ angular
                 }
             }).when('/dashboard', {
                 redirectTo: '/dashboard',
-                templateUrl: 'templates/dashboard.html',
+                templateUrl: 'templates/views/dashboard.html',
                 controller: "AuthorizationCtrl",
                 title: 'Panel Głowny | Wedding Planner',
                 description: 'Administruj',
@@ -40,7 +40,7 @@ angular
                   }]
                 }
             }).when('/manage-guests', {
-                templateUrl: 'templates/manage-guests.html',
+                templateUrl: 'templates/views/manage-guests.html',
                 controller: "AuthorizationCtrl",
                 title: 'Twoja lista gości | Wedding Planner',
                 description: 'Zarządzaj',
@@ -53,7 +53,7 @@ angular
                   }]
                 }
             }).when('/add-new-guest', {
-                templateUrl: 'templates/add-new-guest.html',
+                templateUrl: 'templates/views/add-new-guest.html',
                 controller: "AuthorizationCtrl",
                 title: 'Dodawanie nowego gościa | Wedding Planner',
                 description: 'Dodaj',
@@ -66,7 +66,7 @@ angular
                   }]
                 }
             }).when('/user-profile', {
-                templateUrl: 'templates/user-profile.html',
+                templateUrl: 'templates/views/user-profile.html',
                 controller: "AuthorizationCtrl",
                 title: 'Profil użytkownika | Wedding Planner',
                 description: 'Zarządzaj',
@@ -79,7 +79,7 @@ angular
                     }]
                 }
             }).when('/edit-guest/:personID', {
-                templateUrl: 'templates/edit-guest.html',
+                templateUrl: 'templates/views/edit-guest.html',
                 title: 'Edycja gościa | Wedding Planner',
                 controller: "AuthorizationCtrl",
                 breadcrumbsTitle: 'Edycja gościa',
@@ -104,7 +104,7 @@ angular
                     }]
                 }
             }).when('/wedding-notebook', {
-                templateUrl: 'templates/wedding-notebook.html',
+                templateUrl: 'templates/views/wedding-notebook.html',
                 controller: "AuthorizationCtrl",
                 title: 'Notatnik weselny | Wedding Planner',
                 description: 'Notuj',
@@ -117,7 +117,7 @@ angular
                   }]
                 }
             }).when('/statistics', {
-                templateUrl: 'templates/statistics.html',
+                templateUrl: 'templates/views/statistics.html',
                 controller: "AuthorizationCtrl",
                 title: 'Statystyki | Wedding Planner',
                 description: 'Analizuj',
@@ -130,7 +130,7 @@ angular
                   }]
                 }
             }).when('/todo-list', {
-                templateUrl: 'templates/todo-list.html',
+                templateUrl: 'templates/views/todo-list.html',
                 controller: "AuthorizationCtrl",
                 title: 'Lista rzeczy do zrobienia | Wedding Planner',
                 breadcrumbsTitle: 'Lista rzeczy do zrobienia',
@@ -143,11 +143,11 @@ angular
                   }]
                 }
             }).when('/login', {
-                templateUrl: 'templates/login.html',
+                templateUrl: 'templates/views/login.html',
                 title: 'Logowanie | Wedding Planner',
                 availableForCustomUserMenu: false
             }).when('/documentation', {
-                templateUrl: 'templates/documentation.html',
+                templateUrl: 'templates/views/documentation.html',
                 controller: "AuthorizationCtrl",
                 title: 'Dokumentacja | Wedding Planner',
                 description: 'Czytaj',
@@ -160,7 +160,7 @@ angular
                   }]
                 }
             }).when('/news', {
-                templateUrl: 'templates/news.html',
+                templateUrl: 'templates/views/news.html',
                 controller: "AuthorizationCtrl",
                 title: 'Nowinki ze świata | Wedding Planner',
                 description: 'Sprawdź',
@@ -173,7 +173,7 @@ angular
                   }]
                 }
             }).when('/wedding-organizer', {
-                templateUrl: 'templates/planner.html',
+                templateUrl: 'templates/views/planner.html',
                 controller: "AuthorizationCtrl",
                 title: 'Organizer weselny | Wedding Planner',
                 description: 'Kategoryzuj',
@@ -186,7 +186,7 @@ angular
                   }]
                 }
             }).when('/user-profile/quick-links-management', {
-                templateUrl: 'templates/quick-links-management.html',
+                templateUrl: 'templates/views/quick-links-management.html',
                 controller: "AuthorizationCtrl",
                 title: 'Zarządzaj szybkimi linkami | Wedding Planner',
                 description: 'Zarządzaj',
@@ -199,7 +199,7 @@ angular
                   }]
                 }
             }).when('/user-profile/wedding-planner-google-drive-integration', {
-                templateUrl: 'templates/wedding-planner-google-drive-integration.html',
+                templateUrl: 'templates/views/wedding-planner-google-drive-integration.html',
                 controller: "AuthorizationCtrl",
                 title: 'Konfiguruj dostęp do Google Drive | Wedding Planner',
                 breadcrumbsTitle: 'Integracja z Google Drive',
@@ -211,7 +211,7 @@ angular
                 }
             }).otherwise({
                 redirectTo: '/404',
-                templateUrl: 'templates/404.html',
+                templateUrl: 'templates/views/404.html',
                 title: 'Strona nie została odnaleziona | Wedding Planner',
                 breadcrumbsTitle: '404',
                 availableForCustomUserMenu: false,
@@ -223,31 +223,3 @@ angular
                 }
             });
 });
-
-angular
-    .module('weddingPlanner')
-    .run(["$rootScope", "$location", function($rootScope, $location) {
-        $rootScope.$on("$routeChangeError", function(event, next, previous, error) {
-            if (error === "AUTH_REQUIRED") {
-                $location.path("/login");
-            }
-        });
-        $rootScope.$on("$routeChangeSuccess", (_, current) => {
-            document.title = current.$$route.title;
-        });
-    }]);
-
-/* Kontroler autoryzacji */
-angular
-    .module('weddingPlanner')
-    .controller("AuthorizationCtrl", ["currentAuth", function(currentAuth) {
-        return currentAuth;
-    }]);
-
-angular
-    .module('weddingPlanner')
-    .factory("Auth", ["$firebaseAuth",
-        function($firebaseAuth) {
-            return $firebaseAuth();
-        }
-    ]);

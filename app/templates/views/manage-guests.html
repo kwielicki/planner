@@ -20,7 +20,7 @@
     </div>
 </section>
 
-<section class="section" ng-controller="mainController">
+<section class="section">
     <div class="container-fluid">
         <div class="row row--flex">
             <div class="component widget widget--light widget--category col-flex-3" data-component-name="widget"">
@@ -91,7 +91,7 @@
                     </div>
                 </div>
             </div>
-            <div class="component widget widget--light widget--category col-flex-3" data-component-name="widget"">
+            <div class="component widget widget--light widget--category col-flex-3" data-component-name="widget" ng-controller="manageGuestTableSorting">
                 <div class="inner">
                     <div class="widget__header widget__header--popover">
                         <h2 class="widget__title">
@@ -116,7 +116,7 @@
                         </span>
                     <app-manage-guest-sorting-label></app-manage-guest-sorting-label>
                 </h2>
-                <div class="component table-management">
+                <div class="component table-management" ng-controller="manageGuestTableSorting">
                     <!-- Table header -->
 
                     <div class="table-management__header">
