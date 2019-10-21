@@ -53,17 +53,17 @@ angular
 				  },
 				  {
 					  table: {
-						  widths: ["auto","15%","15%","auto","15%","15%", "10%", "15%"],
+						  widths: ["auto","auto","auto","auto","auto","auto", "auto", "auto"],
 					body: [
 					  [
 						[{text: "L.P", style: "tHead"}, lp],
 						[{text: "Imię", style: "tHead"}, firstName],
 						[{text: "Nazwisko", style: "tHead"}, surName],
-						[{text: "Liczba gości", style: "tHead"}, numberGust],
-						[{text: "Dzieci", style: "tHead"}, children],
-						[{text: "Przynależność", style: "tHead"}, membership],
+						[{text: "L. gości", style: "tHead"}, numberGust],
+						[{text: "L. dzieci", style: "tHead"}, children],
+						[{text: "Przyna.", style: "tHead"}, membership],
 						[{text: "Status", style: "tHead"}, status],
-						[{text: "Nr. telefonu", style: "tHead"}, phoneNumber]
+						[{text: "tel.", style: "tHead"}, phoneNumber]
 					  ]
 					]
 				  }
@@ -72,7 +72,7 @@ angular
 			styles: {
 				tableHeader: {
 					bold: true,
-					fontSize: 18,
+					fontSize: 12,
 					lineHeight: 1,
 					margin: [0,0,0,5]
 				},
@@ -85,7 +85,8 @@ angular
 				}
 			},
 			defaultStyle: {
-				lineHeight: 2
+				lineHeight: 2,
+				fontSize: 10
 			}
 			};
 
