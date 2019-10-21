@@ -70,6 +70,7 @@
 	&__label {
 		position: absolute;
 		top: 0;
+		left: 0;
 		font-size: $font-size-xs;
 		transition: all .15s ease-out;
 		pointer-events: none;
