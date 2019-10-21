@@ -35,6 +35,12 @@ angular
 						'itemsPerPage': 30
 					}, {
 						'itemsPerPage': 50
+					}, {
+						'itemsPerPage': 100
+					}, {
+						'itemsPerPage': 200
+					}, {
+						'itemsPerPage': 300
 					}
                 ];
 
