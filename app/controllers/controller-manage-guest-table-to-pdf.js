@@ -1,6 +1,6 @@
 angular
     .module('weddingPlanner')
-    .controller('manageGuestTableSorting', [ '$scope', function ( $scope ) {
+    .controller('manageGuestTablePrinting', [ '$scope', function ( $scope ) {
 		$scope.printTable = function($scope) {
 			var myTableArray = [];
 			$('.table-management__body').find('.table-management__row').each(function() {
