@@ -12,9 +12,13 @@
 					<div class="user-profile__avatar">
 						<app-spinner></app-spinner>
 						<div ng-if="defaultProfileImage">
-							<img src="assets/images/default_avatar.png" alt="User profile photo"/>
+							<img src="assets/images/default_avatar.png" alt="User profile photo1" class="user-profile__imageSource"/>
 						</div>
-						<img ng-src="{{currentUserProfileImage}}" alt="User profile photo" ng-if="userProfileSrcSelected" image-change class="ng-src-animation">
+						<img ng-src="{{currentUserProfileImage}}"
+							 alt="User profile photo2"
+							 ng-if="userProfileSrcSelected" 
+							 image-change 
+							 class="ng-src-animation user-profile__imageSource">
 					</div>
 					<h6 class="user-profile__name user-profile__name--mobile" ng-if="$ctrl.firebaseUserDisplayName">
 						<small>Profil użytkownika</small>

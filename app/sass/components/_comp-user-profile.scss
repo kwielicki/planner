@@ -46,18 +46,14 @@
 		background-color: #fff;
 		margin: 0 auto;
 		box-shadow: 0 6px 0 0 rgba(0,0,0,.01), 0 15px 32px 0 rgba(0,0,0,.06);
-		img {
-			position: relative;
-			z-index: 99;
-		}
-		  &.img-loaded {
-			.ytp-spinner {
-				display: none;
-			}
-		}
 		margin-bottom: $padding-medium;
 		&--small {
 			box-shadow: none;
+		}
+		&.img-loaded {
+			.ytp-spinner {
+				display: none;
+			}
 		}
 	}
 	&__avatar {
@@ -69,6 +65,11 @@
 		overflow: hidden;
 	    border: 5px solid #fff;
 		top: -50px;
+		&.img-loaded {
+			.ytp-spinner {
+				display: none;
+			}
+		}
 	}
 
 	&__navigation {
